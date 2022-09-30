@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dominio;
+using Dominio.Exceptions;
 
 namespace Pruebas.PruebasDominio
 {
@@ -24,6 +25,19 @@ namespace Pruebas.PruebasDominio
             Assert.AreEqual(unaPelicula.Nombre, "Harry Potter");
         }
 
-        
+        [TestMethod]
+        [ExpectedException(typeof(DatoVacioException))]
+        public void NombrePeliculaInvalidoTest()
+        {
+            //arrange
+            Pelicula unaPelicula = new Pelicula();
+
+            //act
+            string nombreVacio = "";
+
+            //assert
+            Assert.ThrowsException<DatoVacioException>(() => unaPelicula.Nombre = nombreVacio);
+        }
+
     }
 }
