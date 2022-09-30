@@ -23,5 +23,7 @@ namespace Pruebas.PruebasDominio
             //assert
             Assert.AreEqual(unaPelicula.Nombre, "Harry Potter");
         }
+
+        
     }
 }

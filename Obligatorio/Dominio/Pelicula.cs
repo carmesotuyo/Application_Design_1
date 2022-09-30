@@ -8,6 +8,7 @@ namespace Dominio
 {
     public class Pelicula
     {
-        public string Nombre { get; set; }
+        private string _nombre;
+        public string Nombre { get => _nombre; set => _nombre = value; }
     }
 }
