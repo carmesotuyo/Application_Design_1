@@ -9,12 +9,10 @@ using Dominio.Exceptions;
 
 namespace Pruebas.PruebasDominio
 {
+
     [TestClass]
     public class PeliculaTest
     {
-        //[TestInitialize]
-        //Pelicula unaPelicula = new Pelicula();
-
         [TestMethod]
         public void NombrePeliculaValidoTest()
         {
@@ -84,6 +82,25 @@ namespace Pruebas.PruebasDominio
             unaPelicula.agregarGeneroSecundario(unGenero);
 
             Assert.IsFalse(unaPelicula.GenerosSecundarios.Contains(unGenero));
+        }
+
+        [TestMethod]
+        public void AgregarVariosGenerosTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+            Genero unGenero = new Genero();
+            Genero otroGenero = new Genero();
+
+            List<Genero> generos = new List<Genero>();
+            generos.Add(unGenero);
+            generos.Add(otroGenero);
+            unaPelicula.GenerosSecundarios = generos;
+
+            //unaPelicula.agregarGeneroSecundario(unGenero);
+            //unaPelicula.agregarGeneroSecundario(otroGenero);
+
+            Assert.IsTrue(unaPelicula.GenerosSecundarios.Contains(unGenero)
+                && unaPelicula.GenerosSecundarios.Contains(otroGenero));
         }
     }
 }
