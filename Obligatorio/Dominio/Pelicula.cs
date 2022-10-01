@@ -10,26 +10,27 @@ namespace Dominio
     public class Pelicula
     {
         private string _nombre;
-        public string Nombre { get => _nombre; set 
+        public string Nombre { get => _nombre; set
             {
-                if (value.Length == 0)
-                {
-                    throw new DatoVacioException();
-                }
+                chequearValorNoVacio(value);
                 _nombre = value;
-            } 
+            }
         }
 
         private string _generoPrincipal;
-
         public string GeneroPrincipal { get => _generoPrincipal; set
             {
-                if (value.Length == 0)
-                {
-                    throw new DatoVacioException();
-                }
+                chequearValorNoVacio(value);
                 _generoPrincipal = value;
             } 
+        }
+
+        private static void chequearValorNoVacio(string value)
+        {
+            if (value.Length == 0)
+            {
+                throw new DatoVacioException();
+            }
         }
     }
 }
