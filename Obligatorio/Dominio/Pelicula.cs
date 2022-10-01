@@ -22,6 +22,14 @@ namespace Dominio
 
         private string _generoPrincipal;
 
-        public string GeneroPrincipal { get => _generoPrincipal; set => _generoPrincipal = value; }
+        public string GeneroPrincipal { get => _generoPrincipal; set
+            {
+                if (value.Length == 0)
+                {
+                    throw new DatoVacioException();
+                }
+                _generoPrincipal = value;
+            } 
+        }
     }
 }
