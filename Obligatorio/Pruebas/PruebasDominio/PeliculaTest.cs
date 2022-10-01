@@ -41,10 +41,11 @@ namespace Pruebas.PruebasDominio
         public void GeneroPrincipalValidoTest()
         {
             Pelicula unaPelicula = new Pelicula();
+            Genero unGenero = new Genero();
 
-            unaPelicula.GeneroPrincipal = "Terror";
+            unaPelicula.GeneroPrincipal = unGenero;
 
-            Assert.AreEqual(unaPelicula.GeneroPrincipal, "Terror");
+            Assert.AreEqual(unaPelicula.GeneroPrincipal, unGenero);
         }
 
         [TestMethod]
