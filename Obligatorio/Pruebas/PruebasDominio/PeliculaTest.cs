@@ -48,17 +48,17 @@ namespace Pruebas.PruebasDominio
             Assert.AreEqual(unaPelicula.GeneroPrincipal, unGenero);
         }
 
-        /*[TestMethod]
+        [TestMethod]
         [ExpectedException(typeof(DatoVacioException))]
         public void GeneroPrincipalInvalidoTest()
         {
             Pelicula unaPelicula = new Pelicula();
 
-            string generoVacio = "";
+            Genero generoVacio = null;
 
             unaPelicula.GeneroPrincipal = generoVacio;
 
-        }*/
+        }
 
     }
 }
