@@ -47,6 +47,10 @@ namespace Dominio
 
         public void agregarGeneroSecundario(Genero genero)
         {
+            if(genero == null)
+            {
+                throw new DatoVacioException();
+            }
             GenerosSecundarios.Add(genero);
         }
     }
