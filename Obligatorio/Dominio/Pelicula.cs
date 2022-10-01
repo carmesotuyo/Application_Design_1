@@ -10,6 +10,14 @@ namespace Dominio
     public class Pelicula
     {
         private string _nombre;
+        private Genero _generoPrincipal;
+        private List<Genero> _generosSecundarios;
+
+        public Pelicula()
+        {
+            _generosSecundarios = new List<Genero>();
+        }
+
         public string Nombre { get => _nombre; set
             {
                 if (value.Length == 0)
@@ -20,7 +28,6 @@ namespace Dominio
             }
         }
 
-        private Genero _generoPrincipal;
         public Genero GeneroPrincipal { get => _generoPrincipal; set
             {
                 if (value == null)
@@ -31,6 +38,11 @@ namespace Dominio
             } 
         }
 
-        public Genero GeneroSecundario { get; set; }
+
+        public List<Genero> GenerosSecundarios { get => _generosSecundarios; set
+            {
+                _generosSecundarios = value;
+            } 
+        }
     }
 }

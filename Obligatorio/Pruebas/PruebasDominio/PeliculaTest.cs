@@ -66,9 +66,9 @@ namespace Pruebas.PruebasDominio
             Pelicula unaPelicula = new Pelicula();
             Genero unGenero = new Genero();
 
-            unaPelicula.GeneroSecundario = unGenero;
+            unaPelicula.GenerosSecundarios.Add(unGenero);
 
-            Assert.AreEqual(unaPelicula.GeneroSecundario, unGenero);
+            Assert.IsTrue(unaPelicula.GenerosSecundarios.Contains(unGenero));
         }
 
     }
