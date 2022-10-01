@@ -42,9 +42,9 @@ namespace Pruebas.PruebasDominio
         {
             Pelicula unaPelicula = new Pelicula();
 
-            unaPelicula.Genero = "Terror";
+            unaPelicula.GeneroPrincipal = "Terror";
 
-            Assert.AreEqual(unaPelicula.Genero, "Terror");
+            Assert.AreEqual(unaPelicula.GeneroPrincipal, "Terror");
         }
 
     }

@@ -20,6 +20,8 @@ namespace Dominio
             } 
         }
 
-        public string Genero { get; set; }
+        private string _generoPrincipal;
+
+        public string GeneroPrincipal { get => _generoPrincipal; set => _generoPrincipal = value; }
     }
 }
