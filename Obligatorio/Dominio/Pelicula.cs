@@ -30,5 +30,7 @@ namespace Dominio
                 _generoPrincipal = value;
             } 
         }
+
+        public Genero GeneroSecundario { get; set; }
     }
 }

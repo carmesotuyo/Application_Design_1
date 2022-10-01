@@ -60,5 +60,16 @@ namespace Pruebas.PruebasDominio
 
         }
 
+        [TestMethod]
+        public void GeneroSecundarioValidoTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+            Genero unGenero = new Genero();
+
+            unaPelicula.GeneroSecundario = unGenero;
+
+            Assert.AreEqual(unaPelicula.GeneroSecundario, unGenero);
+        }
+
     }
 }
