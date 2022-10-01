@@ -29,15 +29,12 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(DatoVacioException))]
         public void NombrePeliculaInvalidoTest()
         {
-            //arrange
             Pelicula unaPelicula = new Pelicula();
 
-            //act
             string nombreVacio = "";
+
             unaPelicula.Nombre = nombreVacio;
 
-            //assert
-            //Assert.ThrowsException<DatoVacioException>(() => unaPelicula.Nombre = nombreVacio);
         }
 
     }
