@@ -102,5 +102,13 @@ namespace Pruebas.PruebasDominio
             Assert.IsTrue(unaPelicula.GenerosSecundarios.Contains(unGenero)
                 && unaPelicula.GenerosSecundarios.Contains(otroGenero));
         }
+
+        [TestMethod]
+        public void PeliculaSinGenerosSecundariosValidaTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+            bool noTieneGenerosSecundarios = unaPelicula.GenerosSecundarios.Count == 0;
+            Assert.IsTrue(noTieneGenerosSecundarios);
+        }
     }
 }
