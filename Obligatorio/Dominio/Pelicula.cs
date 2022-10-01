@@ -19,5 +19,7 @@ namespace Dominio
                 _nombre = value;
             } 
         }
+
+        public string Genero { get; set; }
     }
 }

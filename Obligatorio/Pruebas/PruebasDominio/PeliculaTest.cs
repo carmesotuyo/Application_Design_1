@@ -37,5 +37,15 @@ namespace Pruebas.PruebasDominio
 
         }
 
+        [TestMethod]
+        public void GeneroPrincipalValidoTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+
+            unaPelicula.Genero = "Terror";
+
+            Assert.AreEqual(unaPelicula.Genero, "Terror");
+        }
+
     }
 }
