@@ -12,6 +12,9 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class PeliculaTest
     {
+        //[TestInitialize]
+        //Pelicula unaPelicula = new Pelicula();
+
         [TestMethod]
         public void NombrePeliculaValidoTest()
         {
@@ -71,5 +74,16 @@ namespace Pruebas.PruebasDominio
             Assert.IsTrue(unaPelicula.GenerosSecundarios.Contains(unGenero));
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(DatoVacioException))]
+        public void GeneroSecundarioInvalidoTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+            Genero unGenero = null;
+
+            unaPelicula.GenerosSecundarios.Add(unGenero);
+
+            Assert.IsFalse(unaPelicula.GenerosSecundarios.Contains(unGenero));
+        }
     }
 }
