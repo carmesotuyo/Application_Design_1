@@ -12,25 +12,23 @@ namespace Dominio
         private string _nombre;
         public string Nombre { get => _nombre; set
             {
-                chequearValorNoVacio(value);
+                if (value.Length == 0)
+                {
+                    throw new DatoVacioException();
+                }
                 _nombre = value;
             }
         }
 
-        private string _generoPrincipal;
-        public string GeneroPrincipal { get => _generoPrincipal; set
+        private Genero _generoPrincipal;
+        public Genero GeneroPrincipal { get => _generoPrincipal; set
             {
-                chequearValorNoVacio(value);
+                if (value == null)
+                {
+                    throw new DatoVacioException();
+                }
                 _generoPrincipal = value;
             } 
-        }
-
-        private static void chequearValorNoVacio(string value)
-        {
-            if (value.Length == 0)
-            {
-                throw new DatoVacioException();
-            }
         }
     }
 }
