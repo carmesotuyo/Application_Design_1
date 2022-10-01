@@ -44,5 +44,10 @@ namespace Dominio
                 _generosSecundarios = value;
             } 
         }
+
+        public void agregarGeneroSecundario(Genero genero)
+        {
+            GenerosSecundarios.Add(genero);
+        }
     }
 }
