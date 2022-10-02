@@ -31,10 +31,7 @@ namespace Dominio
 
         public Genero GeneroPrincipal { get => _generoPrincipal; set
             {
-                if (value == null)
-                {
-                    throw new DatoVacioException();
-                }
+                chequearSiEsVacio(value);
                 _generoPrincipal = value;
             } 
         }
@@ -48,11 +45,16 @@ namespace Dominio
 
         public void agregarGeneroSecundario(Genero genero)
         {
-            if(genero == null)
+            chequearSiEsVacio(genero);
+            GenerosSecundarios.Add(genero);
+        }
+
+        private static void chequearSiEsVacio(Genero genero)
+        {
+            if (genero == null)
             {
                 throw new DatoVacioException();
             }
-            GenerosSecundarios.Add(genero);
         }
 
         public string Descripcion { get => _descripcion; set => _descripcion = value; }
