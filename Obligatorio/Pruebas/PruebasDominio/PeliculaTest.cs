@@ -170,5 +170,13 @@ namespace Pruebas.PruebasDominio
             unaPelicula.Identificador = 123;
             Assert.AreEqual(unaPelicula.Identificador, 123);
         }
+
+        [TestMethod]
+        public void PosterPeliculaValidoTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+            unaPelicula.Poster = "ruta/archivo.jpg";
+            Assert.AreEqual(unaPelicula.Poster, "ruta/archivo.jpg");
+        }
     }
 }
