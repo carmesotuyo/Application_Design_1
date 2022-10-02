@@ -14,14 +14,18 @@ namespace Dominio
 
         public string Nombre { get => _nombre; set
             {
-                if (value.Length == 0)
-                {
-                    throw new DatoVacioException();
-                }
+                ChequearStringVacio(value);
                 _nombre = value;
-            } 
+            }
         }
 
         public string Descripcion { get => _descripcion; set => _descripcion = value; }
+        private static void ChequearStringVacio(string value)
+        {
+            if (value.Length == 0)
+            {
+                throw new DatoVacioException();
+            }
+        }
     }
 }
