@@ -7,10 +7,11 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class UsuarioTest
     {
+
         [TestMethod]
-        public void TestMethod1()
+        public void NombreUsuarioValido()
         {
-            //arrange
+            //arrange8
             Usuario unUsuario = new Usuario();
 
             //act
@@ -19,5 +20,32 @@ namespace Pruebas.PruebasDominio
             //assert
             Assert.AreEqual(unUsuario.Nombre, "John");
         }
+
+        [TestMethod]
+        public void EmailValido()
+        {
+            //arrange8
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Email = "johny@da1.com";
+
+            //assert
+            Assert.AreEqual(unUsuario.Email, "johny@da1.com");
+        }
+
+        [TestMethod]
+        public void ClaveValida()
+        {
+            //arrange8
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Clave = "1234";
+
+            //assert
+            Assert.AreEqual(unUsuario.Clave, "1234");
+        }
+
     }
 }

@@ -8,7 +8,7 @@ namespace Dominio
 {
     public class Usuario
     {
-        private string _nombre;
-        public string Nombre { get => _nombre; set => _nombre = value; }
+        private string _nombreUsuario;
+        public string Nombre { get => _nombreUsuario; set => _nombreUsuario = value; }
     }
 }
