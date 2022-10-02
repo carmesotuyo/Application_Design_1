@@ -128,9 +128,9 @@ namespace Pruebas.PruebasDominio
         {
             Pelicula unaPelicula = new Pelicula();
 
-            unaPelicula.EsApta = true;
+            unaPelicula.AptaTodoPublico = true;
 
-            Assert.IsTrue(unaPelicula.EsApta);
+            Assert.IsTrue(unaPelicula.AptaTodoPublico);
         }
 
         [TestMethod]
@@ -138,9 +138,9 @@ namespace Pruebas.PruebasDominio
         {
             Pelicula unaPelicula = new Pelicula();
 
-            unaPelicula.EsApta = false;
+            unaPelicula.AptaTodoPublico = false;
 
-            Assert.IsFalse(unaPelicula.EsApta); 
+            Assert.IsFalse(unaPelicula.AptaTodoPublico); 
         }
     }
 }

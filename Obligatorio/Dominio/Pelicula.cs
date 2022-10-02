@@ -13,7 +13,7 @@ namespace Dominio
         private Genero _generoPrincipal;
         private List<Genero> _generosSecundarios;
         private string _descripcion;
-        private bool _esApta;
+        private bool _aptaTodoPublico;
 
         public Pelicula()
         {
@@ -59,6 +59,6 @@ namespace Dominio
         }
 
         public string Descripcion { get => _descripcion; set => _descripcion = value; }
-        public bool EsApta { get => _esApta; set => _esApta = value; }
+        public bool AptaTodoPublico { get => _aptaTodoPublico; set => _aptaTodoPublico = value; }
     }
 }
