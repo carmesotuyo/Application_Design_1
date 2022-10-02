@@ -132,5 +132,15 @@ namespace Pruebas.PruebasDominio
 
             Assert.IsTrue(unaPelicula.EsApta);
         }
+
+        [TestMethod]
+        public void PeliculaNoAptaTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+
+            unaPelicula.EsApta = false;
+
+            Assert.IsFalse(unaPelicula.EsApta); 
+        }
     }
 }
