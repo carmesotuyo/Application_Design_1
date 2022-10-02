@@ -13,6 +13,8 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class PeliculaTest
     {
+        [TestInitialize]
+
         [TestMethod]
         public void NombrePeliculaValidoTest()
         {
@@ -109,6 +111,14 @@ namespace Pruebas.PruebasDominio
             Pelicula unaPelicula = new Pelicula();
             bool noTieneGenerosSecundarios = unaPelicula.GenerosSecundarios.Count == 0;
             Assert.IsTrue(noTieneGenerosSecundarios);
+        }
+
+        [TestMethod]
+        public void DescripcionValidaTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+            unaPelicula.Descripcion = "Descripcion de prueba";
+            Assert.AreEqual(unaPelicula.Descripcion, "Descripcion de prueba");
         }
     }
 }
