@@ -14,6 +14,7 @@ namespace Dominio
         private List<Genero> _generosSecundarios;
         private string _descripcion;
         private bool _aptaTodoPublico;
+        private bool _patrocinada;
 
         public Pelicula()
         {
@@ -60,5 +61,6 @@ namespace Dominio
 
         public string Descripcion { get => _descripcion; set => _descripcion = value; }
         public bool AptaTodoPublico { get => _aptaTodoPublico; set => _aptaTodoPublico = value; }
+        public bool EsPatrocinada { get => _patrocinada; set => _patrocinada = value; }
     }
 }
