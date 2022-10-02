@@ -20,5 +20,13 @@ namespace Pruebas.PruebasDominio
             Assert.AreEqual(unGenero.Nombre, "Terror");
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(DatoVacioException))]
+        public void NombreGeneroInvalidoTest()
+        {
+            Genero unGenero = new Genero();
+            string nombreVacio = "";
+            unGenero.Nombre = nombreVacio;
+        }
     }
 }
