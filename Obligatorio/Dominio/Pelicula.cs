@@ -12,6 +12,7 @@ namespace Dominio
         private string _nombre;
         private Genero _generoPrincipal;
         private List<Genero> _generosSecundarios;
+        private string _descripcion;
 
         public Pelicula()
         {
@@ -53,5 +54,7 @@ namespace Dominio
             }
             GenerosSecundarios.Add(genero);
         }
+
+        public string Descripcion { get => _descripcion; set => _descripcion = value; }
     }
 }

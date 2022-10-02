@@ -117,7 +117,9 @@ namespace Pruebas.PruebasDominio
         public void DescripcionValidaTest()
         {
             Pelicula unaPelicula = new Pelicula();
+
             unaPelicula.Descripcion = "Descripcion de prueba";
+
             Assert.AreEqual(unaPelicula.Descripcion, "Descripcion de prueba");
         }
     }
