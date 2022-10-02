@@ -178,5 +178,14 @@ namespace Pruebas.PruebasDominio
             unaPelicula.Poster = "ruta/archivo.jpg";
             Assert.AreEqual(unaPelicula.Poster, "ruta/archivo.jpg");
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(DatoVacioException))]
+        public void PosterPeliculaInvalidoTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+            string rutaVacia = "";
+            unaPelicula.Poster = rutaVacia;
+        }
     }
 }
