@@ -152,5 +152,15 @@ namespace Pruebas.PruebasDominio
 
             Assert.IsTrue(unaPelicula.EsPatrocinada);
         }
+
+        [TestMethod]
+        public void PeliculaNoPatrocinadaTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+
+            unaPelicula.EsPatrocinada = false;
+
+            Assert.IsFalse(unaPelicula.EsPatrocinada);
+        }
     }
 }
