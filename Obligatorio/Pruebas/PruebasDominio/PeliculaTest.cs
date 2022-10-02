@@ -122,5 +122,15 @@ namespace Pruebas.PruebasDominio
 
             Assert.AreEqual(unaPelicula.Descripcion, "Descripcion de prueba");
         }
+
+        [TestMethod]
+        public void PeliculaAptaParaTodoPublicoTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+
+            unaPelicula.EsApta = true;
+
+            Assert.IsTrue(unaPelicula.EsApta);
+        }
     }
 }
