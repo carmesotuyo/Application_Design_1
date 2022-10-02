@@ -15,6 +15,7 @@ namespace Dominio
         private string _descripcion;
         private bool _aptaTodoPublico;
         private bool _patrocinada;
+        private int _idPelicula;
 
         public Pelicula()
         {
@@ -62,5 +63,6 @@ namespace Dominio
         public string Descripcion { get => _descripcion; set => _descripcion = value; }
         public bool AptaTodoPublico { get => _aptaTodoPublico; set => _aptaTodoPublico = value; }
         public bool EsPatrocinada { get => _patrocinada; set => _patrocinada = value; }
+        public int Identificador { get => _idPelicula; set => _idPelicula = value; }
     }
 }

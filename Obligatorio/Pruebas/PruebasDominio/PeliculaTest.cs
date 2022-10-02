@@ -162,5 +162,13 @@ namespace Pruebas.PruebasDominio
 
             Assert.IsFalse(unaPelicula.EsPatrocinada);
         }
+
+        [TestMethod]
+        public void IdentificadorPeliculaTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+            unaPelicula.Identificador = 123;
+            Assert.AreEqual(unaPelicula.Identificador, 123);
+        }
     }
 }
