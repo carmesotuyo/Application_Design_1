@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using Dominio.Exceptions;
 
 namespace Pruebas.PruebasDominio
 {
@@ -18,5 +19,6 @@ namespace Pruebas.PruebasDominio
             unGenero.Nombre = "Terror";
             Assert.AreEqual(unGenero.Nombre, "Terror");
         }
+
     }
 }

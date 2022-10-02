@@ -8,5 +8,8 @@ namespace Dominio
 {
     public class Genero
     {
+        private string _nombre;
+
+        public string Nombre { get => _nombre; set => _nombre = value; }
     }
 }
