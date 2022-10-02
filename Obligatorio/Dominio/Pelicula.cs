@@ -25,10 +25,7 @@ namespace Dominio
 
         public string Nombre { get => _nombre; set
             {
-                if (value.Length == 0)
-                {
-                    throw new DatoVacioException();
-                }
+                ChequearStringVacio(value);
                 _nombre = value;
             }
         }
@@ -46,7 +43,26 @@ namespace Dominio
                 _generosSecundarios = value;
             } 
         }
+        
 
+        public string Descripcion { get => _descripcion; set => _descripcion = value; }
+        public bool AptaTodoPublico { get => _aptaTodoPublico; set => _aptaTodoPublico = value; }
+        public bool EsPatrocinada { get => _patrocinada; set => _patrocinada = value; }
+        public int Identificador { get => _idPelicula; set => _idPelicula = value; }
+        public string Poster { get => _poster; set
+            {
+                ChequearStringVacio(value);
+                _poster = value;
+            }
+        }
+
+        private static void ChequearStringVacio(string value)
+        {
+            if (value.Length == 0)
+            {
+                throw new DatoVacioException();
+            }
+        }
         public void agregarGeneroSecundario(Genero genero)
         {
             chequearSiEsVacio(genero);
@@ -59,20 +75,6 @@ namespace Dominio
             {
                 throw new DatoVacioException();
             }
-        }
-
-        public string Descripcion { get => _descripcion; set => _descripcion = value; }
-        public bool AptaTodoPublico { get => _aptaTodoPublico; set => _aptaTodoPublico = value; }
-        public bool EsPatrocinada { get => _patrocinada; set => _patrocinada = value; }
-        public int Identificador { get => _idPelicula; set => _idPelicula = value; }
-        public string Poster { get => _poster; set
-            {
-                if(value.Length == 0)
-                {
-                    throw new DatoVacioException();
-                }
-                _poster = value;
-            } 
         }
     }
 }
