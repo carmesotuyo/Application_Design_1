@@ -10,6 +10,7 @@ namespace Dominio
     public class Genero
     {
         private string _nombre;
+        private string _descripcion;
 
         public string Nombre { get => _nombre; set
             {
@@ -20,5 +21,7 @@ namespace Dominio
                 _nombre = value;
             } 
         }
+
+        public string Descripcion { get => _descripcion; set => _descripcion = value; }
     }
 }
