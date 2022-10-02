@@ -28,5 +28,15 @@ namespace Pruebas.PruebasDominio
             string nombreVacio = "";
             unGenero.Nombre = nombreVacio;
         }
+
+        [TestMethod]
+        public void DescripcionGeneroValida()
+        {
+            Genero unGenero = new Genero();
+
+            unGenero.Descripcion = "Descripcion de prueba";
+
+            Assert.AreEqual(unGenero.Descripcion, "Descripcion de prueba");
+        }
     }
 }
