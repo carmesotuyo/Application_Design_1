@@ -15,10 +15,22 @@ namespace Pruebas.PruebasDominio
             Usuario unUsuario = new Usuario();
 
             //act
-            unUsuario.Nombre = "John";
+            unUsuario.Nombre = "johnyPro123";
 
             //assert
-            Assert.AreEqual(unUsuario.Nombre, "John");
+            Assert.AreEqual(unUsuario.Nombre, "johnyPro123");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NombreInvalidoException))]
+        public void NombreUsuarioInvalido()
+        {
+            //arrange8
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Nombre = "John";
+
         }
 
         [TestMethod]
