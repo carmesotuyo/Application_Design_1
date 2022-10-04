@@ -28,8 +28,16 @@ namespace Dominio
             get => _email;
             set
             {
-                throw new EmailInvalidoException();
+                ChequearEmailValido(value);
                 _email = value;
+            }
+        }
+
+        private static void ChequearEmailValido(string value)
+        {
+            if (!value.Contains("@"))
+            {
+                throw new EmailInvalidoException();
             }
         }
 
