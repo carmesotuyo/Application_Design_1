@@ -13,10 +13,11 @@ namespace Pruebas.PruebasDominio
         public void NombreUsuarioValido()
         {
             //arrange8
-            Usuario unUsuario = new Usuario();
+            Usuario unUsuario = new Usuario()
+            {
+                Nombre = "johnyPro123"
+            };
 
-            //act
-            unUsuario.Nombre = "johnyPro123";
 
             //assert
             Assert.AreEqual(unUsuario.Nombre, "johnyPro123");

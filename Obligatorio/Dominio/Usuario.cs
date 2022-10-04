@@ -13,6 +13,9 @@ namespace Dominio
         private string _email;
         private string _clave;
 
+        //Hacer el constructor de Users
+        //(si primero instancio la clase y luego pasa algo que no se llega a completar sus datos, queda en memoria innecesaria?)
+
         private static void ChequearEmailValido(string value)
         {
             if (!value.Contains("@"))
