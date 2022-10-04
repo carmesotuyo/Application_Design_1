@@ -13,6 +13,29 @@ namespace Dominio
         private string _email;
         private string _clave;
 
+        private static void ChequearEmailValido(string value)
+        {
+            if (!value.Contains("@"))
+            {
+                throw new EmailInvalidoException();
+            }
+        }
+        private static void ChequearClaveValida(string value)
+        {
+            if (value.Length < 10 || value.Length > 30)
+            {
+                throw new ClaveInvalidaException();
+            }
+        }
+
+        private static void ChequearNombreValido(string value)
+        {
+            if (value.Length < 10 || value.Length > 20)
+            {
+                throw new NombreUsuarioException();
+            }
+        }
+
         public string Nombre
         {
             get => _nombreUsuario;
@@ -33,15 +56,6 @@ namespace Dominio
             }
         }
 
-        private static void ChequearEmailValido(string value)
-        {
-            if (!value.Contains("@"))
-            {
-                throw new EmailInvalidoException();
-            }
-        }
-
-
         public string Clave
         {
             get => _clave;
@@ -51,20 +65,6 @@ namespace Dominio
                 _clave = value;
             }
         }
-        private static void ChequearClaveValida(string value)
-        {
-            if (value.Length < 10 || value.Length > 30)
-            {
-                throw new ClaveInvalidaException();
-            }
-        }
 
-        private static void ChequearNombreValido(string value)
-        {
-            if (value.Length < 10 || value.Length > 20)
-            {
-                throw new NombreUsuarioException();
-            }
-        }
     }
 }

@@ -28,18 +28,50 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(NombreUsuarioException))]
         public void NombreUsuarioInvalido()
         {
-            //arrange8
+            //arrange
             Usuario unUsuario = new Usuario();
 
             //act
             unUsuario.Nombre = "John";
+        }
 
+        [TestMethod]
+        [ExpectedException(typeof(NombreUsuarioException))]
+        public void NombreVacio()
+        {
+            //arrange
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Nombre = "";
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NombreUsuarioException))]
+        public void Nombre9caracteres()
+        {
+            //arrange
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Nombre = "aaaaaaaaa";
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NombreUsuarioException))]
+        public void Nombre21caracteres()
+        {
+            //arrange
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Nombre = "aaaaaaaaaaaaaaaaaaaaa";
         }
 
         [TestMethod]
         public void EmailValido()
         {
-            //arrange8
+            //arrange
             Usuario unUsuario = new Usuario();
 
             //act
@@ -53,18 +85,17 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(EmailInvalidoException))]
         public void EmailInvalido()
         {
-            //arrange8
+            //arrange
             Usuario unUsuario = new Usuario();
 
             //act
             unUsuario.Email = "johnyPro";
-
         }
 
         [TestMethod]
         public void ClaveValida()
         {
-            //arrange8
+            //arrange
             Usuario unUsuario = new Usuario();
 
             //act
@@ -78,12 +109,44 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(ClaveInvalidaException))]
         public void ClaveInvalida()
         {
-            //arrange8
+            //arrange
             Usuario unUsuario = new Usuario();
 
             //act
             unUsuario.Clave = "1234";
+        }
 
+        [TestMethod]
+        [ExpectedException(typeof(ClaveInvalidaException))]
+        public void ClaveVacia()
+        {
+            //arrange
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Clave = "";
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ClaveInvalidaException))]
+        public void Clave9Caracteres()
+        {
+            //arrange
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Clave = "123456789";
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ClaveInvalidaException))]
+        public void Clave31Caracteres()
+        {
+            //arrange
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Clave = "0123456789012345678901234567890";
         }
 
     }
