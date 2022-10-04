@@ -10,4 +10,7 @@ namespace Dominio.Exceptions
     {
     }
 
+    public class ClaveInvalidaException : Exception
+    {
+    }
 }

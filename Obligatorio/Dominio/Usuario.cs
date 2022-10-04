@@ -25,7 +25,15 @@ namespace Dominio
         public string Email { get => _email; set => _email = value; }
 
         private string _clave;
-        public string Clave { get => _clave; set => _clave = value; }
+        public string Clave
+        {
+            get => _clave;
+            set
+            {
+                throw new NombreUsuarioException();
+                _clave = value;
+            }
+        }
 
         private static void ChequearNombreValido(string value)
         {
