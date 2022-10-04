@@ -13,8 +13,6 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class PeliculaTest
     {
-        [TestInitialize]
-
         [TestMethod]
         public void NombrePeliculaValidoTest()
         {
@@ -166,12 +164,9 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void IdentificadorPeliculaTest()
         {
-            Pelicula unaPelicula = new Pelicula()
-            {
-                Identificador = 123
-            };
+            Pelicula unaPelicula = new Pelicula();
 
-            Assert.AreEqual(unaPelicula.Identificador, 123);
+            Assert.AreEqual(unaPelicula.Identificador, Pelicula.ContadorPeliculas);
         }
 
         [TestMethod]
