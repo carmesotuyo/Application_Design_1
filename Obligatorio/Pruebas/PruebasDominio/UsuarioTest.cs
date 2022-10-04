@@ -50,13 +50,25 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
+        [ExpectedException(typeof(EmailInvalidoException))]
+        public void EmailInvalido()
+        {
+            //arrange8
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Email = "johnyPro";
+
+        }
+
+        [TestMethod]
         public void ClaveValida()
         {
             //arrange8
             Usuario unUsuario = new Usuario();
 
             //act
-            unUsuario.Clave = "1234";
+            unUsuario.Clave = "admin12345678";
 
             //assert
             Assert.AreEqual(unUsuario.Clave, "admin12345678");
