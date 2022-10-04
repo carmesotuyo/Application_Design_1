@@ -22,7 +22,7 @@ namespace Dominio
         public Pelicula()
         {
             _generosSecundarios = new List<Genero>();
-            Identificador = ContadorPeliculas;
+            this.asignarIdentificador();
         }
 
         public string Nombre { get => _nombre; set
@@ -50,13 +50,8 @@ namespace Dominio
         public string Descripcion { get => _descripcion; set => _descripcion = value; }
         public bool AptaTodoPublico { get => _aptaTodoPublico; set => _aptaTodoPublico = value; }
         public bool EsPatrocinada { get => _patrocinada; set => _patrocinada = value; }
-        public int Identificador { get => _idPelicula; set
-            {
-                _contadorPeliculas += 1;
-                _idPelicula = _contadorPeliculas;
-            } 
-        }
-        public int ContadorPeliculas { get => _contadorPeliculas; set => _contadorPeliculas = value; }
+        public int Identificador { get => _idPelicula; set => _idPelicula = value; }
+        public static int ContadorPeliculas { get => _contadorPeliculas; set => _contadorPeliculas = value; }
         public string Poster { get => _poster; set
             {
                 ChequearStringVacio(value);
@@ -83,6 +78,12 @@ namespace Dominio
             {
                 throw new DatoVacioException();
             }
+        }
+
+        private void asignarIdentificador()
+        {
+            ContadorPeliculas += 1;
+            Identificador = ContadorPeliculas;
         }
     }
 }
