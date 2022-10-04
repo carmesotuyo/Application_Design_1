@@ -10,6 +10,8 @@ namespace Dominio
     public class Usuario
     {
         private string _nombreUsuario;
+        private string _email;
+        private string _clave;
 
         public string Nombre
         {
@@ -21,10 +23,17 @@ namespace Dominio
             }
         }
 
-        private string _email;
-        public string Email { get => _email; set => _email = value; }
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                throw new EmailInvalidoException();
+                _email = value;
+            }
+        }
 
-        private string _clave;
+
         public string Clave
         {
             get => _clave;

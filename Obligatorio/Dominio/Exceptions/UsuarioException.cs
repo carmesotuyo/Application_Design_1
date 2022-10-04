@@ -13,4 +13,8 @@ namespace Dominio.Exceptions
     public class ClaveInvalidaException : Exception
     {
     }
+    
+    public class EmailInvalidoException : Exception
+    {
+    }
 }
