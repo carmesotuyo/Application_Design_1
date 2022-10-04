@@ -170,6 +170,15 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
+        public void IdentificadorVariasPeliculasTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+            Pelicula otraPelicula = new Pelicula();
+
+            Assert.AreNotEqual(unaPelicula.Identificador, otraPelicula.Identificador);
+        }
+
+        [TestMethod]
         public void PosterPeliculaValidoTest()
         {
             Pelicula unaPelicula = new Pelicula()
