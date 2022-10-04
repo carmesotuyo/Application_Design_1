@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Dominio;
+using Dominio.Exceptions;
 
 namespace Pruebas.PruebasDominio
 {
@@ -21,8 +22,10 @@ namespace Pruebas.PruebasDominio
             Assert.AreEqual(unUsuario.Nombre, "johnyPro123");
         }
 
+
+
         [TestMethod]
-        [ExpectedException(typeof(NombreInvalidoException))]
+        [ExpectedException(typeof(NombreUsuarioException))]
         public void NombreUsuarioInvalido()
         {
             //arrange8
@@ -56,7 +59,19 @@ namespace Pruebas.PruebasDominio
             unUsuario.Clave = "1234";
 
             //assert
-            Assert.AreEqual(unUsuario.Clave, "1234");
+            Assert.AreEqual(unUsuario.Clave, "admin12345678");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ClaveInvalidaException))]
+        public void ClaveInValida()
+        {
+            //arrange8
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Clave = "1234";
+
         }
 
     }
