@@ -64,7 +64,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(ClaveInvalidaException))]
-        public void ClaveInValida()
+        public void ClaveInvalida()
         {
             //arrange8
             Usuario unUsuario = new Usuario();

@@ -30,8 +30,15 @@ namespace Dominio
             get => _clave;
             set
             {
-                throw new NombreUsuarioException();
+                ChequearClaveValida(value);
                 _clave = value;
+            }
+        }
+        private static void ChequearClaveValida(string value)
+        {
+            if (value.Length < 10 || value.Length > 30)
+            {
+                throw new ClaveInvalidaException();
             }
         }
 
