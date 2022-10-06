@@ -10,5 +10,9 @@ namespace Repositorio
     public class PeliculaRepo
     {
         public List<Pelicula> peliculas = new List<Pelicula>();
+        public bool EstaPelicula(Pelicula pelicula)
+        {
+            return peliculas.Contains(pelicula);
+        }
     }
 }
