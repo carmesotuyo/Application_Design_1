@@ -46,6 +46,14 @@ namespace Dominio
             } 
         }
 
+        private void ChequearNoIncluidoEnSecundarios(Genero unGenero)
+        {
+            if (GenerosSecundarios.Contains(unGenero))
+            {
+                throw new GeneroInvalidoException();
+            }
+        }
+
 
         public List<Genero> GenerosSecundarios { get => _generosSecundarios; set
             {
