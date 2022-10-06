@@ -51,7 +51,7 @@ namespace Pruebas.PruebasDominio
         public void GeneroPrincipalNoIncluidoEnSecundariosTest()
         {
             Genero generoSecundario = new Genero();
-            unaPelicula.GenerosSecundarios.Add(generoSecundario);
+            unaPelicula.AgregarGeneroSecundario(generoSecundario);
 
             unaPelicula.GeneroPrincipal = unGenero;
             Assert.IsFalse(unaPelicula.GenerosSecundarios.Contains(unGenero));
@@ -61,7 +61,7 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(GeneroInvalidoException))]
         public void GeneroPrincipalIncluidoEnSecundariosTest()
         {
-            unaPelicula.GenerosSecundarios.Add(unGenero);
+            unaPelicula.AgregarGeneroSecundario(unGenero);
 
             unaPelicula.GeneroPrincipal = unGenero;
         }
@@ -69,7 +69,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void GeneroSecundarioValidoTest()
         {
-            unaPelicula.GenerosSecundarios.Add(unGenero);
+            unaPelicula.AgregarGeneroSecundario(unGenero);
 
             Assert.IsTrue(unaPelicula.GenerosSecundarios.Contains(unGenero));
         }
@@ -81,6 +81,25 @@ namespace Pruebas.PruebasDominio
             unaPelicula.AgregarGeneroSecundario(generoVacio);
 
             Assert.IsFalse(unaPelicula.GenerosSecundarios.Contains(generoVacio));
+        }
+
+        [TestMethod]
+        public void GeneroSecundarioNoIncluyeGeneroPrincipalTest()
+        {
+            Genero generoPrincipal = new Genero();
+            unaPelicula.GeneroPrincipal = generoPrincipal;
+
+            unaPelicula.AgregarGeneroSecundario(unGenero);
+            Assert.IsFalse(unaPelicula.GenerosSecundarios.Contains(unaPelicula.GeneroPrincipal));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(GeneroInvalidoException))]
+        public void GeneroSecundarioIncluyeGeneroPrincipalTest()
+        {
+            unaPelicula.GeneroPrincipal = unGenero;
+
+            unaPelicula.AgregarGeneroSecundario(unGenero);
         }
 
         [TestMethod]

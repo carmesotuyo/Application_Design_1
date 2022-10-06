@@ -78,7 +78,16 @@ namespace Dominio
         public void AgregarGeneroSecundario(Genero genero)
         {
             ChequearGeneroVacio(genero);
+            ChequearNoCoincideConPrincipal(genero);
             _generosSecundarios.Add(genero);
+        }
+
+        private void ChequearNoCoincideConPrincipal(Genero unGenero)
+        {
+            if (unGenero.Equals(GeneroPrincipal))
+            {
+                throw new GeneroInvalidoException();
+            }
         }
 
         private static void ChequearStringVacio(string value)
