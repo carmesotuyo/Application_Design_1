@@ -24,6 +24,11 @@ namespace Dominio
             _generosSecundarios = new List<Genero>();
             this.asignarIdentificador();
         }
+        private void asignarIdentificador()
+        {
+            ContadorPeliculas += 1;
+            Identificador = ContadorPeliculas;
+        }
 
         public string Nombre { get => _nombre; set
             {
@@ -34,7 +39,7 @@ namespace Dominio
 
         public Genero GeneroPrincipal { get => _generoPrincipal; set
             {
-                chequearSiEsVacio(value);
+                ChequearGeneroVacio(value);
                 _generoPrincipal = value;
             } 
         }
@@ -59,6 +64,12 @@ namespace Dominio
             }
         }
 
+        public void AgregarGeneroSecundario(Genero genero)
+        {
+            ChequearGeneroVacio(genero);
+            _generosSecundarios.Add(genero);
+        }
+
         private static void ChequearStringVacio(string value)
         {
             if (value.Length == 0)
@@ -66,24 +77,13 @@ namespace Dominio
                 throw new DatoVacioException();
             }
         }
-        public void AgregarGeneroSecundario(Genero genero)
-        {
-            chequearSiEsVacio(genero);
-            GenerosSecundarios.Add(genero);
-        }
-
-        private static void chequearSiEsVacio(Genero genero)
+        private static void ChequearGeneroVacio(Genero genero)
         {
             if (genero == null)
             {
                 throw new DatoVacioException();
             }
         }
-
-        private void asignarIdentificador()
-        {
-            ContadorPeliculas += 1;
-            Identificador = ContadorPeliculas;
-        }
+        
     }
 }
