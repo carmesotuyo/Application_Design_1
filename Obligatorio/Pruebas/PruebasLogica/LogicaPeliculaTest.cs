@@ -24,5 +24,13 @@ namespace Pruebas.PruebasLogica
 
             Assert.IsTrue(repo.EstaPelicula(unaPelicula));
         }
+
+        [TestMethod]
+        public void BajaPeliculaTest()
+        {
+            logica.BajaPelicula(unaPelicula, repo);
+
+            Assert.IsFalse(repo.EstaPelicula(unaPelicula));
+        }
     }
 }
