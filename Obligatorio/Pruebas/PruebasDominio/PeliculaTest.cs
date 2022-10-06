@@ -58,6 +58,15 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
+        [ExpectedException(typeof(GeneroInvalidoException))]
+        public void GeneroPrincipalIncluidoEnSecundariosTest()
+        {
+            unaPelicula.GenerosSecundarios.Add(unGenero);
+
+            unaPelicula.GeneroPrincipal = unGenero;
+        }
+
+        [TestMethod]
         public void GeneroSecundarioValidoTest()
         {
             unaPelicula.GenerosSecundarios.Add(unGenero);
