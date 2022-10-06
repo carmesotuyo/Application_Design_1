@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\DatoVacioException.cs" />
+    <Compile Include="Exceptions\GeneroInvalidoException.cs" />
+    <Compile Include="Genero.cs" />
+    <Compile Include="Pelicula.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
