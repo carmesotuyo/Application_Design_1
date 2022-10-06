@@ -13,13 +13,15 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class PeliculaTest
     {
+        Pelicula unaPelicula = new Pelicula();
+        Genero unGenero = new Genero();
+        Genero generoVacio = null;
+
         [TestMethod]
         public void NombrePeliculaValidoTest()
         {
-            Pelicula unaPelicula = new Pelicula()
-            {
-                Nombre = "Harry Potter"
-            };
+            unaPelicula.Nombre = "Harry Potter";
+
             Assert.AreEqual(unaPelicula.Nombre, "Harry Potter");
         }
 
@@ -27,21 +29,14 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(DatoVacioException))]
         public void NombrePeliculaInvalidoTest()
         {
-            Pelicula unaPelicula = new Pelicula()
-            {
-                Nombre = ""
-            };
-
+            unaPelicula.Nombre = "";
         }
 
         [TestMethod]
         public void GeneroPrincipalValidoTest()
         {
-            Genero unGenero = new Genero();
-            Pelicula unaPelicula = new Pelicula()
-            {
-                GeneroPrincipal = unGenero
-            };
+            unaPelicula.GeneroPrincipal = unGenero;
+
             Assert.AreEqual(unaPelicula.GeneroPrincipal, unGenero);
         }
 
@@ -49,20 +44,12 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(DatoVacioException))]
         public void GeneroPrincipalInvalidoTest()
         {
-            Genero generoVacio = null;
-            Pelicula unaPelicula = new Pelicula()
-            {
-                GeneroPrincipal = generoVacio
-            };
-
+            unaPelicula.GeneroPrincipal = generoVacio;
         }
 
         [TestMethod]
         public void GeneroSecundarioValidoTest()
         {
-            Genero unGenero = new Genero();
-            Pelicula unaPelicula = new Pelicula();
-
             unaPelicula.GenerosSecundarios.Add(unGenero);
 
             Assert.IsTrue(unaPelicula.GenerosSecundarios.Contains(unGenero));
@@ -72,28 +59,20 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(DatoVacioException))]
         public void GeneroSecundarioInvalidoTest()
         {
-            Pelicula unaPelicula = new Pelicula();
-            Genero unGenero = null;
+            unaPelicula.AgregarGeneroSecundario(generoVacio);
 
-            unaPelicula.agregarGeneroSecundario(unGenero);
-
-            Assert.IsFalse(unaPelicula.GenerosSecundarios.Contains(unGenero));
+            Assert.IsFalse(unaPelicula.GenerosSecundarios.Contains(generoVacio));
         }
 
         [TestMethod]
         public void AgregarVariosGenerosTest()
         {
-            Pelicula unaPelicula = new Pelicula();
-            Genero unGenero = new Genero();
             Genero otroGenero = new Genero();
-
             List<Genero> generos = new List<Genero>();
+
             generos.Add(unGenero);
             generos.Add(otroGenero);
             unaPelicula.GenerosSecundarios = generos;
-
-            //unaPelicula.agregarGeneroSecundario(unGenero);
-            //unaPelicula.agregarGeneroSecundario(otroGenero);
 
             Assert.IsTrue(unaPelicula.GenerosSecundarios.Contains(unGenero)
                 && unaPelicula.GenerosSecundarios.Contains(otroGenero));
@@ -102,7 +81,6 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void PeliculaSinGenerosSecundariosValidaTest()
         {
-            Pelicula unaPelicula = new Pelicula();
             bool noTieneGenerosSecundarios = unaPelicula.GenerosSecundarios.Count == 0;
             Assert.IsTrue(noTieneGenerosSecundarios);
         }
@@ -110,10 +88,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void DescripcionValidaTest()
         {
-            Pelicula unaPelicula = new Pelicula()
-            {
-                Descripcion = "Descripcion de prueba"
-            };
+            unaPelicula.Descripcion = "Descripcion de prueba";
 
             Assert.AreEqual(unaPelicula.Descripcion, "Descripcion de prueba");
         }
@@ -121,20 +96,15 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void PeliculaAptaParaTodoPublicoTest()
         {
-            Pelicula unaPelicula = new Pelicula()
-            {
-                AptaTodoPublico = true
-            };
+            unaPelicula.AptaTodoPublico = true;
+
             Assert.IsTrue(unaPelicula.AptaTodoPublico);
         }
 
         [TestMethod]
         public void PeliculaNoAptaTest()
         {
-            Pelicula unaPelicula = new Pelicula()
-            {
-                AptaTodoPublico = false
-            };
+            unaPelicula.AptaTodoPublico = false;
 
             Assert.IsFalse(unaPelicula.AptaTodoPublico); 
         }
@@ -142,10 +112,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void PeliculaPatrocinadaTest()
         {
-            Pelicula unaPelicula = new Pelicula()
-            {
-                EsPatrocinada = true
-            };
+            unaPelicula.EsPatrocinada = true;
 
             Assert.IsTrue(unaPelicula.EsPatrocinada);
         }
@@ -153,10 +120,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void PeliculaNoPatrocinadaTest()
         {
-            Pelicula unaPelicula = new Pelicula()
-            {
-                EsPatrocinada = false
-            };
+            unaPelicula.EsPatrocinada = false;
 
             Assert.IsFalse(unaPelicula.EsPatrocinada);
         }
@@ -164,15 +128,12 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void IdentificadorPeliculaTest()
         {
-            Pelicula unaPelicula = new Pelicula();
-
             Assert.AreEqual(unaPelicula.Identificador, Pelicula.ContadorPeliculas);
         }
 
         [TestMethod]
         public void IdentificadorVariasPeliculasTest()
         {
-            Pelicula unaPelicula = new Pelicula();
             Pelicula otraPelicula = new Pelicula();
 
             Assert.AreNotEqual(unaPelicula.Identificador, otraPelicula.Identificador);
@@ -181,10 +142,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void PosterPeliculaValidoTest()
         {
-            Pelicula unaPelicula = new Pelicula()
-            {
-                Poster = "ruta/archivo.jpg"
-            };
+            unaPelicula.Poster = "ruta/archivo.jpg";
 
             Assert.AreEqual(unaPelicula.Poster, "ruta/archivo.jpg");
         }
@@ -193,10 +151,7 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(DatoVacioException))]
         public void PosterPeliculaInvalidoTest()
         {
-            Pelicula unaPelicula = new Pelicula()
-            {
-                Poster = ""
-            };
+            unaPelicula.Poster = "";
         }
     }
 }

@@ -66,7 +66,7 @@ namespace Dominio
                 throw new DatoVacioException();
             }
         }
-        public void agregarGeneroSecundario(Genero genero)
+        public void AgregarGeneroSecundario(Genero genero)
         {
             chequearSiEsVacio(genero);
             GenerosSecundarios.Add(genero);
