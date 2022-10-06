@@ -13,7 +13,6 @@ namespace Logica.Implementaciones
     {
         public void AltaPelicula(Pelicula pelicula, PeliculaRepo repo)
         {
-            //deberia validar los campos de pelicula nuevamente?
             repo.AgregarPelicula(pelicula);
         }
 

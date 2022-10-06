@@ -48,6 +48,16 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
+        public void GeneroPrincipalNoIncluidoEnSecundariosTest()
+        {
+            Genero generoSecundario = new Genero();
+            unaPelicula.GenerosSecundarios.Add(generoSecundario);
+
+            unaPelicula.GeneroPrincipal = unGenero;
+            Assert.IsFalse(unaPelicula.GenerosSecundarios.Contains(unGenero));
+        }
+
+        [TestMethod]
         public void GeneroSecundarioValidoTest()
         {
             unaPelicula.GenerosSecundarios.Add(unGenero);

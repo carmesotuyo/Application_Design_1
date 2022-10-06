@@ -41,6 +41,7 @@ namespace Dominio
         public Genero GeneroPrincipal { get => _generoPrincipal; set
             {
                 ChequearGeneroVacio(value);
+                ChequearNoIncluidoEnSecundarios(value);
                 _generoPrincipal = value;
             } 
         }
