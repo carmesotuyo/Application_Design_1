@@ -13,13 +13,13 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaPeliculaTest
     {
+        Pelicula unaPelicula = new Pelicula();
+        PeliculaRepo repo = new PeliculaRepo();
+        LogicaPelicula logica = new LogicaPelicula();
+
         [TestMethod]
         public void AltaPeliculaTest()
         {
-            Pelicula unaPelicula = new Pelicula();
-            PeliculaRepo repo = new PeliculaRepo();
-            LogicaPelicula logica = new LogicaPelicula();
-
             logica.AltaPelicula(unaPelicula, repo);
 
             Assert.IsTrue(repo.EstaPelicula(unaPelicula));

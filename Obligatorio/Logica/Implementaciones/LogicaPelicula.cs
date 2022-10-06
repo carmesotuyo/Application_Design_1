@@ -14,7 +14,7 @@ namespace Logica.Implementaciones
         public void AltaPelicula(Pelicula pelicula, PeliculaRepo repo)
         {
             //deberia validar los campos de pelicula nuevamente?
-            repo.peliculas.Add(pelicula);
+            repo.AgregarPelicula(pelicula);
         }
 
         public void BajaPelicula(Pelicula pelicula, PeliculaRepo repo)

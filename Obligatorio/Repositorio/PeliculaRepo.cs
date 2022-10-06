@@ -14,5 +14,9 @@ namespace Repositorio
         {
             return peliculas.Contains(pelicula);
         }
+        public void AgregarPelicula(Pelicula pelicula)
+        {
+            peliculas.Add(pelicula);
+        }
     }
 }
