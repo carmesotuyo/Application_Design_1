@@ -172,7 +172,15 @@ namespace Pruebas.PruebasDominio
             };
         }
 
+        [TestMethod]
+        public void GeneroSecundarioValidoTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+            unUsuario.AgregarPerfil(unPerfil);
 
+            Assert.IsTrue(unUsuario.AgregarPerfil.Contains(unPerfil));
+        }
 
     }
 }

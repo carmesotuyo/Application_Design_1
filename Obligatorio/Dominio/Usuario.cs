@@ -14,7 +14,9 @@ namespace Dominio
         private string _clave;
         private List<Perfil> _listaPerfiles;
 
-
+        public Usuario() {
+            _listaPerfiles = new List<Perfil>();
+        }
         private static void ChequearEmailValido(string value)
         {
             value.Trim();
