@@ -2,6 +2,7 @@
 using Dominio.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Dominio.Exceptions;
 
 namespace Pruebas.PruebasDominio
 {
@@ -28,6 +29,18 @@ namespace Pruebas.PruebasDominio
             Perfil unPerfil = new Perfil()
             {
                 Alias = ""
+            };
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(AliasInvalidoException))]
+        public void AliasInvalido2()
+        {
+            //arrange
+            string alias16Caracteres = "aaaaaaaaaaaaaaaa";
+            Perfil unPerfil = new Perfil()
+            {
+                Alias = alias16Caracteres
             };
         }
     }

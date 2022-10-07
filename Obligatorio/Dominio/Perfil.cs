@@ -17,7 +17,7 @@ namespace Dominio
         private void ValidarAlias(string value)
         {
             value.Trim();
-            if (!(value.Length > 0) && !(value.Length < 16))
+            if (!(value.Length > 0) || !(value.Length < 16))
             {
                 throw new AliasInvalidoException();
             }

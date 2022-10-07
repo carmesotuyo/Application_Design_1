@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    internal class GeneroPuntaje
+    public class GeneroPuntaje
     {
+        private int puntaje;
+        private string genero;
+
+
     }
 }
