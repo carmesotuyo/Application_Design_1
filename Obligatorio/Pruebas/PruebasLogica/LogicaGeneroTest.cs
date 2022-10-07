@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Repositorio;
 using Logica.Implementaciones;
+using Dominio.Exceptions;
 
 namespace Pruebas.PruebasLogica
 {
@@ -30,5 +31,15 @@ namespace Pruebas.PruebasLogica
             Assert.IsTrue(repo.EstaGenero(unGenero) && repo.EstaGenero(otroGenero));
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(GeneroDuplicadoException))]
+        public void NombreNoUnicoTest()
+        {
+            unGenero.Nombre = "Accion";
+            otroGenero.Nombre = "Accion";
+
+            logica.AgregarGenero(unGenero, repo);
+            logica.AgregarGenero(otroGenero, repo);
+        }
     }
 }

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\DatoVacioException.cs" />
+    <Compile Include="Exceptions\GeneroDuplicadoException.cs" />
     <Compile Include="Exceptions\GeneroInvalidoException.cs" />
     <Compile Include="Genero.cs" />
     <Compile Include="Pelicula.cs" />
