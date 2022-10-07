@@ -94,6 +94,28 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
+        [ExpectedException(typeof(EmailInvalidoException))]
+        public void EmailInvalido2()
+        {
+            //arrange
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Email = "johnyPro@";
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(EmailInvalidoException))]
+        public void EmailInvalido3()
+        {
+            //arrange
+            Usuario unUsuario = new Usuario();
+
+            //act
+            unUsuario.Email = "@.com";
+        }
+
+        [TestMethod]
         public void ClaveValida()
         {
             //arrange
