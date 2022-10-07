@@ -13,7 +13,5 @@ namespace Logica.Interfaces
         void AltaPelicula(Pelicula pelicula, PeliculaRepo repo);
         void BajaPelicula(Pelicula pelicula, PeliculaRepo repo);
         void VerInformacionDePelicula(Pelicula pelicula);
-        void MarcarComoVista(Pelicula pelicula); //va a sumar los puntos al genero para ese perfil
-
     }
 }
