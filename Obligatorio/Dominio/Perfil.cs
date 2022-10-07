@@ -27,9 +27,9 @@ namespace Dominio
         {
             int largoAntes = value.Length;
             char[] numeros = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' };
-            value.Trim(numeros);
+            value = value.Trim(numeros);
             int largoDespues = value.Length;
-            if (largoAntes != largoDespues)
+            if (largoAntes > largoDespues)
             {
                 throw new AliasInvalidoException();
             }

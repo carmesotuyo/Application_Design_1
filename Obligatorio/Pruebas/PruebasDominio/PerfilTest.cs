@@ -21,6 +21,7 @@ namespace Pruebas.PruebasDominio
             //assert
             Assert.AreEqual(unPerfil.Alias, "nano");
         }
+
         [TestMethod]
         [ExpectedException(typeof(AliasInvalidoException))]
         public void AliasInvalido()
@@ -31,6 +32,7 @@ namespace Pruebas.PruebasDominio
                 Alias = ""
             };
         }
+
 
         [TestMethod]
         [ExpectedException(typeof(AliasInvalidoException))]
@@ -54,6 +56,31 @@ namespace Pruebas.PruebasDominio
             {
                 Alias = soloNumeros
             };
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(AliasInvalidoException))]
+        public void AliasInvalido4()
+        {
+            //arrange
+            string aliasEspaciosEnBlanco = "         ";
+            Perfil unPerfil = new Perfil()
+            {
+                Alias = aliasEspaciosEnBlanco
+            };
+        }
+
+        [TestMethod]
+        public void PinValido()
+        {
+            //arrange
+            Perfil unPerfil = new Perfil()
+            {
+                Pin = 1234
+            };
+
+            //assert
+            Assert.AreEqual(unPerfil.Pin, 1234);
         }
     }
 }
