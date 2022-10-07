@@ -36,7 +36,7 @@ namespace Pruebas.PruebasLogica
         public void NombreNoUnicoTest()
         {
             unGenero.Nombre = "Accion";
-            otroGenero.Nombre = "Accion";
+            otroGenero.Nombre = "acciON";
 
             logica.AgregarGenero(unGenero, repo);
             logica.AgregarGenero(otroGenero, repo);
