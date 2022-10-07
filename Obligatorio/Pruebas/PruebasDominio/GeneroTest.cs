@@ -12,11 +12,13 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class GeneroTest
     {
+        Genero unGenero = new Genero();
+
         [TestMethod]
         public void NombreGeneroValidoTest()
         {
-            Genero unGenero = new Genero();
             unGenero.Nombre = "Terror";
+
             Assert.AreEqual(unGenero.Nombre, "Terror");
         }
 
@@ -24,16 +26,14 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(DatoVacioException))]
         public void NombreGeneroInvalidoTest()
         {
-            Genero unGenero = new Genero();
             string nombreVacio = "";
+
             unGenero.Nombre = nombreVacio;
         }
 
         [TestMethod]
         public void DescripcionGeneroValida()
         {
-            Genero unGenero = new Genero();
-
             unGenero.Descripcion = "Descripcion de prueba";
 
             Assert.AreEqual(unGenero.Descripcion, "Descripcion de prueba");
