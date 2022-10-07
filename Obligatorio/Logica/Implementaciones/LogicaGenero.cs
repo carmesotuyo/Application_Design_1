@@ -19,7 +19,7 @@ namespace Logica.Implementaciones
         }
 
 
-        private void EvaluarSiEsDuplicado(Genero genero, GeneroRepo repo)
+        private static void EvaluarSiEsDuplicado(Genero genero, GeneroRepo repo)
         {
             if (repo.EstaGenero(genero))
             {
@@ -29,11 +29,16 @@ namespace Logica.Implementaciones
 
         public void EliminarGenero(Genero genero, GeneroRepo repo)
         {
+            EvaluarSiNoExiste(genero, repo);
+            repo.EliminarGenero(genero);
+        }
+
+        private static void EvaluarSiNoExiste(Genero genero, GeneroRepo repo)
+        {
             if (!repo.EstaGenero(genero))
             {
                 throw new GeneroInexistenteException();
             }
-            repo.EliminarGenero(genero);
         }
     }
 }
