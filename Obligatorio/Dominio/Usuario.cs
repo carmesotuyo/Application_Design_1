@@ -19,10 +19,14 @@ namespace Dominio
 
         private static void ChequearEmailValido(string value)
         {
-            if (!value.Contains("@"))
+            bool tieneUsuarioMail = false;
+            bool tieneDominio = false;
+
+            if (tieneUsuarioMail || tieneDominio)
             {
                 throw new EmailInvalidoException();
             }
+
         }
         private static void ChequearClaveValida(string value)
         {
