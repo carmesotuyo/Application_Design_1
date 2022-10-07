@@ -14,11 +14,8 @@ namespace Dominio
         private string _clave;
         private List<Perfil> _listaPerfiles;
 
-        //Hacer el constructor de Users
-        //(si primero instancio la clase y luego pasa algo que no se llega a completar sus datos, queda en memoria innecesaria?)
 
         private static void ChequearEmailValido(string value)
-        //validar mail con split@ sin campos vacios y el otro que contenga .com
         {
             value.Trim();
             string[] validacion = value.Split('@');
