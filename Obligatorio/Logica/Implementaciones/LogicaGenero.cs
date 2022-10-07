@@ -29,7 +29,7 @@ namespace Logica.Implementaciones
 
         public void EliminarGenero(Genero genero, GeneroRepo repo)
         {
-
+            repo.EliminarGenero(genero);
         }
     }
 }

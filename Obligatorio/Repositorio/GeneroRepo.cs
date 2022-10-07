@@ -27,5 +27,10 @@ namespace Repositorio
         {
             generos.Add(genero);
         }
+
+        public void EliminarGenero(Genero genero)
+        {
+            generos.Remove(genero);
+        }
     }
 }
