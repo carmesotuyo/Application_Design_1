@@ -82,5 +82,10 @@ namespace Dominio
             }
         }
 
+        public void AgregarPerfil(Perfil perfil)
+        {
+            _listaPerfiles.Add(perfil);
+        }
+
     }
 }
