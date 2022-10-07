@@ -52,6 +52,11 @@ namespace Dominio
                 _alias = value;
             }
         }
+
+        public int Pin
+        {
+            get => _pin; set => _pin = value;
+        }
     }
 
 }
