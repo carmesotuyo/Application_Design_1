@@ -82,5 +82,17 @@ namespace Pruebas.PruebasDominio
             //assert
             Assert.AreEqual(unPerfil.Pin, 1234);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(PinInvalidoException))]
+        public void PinInvalido()
+        {
+            //arrange
+            int PinInvalido ;
+            Perfil unPerfil = new Perfil()
+            {
+                Pin = 123456
+            };
+        }
     }
 }

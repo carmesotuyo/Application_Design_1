@@ -37,7 +37,10 @@ namespace Dominio
 
         private void ValidarPin(int value)
         {
-
+            if (value < 0 || value > 99999) {
+                throw new PinInvalidoException();
+            }
+            
         }
 
         public void FiltrarPelisNoAptas()
@@ -55,7 +58,10 @@ namespace Dominio
 
         public int Pin
         {
-            get => _pin; set => _pin = value;
+            get => _pin; set {
+                ValidarPin(value);
+                _pin = value;
+            }
         }
     }
 
