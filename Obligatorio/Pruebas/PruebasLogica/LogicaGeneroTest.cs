@@ -52,5 +52,12 @@ namespace Pruebas.PruebasLogica
 
             Assert.IsFalse(repo.EstaGenero(unGenero));
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(GeneroInexistenteException))]
+        public void EliminarGeneroInexistenteTest()
+        {
+            logica.EliminarGenero(unGenero, repo);
+        }
     }
 }
