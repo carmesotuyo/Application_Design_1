@@ -9,6 +9,6 @@ namespace Repositorio
 {
     public class RepoUsuarios
     {
-        private List<Usuario>;
+        private List<Usuario> _listaUsuarios;
     }
 }

@@ -12,7 +12,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void NombreUsuarioValido()
         {
-            //arrange8
+            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Nombre = "johnyPro123"
@@ -30,10 +30,10 @@ namespace Pruebas.PruebasDominio
         public void NombreUsuarioInvalido()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Nombre = "John";
+            Usuario unUsuario = new Usuario()
+            {
+                Nombre = "John"
+            };
         }
 
         [TestMethod]
@@ -41,10 +41,10 @@ namespace Pruebas.PruebasDominio
         public void NombreVacio()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Nombre = "";
+            Usuario unUsuario = new Usuario()
+            {
+                Nombre = ""
+            };
         }
 
         [TestMethod]
@@ -52,10 +52,10 @@ namespace Pruebas.PruebasDominio
         public void Nombre9caracteres()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Nombre = "aaaaaaaaa";
+            Usuario unUsuario = new Usuario()
+            {
+                Nombre = "aaaaaaaaa"
+            };
         }
 
         [TestMethod]
@@ -63,20 +63,20 @@ namespace Pruebas.PruebasDominio
         public void Nombre21caracteres()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Nombre = "aaaaaaaaaaaaaaaaaaaaa";
+            Usuario unUsuario = new Usuario()
+            {
+                Nombre = "aaaaaaaaaaaaaaaaaaaaa"
+            };
         }
 
         [TestMethod]
         public void EmailValido()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Email = "johny@da1.com";
+            Usuario unUsuario = new Usuario()
+            {
+                Email = "johny@da1.com"
+            };
 
             //assert
             Assert.AreEqual(unUsuario.Email, "johny@da1.com");
@@ -87,10 +87,10 @@ namespace Pruebas.PruebasDominio
         public void EmailInvalido()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Email = "johnyPro";
+            Usuario unUsuario = new Usuario()
+            {
+                Email = "johnyPro"
+            };
         }
 
         [TestMethod]
@@ -98,10 +98,10 @@ namespace Pruebas.PruebasDominio
         public void EmailInvalido2()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Email = "johnyPro@";
+            Usuario unUsuario = new Usuario()
+            {
+                Email = "johnyPro@"
+            };
         }
 
         [TestMethod]
@@ -109,20 +109,20 @@ namespace Pruebas.PruebasDominio
         public void EmailInvalido3()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Email = "@.com";
+            Usuario unUsuario = new Usuario()
+            {
+                Email = "@.com"
+            };
         }
 
         [TestMethod]
         public void ClaveValida()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Clave = "admin12345678";
+            Usuario unUsuario = new Usuario()
+            {
+                Clave = "admin12345678"
+            };
 
             //assert
             Assert.AreEqual(unUsuario.Clave, "admin12345678");
@@ -133,10 +133,10 @@ namespace Pruebas.PruebasDominio
         public void ClaveInvalida()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Clave = "1234";
+            Usuario unUsuario = new Usuario()
+            {
+                Clave = "1234"
+            };
         }
 
         [TestMethod]
@@ -144,10 +144,10 @@ namespace Pruebas.PruebasDominio
         public void ClaveVacia()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Clave = "";
+            Usuario unUsuario = new Usuario()
+            {
+                Clave = ""
+            };
         }
 
         [TestMethod]
@@ -155,10 +155,10 @@ namespace Pruebas.PruebasDominio
         public void Clave9Caracteres()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Clave = "123456789";
+            Usuario unUsuario = new Usuario()
+            {
+                Clave = "123456789"
+            };
         }
 
         [TestMethod]
@@ -166,10 +166,10 @@ namespace Pruebas.PruebasDominio
         public void Clave31Caracteres()
         {
             //arrange
-            Usuario unUsuario = new Usuario();
-
-            //act
-            unUsuario.Clave = "0123456789012345678901234567890";
+            Usuario unUsuario = new Usuario()
+            {
+                Clave = "0123456789012345678901234567890"
+            };
         }
 
     }
