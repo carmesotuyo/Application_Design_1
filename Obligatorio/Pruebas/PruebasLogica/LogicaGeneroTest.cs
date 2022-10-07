@@ -29,13 +29,6 @@ namespace Pruebas.PruebasLogica
         }
 
         [TestMethod]
-        [ExpectedException(typeof(GeneroIncompletoException))]
-        public void AgregarGeneroSinDatosTest()
-        {
-            logica.AgregarGenero(unGenero, repo);
-        }
-
-        [TestMethod]
         public void NombreUnicoTest()
         {
             unGenero.Nombre = "Accion";

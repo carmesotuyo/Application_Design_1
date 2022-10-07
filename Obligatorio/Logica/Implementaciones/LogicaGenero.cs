@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio.Exceptions;
+using System.Linq.Expressions;
 
 namespace Logica.Implementaciones
 {
