@@ -88,11 +88,33 @@ namespace Pruebas.PruebasDominio
         public void PinInvalido()
         {
             //arrange
-            int PinInvalido ;
+            int PinInvalido = 123456;
             Perfil unPerfil = new Perfil()
             {
                 Pin = 123456
             };
+        }
+
+        [TestMethod]
+        public void PerfilInfantilTest()
+        {
+            Perfil unPerfil = new Perfil()
+            {
+                EsInfantil = True
+            }
+
+            Assert.IsTrue(unPerfil.EsInfantil);
+        }
+
+        [TestMethod]
+        public void PeliculaNoPatrocinadaTest()
+        {
+            Perfil unPerfil = new Perfil()
+            {
+                EsInfantil = False
+            }
+
+            Assert.IsFalse(unPerfil.EsInfantil);
         }
     }
 }
