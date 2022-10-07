@@ -18,11 +18,20 @@ namespace Dominio
         //(si primero instancio la clase y luego pasa algo que no se llega a completar sus datos, queda en memoria innecesaria?)
 
         private static void ChequearEmailValido(string value)
+        //validar mail con split@ sin campos vacios y el otro que contenga .com
         {
+            value.Trim();
+            string[] validacion = value.Split('@');
             bool tieneUsuarioMail = false;
             bool tieneDominio = false;
 
-            if (tieneUsuarioMail || tieneDominio)
+            if (validacion.Length == 2)
+            {
+                tieneUsuarioMail = validacion[0].Length > 0;
+                tieneDominio = validacion[1].Contains(".com");
+            }
+
+            if (!tieneUsuarioMail || !tieneDominio)
             {
                 throw new EmailInvalidoException();
             }
