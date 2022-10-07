@@ -43,5 +43,17 @@ namespace Pruebas.PruebasDominio
                 Alias = alias16Caracteres
             };
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(AliasInvalidoException))]
+        public void AliasInvalido3()
+        {
+            //arrange
+            string soloNumeros = "12345";
+            Perfil unPerfil = new Perfil()
+            {
+                Alias = soloNumeros
+            };
+        }
     }
 }

@@ -14,10 +14,22 @@ namespace Dominio
         private bool _esInfantil;
         private List<GeneroPuntaje> _puntajeGeneros;
 
-        private void ValidarAlias(string value)
+        private void ValidarAliasMinMaxChars(string value)
         {
             value.Trim();
             if (!(value.Length > 0) || !(value.Length < 16))
+            {
+                throw new AliasInvalidoException();
+            }
+        }
+
+        private void ValidarAliasSinNumeros(string value)
+        {
+            int largoAntes = value.Length;
+            char[] numeros = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' };
+            value.Trim(numeros);
+            int largoDespues = value.Length;
+            if (largoAntes != largoDespues)
             {
                 throw new AliasInvalidoException();
             }
@@ -35,7 +47,8 @@ namespace Dominio
         public string Alias
         {
             get => _alias; set {
-                ValidarAlias(value);
+                ValidarAliasMinMaxChars(value);
+                ValidarAliasSinNumeros(value);
                 _alias = value;
             }
         }
