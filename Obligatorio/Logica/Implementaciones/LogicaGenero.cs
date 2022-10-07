@@ -29,7 +29,10 @@ namespace Logica.Implementaciones
 
         public void EliminarGenero(Genero genero, GeneroRepo repo)
         {
-            repo.EliminarGenero(genero);
+            if (repo.EstaGenero(genero))
+            {
+                repo.EliminarGenero(genero);
+            }
         }
     }
 }

@@ -45,6 +45,8 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void EliminarGeneroTest()
         {
+            unGenero.Nombre = "Comedia";
+
             logica.AgregarGenero(unGenero, repo);
             logica.EliminarGenero(unGenero, repo);
 
