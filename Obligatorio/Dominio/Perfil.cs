@@ -63,6 +63,9 @@ namespace Dominio
                 _pin = value;
             }
         }
+
+        public bool EsInfantil { get => _esInfantil; set => _esInfantil = value; }
     }
+    
 
 }
