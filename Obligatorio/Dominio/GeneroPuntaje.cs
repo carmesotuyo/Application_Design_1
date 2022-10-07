@@ -8,9 +8,17 @@ namespace Dominio
 {
     public class GeneroPuntaje
     {
-        private int puntaje;
-        private string genero;
+        private int _puntaje;
+        private string _genero;
 
+        public GeneroPuntaje()
+        {
+            _puntaje = 0;
+        }
 
+        public int Puntaje
+        {
+            get => _puntaje; set { _puntaje = value; }
+        }
     }
 }
