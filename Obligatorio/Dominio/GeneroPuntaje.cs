@@ -20,5 +20,10 @@ namespace Dominio
         {
             get => _puntaje; set { _puntaje = value; }
         }
+
+        public void ModificarPuntaje(int value)
+        {
+            this.Puntaje += value;
+        }
     }
 }
