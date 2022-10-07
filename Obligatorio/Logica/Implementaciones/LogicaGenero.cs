@@ -26,5 +26,10 @@ namespace Logica.Implementaciones
                 throw new GeneroDuplicadoException();
             }
         }
+
+        public void EliminarGenero(Genero genero, GeneroRepo repo)
+        {
+
+        }
     }
 }

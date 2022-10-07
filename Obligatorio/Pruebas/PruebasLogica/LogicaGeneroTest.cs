@@ -41,5 +41,14 @@ namespace Pruebas.PruebasLogica
             logica.AgregarGenero(unGenero, repo);
             logica.AgregarGenero(otroGenero, repo);
         }
+
+        [TestMethod]
+        public void EliminarGeneroTest()
+        {
+            logica.AgregarGenero(unGenero, repo);
+            logica.EliminarGenero(unGenero, repo);
+
+            Assert.IsFalse(repo.EstaGenero(unGenero));
+        }
     }
 }
