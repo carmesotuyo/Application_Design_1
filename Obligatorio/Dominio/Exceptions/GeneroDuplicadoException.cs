@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Exceptions
 {
-    public class GeneroDuplicadoException
+    public class GeneroDuplicadoException : Exception
     {
     }
 }
