@@ -11,6 +11,11 @@ namespace Dominio
         private int _puntaje;
         private string _genero;
 
+        public string Genero
+        {
+            get => _genero; set { _genero = value; }
+        }
+
         public GeneroPuntaje()
         {
             _puntaje = 0;
