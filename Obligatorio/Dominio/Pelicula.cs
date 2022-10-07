@@ -18,7 +18,6 @@ namespace Dominio
         private static int _contadorPeliculas = 0;
         private int _idPelicula;
         private string _poster;
-        private bool _fueVista;
 
         public Pelicula()
         {
@@ -73,7 +72,6 @@ namespace Dominio
                 _poster = value;
             }
         }
-        public bool FueVista { get => _fueVista; set => _fueVista = value; }
 
         public void AgregarGeneroSecundario(Genero genero)
         {
@@ -103,11 +101,6 @@ namespace Dominio
             {
                 throw new DatoVacioException();
             }
-        }
-
-        public void MarcarComoVista()
-        {
-            this.FueVista = true;
         }
         
     }

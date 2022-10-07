@@ -18,12 +18,7 @@ namespace Logica.Implementaciones
 
         public void BajaPelicula(Pelicula pelicula, PeliculaRepo repo)
         {
-            throw new NotImplementedException();
-        }
-
-        public void MarcarComoVista(Pelicula pelicula)
-        {
-            throw new NotImplementedException();
+            repo.QuitarPelicula(pelicula);
         }
 
         public void VerInformacionDePelicula(Pelicula pelicula)

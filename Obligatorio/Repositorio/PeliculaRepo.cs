@@ -18,5 +18,12 @@ namespace Repositorio
         {
             peliculas.Add(pelicula);
         }
+        public void QuitarPelicula(Pelicula pelicula)
+        {
+            if (EstaPelicula(pelicula))
+            {
+                peliculas.Remove(pelicula);
+            }
+        }
     }
 }

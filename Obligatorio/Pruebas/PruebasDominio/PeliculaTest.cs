@@ -191,13 +191,5 @@ namespace Pruebas.PruebasDominio
         {
             unaPelicula.Poster = "";
         }
-
-        [TestMethod]
-        public void MarcarComoVistaTest()
-        {
-            unaPelicula.MarcarComoVista();
-
-            Assert.IsTrue(unaPelicula.FueVista);
-        }
     }
 }
