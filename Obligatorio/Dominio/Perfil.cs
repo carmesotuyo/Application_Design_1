@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,11 @@ namespace Dominio
 
         private void ValidarAlias(string value)
         {
-
+            value.Trim();
+            if (!(value.Length > 0) && !(value.Length < 16))
+            {
+                throw new AliasInvalidoException();
+            }
         }
 
         private void ValidarPin(int value)
@@ -29,7 +34,10 @@ namespace Dominio
         }
         public string Alias
         {
-            get => _alias; set => _alias = value; 
+            get => _alias; set {
+                ValidarAlias(value);
+                _alias = value;
+            }
         }
     }
 
