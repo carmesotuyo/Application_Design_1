@@ -20,6 +20,22 @@ namespace Pruebas.PruebasLogica
         LogicaGenero logica = new LogicaGenero();
 
         [TestMethod]
+        public void AgregarGeneroTest()
+        {
+            unGenero.Nombre = "Suspenso";
+            unGenero.Descripcion = "Descripcion de suspenso";
+
+            logica.AgregarGenero(unGenero, repo);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(GeneroIncompletoException))]
+        public void AgregarGeneroSinDatosTest()
+        {
+            logica.AgregarGenero(unGenero, repo);
+        }
+
+        [TestMethod]
         public void NombreUnicoTest()
         {
             unGenero.Nombre = "Accion";
