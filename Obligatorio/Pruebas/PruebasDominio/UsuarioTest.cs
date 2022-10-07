@@ -179,7 +179,7 @@ namespace Pruebas.PruebasDominio
             Perfil unPerfil = new Perfil();
             unUsuario.AgregarPerfil(unPerfil);
 
-            Assert.IsTrue(unUsuario.AgregarPerfil.Contains(unPerfil));
+            Assert.IsTrue(unUsuario.Perfiles.Contains(unPerfil));
         }
 
     }

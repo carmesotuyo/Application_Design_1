@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Dominio;
 
 namespace Pruebas.PruebasDominio
 {
@@ -7,8 +8,14 @@ namespace Pruebas.PruebasDominio
     public class GeneroPuntajeTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void PuntajeEnCero()
         {
+            //arrange
+            GeneroPuntaje unGeneroPuntaje = new GeneroPuntaje();
+
+            //assert
+            Assert.AreEqual(unGeneroPuntaje.Puntaje, 0);
+
         }
     }
 }

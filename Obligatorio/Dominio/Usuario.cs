@@ -87,5 +87,13 @@ namespace Dominio
             _listaPerfiles.Add(perfil);
         }
 
+        public List<Perfil> Perfiles
+        {
+            get => _listaPerfiles; set
+            {
+                _listaPerfiles = value;
+            }
+        }
+
     }
 }
