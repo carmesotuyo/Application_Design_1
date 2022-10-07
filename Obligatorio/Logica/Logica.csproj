@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementaciones\LogicaGenero.cs" />
     <Compile Include="Implementaciones\LogicaPelicula.cs" />
+    <Compile Include="Interfaces\ILogicaGenero.cs" />
     <Compile Include="Interfaces\ILogicaPelicula.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
