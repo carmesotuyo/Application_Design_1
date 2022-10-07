@@ -13,7 +13,15 @@ namespace Repositorio
 
         public bool EstaGenero(Genero genero)
         {
-            return generos.Contains(genero);
+            bool esta = false;
+            foreach (Genero generoGuardado in generos)
+            {
+                if(generoGuardado.Nombre == genero.Nombre)
+                {
+                    esta = true;
+                }
+            }
+            return esta;
         }
         public void AgregarGenero(Genero genero)
         {

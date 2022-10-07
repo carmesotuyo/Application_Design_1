@@ -14,7 +14,17 @@ namespace Logica.Implementaciones
     {
         public void AgregarGenero(Genero genero, GeneroRepo repo)
         {
+            EvaluarSiEsDuplicado(genero, repo);
             repo.AgregarGenero(genero);
+        }
+
+
+        private void EvaluarSiEsDuplicado(Genero genero, GeneroRepo repo)
+        {
+            if (repo.EstaGenero(genero))
+            {
+                throw new GeneroDuplicadoException();
+            }
         }
     }
 }
