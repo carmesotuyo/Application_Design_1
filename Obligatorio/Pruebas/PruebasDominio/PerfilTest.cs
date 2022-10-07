@@ -100,19 +100,19 @@ namespace Pruebas.PruebasDominio
         {
             Perfil unPerfil = new Perfil()
             {
-                EsInfantil = True
-            }
+                EsInfantil = true
+            };
 
             Assert.IsTrue(unPerfil.EsInfantil);
         }
 
         [TestMethod]
-        public void PeliculaNoPatrocinadaTest()
+        public void PerfilNoInfantilTest()
         {
             Perfil unPerfil = new Perfil()
             {
-                EsInfantil = False
-            }
+                EsInfantil = false
+            };
 
             Assert.IsFalse(unPerfil.EsInfantil);
         }
