@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\PerfilException.cs" />
+    <Compile Include="Exceptions\UsuarioException.cs" />
+    <Compile Include="GeneroPuntaje.cs" />
+    <Compile Include="Perfil.cs" />
+    <Compile Include="PerfilOwner.cs" />
     <Compile Include="Exceptions\DatoVacioException.cs" />
     <Compile Include="Exceptions\GeneroDuplicadoException.cs" />
     <Compile Include="Exceptions\GeneroInexistenteException.cs" />
@@ -48,6 +53,8 @@
     <Compile Include="Genero.cs" />
     <Compile Include="Pelicula.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
