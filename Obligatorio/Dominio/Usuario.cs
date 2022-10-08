@@ -27,7 +27,7 @@ namespace Dominio
             if (validacion.Length == 2)
             {
                 tieneUsuarioMail = validacion[0].Length > 0;
-                tieneDominio = validacion[1].Contains(".com");
+                tieneDominio = validacion[1].EndsWith(".com");
             }
 
             if (!tieneUsuarioMail || !tieneDominio)
@@ -85,6 +85,28 @@ namespace Dominio
         public void AgregarPerfil(Perfil perfil)
         {
             _listaPerfiles.Add(perfil);
+        }
+
+        public void QuitarPerfil(Perfil perfil)
+        {
+            NoExistePerfil(perfil);
+            EsPerfilOwner(perfil);
+            _listaPerfiles.Remove(perfil);
+        }
+
+        private void NoExistePerfil(Perfil perfil)
+        {
+            if (!Perfiles.Contains(perfil))
+            {
+                throw new NoExistePerfilException();
+            }
+        }
+        private void EsPerfilOwner(Perfil perfil)
+        {
+            if (perfil.EsOwner)
+            {
+                throw new EliminarOwnerException();
+            }
         }
 
         public List<Perfil> Perfiles

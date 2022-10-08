@@ -13,4 +13,12 @@ namespace Dominio.Exceptions
     public class PinInvalidoException : Exception
     {
     }
+
+    public class NoInfantilException : Exception
+    {
+    }
+    public class EliminarOwnerException : Exception
+    {
+    }
+    
 }

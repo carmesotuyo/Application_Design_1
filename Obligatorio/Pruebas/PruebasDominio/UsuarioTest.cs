@@ -10,16 +10,12 @@ namespace Pruebas.PruebasDominio
     {
 
         [TestMethod]
-        public void NombreUsuarioValido()
+        public void NombreUsuarioValidoTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Nombre = "johnyPro123"
             };
-
-
-            //assert
             Assert.AreEqual(unUsuario.Nombre, "johnyPro123");
         }
 
@@ -27,9 +23,8 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(NombreUsuarioException))]
-        public void NombreUsuarioInvalido()
+        public void NombreUsuarioInvalidoTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Nombre = "John"
@@ -38,9 +33,8 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(NombreUsuarioException))]
-        public void NombreVacio()
+        public void NombreVacioTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Nombre = ""
@@ -49,9 +43,8 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(NombreUsuarioException))]
-        public void Nombre9caracteres()
+        public void Nombre9caracteresTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Nombre = "aaaaaaaaa"
@@ -60,9 +53,8 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(NombreUsuarioException))]
-        public void Nombre21caracteres()
+        public void Nombre21caracteresTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Nombre = "aaaaaaaaaaaaaaaaaaaaa"
@@ -70,23 +62,19 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void EmailValido()
+        public void EmailValidoTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Email = "johny@da1.com"
             };
-
-            //assert
             Assert.AreEqual(unUsuario.Email, "johny@da1.com");
         }
 
         [TestMethod]
         [ExpectedException(typeof(EmailInvalidoException))]
-        public void EmailInvalido()
+        public void EmailInvalidoTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Email = "johnyPro"
@@ -95,9 +83,8 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(EmailInvalidoException))]
-        public void EmailInvalido2()
+        public void EmailSinComTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Email = "johnyPro@"
@@ -106,9 +93,8 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(EmailInvalidoException))]
-        public void EmailInvalido3()
+        public void EmailSinNombreTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Email = "@.com"
@@ -116,23 +102,19 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void ClaveValida()
+        public void ClaveValidaTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Clave = "admin12345678"
             };
-
-            //assert
             Assert.AreEqual(unUsuario.Clave, "admin12345678");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ClaveInvalidaException))]
-        public void ClaveInvalida()
+        public void ClaveInvalidaTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Clave = "1234"
@@ -141,9 +123,8 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(ClaveInvalidaException))]
-        public void ClaveVacia()
+        public void ClaveVaciaTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Clave = ""
@@ -152,9 +133,8 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(ClaveInvalidaException))]
-        public void Clave9Caracteres()
+        public void Clave9CaracteresTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Clave = "123456789"
@@ -163,9 +143,8 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(ClaveInvalidaException))]
-        public void Clave31Caracteres()
+        public void Clave31CaracteresTest()
         {
-            //arrange
             Usuario unUsuario = new Usuario()
             {
                 Clave = "0123456789012345678901234567890"
@@ -178,8 +157,39 @@ namespace Pruebas.PruebasDominio
             Usuario unUsuario = new Usuario();
             Perfil unPerfil = new Perfil();
             unUsuario.AgregarPerfil(unPerfil);
-
             Assert.IsTrue(unUsuario.Perfiles.Contains(unPerfil));
+        }
+
+        [TestMethod]
+        public void QuitarPerfilTest()
+        {
+            Usuario usuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+            usuario.AgregarPerfil(unPerfil);
+            usuario.QuitarPerfil(unPerfil);
+            Assert.IsFalse(usuario.Perfiles.Contains(unPerfil));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoExistePerfilException))]
+        public void QuitarPerfilInexistenteTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil perfil = new Perfil();
+            unUsuario.QuitarPerfil(perfil);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(EliminarOwnerException))]
+        public void QuitarPerfilOwnerTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil perfil = new Perfil()
+            {
+                EsOwner = true
+            };
+            unUsuario.AgregarPerfil(perfil);
+            unUsuario.QuitarPerfil(perfil);
         }
 
     }

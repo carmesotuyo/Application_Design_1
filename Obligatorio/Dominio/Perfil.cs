@@ -12,6 +12,7 @@ namespace Dominio
         private string _alias;
         private int _pin;
         private bool _esInfantil;
+        private bool _esOwner;
         private List<GeneroPuntaje> _puntajeGeneros;
 
         public Perfil()
@@ -47,10 +48,6 @@ namespace Dominio
             
         }
 
-        public void FiltrarPelisNoAptas()
-        {
-
-        }
         public string Alias
         {
             get => _alias; set {
@@ -76,7 +73,25 @@ namespace Dominio
             }
         }
 
-        public bool EsInfantil { get => _esInfantil; set => _esInfantil = value; }
+        public bool EsInfantil { 
+            get => _esInfantil; 
+            set 
+            {
+                ValidarPerfilOwner();
+                _esInfantil = value; 
+            } 
+        }
+
+        private void ValidarPerfilOwner()
+        {
+            if (EsOwner)
+            {
+                throw new NoInfantilException();
+            }
+
+        }
+
+        public bool EsOwner { get => _esOwner; set => _esOwner = value; }
 
         public void AgregarGeneroPuntaje(GeneroPuntaje generoPuntaje)
         {

@@ -44,7 +44,6 @@
     <Compile Include="GeneroRepo.cs" />
     <Compile Include="PeliculaRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepoPerfiles.cs" />
     <Compile Include="RepoUsuarios.cs" />
   </ItemGroup>
   <ItemGroup>

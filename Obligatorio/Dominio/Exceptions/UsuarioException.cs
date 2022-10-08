@@ -17,4 +17,7 @@ namespace Dominio.Exceptions
     public class EmailInvalidoException : Exception
     {
     }
+        public class NoExistePerfilException : Exception
+    {
+    }
 }

@@ -45,7 +45,6 @@
     <Compile Include="Exceptions\UsuarioException.cs" />
     <Compile Include="GeneroPuntaje.cs" />
     <Compile Include="Perfil.cs" />
-    <Compile Include="PerfilOwner.cs" />
     <Compile Include="Exceptions\DatoVacioException.cs" />
     <Compile Include="Exceptions\GeneroDuplicadoException.cs" />
     <Compile Include="Exceptions\GeneroInexistenteException.cs" />
