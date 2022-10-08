@@ -182,5 +182,16 @@ namespace Pruebas.PruebasDominio
             Assert.IsTrue(unUsuario.Perfiles.Contains(unPerfil));
         }
 
+        [TestMethod]
+        public void QuitarPerfil()
+        {
+            Usuario usuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+            usuario.AgregarPerfil(unPerfil);
+            usuario.QuitarPerfil(unPerfil);
+
+            Assert.IsFalse(usuario.Perfiles.Contains(unPerfil));
+        }
+
     }
 }
