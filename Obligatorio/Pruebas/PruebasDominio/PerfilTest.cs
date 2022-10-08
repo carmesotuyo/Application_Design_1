@@ -137,5 +137,17 @@ namespace Pruebas.PruebasDominio
 
             Assert.IsFalse(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoInfantilException))]
+        public void OwnerInfantilTest()
+        {
+            //arrange
+            Perfil unPerfil = new Perfil()
+            {
+                EsOwner = true
+            };
+            unPerfil.EsInfantil = true;
+        }
     }
 }
