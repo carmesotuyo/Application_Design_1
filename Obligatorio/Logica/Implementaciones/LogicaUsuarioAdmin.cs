@@ -36,7 +36,11 @@ namespace Logica.Implementaciones
 
         public void BajaGenero(Usuario admin, Genero unGenero, GeneroRepo repo)
         {
-            throw new NotImplementedException();
+            if (!admin.EsAdministrador)
+            {
+                throw new UsuarioNoPermitidoException();
+            }
+            logicaGenero.EliminarGenero(unGenero, repo);
         }
 
         public void BajaPelicula(Usuario admin, Pelicula unaPelicula, PeliculaRepo repo)

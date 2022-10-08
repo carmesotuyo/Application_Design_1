@@ -89,5 +89,33 @@ namespace Pruebas.PruebasLogica
 
             logica.AltaGenero(usuarioComun, unGenero, repo);
         }
+
+        [TestMethod]
+        public void BajaGeneroTest()
+        {
+            Usuario admin = new Usuario() { EsAdministrador = true };
+            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
+            Genero unGenero = new Genero() { Nombre = "Terror" };
+            GeneroRepo repo = new GeneroRepo();
+
+            logica.AltaGenero(admin, unGenero, repo);
+            logica.BajaGenero(admin, unGenero, repo);
+
+            Assert.IsFalse(repo.EstaGenero(unGenero));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(UsuarioNoPermitidoException))]
+        public void BajaGeneroUsuarioNoPermitidoTest()
+        {
+            Usuario admin = new Usuario() { EsAdministrador = true };
+            Usuario usuarioComun = new Usuario() { EsAdministrador = false };
+            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
+            Genero unGenero = new Genero() { Nombre = "Terror" };
+            GeneroRepo repo = new GeneroRepo();
+
+            logica.AltaGenero(admin, unGenero, repo);
+            logica.BajaGenero(usuarioComun, unGenero, repo);
+        }
     }
 }
