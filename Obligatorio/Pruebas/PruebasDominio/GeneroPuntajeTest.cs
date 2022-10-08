@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Dominio;
+using Dominio.Exceptions;
 
 namespace Pruebas.PruebasDominio
 {
@@ -54,6 +55,18 @@ namespace Pruebas.PruebasDominio
 
             //assert
             Assert.AreEqual(unGeneroPuntaje.Genero, "Terror");
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NombreVacioException))]
+        public void NombreGeneroVacioTest()
+        {
+            //arrange
+            GeneroPuntaje unGeneroPuntaje = new GeneroPuntaje()
+            {
+                Genero = ""
+            };
 
         }
     }

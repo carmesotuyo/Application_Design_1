@@ -47,10 +47,6 @@ namespace Dominio
             
         }
 
-        public void FiltrarPelisNoAptas()
-        {
-
-        }
         public string Alias
         {
             get => _alias; set {

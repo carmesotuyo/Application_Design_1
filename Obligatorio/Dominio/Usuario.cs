@@ -27,7 +27,7 @@ namespace Dominio
             if (validacion.Length == 2)
             {
                 tieneUsuarioMail = validacion[0].Length > 0;
-                tieneDominio = validacion[1].Contains(".com");
+                tieneDominio = validacion[1].EndsWith(".com");
             }
 
             if (!tieneUsuarioMail || !tieneDominio)
