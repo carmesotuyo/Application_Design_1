@@ -145,5 +145,53 @@ namespace Pruebas.PruebasLogica
             logica.AltaGenero(admin, unGenero, repoGenero);
             logica.BajaGenero(admin, unGenero, repoGenero, repoPelis);
         }
+
+        [TestMethod]
+        public void OrdenarPeliculasPorGeneroTest()
+        {
+            Genero terror = new Genero() { Nombre = "Terror" };
+            Genero comedia = new Genero() { Nombre = "Comedia" };
+            Genero accion = new Genero() { Nombre = "Acción" };
+
+            Pelicula peliculaA = new Pelicula() { GeneroPrincipal = terror };
+            Pelicula peliculaB = new Pelicula() { GeneroPrincipal = comedia };
+            Pelicula peliculaC = new Pelicula() { GeneroPrincipal = accion };
+
+            PeliculaRepo repoPelis = new PeliculaRepo();
+            repoPelis.AgregarPelicula(peliculaA);
+            repoPelis.AgregarPelicula(peliculaB);
+            repoPelis.AgregarPelicula(peliculaC);
+
+            repoPelis.peliculas = logica.OrdenarPorGenero(admin, repoPelis);
+
+            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaC;
+            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaB;
+            bool terceraPeliOrdenada = repoPelis.peliculas[2] == peliculaA;
+
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
+        }
+
+        [TestMethod]
+        public void OrdenarPeliculasPorGeneroEmpateTest()
+        {
+            Genero terror = new Genero() { Nombre = "Terror" };
+
+            Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
+            Pelicula peliculaB = new Pelicula() { Nombre = "La huerfana", GeneroPrincipal = terror };
+            Pelicula peliculaC = new Pelicula() { Nombre = "Chucky", GeneroPrincipal = terror };
+
+            PeliculaRepo repoPelis = new PeliculaRepo();
+            repoPelis.AgregarPelicula(peliculaA);
+            repoPelis.AgregarPelicula(peliculaB);
+            repoPelis.AgregarPelicula(peliculaC);
+
+            repoPelis.peliculas = logica.OrdenarPorGenero(admin, repoPelis);
+
+            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaC;
+            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
+            bool terceraPeliOrdenada = repoPelis.peliculas[2] == peliculaB;
+
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
+        }
     }
 }
