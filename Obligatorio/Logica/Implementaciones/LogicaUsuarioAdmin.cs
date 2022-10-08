@@ -35,7 +35,11 @@ namespace Logica.Implementaciones
 
         public void BajaPelicula(Usuario admin, Pelicula unaPelicula, PeliculaRepo repo)
         {
-            throw new NotImplementedException();
+            if (!admin.EsAdministrador)
+            {
+                throw new UsuarioNoPermitidoException();
+            }
+            logicaPelicula.BajaPelicula(unaPelicula, repo);
         }
     }
 }

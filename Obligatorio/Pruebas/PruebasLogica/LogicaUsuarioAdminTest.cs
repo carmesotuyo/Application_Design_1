@@ -30,12 +30,40 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(UsuarioNoPermitidoException))]
         public void AltaPeliculaUsuarioNoPermitidoTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = false };
+            Usuario usuarioComun = new Usuario() { EsAdministrador = false };
+            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
+            Pelicula unaPelicula = new Pelicula();
+            PeliculaRepo repo = new PeliculaRepo();
+
+            logica.AltaPelicula(usuarioComun, unaPelicula, repo);
+        }
+
+        [TestMethod]
+        public void BajaPeliculaTest()
+        {
+            Usuario admin = new Usuario() { EsAdministrador = true };
             LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
             Pelicula unaPelicula = new Pelicula();
             PeliculaRepo repo = new PeliculaRepo();
 
             logica.AltaPelicula(admin, unaPelicula, repo);
+            logica.BajaPelicula(admin, unaPelicula, repo);
+
+            Assert.IsFalse(repo.EstaPelicula(unaPelicula));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(UsuarioNoPermitidoException))]
+        public void BajaPeliculaUsuarioNoPermitidoTest()
+        {
+            Usuario admin = new Usuario() { EsAdministrador = true };
+            Usuario usuarioComun = new Usuario() { EsAdministrador = false };
+            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
+            Pelicula unaPelicula = new Pelicula();
+            PeliculaRepo repo = new PeliculaRepo();
+
+            logica.AltaPelicula(admin, unaPelicula, repo);
+            logica.BajaPelicula(usuarioComun, unaPelicula, repo);
         }
     }
 }
