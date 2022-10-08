@@ -66,5 +66,12 @@ namespace Logica.Implementaciones
         {
             return repo.peliculas.OrderBy(p => p.GeneroPrincipal.Nombre).ThenBy(p => p.Nombre).ToList();
         }
+
+        public List<Pelicula> OrdenarPorPatrocinio(Usuario admin, PeliculaRepo repo)
+        {
+            return repo.peliculas.OrderBy(p => p.EsPatrocinada = true)
+                                 .ThenBy(p => p.GeneroPrincipal.Nombre)
+                                 .ThenBy(p => p.Nombre).ToList();
+        }
     }
 }

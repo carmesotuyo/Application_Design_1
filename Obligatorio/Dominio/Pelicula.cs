@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Pelicula : IComparable<Pelicula>
+    public class Pelicula
     {
         private string _nombre;
         private Genero _generoPrincipal;
@@ -101,11 +101,6 @@ namespace Dominio
             {
                 throw new DatoVacioException();
             }
-        }
-
-        public int CompareTo(Pelicula other)
-        {
-            throw new NotImplementedException();
         }
     }
 }

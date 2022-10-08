@@ -16,6 +16,7 @@ namespace Logica.Interfaces
         void BajaGenero(Usuario admin, Genero unGenero, GeneroRepo repo, PeliculaRepo repoPelis);
         //void SeleccionarCriterioSorting(Criterio unCriterio);
         List<Pelicula> OrdenarPorGenero(Usuario admin, PeliculaRepo repo);
+        List<Pelicula> OrdenarPorPatrocinio(Usuario admin, PeliculaRepo repo);
 
     }
 }

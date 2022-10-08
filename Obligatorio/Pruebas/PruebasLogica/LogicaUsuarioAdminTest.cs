@@ -193,5 +193,96 @@ namespace Pruebas.PruebasLogica
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
         }
+
+        [TestMethod]
+        public void OrdenarPeliculasPatrocinadasTest()
+        {
+            Genero terror = new Genero() { Nombre = "Terror" };
+
+            Pelicula peliculaA = new Pelicula() 
+            { 
+                EsPatrocinada = false, 
+                Nombre = "It", 
+                GeneroPrincipal = terror 
+            };
+            Pelicula peliculaB = new Pelicula() 
+            { 
+                EsPatrocinada = true, 
+                Nombre = "Chucky", 
+                GeneroPrincipal = terror 
+            };
+
+            PeliculaRepo repoPelis = new PeliculaRepo();
+            repoPelis.AgregarPelicula(peliculaA);
+            repoPelis.AgregarPelicula(peliculaB);
+
+            repoPelis.peliculas = logica.OrdenarPorPatrocinio(admin, repoPelis);
+
+            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaB;
+            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
+
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
+        }
+
+        [TestMethod]
+        public void OrdenarPeliculasPatrocinadasPorGeneroTest()
+        {
+            Genero terror = new Genero() { Nombre = "Terror" };
+            Genero comedia = new Genero() { Nombre = "Comedia" };
+
+            Pelicula peliculaA = new Pelicula()
+            {
+                EsPatrocinada = true,
+                Nombre = "Chucky",
+                GeneroPrincipal = terror
+            };
+            Pelicula peliculaB = new Pelicula()
+            {
+                EsPatrocinada = true,
+                Nombre = "La Mascara",
+                GeneroPrincipal = comedia
+            };
+
+            PeliculaRepo repoPelis = new PeliculaRepo();
+            repoPelis.AgregarPelicula(peliculaA);
+            repoPelis.AgregarPelicula(peliculaB);
+
+            repoPelis.peliculas = logica.OrdenarPorPatrocinio(admin, repoPelis);
+
+            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaB;
+            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
+
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
+        }
+
+        [TestMethod]
+        public void OrdenarPeliculasPatrocinadasPorNombreTest()
+        {
+            Genero terror = new Genero() { Nombre = "Terror" };
+
+            Pelicula peliculaA = new Pelicula()
+            {
+                EsPatrocinada = false,
+                Nombre = "It",
+                GeneroPrincipal = terror
+            };
+            Pelicula peliculaB = new Pelicula()
+            {
+                EsPatrocinada = false,
+                Nombre = "Chucky",
+                GeneroPrincipal = terror
+            };
+
+            PeliculaRepo repoPelis = new PeliculaRepo();
+            repoPelis.AgregarPelicula(peliculaA);
+            repoPelis.AgregarPelicula(peliculaB);
+
+            repoPelis.peliculas = logica.OrdenarPorPatrocinio(admin, repoPelis);
+
+            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaB;
+            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
+
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
+        }
     }
 }
