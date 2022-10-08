@@ -45,6 +45,7 @@
     <Compile Include="Exceptions\UsuarioException.cs" />
     <Compile Include="GeneroPuntaje.cs" />
     <Compile Include="Perfil.cs" />
+    <Compile Include="PerfilOwner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>

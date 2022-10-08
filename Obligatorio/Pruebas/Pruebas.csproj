@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PruebasDominio\PerfilTest.cs" />
     <Compile Include="PruebasDominio\GeneroPuntajeTest.cs" />
+    <Compile Include="PruebasDominio\PerfilOwnerTest.cs" />
     <Compile Include="PruebasDominio\UsuarioTest.cs" />
   </ItemGroup>
   <ItemGroup>

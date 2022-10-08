@@ -64,9 +64,24 @@ namespace Dominio
             }
         }
 
+        public List<GeneroPuntaje> PuntajeGeneros
+        {
+            get => _puntajeGeneros; set
+            {
+                _puntajeGeneros = value;
+            }
+        }
+
         public bool EsInfantil { get => _esInfantil; set => _esInfantil = value; }
+
+        public void AgregarGeneroPuntaje(GeneroPuntaje generoPuntaje)
+        {
+            _puntajeGeneros.Add(generoPuntaje);
+        }
+
+        public void QuitarGeneroPuntaje(GeneroPuntaje generoPuntaje)
+        {
+            _puntajeGeneros.Remove(generoPuntaje);
+        }
     }
-
-    
-
 }

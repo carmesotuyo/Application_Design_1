@@ -124,7 +124,7 @@ namespace Pruebas.PruebasDominio
             GeneroPuntaje generoPuntaje = new GeneroPuntaje();
             unPerfil.AgregarGeneroPuntaje(generoPuntaje);
 
-            Assert.IsTrue(unPerfil.PuntajeGenero.Contains(generoPuntaje));
+            Assert.IsTrue(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
         }
 
         [TestMethod]
@@ -135,7 +135,7 @@ namespace Pruebas.PruebasDominio
             unPerfil.AgregarGeneroPuntaje(generoPuntaje);
             unPerfil.QuitarGeneroPuntaje(generoPuntaje);
 
-            Assert.IsFalse(unPerfil.PuntajeGenero.Contains(generoPuntaje));
+            Assert.IsFalse(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
         }
     }
 }
