@@ -173,7 +173,7 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void GeneroSecundarioValidoTest()
+        public void AgregarPerfilTest()
         {
             Usuario unUsuario = new Usuario();
             Perfil unPerfil = new Perfil();

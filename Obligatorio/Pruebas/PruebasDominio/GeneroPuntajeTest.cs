@@ -49,8 +49,8 @@ namespace Pruebas.PruebasDominio
             //arrange
             GeneroPuntaje unGeneroPuntaje = new GeneroPuntaje()
             {
-                Genero = Terror;
-            }
+                Genero = "Terror"
+            };
 
             //assert
             Assert.AreEqual(unGeneroPuntaje.Genero, "Terror");
@@ -58,3 +58,4 @@ namespace Pruebas.PruebasDominio
         }
     }
 }
+
