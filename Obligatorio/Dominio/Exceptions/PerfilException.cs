@@ -17,4 +17,8 @@ namespace Dominio.Exceptions
     public class NoInfantilException : Exception
     {
     }
+    public class EliminarOwnerException : Exception
+    {
+    }
+    
 }

@@ -90,6 +90,7 @@ namespace Dominio
         public void QuitarPerfil(Perfil perfil)
         {
             NoExistePerfil(perfil);
+            EsPerfilOwner(perfil);
             _listaPerfiles.Remove(perfil);
         }
 
@@ -98,6 +99,13 @@ namespace Dominio
             if (!Perfiles.Contains(perfil))
             {
                 throw new NoExistePerfilException();
+            }
+        }
+        private void EsPerfilOwner(Perfil perfil)
+        {
+            if (perfil.EsOwner)
+            {
+                throw new EliminarOwnerException();
             }
         }
 
