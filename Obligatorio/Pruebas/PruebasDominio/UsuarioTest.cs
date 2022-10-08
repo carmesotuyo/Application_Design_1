@@ -188,6 +188,7 @@ namespace Pruebas.PruebasDominio
             {
                 EsOwner = true
             };
+            unUsuario.AgregarPerfil(perfil);
             unUsuario.QuitarPerfil(perfil);
         }
 

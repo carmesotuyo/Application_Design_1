@@ -14,7 +14,7 @@ namespace Repositorio
         {
             return usuarios.Contains(usuario);
         }
-        public void AgregarPelicula(Usuario usuario)
+        public void AgregarUsuario(Usuario usuario)
         {
             usuarios.Add(usuario);
         }
