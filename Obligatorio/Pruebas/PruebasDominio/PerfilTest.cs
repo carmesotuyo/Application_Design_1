@@ -12,13 +12,10 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void AliasValidoTest()
         {
-            //arrange
             Perfil unPerfil = new Perfil()
             {
                 Alias = "nano"
             };
-
-            //assert
             Assert.AreEqual(unPerfil.Alias, "nano");
         }
 
@@ -26,7 +23,6 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(AliasInvalidoException))]
         public void AliasInvalidoTest()
         {
-            //arrange
             Perfil unPerfil = new Perfil()
             {
                 Alias = ""
@@ -38,7 +34,6 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(AliasInvalidoException))]
         public void AliasCon16CaracteresTest()
         {
-            //arrange
             string alias16Caracteres = "aaaaaaaaaaaaaaaa";
             Perfil unPerfil = new Perfil()
             {
@@ -50,7 +45,6 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(AliasInvalidoException))]
         public void AliasSoloNumeroTest()
         {
-            //arrange
             string soloNumeros = "12345";
             Perfil unPerfil = new Perfil()
             {
@@ -60,9 +54,8 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(AliasInvalidoException))]
-        public void AliasEspaciosEnBalncoTest()
+        public void AliasEspaciosEnBlancoTest()
         {
-            //arrange
             string aliasEspaciosEnBlanco = "         ";
             Perfil unPerfil = new Perfil()
             {
@@ -73,13 +66,10 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void PinValidoTest()
         {
-            //arrange
             Perfil unPerfil = new Perfil()
             {
                 Pin = 1234
             };
-
-            //assert
             Assert.AreEqual(unPerfil.Pin, 1234);
         }
 
@@ -87,7 +77,6 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(PinInvalidoException))]
         public void PinInvalidoTest()
         {
-            //arrange
             int PinInvalido = 123456;
             Perfil unPerfil = new Perfil()
             {
@@ -113,7 +102,6 @@ namespace Pruebas.PruebasDominio
             {
                 EsInfantil = false
             };
-
             Assert.IsFalse(unPerfil.EsInfantil);
         }
 
@@ -123,7 +111,6 @@ namespace Pruebas.PruebasDominio
             Perfil unPerfil = new Perfil();
             GeneroPuntaje generoPuntaje = new GeneroPuntaje();
             unPerfil.AgregarGeneroPuntaje(generoPuntaje);
-
             Assert.IsTrue(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
         }
 
@@ -134,7 +121,6 @@ namespace Pruebas.PruebasDominio
             GeneroPuntaje generoPuntaje = new GeneroPuntaje();
             unPerfil.AgregarGeneroPuntaje(generoPuntaje);
             unPerfil.QuitarGeneroPuntaje(generoPuntaje);
-
             Assert.IsFalse(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
         }
 
@@ -142,7 +128,6 @@ namespace Pruebas.PruebasDominio
         [ExpectedException(typeof(NoInfantilException))]
         public void OwnerInfantilTest()
         {
-            //arrange
             Perfil unPerfil = new Perfil()
             {
                 EsOwner = true

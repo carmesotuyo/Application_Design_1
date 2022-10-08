@@ -89,7 +89,16 @@ namespace Dominio
 
         public void QuitarPerfil(Perfil perfil)
         {
+            NoExistePerfil(perfil);
             _listaPerfiles.Remove(perfil);
+        }
+
+        private void NoExistePerfil(Perfil perfil)
+        {
+            if (!Perfiles.Contains(perfil))
+            {
+                throw new NoExistePerfilException();
+            }
         }
 
         public List<Perfil> Perfiles
