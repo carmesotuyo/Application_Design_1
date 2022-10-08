@@ -59,6 +59,7 @@
     <Compile Include="PruebasDominio\PeliculaTest.cs" />
     <Compile Include="PruebasLogica\LogicaGeneroTest.cs" />
     <Compile Include="PruebasLogica\LogicaPeliculaTest.cs" />
+    <Compile Include="PruebasLogica\LogicaUsuarioAdminTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -69,7 +70,6 @@
       <Project>{72e1b2a8-6160-4e3e-b561-bc94b6c8406b}</Project>
       <Name>Dominio</Name>
     </ProjectReference>
-
     <ProjectReference Include="..\Logica\Logica.csproj">
       <Project>{bc36ccd2-5f12-4166-8ef9-e9273b324e1c}</Project>
       <Name>Logica</Name>
