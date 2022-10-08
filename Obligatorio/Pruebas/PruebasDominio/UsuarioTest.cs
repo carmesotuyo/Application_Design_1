@@ -193,5 +193,14 @@ namespace Pruebas.PruebasDominio
             Assert.IsFalse(usuario.Perfiles.Contains(unPerfil));
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(NoExistePerfilException))]
+        public void QuitarPerfilInexistenteTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil perfil = new Perfil();
+            unUsuario.QuitarPerfil(perfil);
+        }
+
     }
 }
