@@ -12,8 +12,8 @@ namespace Logica.Interfaces
     {
         void AltaPelicula(Usuario admin, Pelicula unaPelicula, PeliculaRepo repo);
         void BajaPelicula(Usuario admin, Pelicula unaPelicula, PeliculaRepo repo);
-        void AltaGenero(Genero unGenero);
-        void BajaGenero(Genero unGenero);
+        void AltaGenero(Usuario admin, Genero unGenero, GeneroRepo repo);
+        void BajaGenero(Usuario admin, Genero unGenero, GeneroRepo repo);
         //void SeleccionarCriterioSorting(Criterio unCriterio);
 
     }

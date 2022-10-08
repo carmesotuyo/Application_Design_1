@@ -13,9 +13,15 @@ namespace Logica.Implementaciones
     public class LogicaUsuarioAdmin : ILogicaUsuarioAdmin
     {
         LogicaPelicula logicaPelicula = new LogicaPelicula();
-        public void AltaGenero(Genero unGenero)
+        LogicaGenero logicaGenero = new LogicaGenero();
+
+        public void AltaGenero(Usuario admin, Genero unGenero, GeneroRepo repo)
         {
-            throw new NotImplementedException();
+            if (!admin.EsAdministrador)
+            {
+                throw new UsuarioNoPermitidoException();
+            }
+            logicaGenero.AgregarGenero(unGenero, repo);
         }
 
         public void AltaPelicula(Usuario admin, Pelicula unaPelicula, PeliculaRepo repo)
@@ -28,7 +34,7 @@ namespace Logica.Implementaciones
             
         }
 
-        public void BajaGenero(Genero unGenero)
+        public void BajaGenero(Usuario admin, Genero unGenero, GeneroRepo repo)
         {
             throw new NotImplementedException();
         }
