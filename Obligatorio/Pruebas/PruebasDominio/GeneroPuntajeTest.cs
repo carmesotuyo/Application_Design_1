@@ -9,18 +9,16 @@ namespace Pruebas.PruebasDominio
     public class GeneroPuntajeTest
     {
         [TestMethod]
-        public void PuntajeEnCero()
+        public void PuntajeEnCeroTest()
         {
-            //arrange
             GeneroPuntaje unGeneroPuntaje = new GeneroPuntaje();
 
-            //assert
             Assert.AreEqual(unGeneroPuntaje.Puntaje, 0);
 
         }
 
         [TestMethod]
-        public void SumarPuntaje()
+        public void SumarPuntajeTest()
         {
             //arrange
             GeneroPuntaje unGeneroPuntaje = new GeneroPuntaje();
@@ -32,7 +30,7 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void SumarPuntajeNegativo()
+        public void SumarPuntajeNegativoTest()
         {
             //arrange
             GeneroPuntaje unGeneroPuntaje = new GeneroPuntaje();
@@ -45,7 +43,7 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void NombreGeneroValido()
+        public void NombreGeneroValidoTest()
         {
             //arrange
             GeneroPuntaje unGeneroPuntaje = new GeneroPuntaje()

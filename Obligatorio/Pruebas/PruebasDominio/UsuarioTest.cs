@@ -10,7 +10,7 @@ namespace Pruebas.PruebasDominio
     {
 
         [TestMethod]
-        public void NombreUsuarioValido()
+        public void NombreUsuarioValidoTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -27,7 +27,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(NombreUsuarioException))]
-        public void NombreUsuarioInvalido()
+        public void NombreUsuarioInvalidoTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -38,7 +38,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(NombreUsuarioException))]
-        public void NombreVacio()
+        public void NombreVacioTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -49,7 +49,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(NombreUsuarioException))]
-        public void Nombre9caracteres()
+        public void Nombre9caracteresTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -60,7 +60,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(NombreUsuarioException))]
-        public void Nombre21caracteres()
+        public void Nombre21caracteresTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -70,7 +70,7 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void EmailValido()
+        public void EmailValidoTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -84,7 +84,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(EmailInvalidoException))]
-        public void EmailInvalido()
+        public void EmailInvalidoTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -95,7 +95,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(EmailInvalidoException))]
-        public void EmailInvalido2()
+        public void EmailSinComTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -106,7 +106,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(EmailInvalidoException))]
-        public void EmailInvalido3()
+        public void EmailSinNombreTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -116,7 +116,7 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void ClaveValida()
+        public void ClaveValidaTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -130,7 +130,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(ClaveInvalidaException))]
-        public void ClaveInvalida()
+        public void ClaveInvalidaTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -141,7 +141,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(ClaveInvalidaException))]
-        public void ClaveVacia()
+        public void ClaveVaciaTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -152,7 +152,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(ClaveInvalidaException))]
-        public void Clave9Caracteres()
+        public void Clave9CaracteresTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -163,7 +163,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(ClaveInvalidaException))]
-        public void Clave31Caracteres()
+        public void Clave31CaracteresTest()
         {
             //arrange
             Usuario unUsuario = new Usuario()
@@ -183,7 +183,7 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void QuitarPerfil()
+        public void QuitarPerfilTest()
         {
             Usuario usuario = new Usuario();
             Perfil unPerfil = new Perfil();

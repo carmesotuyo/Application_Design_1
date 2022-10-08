@@ -10,7 +10,7 @@ namespace Pruebas.PruebasDominio
     public class PerfilTest
     {
         [TestMethod]
-        public void AliasValido()
+        public void AliasValidoTest()
         {
             //arrange
             Perfil unPerfil = new Perfil()
@@ -24,7 +24,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(AliasInvalidoException))]
-        public void AliasInvalido()
+        public void AliasInvalidoTest()
         {
             //arrange
             Perfil unPerfil = new Perfil()
@@ -36,7 +36,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(AliasInvalidoException))]
-        public void AliasInvalido2()
+        public void AliasCon16CaracteresTest()
         {
             //arrange
             string alias16Caracteres = "aaaaaaaaaaaaaaaa";
@@ -48,7 +48,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(AliasInvalidoException))]
-        public void AliasInvalido3()
+        public void AliasSoloNumeroTest()
         {
             //arrange
             string soloNumeros = "12345";
@@ -60,7 +60,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(AliasInvalidoException))]
-        public void AliasInvalido4()
+        public void AliasEspaciosEnBalncoTest()
         {
             //arrange
             string aliasEspaciosEnBlanco = "         ";
@@ -71,7 +71,7 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void PinValido()
+        public void PinValidoTest()
         {
             //arrange
             Perfil unPerfil = new Perfil()
@@ -85,7 +85,7 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(PinInvalidoException))]
-        public void PinInvalido()
+        public void PinInvalidoTest()
         {
             //arrange
             int PinInvalido = 123456;
