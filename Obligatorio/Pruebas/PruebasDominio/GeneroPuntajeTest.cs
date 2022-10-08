@@ -59,7 +59,7 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NombreVacioException))]
+        [ExpectedException(typeof(DatoVacioException))]
         public void NombreGeneroVacioTest()
         {
             //arrange

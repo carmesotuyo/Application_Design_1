@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,15 @@ namespace Dominio
 
         public string Genero
         {
-            get => _genero; set { _genero = value; }
+            get => _genero; 
+            set 
+            { 
+                if (value.Length == 0)
+                {
+                    throw new DatoVacioException();
+                }
+                _genero = value; 
+            }
         }
 
         public GeneroPuntaje()
