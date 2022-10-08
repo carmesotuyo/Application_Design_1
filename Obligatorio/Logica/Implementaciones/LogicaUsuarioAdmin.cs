@@ -17,39 +17,49 @@ namespace Logica.Implementaciones
 
         public void AltaGenero(Usuario admin, Genero unGenero, GeneroRepo repo)
         {
-            if (!admin.EsAdministrador)
-            {
-                throw new UsuarioNoPermitidoException();
-            }
+            BloquearUsuarioNoAdmin(admin);
             logicaGenero.AgregarGenero(unGenero, repo);
         }
 
         public void AltaPelicula(Usuario admin, Pelicula unaPelicula, PeliculaRepo repo)
         {
-            if (!admin.EsAdministrador)
-            {
-                throw new UsuarioNoPermitidoException();
-            }
+            BloquearUsuarioNoAdmin(admin);
             logicaPelicula.AltaPelicula(unaPelicula, repo);
             
         }
 
-        public void BajaGenero(Usuario admin, Genero unGenero, GeneroRepo repo)
+        public void BajaGenero(Usuario admin, Genero unGenero, GeneroRepo repo, PeliculaRepo repoPelis)
         {
-            if (!admin.EsAdministrador)
-            {
-                throw new UsuarioNoPermitidoException();
-            }
+            BloquearUsuarioNoAdmin(admin);
+            BuscarSiTienePeliculasAsociadas(unGenero, repoPelis);
             logicaGenero.EliminarGenero(unGenero, repo);
         }
 
         public void BajaPelicula(Usuario admin, Pelicula unaPelicula, PeliculaRepo repo)
         {
+            BloquearUsuarioNoAdmin(admin);
+            logicaPelicula.BajaPelicula(unaPelicula, repo);
+        }
+
+        private static void BloquearUsuarioNoAdmin(Usuario admin)
+        {
             if (!admin.EsAdministrador)
             {
                 throw new UsuarioNoPermitidoException();
             }
-            logicaPelicula.BajaPelicula(unaPelicula, repo);
+        }
+
+        private static void BuscarSiTienePeliculasAsociadas(Genero unGenero, PeliculaRepo repoPelis)
+        {
+            foreach(Pelicula pelicula in repoPelis.peliculas)
+            {
+                bool EsGeneroPrincipal = pelicula.GeneroPrincipal.Equals(unGenero);
+                bool EsGeneroSecundario = pelicula.GenerosSecundarios.Contains(unGenero);
+                if (EsGeneroPrincipal || EsGeneroSecundario)
+                {
+                    throw new GeneroConPeliculaAsociadaException();
+                }
+            }
         }
     }
 }

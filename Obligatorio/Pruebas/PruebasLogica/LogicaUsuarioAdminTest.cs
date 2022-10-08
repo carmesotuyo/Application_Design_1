@@ -85,12 +85,17 @@ namespace Pruebas.PruebasLogica
         public void BajaGeneroTest()
         {
             Genero unGenero = new Genero() { Nombre = "Terror" };
-            GeneroRepo repo = new GeneroRepo();
+            Genero otroGenero = new Genero() { Nombre = "Comedia" };
+            GeneroRepo repoGenero = new GeneroRepo();
 
-            logica.AltaGenero(admin, unGenero, repo);
-            logica.BajaGenero(admin, unGenero, repo);
+            PeliculaRepo repoPelis = new PeliculaRepo();
+            Pelicula pelicula = new Pelicula { GeneroPrincipal = otroGenero };
+            repoPelis.AgregarPelicula(pelicula);
 
-            Assert.IsFalse(repo.EstaGenero(unGenero));
+            logica.AltaGenero(admin, unGenero, repoGenero);
+            logica.BajaGenero(admin, unGenero, repoGenero, repoPelis);
+
+            Assert.IsFalse(repoGenero.EstaGenero(unGenero));
         }
 
         [TestMethod]
@@ -98,10 +103,47 @@ namespace Pruebas.PruebasLogica
         public void BajaGeneroUsuarioNoPermitidoTest()
         {
             Genero unGenero = new Genero() { Nombre = "Terror" };
-            GeneroRepo repo = new GeneroRepo();
+            Genero otroGenero = new Genero() { Nombre = "Comedia" };
+            GeneroRepo repoGenero = new GeneroRepo();
 
-            logica.AltaGenero(admin, unGenero, repo);
-            logica.BajaGenero(usuarioComun, unGenero, repo);
+            PeliculaRepo repoPelis = new PeliculaRepo();
+            Pelicula pelicula = new Pelicula { GeneroPrincipal = otroGenero };
+            repoPelis.AgregarPelicula(pelicula);
+
+            logica.AltaGenero(admin, unGenero, repoGenero);
+            logica.BajaGenero(usuarioComun, unGenero, repoGenero, repoPelis);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(GeneroConPeliculaAsociadaException))]
+        public void BajaGeneroConPeliculasAsociadasComoPrincipalTest()
+        {
+            Genero unGenero = new Genero() { Nombre = "Terror" };
+            GeneroRepo repoGenero = new GeneroRepo();
+
+            PeliculaRepo repoPelis = new PeliculaRepo();
+            Pelicula pelicula = new Pelicula { GeneroPrincipal = unGenero };
+            repoPelis.AgregarPelicula(pelicula);
+
+            logica.AltaGenero(admin, unGenero, repoGenero);
+            logica.BajaGenero(admin, unGenero, repoGenero, repoPelis);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(GeneroConPeliculaAsociadaException))]
+        public void BajaGeneroConPeliculasAsociadasComoSecundarioTest()
+        {
+            Genero unGenero = new Genero() { Nombre = "Terror" };
+            Genero otroGenero = new Genero() { Nombre = "Comedia" };
+            GeneroRepo repoGenero = new GeneroRepo();
+
+            PeliculaRepo repoPelis = new PeliculaRepo();
+            Pelicula pelicula = new Pelicula() { GeneroPrincipal = otroGenero };
+            pelicula.AgregarGeneroSecundario(unGenero);
+            repoPelis.AgregarPelicula(pelicula);
+
+            logica.AltaGenero(admin, unGenero, repoGenero);
+            logica.BajaGenero(admin, unGenero, repoGenero, repoPelis);
         }
     }
 }

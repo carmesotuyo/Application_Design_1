@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\GeneroConPeliculaAsociadaException.cs" />
     <Compile Include="Exceptions\UsuarioAdminExceptions.cs" />
     <Compile Include="Implementaciones\LogicaGenero.cs" />
     <Compile Include="Implementaciones\LogicaPelicula.cs" />
