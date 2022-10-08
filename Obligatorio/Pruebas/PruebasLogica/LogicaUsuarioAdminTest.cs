@@ -14,11 +14,13 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaUsuarioAdminTest
     {
+        Usuario admin = new Usuario() { EsAdministrador = true };
+        Usuario usuarioComun = new Usuario() { EsAdministrador = false };
+        LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
+
         [TestMethod]
         public void AltaPeliculaTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
             Pelicula unaPelicula = new Pelicula();
             PeliculaRepo repo = new PeliculaRepo();
 
@@ -30,8 +32,6 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(UsuarioNoPermitidoException))]
         public void AltaPeliculaUsuarioNoPermitidoTest()
         {
-            Usuario usuarioComun = new Usuario() { EsAdministrador = false };
-            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
             Pelicula unaPelicula = new Pelicula();
             PeliculaRepo repo = new PeliculaRepo();
 
@@ -41,8 +41,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void BajaPeliculaTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
             Pelicula unaPelicula = new Pelicula();
             PeliculaRepo repo = new PeliculaRepo();
 
@@ -56,9 +54,6 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(UsuarioNoPermitidoException))]
         public void BajaPeliculaUsuarioNoPermitidoTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Usuario usuarioComun = new Usuario() { EsAdministrador = false };
-            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
             Pelicula unaPelicula = new Pelicula();
             PeliculaRepo repo = new PeliculaRepo();
 
@@ -69,8 +64,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void AltaGeneroTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
             Genero unGenero = new Genero() { Nombre = "Terror" };
             GeneroRepo repo = new GeneroRepo();
 
@@ -82,8 +75,6 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(UsuarioNoPermitidoException))]
         public void AltaGeneroUsuarioNoPermitidoTest()
         {
-            Usuario usuarioComun = new Usuario() { EsAdministrador = false };
-            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
             Genero unGenero = new Genero() { Nombre = "Terror" };
             GeneroRepo repo = new GeneroRepo();
 
@@ -93,8 +84,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void BajaGeneroTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
             Genero unGenero = new Genero() { Nombre = "Terror" };
             GeneroRepo repo = new GeneroRepo();
 
@@ -108,9 +97,6 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(UsuarioNoPermitidoException))]
         public void BajaGeneroUsuarioNoPermitidoTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Usuario usuarioComun = new Usuario() { EsAdministrador = false };
-            LogicaUsuarioAdmin logica = new LogicaUsuarioAdmin();
             Genero unGenero = new Genero() { Nombre = "Terror" };
             GeneroRepo repo = new GeneroRepo();
 
