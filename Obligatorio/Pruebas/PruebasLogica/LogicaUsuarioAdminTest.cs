@@ -262,13 +262,13 @@ namespace Pruebas.PruebasLogica
 
             Pelicula peliculaA = new Pelicula()
             {
-                EsPatrocinada = false,
+                EsPatrocinada = true,
                 Nombre = "It",
                 GeneroPrincipal = terror
             };
             Pelicula peliculaB = new Pelicula()
             {
-                EsPatrocinada = false,
+                EsPatrocinada = true,
                 Nombre = "Chucky",
                 GeneroPrincipal = terror
             };
@@ -283,6 +283,29 @@ namespace Pruebas.PruebasLogica
             bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
+        }
+
+        [TestMethod]
+        public void OrdenarPeliculasConMismoNombreTest()
+        {
+            Genero terror = new Genero() { Nombre = "Terror" };
+            Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
+            Pelicula peliculaB = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
+            Pelicula peliculaC = new Pelicula() { Nombre = "Chucky", GeneroPrincipal = terror };
+
+            PeliculaRepo repoPelis = new PeliculaRepo();
+            repoPelis.AgregarPelicula(peliculaA);
+            repoPelis.AgregarPelicula(peliculaB);
+            repoPelis.AgregarPelicula(peliculaC);
+
+            repoPelis.peliculas = logica.OrdenarPorGenero(admin, repoPelis);
+
+            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaC;
+            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
+            bool terceraPeliOrdenada = repoPelis.peliculas[2] == peliculaB;
+
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
+
         }
     }
 }
