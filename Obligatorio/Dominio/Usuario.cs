@@ -87,6 +87,10 @@ namespace Dominio
             _listaPerfiles.Add(perfil);
         }
 
+        public void QuitarPerfil(Perfil perfil)
+        {
+            _listaPerfiles.Remove(perfil);
+        }
 
         public List<Perfil> Perfiles
         {
