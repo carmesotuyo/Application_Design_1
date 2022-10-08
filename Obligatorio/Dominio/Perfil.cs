@@ -14,6 +14,10 @@ namespace Dominio
         private bool _esInfantil;
         private List<GeneroPuntaje> _puntajeGeneros;
 
+        public Perfil()
+        {
+            _puntajeGeneros = new List<GeneroPuntaje>();
+        }
         private void ValidarAliasMinMaxChars(string value)
         {
             value.Trim();

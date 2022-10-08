@@ -8,6 +8,6 @@ namespace Dominio
 {
     public class PerfilOwner : Perfil
     {
-
+        //public void CrearPerfil
     }
 }
