@@ -90,7 +90,8 @@ namespace Dominio
 
         private void MaximoDePerfiles()
         {
-            if (_listaPerfiles.Count == 4)
+            int numeroMaximo = 4;
+            if (_listaPerfiles.Count == numeroMaximo)
             {
                 throw new LimiteDePerfilesException();
             }
