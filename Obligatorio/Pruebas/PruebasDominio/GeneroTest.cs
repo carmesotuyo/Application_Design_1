@@ -38,5 +38,13 @@ namespace Pruebas.PruebasDominio
 
             Assert.AreEqual(unGenero.Descripcion, "Descripcion de prueba");
         }
+
+        [TestMethod]
+        public void DevolverNombreTest()
+        {
+            unGenero.Nombre = "terror";
+
+            Assert.AreEqual(unGenero.ToString(), "Terror");
+        }
     }
 }

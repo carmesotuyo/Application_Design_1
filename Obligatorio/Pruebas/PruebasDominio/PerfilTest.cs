@@ -176,5 +176,16 @@ namespace Pruebas.PruebasDominio
 
             Assert.IsFalse(unPerfil.VioPelicula(unaPelicula));
         }
+
+        [TestMethod]
+        public void DevolverNombreTest()
+        {
+            Perfil unPerfil = new Perfil()
+            {
+                Alias = "nano"
+            };
+
+            Assert.AreEqual(unPerfil.ToString(), "nano");
+        }
     }
 }
