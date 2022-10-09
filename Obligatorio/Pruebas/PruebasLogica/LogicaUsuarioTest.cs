@@ -45,5 +45,65 @@ namespace Pruebas.PruebasLogica
             logica.RegistrarUsuario(usuario1, repo);
             logica.RegistrarUsuario(usuario2, repo);
         }
+
+        [TestMethod]
+        public void IniciarSesionConNombreTest()
+        {
+            string cuenta = usuario1.Nombre;
+            string clave = usuario1.Clave;
+            logica.RegistrarUsuario(usuario1, repo);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+            Assert.AreEqual(usuario1, usuarioLogueado);
+        }
+
+        [TestMethod]
+        public void IniciarSesionConEmailTest()
+        {
+            string cuenta = usuario1.Email;
+            string clave = usuario1.Clave;
+            logica.RegistrarUsuario(usuario1, repo);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+            Assert.AreEqual(usuario1, usuarioLogueado);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ClaveIncorrectaException))]
+        public void IniciarSesionClaveIncorrectaTest()
+        {
+            string cuenta = usuario1.Email;
+            string clave = "";
+            logica.RegistrarUsuario(usuario1, repo);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ClaveIncorrectaException))]
+        public void IniciarSesionNombreClaveIncorrectaTest()
+        {
+            string cuenta = usuario1.Nombre;
+            string clave = "";
+            logica.RegistrarUsuario(usuario1, repo);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NombreOEmailIncorrectoException))]
+        public void IniciarSesionNombreIncorrectoTest()
+        {
+            string cuenta = "";
+            string clave = "";
+            logica.RegistrarUsuario(usuario1, repo);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NombreOEmailIncorrectoException))]
+        public void IniciarSesionEmailIncorrectoTest()
+        {
+            string cuenta = "algo@algo.com";
+            string clave = "";
+            logica.RegistrarUsuario(usuario1, repo);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+        }
     }
 }

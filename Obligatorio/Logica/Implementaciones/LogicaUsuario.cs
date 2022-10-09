@@ -42,5 +42,29 @@ namespace Logica.Implementaciones
                 throw new EmailExistenteException();
             }
         }
+
+        public Usuario IniciarSesion(string cuenta, string clave, RepoUsuarios repo)
+        {
+            Usuario usuarioLogueado = ValidarNombreOEmail(cuenta, repo);
+            AutenticarClave(usuarioLogueado, clave);
+            return usuarioLogueado;
+        }
+
+        private Usuario ValidarNombreOEmail(string cuenta, RepoUsuarios repo)
+        {
+            List<Usuario> usuario = repo.usuarios.Where(u => u.Nombre == cuenta).ToList();
+            if (usuario.Count == 0)
+            {
+                usuario = repo.usuarios.Where(u => u.Email == cuenta).ToList();
+                if (usuario.Count == 0) { throw new NombreOEmailIncorrectoException(); }
+            }
+            Usuario usuarioLogueado = usuario[0];
+            return usuarioLogueado;
+        }
+
+        private void AutenticarClave(Usuario usuario, string clave)
+        {
+            if(usuario.Clave != clave) { throw new ClaveIncorrectaException(); }
+        }
     }
 }

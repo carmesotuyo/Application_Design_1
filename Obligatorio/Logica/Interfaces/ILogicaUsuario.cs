@@ -12,5 +12,6 @@ namespace Logica.Interfaces
     {
         void RegistrarUsuario(Usuario usuario, RepoUsuarios repo);
 
+        Usuario IniciarSesion(string cuenta, string clave, RepoUsuarios repo);
     }
 }
