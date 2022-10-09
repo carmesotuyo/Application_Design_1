@@ -131,5 +131,9 @@ namespace Dominio
 
         public bool EsAdministrador { get => _esAdmin; set => _esAdmin = value; }
 
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

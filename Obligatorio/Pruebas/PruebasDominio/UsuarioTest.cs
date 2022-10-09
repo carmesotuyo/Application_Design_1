@@ -209,5 +209,16 @@ namespace Pruebas.PruebasDominio
             unUsuario.QuitarPerfil(perfil);
         }
 
+        [TestMethod]
+        public void DevolverNombreTest()
+        {
+            Usuario unUsuario = new Usuario()
+            {
+                Nombre = "johnyPro123"
+            };
+
+            Assert.AreEqual(unUsuario.ToString(), "johnyPro123");
+        }
+
     }
 }

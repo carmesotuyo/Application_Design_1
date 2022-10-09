@@ -136,5 +136,10 @@ namespace Dominio
         {
             return _peliculasVistas.Contains(unaPelicula);
         }
+
+        public override string ToString()
+        {
+            return Alias;
+        }
     }
 }

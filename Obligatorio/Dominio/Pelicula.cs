@@ -102,5 +102,10 @@ namespace Dominio
                 throw new DatoVacioException();
             }
         }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

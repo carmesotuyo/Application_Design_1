@@ -191,5 +191,13 @@ namespace Pruebas.PruebasDominio
         {
             unaPelicula.Poster = "";
         }
+
+        [TestMethod]
+        public void DevolverNombreTest()
+        {
+            unaPelicula.Nombre = "Harry Potter";
+
+            Assert.AreEqual(unaPelicula.ToString(), "Harry Potter");
+        }
     }
 }

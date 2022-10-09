@@ -34,5 +34,10 @@ namespace Dominio
             ChequearStringVacio(texto);
             return char.ToUpper(texto[0]) + texto.ToLower().Substring(1);
         }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }
