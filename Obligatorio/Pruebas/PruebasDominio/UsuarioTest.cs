@@ -161,6 +161,23 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
+        [ExpectedException(typeof(LimiteDePerfilesException))]
+        public void AgregarMasDe4PerfilesTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+            Perfil unPerfil2 = new Perfil();
+            Perfil unPerfil3 = new Perfil();
+            Perfil unPerfil4 = new Perfil();
+            Perfil unPerfil5 = new Perfil();
+            unUsuario.AgregarPerfil(unPerfil);
+            unUsuario.AgregarPerfil(unPerfil2);
+            unUsuario.AgregarPerfil(unPerfil3);
+            unUsuario.AgregarPerfil(unPerfil4);
+            unUsuario.AgregarPerfil(unPerfil5);
+        }
+
+        [TestMethod]
         public void QuitarPerfilTest()
         {
             Usuario usuario = new Usuario();

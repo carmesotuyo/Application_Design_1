@@ -84,7 +84,17 @@ namespace Dominio
 
         public void AgregarPerfil(Perfil perfil)
         {
+            MaximoDePerfiles();
             _listaPerfiles.Add(perfil);
+        }
+
+        private void MaximoDePerfiles()
+        {
+            int numeroMaximo = 4;
+            if (_listaPerfiles.Count == numeroMaximo)
+            {
+                throw new LimiteDePerfilesException();
+            }
         }
 
         public void QuitarPerfil(Perfil perfil)

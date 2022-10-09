@@ -20,4 +20,8 @@ namespace Dominio.Exceptions
         public class NoExistePerfilException : Exception
     {
     }
+    
+    public class LimiteDePerfilesException : Exception
+    {
+    }
 }
