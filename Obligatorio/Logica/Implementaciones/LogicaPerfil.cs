@@ -53,14 +53,14 @@ namespace Logica.Implementaciones
             }
         }
 
-        public void PuntuarNegativo(Pelicula unaPelicula, Perfil unPerfil)
-        {
-            unPerfil.ModificarPuntajeGenero(unaPelicula.GeneroPrincipal, (int) Puntajes.PuntajeNegativo);
-        }
-
         public void PuntuarPositivo(Pelicula unaPelicula, Perfil unPerfil)
         {
             unPerfil.ModificarPuntajeGenero(unaPelicula.GeneroPrincipal, (int) Puntajes.PuntajePositivo);
+        }
+
+        public void PuntuarNegativo(Pelicula unaPelicula, Perfil unPerfil)
+        {
+            unPerfil.ModificarPuntajeGenero(unaPelicula.GeneroPrincipal, (int)Puntajes.PuntajeNegativo);
         }
     }
 }
