@@ -19,13 +19,23 @@ namespace Logica.Implementaciones
             PuntajeMuyPositivo = 2
         }
 
-        public List<Pelicula> FiltrarPeliculasNoAptas(Perfil unPerfil, PeliculaRepo repo)
+        public virtual Perfil AccederAlPerfil(Perfil unPerfil, int pin)
         {
-            if (!unPerfil.EsInfantil)
+            ValidarPin(unPerfil, pin);
+            return unPerfil;
+        }
+
+        private void ValidarPin(Perfil unPerfil, int pin)
+        {
+            if(unPerfil.Pin != pin)
             {
-                throw new PerfilNoInfantilException();
+                throw new PinIncorrectoException();
             }
-            return repo.peliculas.Where(x => x.AptaTodoPublico == true).ToList();
+        }
+
+        public virtual List<Pelicula> MostrarPeliculas(PeliculaRepo repo)
+        {
+            return repo.peliculas;
         }
 
         public void MarcarComoVista(Pelicula unaPelicula, Perfil unPerfil)

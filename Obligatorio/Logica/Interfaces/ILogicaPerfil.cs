@@ -10,7 +10,10 @@ namespace Logica.Interfaces
 {
     public interface ILogicaPerfil
     {
-        List<Pelicula> FiltrarPeliculasNoAptas(Perfil unPerfil, PeliculaRepo repo);
+        Perfil AccederAlPerfil(Perfil unPerfil, int pin);
+        //List<Pelicula> FiltrarPeliculasNoAptas(Perfil unPerfil, PeliculaRepo repo);
+        List<Pelicula> MostrarPeliculas(PeliculaRepo repo);
+
         void PuntuarNegativo(Pelicula unaPelicula, Perfil unPerfil);
         void PuntuarPositivo(Pelicula unaPelicula, Perfil unPerfil);
         void PuntuarMuyPositivo(Pelicula unaPelicula, Perfil unPerfil);
