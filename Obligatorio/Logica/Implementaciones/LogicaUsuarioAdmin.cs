@@ -51,14 +51,11 @@ namespace Logica.Implementaciones
 
         private static void BuscarSiTienePeliculasAsociadas(Genero unGenero, PeliculaRepo repoPelis)
         {
-            foreach(Pelicula pelicula in repoPelis.peliculas)
+            List<Pelicula> EsGeneroPrincipal = repoPelis.peliculas.Where(p => p.GeneroPrincipal.Equals(unGenero)).ToList();
+            List<Pelicula> EsGeneroSecundario = repoPelis.peliculas.Where(p => p.GenerosSecundarios.Contains(unGenero)).ToList();
+            if(EsGeneroPrincipal.Count() > 0 || EsGeneroSecundario.Count() > 0)
             {
-                bool EsGeneroPrincipal = pelicula.GeneroPrincipal.Equals(unGenero);
-                bool EsGeneroSecundario = pelicula.GenerosSecundarios.Contains(unGenero);
-                if (EsGeneroPrincipal || EsGeneroSecundario)
-                {
-                    throw new GeneroConPeliculaAsociadaException();
-                }
+                throw new GeneroConPeliculaAsociadaException();
             }
         }
 
