@@ -1,5 +1,7 @@
 ﻿using Dominio;
 using Logica.Interfaces;
+using Logica.Exceptions;
+using Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +19,13 @@ namespace Logica.Implementaciones
             PuntajeMuyPositivo = 2
         }
 
-        public List<Pelicula> FiltrarPeliculasNoAptas()
+        public List<Pelicula> FiltrarPeliculasNoAptas(Perfil unPerfil, PeliculaRepo repo)
         {
-            throw new NotImplementedException();
+            if (!unPerfil.EsInfantil)
+            {
+                throw new PerfilNoInfantilException();
+            }
+            return repo.peliculas.Where(x => x.AptaTodoPublico == true).ToList();
         }
 
         public void MarcarComoVista(Pelicula unaPelicula, Perfil unPerfil)
