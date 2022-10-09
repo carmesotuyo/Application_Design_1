@@ -10,9 +10,12 @@ namespace Logica.Implementaciones
 {
     public class LogicaPerfil : ILogicaPerfil
     {
-        private static int PuntajeNegativo = -1;
-        private static int PuntajePositivo = 1;
-        private static int PuntajeMuyPositivo = 2;
+        enum Puntajes
+        {
+            PuntajeNegativo = -1,
+            PuntajePositivo = 1,
+            PuntajeMuyPositivo = 2
+        }
 
         public List<Pelicula> FiltrarPeliculasNoAptas()
         {
@@ -26,18 +29,21 @@ namespace Logica.Implementaciones
 
         public void PuntuarMuyPositivo(Pelicula unaPelicula, Perfil unPerfil)
         {
-            throw new NotImplementedException();
+            unPerfil.ModificarPuntajeGenero(unaPelicula.GeneroPrincipal, (int) Puntajes.PuntajeMuyPositivo);
+            foreach(Genero genero in unaPelicula.GenerosSecundarios)
+            {
+                unPerfil.ModificarPuntajeGenero(genero, (int)Puntajes.PuntajePositivo);
+            }
         }
 
         public void PuntuarNegativo(Pelicula unaPelicula, Perfil unPerfil)
         {
-            unPerfil.ModificarPuntajeGenero(unaPelicula.GeneroPrincipal, PuntajeNegativo);
-
+            unPerfil.ModificarPuntajeGenero(unaPelicula.GeneroPrincipal, (int) Puntajes.PuntajeNegativo);
         }
 
         public void PuntuarPositivo(Pelicula unaPelicula, Perfil unPerfil)
         {
-            throw new NotImplementedException();
+            unPerfil.ModificarPuntajeGenero(unaPelicula.GeneroPrincipal, (int) Puntajes.PuntajePositivo);
         }
     }
 }
