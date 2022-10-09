@@ -62,5 +62,26 @@ namespace Logica.Implementaciones
         {
             unPerfil.ModificarPuntajeGenero(unaPelicula.GeneroPrincipal, (int)Puntajes.PuntajeNegativo);
         }
+
+        public void MarcarComoInfantil(Perfil perfilInfantil, Perfil perfilOwner, Usuario usuario)
+        {
+            PertenecenAlMismoUsuario(perfilInfantil, perfilOwner, usuario);
+            ValidarPerfilOwner(perfilOwner);
+            perfilInfantil.EsInfantil = true;
+        }
+
+        private void ValidarPerfilOwner(Perfil unPerfil)
+        {
+            if (!unPerfil.EsOwner)
+            {
+                throw new PerfilNoOwnerException();
+            }
+        }
+
+        public void PertenecenAlMismoUsuario(Perfil perfilInfantil, Perfil perfilOwner, Usuario usuario)
+        {
+            usuario.NoExistePerfil(perfilInfantil);
+            usuario.NoExistePerfil(perfilOwner);
+        }
     }
 }

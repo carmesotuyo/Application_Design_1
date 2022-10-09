@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\GeneroConPeliculaAsociadaException.cs" />
-    <Compile Include="Exceptions\PerfilNoInfantilException.cs" />
+    <Compile Include="Exceptions\PerfilExceptions.cs" />
     <Compile Include="Exceptions\PinIncorrectoException.cs" />
     <Compile Include="Exceptions\UsuarioAdminExceptions.cs" />
     <Compile Include="Exceptions\UsuarioException.cs" />

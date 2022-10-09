@@ -106,7 +106,7 @@ namespace Dominio
             _listaPerfiles.Remove(perfil);
         }
 
-        private void NoExistePerfil(Perfil perfil)
+        public void NoExistePerfil(Perfil perfil)
         {
             if (!Perfiles.Contains(perfil))
             {
