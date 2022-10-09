@@ -178,13 +178,41 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
+        public void AgregarPrimerPerfilTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+
+            unUsuario.AgregarPerfil(unPerfil);
+
+            Assert.IsTrue(unPerfil.EsOwner);
+        }
+
+        [TestMethod]
+        public void AgregarPerfilIntermedioTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+            Perfil otroPerfil = new Perfil();
+
+            unUsuario.AgregarPerfil(unPerfil);
+            unUsuario.AgregarPerfil(otroPerfil);
+
+            Assert.IsFalse(otroPerfil.EsOwner);
+        }
+
+        [TestMethod]
         public void QuitarPerfilTest()
         {
             Usuario usuario = new Usuario();
             Perfil unPerfil = new Perfil();
+            Perfil otroPerfil = new Perfil();
+
             usuario.AgregarPerfil(unPerfil);
-            usuario.QuitarPerfil(unPerfil);
-            Assert.IsFalse(usuario.Perfiles.Contains(unPerfil));
+            usuario.AgregarPerfil(otroPerfil);
+            usuario.QuitarPerfil(otroPerfil);
+
+            Assert.IsFalse(usuario.Perfiles.Contains(otroPerfil));
         }
 
         [TestMethod]
