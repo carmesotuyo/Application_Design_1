@@ -102,5 +102,17 @@ namespace Dominio
         {
             _puntajeGeneros.Remove(generoPuntaje);
         }
+
+        public void ModificarPuntajeGenero(Genero unGenero, int puntaje)
+        {
+            int index = EncontrarGeneroEnLista(unGenero);
+            PuntajeGeneros[index].ModificarPuntaje(puntaje);
+        }
+
+        private int EncontrarGeneroEnLista(Genero unGenero)
+        {
+            GeneroPuntaje genero = PuntajeGeneros.FirstOrDefault(x => x.Genero == unGenero.Nombre);
+            return PuntajeGeneros.IndexOf(genero);
+        }
     }
 }
