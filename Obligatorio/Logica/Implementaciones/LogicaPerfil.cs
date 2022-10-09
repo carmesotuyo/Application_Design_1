@@ -78,7 +78,7 @@ namespace Logica.Implementaciones
             }
         }
 
-        public void PertenecenAlMismoUsuario(Perfil perfilInfantil, Perfil perfilOwner, Usuario usuario)
+        private void PertenecenAlMismoUsuario(Perfil perfilInfantil, Perfil perfilOwner, Usuario usuario)
         {
             usuario.NoExistePerfil(perfilInfantil);
             usuario.NoExistePerfil(perfilOwner);
