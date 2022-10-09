@@ -25,6 +25,7 @@ namespace Logica.Implementaciones
         public void MarcarComoVista(Pelicula unaPelicula, Perfil unPerfil)
         {
             unPerfil.AgregarPeliculaVista(unaPelicula);
+            PuntuarPositivo(unaPelicula, unPerfil);
         }
 
         public void PuntuarMuyPositivo(Pelicula unaPelicula, Perfil unPerfil)

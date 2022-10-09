@@ -15,6 +15,12 @@ namespace Pruebas.PruebasLogica
     {
         LogicaPerfil logica = new LogicaPerfil();
         Perfil unPerfil = new Perfil();
+        enum Puntajes
+        {
+            Negativo = -1,
+            Positivo = 1,
+            MuyPositivo = 2
+        }
 
         [TestMethod]
         public void PuntuarPeliculaNegativoTest()
@@ -26,7 +32,7 @@ namespace Pruebas.PruebasLogica
 
             logica.PuntuarNegativo(unaPelicula, unPerfil);
 
-            Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == -1);
+            Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == (int)Puntajes.Negativo);
         }
 
         [TestMethod]
@@ -39,7 +45,7 @@ namespace Pruebas.PruebasLogica
 
             logica.PuntuarPositivo(unaPelicula, unPerfil);
 
-            Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == 1);
+            Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == (int)Puntajes.Positivo);
         }
 
         [TestMethod]
@@ -56,17 +62,33 @@ namespace Pruebas.PruebasLogica
 
             logica.PuntuarMuyPositivo(unaPelicula, unPerfil);
 
-            Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == 2 && unPerfil.PuntajeGeneros[1].Puntaje == 1);
+            Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == (int)Puntajes.MuyPositivo && unPerfil.PuntajeGeneros[1].Puntaje == (int)Puntajes.Positivo);
         }
 
         [TestMethod]
         public void MarcarPeliculaComoVistaTest()
         {
-            Pelicula unaPelicula = new Pelicula();
+            Genero comedia = new Genero() { Nombre = "comedia" };
+            Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = comedia };
+            GeneroPuntaje generoComedia = new GeneroPuntaje() { Genero = comedia.Nombre };
+            unPerfil.AgregarGeneroPuntaje(generoComedia);
 
             logica.MarcarComoVista(unaPelicula, unPerfil);
 
             Assert.IsTrue(unPerfil.VioPelicula(unaPelicula));
+        }
+
+        [TestMethod]
+        public void PuntajeEditadoPorVerPeliculaTest()
+        {
+            Genero comedia = new Genero() { Nombre = "comedia" };
+            Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = comedia };
+            GeneroPuntaje generoComedia = new GeneroPuntaje() { Genero = comedia.Nombre };
+            
+            unPerfil.AgregarGeneroPuntaje(generoComedia);
+            logica.MarcarComoVista(unaPelicula, unPerfil);
+
+            Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == (int)Puntajes.Positivo);
         }
     }
 }
