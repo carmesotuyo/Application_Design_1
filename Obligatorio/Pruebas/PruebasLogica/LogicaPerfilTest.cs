@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Logica;
 using Logica.Implementaciones;
+using Logica.Exceptions;
+using Repositorio;
 
 namespace Pruebas.PruebasLogica
 {
@@ -59,6 +61,35 @@ namespace Pruebas.PruebasLogica
             logica.PuntuarMuyPositivo(unaPelicula, unPerfil);
 
             Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == 2 && unPerfil.PuntajeGeneros[1].Puntaje == 1);
+        }
+
+        [TestMethod]
+        public void FiltrarPeliculasNoAptasTest()
+        {
+            PeliculaRepo repo = new PeliculaRepo();
+            Pelicula peliculaApta = new Pelicula() { AptaTodoPublico = true };
+            Pelicula peliculaNoApta = new Pelicula() { AptaTodoPublico = false };
+            repo.AgregarPelicula(peliculaApta);
+            repo.AgregarPelicula(peliculaNoApta);
+            Perfil unPerfil = new Perfil() { EsInfantil = true };
+
+            List<Pelicula> soloAptas = logica.FiltrarPeliculasNoAptas(unPerfil, repo);
+
+            Assert.IsTrue(soloAptas.Count == 1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(PerfilNoInfantilException))]
+        public void NoFiltrarSiNoEsInfantilTest()
+        {
+            PeliculaRepo repo = new PeliculaRepo();
+            Pelicula peliculaApta = new Pelicula() { AptaTodoPublico = true };
+            Pelicula peliculaNoApta = new Pelicula() { AptaTodoPublico = false };
+            repo.AgregarPelicula(peliculaApta);
+            repo.AgregarPelicula(peliculaNoApta);
+            Perfil unPerfil = new Perfil() { EsInfantil = false };
+
+            List<Pelicula> soloAptas = logica.FiltrarPeliculasNoAptas(unPerfil, repo);
         }
     }
 }
