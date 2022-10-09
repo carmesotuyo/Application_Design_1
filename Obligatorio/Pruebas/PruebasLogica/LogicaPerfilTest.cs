@@ -187,8 +187,11 @@ namespace Pruebas.PruebasLogica
         public void MarcarPerfilComoInfantilSinPermisosTest()
         {
             unPerfil.EsOwner = false;
+            Perfil perfilOwner = new Perfil() { EsOwner = true };
             Perfil perfilInfantil = new Perfil() { EsInfantil = false };
             Usuario usuario = new Usuario();
+
+            usuario.AgregarPerfil(perfilOwner);
             usuario.AgregarPerfil(unPerfil);
             usuario.AgregarPerfil(perfilInfantil);
 
