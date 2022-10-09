@@ -14,13 +14,13 @@ namespace Pruebas.PruebasLogica
     public class LogicaPerfilTest
     {
         LogicaPerfil logica = new LogicaPerfil();
+        Perfil unPerfil = new Perfil();
 
         [TestMethod]
         public void PuntuarPeliculaNegativoTest()
         {
             Genero comedia = new Genero() { Nombre = "comedia" };
             Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = comedia };
-            Perfil unPerfil = new Perfil();
             GeneroPuntaje generoPuntaje = new GeneroPuntaje() { Genero = comedia.Nombre };
             unPerfil.AgregarGeneroPuntaje(generoPuntaje);
 
@@ -34,7 +34,6 @@ namespace Pruebas.PruebasLogica
         {
             Genero comedia = new Genero() { Nombre = "comedia" };
             Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = comedia };
-            Perfil unPerfil = new Perfil();
             GeneroPuntaje generoPuntaje = new GeneroPuntaje() { Genero = comedia.Nombre };
             unPerfil.AgregarGeneroPuntaje(generoPuntaje);
 
@@ -50,7 +49,6 @@ namespace Pruebas.PruebasLogica
             Genero romance = new Genero() { Nombre = "Romance" };
             Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = comedia };
             unaPelicula.AgregarGeneroSecundario(romance);
-            Perfil unPerfil = new Perfil();
             GeneroPuntaje generoComedia = new GeneroPuntaje() { Genero = comedia.Nombre };
             GeneroPuntaje generoRomance = new GeneroPuntaje() { Genero = romance.Nombre };
             unPerfil.AgregarGeneroPuntaje(generoComedia);
@@ -59,6 +57,16 @@ namespace Pruebas.PruebasLogica
             logica.PuntuarMuyPositivo(unaPelicula, unPerfil);
 
             Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == 2 && unPerfil.PuntajeGeneros[1].Puntaje == 1);
+        }
+
+        [TestMethod]
+        public void MarcarPeliculaComoVistaTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+
+            logica.MarcarComoVista(unaPelicula, unPerfil);
+
+            Assert.IsTrue(unPerfil.VioPelicula(unaPelicula));
         }
     }
 }

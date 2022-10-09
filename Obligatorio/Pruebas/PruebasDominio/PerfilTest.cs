@@ -134,5 +134,47 @@ namespace Pruebas.PruebasDominio
             };
             unPerfil.EsInfantil = true;
         }
+
+        [TestMethod]
+        public void AgregarPeliculaVistaTest()
+        {
+            Perfil unPerfil = new Perfil();
+            Pelicula unaPelicula = new Pelicula();
+
+            unPerfil.AgregarPeliculaVista(unaPelicula);
+
+            Assert.IsTrue(unPerfil.PeliculasVistas.Contains(unaPelicula));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(PeliculaYaVistaException))]
+        public void AgregarPeliculaVistaDosVecesTest()
+        {
+            Perfil unPerfil = new Perfil();
+            Pelicula unaPelicula = new Pelicula();
+
+            unPerfil.AgregarPeliculaVista(unaPelicula);
+            unPerfil.AgregarPeliculaVista(unaPelicula);
+        }
+
+        [TestMethod]
+        public void VioPeliculaTest()
+        {
+            Perfil unPerfil = new Perfil();
+            Pelicula unaPelicula = new Pelicula();
+
+            unPerfil.AgregarPeliculaVista(unaPelicula);
+
+            Assert.IsTrue(unPerfil.VioPelicula(unaPelicula));
+        }
+
+        [TestMethod]
+        public void NoVioPeliculaTest()
+        {
+            Perfil unPerfil = new Perfil();
+            Pelicula unaPelicula = new Pelicula();
+
+            Assert.IsFalse(unPerfil.VioPelicula(unaPelicula));
+        }
     }
 }

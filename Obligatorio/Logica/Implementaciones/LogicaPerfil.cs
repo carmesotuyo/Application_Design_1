@@ -24,7 +24,7 @@ namespace Logica.Implementaciones
 
         public void MarcarComoVista(Pelicula unaPelicula, Perfil unPerfil)
         {
-            throw new NotImplementedException();
+            unPerfil.AgregarPeliculaVista(unaPelicula);
         }
 
         public void PuntuarMuyPositivo(Pelicula unaPelicula, Perfil unPerfil)
