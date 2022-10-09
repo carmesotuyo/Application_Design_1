@@ -209,5 +209,19 @@ namespace Pruebas.PruebasLogica
 
             logica.MarcarComoInfantil(perfilInfantil, unPerfil, unUsuario);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoInfantilException))]
+        public void MarcarOwnerComoInfantilTest()
+        {
+            unPerfil.EsOwner = true;
+            Perfil otroOwner = new Perfil() { EsOwner = true };
+            Usuario unUsuario = new Usuario();
+
+            unUsuario.AgregarPerfil(unPerfil);
+            unUsuario.AgregarPerfil(otroOwner);
+
+            logica.MarcarComoInfantil(otroOwner, unPerfil, unUsuario);
+        }
     }
 }
