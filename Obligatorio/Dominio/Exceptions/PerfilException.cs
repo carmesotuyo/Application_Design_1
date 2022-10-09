@@ -20,5 +20,9 @@ namespace Dominio.Exceptions
     public class EliminarOwnerException : Exception
     {
     }
+
+    public class PeliculaYaVistaException : Exception
+    {
+    }
     
 }

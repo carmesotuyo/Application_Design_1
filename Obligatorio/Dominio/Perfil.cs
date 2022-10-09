@@ -14,10 +14,12 @@ namespace Dominio
         private bool _esInfantil;
         private bool _esOwner;
         private List<GeneroPuntaje> _puntajeGeneros;
+        private List<Pelicula> _peliculasVistas; 
 
         public Perfil()
         {
             _puntajeGeneros = new List<GeneroPuntaje>();
+            _peliculasVistas = new List<Pelicula>();
         }
         private void ValidarAliasMinMaxChars(string value)
         {
@@ -113,6 +115,26 @@ namespace Dominio
         {
             GeneroPuntaje genero = PuntajeGeneros.FirstOrDefault(x => x.Genero == unGenero.Nombre);
             return PuntajeGeneros.IndexOf(genero);
+        }
+
+        public List<Pelicula> PeliculasVistas { get => _peliculasVistas; set => _peliculasVistas = value; }
+        public void AgregarPeliculaVista(Pelicula unaPelicula)
+        {
+            ChequearQueNoEsteYaVista(unaPelicula);
+            _peliculasVistas.Add(unaPelicula);
+        }
+
+        public void ChequearQueNoEsteYaVista(Pelicula unaPelicula)
+        {
+            if (this.VioPelicula(unaPelicula))
+            {
+                throw new PeliculaYaVistaException();
+            }
+        }
+
+        public bool VioPelicula(Pelicula unaPelicula)
+        {
+            return _peliculasVistas.Contains(unaPelicula);
         }
     }
 }
