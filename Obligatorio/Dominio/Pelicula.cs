@@ -102,6 +102,5 @@ namespace Dominio
                 throw new DatoVacioException();
             }
         }
-        
     }
 }

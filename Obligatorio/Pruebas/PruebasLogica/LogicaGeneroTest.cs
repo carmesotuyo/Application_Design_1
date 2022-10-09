@@ -54,10 +54,11 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void EliminarGeneroTest()
         {
+            PeliculaRepo repoPelis = new PeliculaRepo();
             unGenero.Nombre = "Comedia";
 
             logica.AgregarGenero(unGenero, repo);
-            logica.EliminarGenero(unGenero, repo);
+            logica.EliminarGenero(unGenero, repo, repoPelis);
 
             Assert.IsFalse(repo.EstaGenero(unGenero));
         }
@@ -66,7 +67,9 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(GeneroInexistenteException))]
         public void EliminarGeneroInexistenteTest()
         {
-            logica.EliminarGenero(unGenero, repo);
+            PeliculaRepo repoPelis = new PeliculaRepo();
+
+            logica.EliminarGenero(unGenero, repo, repoPelis);
         }
     }
 }

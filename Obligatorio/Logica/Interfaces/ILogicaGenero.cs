@@ -11,5 +11,6 @@ namespace Logica.Interfaces
     public interface ILogicaGenero
     {
         void AgregarGenero(Genero genero, GeneroRepo repo);
+        void EliminarGenero(Genero genero, GeneroRepo repo, PeliculaRepo repoPelis);
     }
 }

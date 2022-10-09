@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dominio.Exceptions;
 using System.Linq.Expressions;
+using Logica.Exceptions;
 
 namespace Logica.Implementaciones
 {
@@ -28,9 +29,10 @@ namespace Logica.Implementaciones
             }
         }
 
-        public void EliminarGenero(Genero genero, GeneroRepo repo)
+        public void EliminarGenero(Genero genero, GeneroRepo repo, PeliculaRepo repoPelis)
         {
             EvaluarSiNoExiste(genero, repo);
+            BuscarSiTienePeliculasAsociadas(genero, repoPelis);
             repo.EliminarGenero(genero);
         }
 
@@ -39,6 +41,16 @@ namespace Logica.Implementaciones
             if (!repo.EstaGenero(genero))
             {
                 throw new GeneroInexistenteException();
+            }
+        }
+
+        private static void BuscarSiTienePeliculasAsociadas(Genero genero, PeliculaRepo repoPelis)
+        {
+            List<Pelicula> EsGeneroPrincipal = repoPelis.peliculas.Where(p => p.GeneroPrincipal.Equals(genero)).ToList();
+            List<Pelicula> EsGeneroSecundario = repoPelis.peliculas.Where(p => p.GenerosSecundarios.Contains(genero)).ToList();
+            if (EsGeneroPrincipal.Count() > 0 || EsGeneroSecundario.Count() > 0)
+            {
+                throw new GeneroConPeliculaAsociadaException();
             }
         }
     }

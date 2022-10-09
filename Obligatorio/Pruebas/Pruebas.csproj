@@ -58,6 +58,7 @@
     <Compile Include="PruebasDominio\PeliculaTest.cs" />
     <Compile Include="PruebasLogica\LogicaGeneroTest.cs" />
     <Compile Include="PruebasLogica\LogicaPeliculaTest.cs" />
+    <Compile Include="PruebasLogica\LogicaUsuarioAdminTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

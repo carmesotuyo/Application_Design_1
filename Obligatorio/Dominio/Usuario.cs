@@ -13,9 +13,11 @@ namespace Dominio
         private string _email;
         private string _clave;
         private List<Perfil> _listaPerfiles;
+        private bool _esAdmin;
 
         public Usuario() {
             _listaPerfiles = new List<Perfil>();
+            _esAdmin = false;
         }
         private static void ChequearEmailValido(string value)
         {
@@ -127,7 +129,7 @@ namespace Dominio
             }
         }
 
-        
+        public bool EsAdministrador { get => _esAdmin; set => _esAdmin = value; }
 
     }
 }
