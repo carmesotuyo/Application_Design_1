@@ -31,8 +31,7 @@ namespace Logica.Implementaciones
         public void BajaGenero(Usuario admin, Genero unGenero, GeneroRepo repo, PeliculaRepo repoPelis)
         {
             BloquearUsuarioNoAdmin(admin);
-            BuscarSiTienePeliculasAsociadas(unGenero, repoPelis);
-            logicaGenero.EliminarGenero(unGenero, repo);
+            logicaGenero.EliminarGenero(unGenero, repo, repoPelis);
         }
 
         public void BajaPelicula(Usuario admin, Pelicula unaPelicula, PeliculaRepo repo)
@@ -46,16 +45,6 @@ namespace Logica.Implementaciones
             if (!admin.EsAdministrador)
             {
                 throw new UsuarioNoPermitidoException();
-            }
-        }
-
-        private static void BuscarSiTienePeliculasAsociadas(Genero unGenero, PeliculaRepo repoPelis)
-        {
-            List<Pelicula> EsGeneroPrincipal = repoPelis.peliculas.Where(p => p.GeneroPrincipal.Equals(unGenero)).ToList();
-            List<Pelicula> EsGeneroSecundario = repoPelis.peliculas.Where(p => p.GenerosSecundarios.Contains(unGenero)).ToList();
-            if(EsGeneroPrincipal.Count() > 0 || EsGeneroSecundario.Count() > 0)
-            {
-                throw new GeneroConPeliculaAsociadaException();
             }
         }
 
