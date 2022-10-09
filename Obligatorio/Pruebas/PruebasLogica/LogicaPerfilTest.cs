@@ -16,6 +16,7 @@ namespace Pruebas.PruebasLogica
     public class LogicaPerfilTest
     {
         LogicaPerfil logica = new LogicaPerfil();
+        LogicaPerfil logicaInfantil = new LogicaPerfilInfantil();
         Perfil unPerfil = new Perfil();
         enum Puntajes
         {
@@ -103,13 +104,12 @@ namespace Pruebas.PruebasLogica
             repo.AgregarPelicula(peliculaNoApta);
             Perfil unPerfil = new Perfil() { EsInfantil = true };
 
-            List<Pelicula> soloAptas = logica.FiltrarPeliculasNoAptas(unPerfil, repo);
+            List<Pelicula> soloAptas = logicaInfantil.MostrarPeliculas(repo);
 
             Assert.IsTrue(soloAptas.Count == 1);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(PerfilNoInfantilException))]
         public void NoFiltrarSiNoEsInfantilTest()
         {
             PeliculaRepo repo = new PeliculaRepo();
@@ -119,7 +119,52 @@ namespace Pruebas.PruebasLogica
             repo.AgregarPelicula(peliculaNoApta);
             Perfil unPerfil = new Perfil() { EsInfantil = false };
 
-            List<Pelicula> soloAptas = logica.FiltrarPeliculasNoAptas(unPerfil, repo);
+            List<Pelicula> todas = logica.MostrarPeliculas(repo);
+
+            Assert.AreEqual(todas, repo.peliculas);
+        }
+
+        [TestMethod]
+        public void AccederAPerfilAdultoTest()
+        {
+            unPerfil.EsInfantil = false;
+            unPerfil.Pin = 1234;
+
+            Perfil AccesoCorrecto = logica.AccederAlPerfil(unPerfil, 1234);
+
+            Assert.IsTrue(AccesoCorrecto.Equals(unPerfil));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(PinIncorrectoException))]
+        public void AccederConPinIncorrectoTest()
+        {
+            unPerfil.EsInfantil = false;
+            unPerfil.Pin = 1234;
+
+            Perfil AccesoIncorrecto = logica.AccederAlPerfil(unPerfil, 1111);
+        }
+
+        [TestMethod]
+        public void AccederAPerfilInfantilTest()
+        {
+            unPerfil.EsInfantil = true;
+            unPerfil.Pin = 1234;
+            int pinSinImportancia = 0;
+
+            Perfil AccesoCorrecto = logicaInfantil.AccederAlPerfil(unPerfil, pinSinImportancia);
+
+            Assert.IsTrue(AccesoCorrecto.Equals(unPerfil));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(PerfilNoInfantilException))]
+        public void AdultoNoAccedeALogicaInfantilTest()
+        {
+            unPerfil.EsInfantil = false;
+            unPerfil.Pin = 1234;
+
+            Perfil AccesoIncorrecto = logicaInfantil.AccederAlPerfil(unPerfil, 1234);
         }
     }
 }
