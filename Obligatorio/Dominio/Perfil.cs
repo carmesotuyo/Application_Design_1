@@ -14,17 +14,34 @@ namespace Dominio
         private bool _esInfantil;
         private bool _esOwner;
         private List<GeneroPuntaje> _puntajeGeneros;
-        private List<Pelicula> _peliculasVistas; 
+        private List<Pelicula> _peliculasVistas;
+
+        private static int _minCharsAlias = 1;
+        private static int _maxCharsAlias = 15;
+        private static int _minValorPin = 00000;
+        private static int _maxValorPin = 99999;
 
         public Perfil()
         {
             _puntajeGeneros = new List<GeneroPuntaje>();
             _peliculasVistas = new List<Pelicula>();
         }
+
+
+        public string Alias
+        {
+            get => _alias; set
+            {
+                ValidarAliasMinMaxChars(value);
+                ValidarAliasSinNumeros(value);
+                _alias = value;
+            }
+        }
+
         private void ValidarAliasMinMaxChars(string value)
         {
             value.Trim();
-            if (!(value.Length > 0) || !(value.Length < 16))
+            if (value.Length < _minCharsAlias || value.Length > _maxCharsAlias)
             {
                 throw new AliasInvalidoException();
             }
@@ -33,8 +50,7 @@ namespace Dominio
         private void ValidarAliasSinNumeros(string value)
         {
             int largoAntes = value.Length;
-            char[] numeros = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' };
-            value = value.Trim(numeros);
+            value = QuitarNumeros(value);
             int largoDespues = value.Length;
             if (largoAntes > largoDespues)
             {
@@ -42,29 +58,25 @@ namespace Dominio
             }
         }
 
+        private static string QuitarNumeros(string value)
+        {
+            char[] numeros = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' };
+            return value.Trim(numeros); ;
+        }
+
+        public int Pin { get => _pin; set { ValidarPin(value); _pin = value; } }
+
         private void ValidarPin(int value)
         {
-            if (value < 0 || value > 99999) {
+            if (value < _minValorPin || value > _maxValorPin) {
                 throw new PinInvalidoException();
             }
             
         }
 
-        public string Alias
-        {
-            get => _alias; set {
-                ValidarAliasMinMaxChars(value);
-                ValidarAliasSinNumeros(value);
-                _alias = value;
-            }
-        }
+        public bool EsOwner { get => _esOwner; set => _esOwner = value; }
 
-        public int Pin
-        {
-            get => _pin; set {
-                ValidarPin(value);
-                _pin = value;
-            }
+        public bool EsInfantil { get => _esInfantil; set { _esInfantil = value; } 
         }
 
         public List<GeneroPuntaje> PuntajeGeneros
@@ -74,26 +86,6 @@ namespace Dominio
                 _puntajeGeneros = value;
             }
         }
-
-        public bool EsInfantil { 
-            get => _esInfantil; 
-            set 
-            {
-                ValidarPerfilOwner();
-                _esInfantil = value; 
-            } 
-        }
-
-        private void ValidarPerfilOwner()
-        {
-            if (EsOwner)
-            {
-                throw new NoInfantilException();
-            }
-
-        }
-
-        public bool EsOwner { get => _esOwner; set => _esOwner = value; }
 
         public void AgregarGeneroPuntaje(GeneroPuntaje generoPuntaje)
         {
@@ -105,34 +97,14 @@ namespace Dominio
             _puntajeGeneros.Remove(generoPuntaje);
         }
 
-        public void ModificarPuntajeGenero(Genero unGenero, int puntaje)
-        {
-            int index = EncontrarGeneroEnLista(unGenero);
-            PuntajeGeneros[index].ModificarPuntaje(puntaje);
-        }
-
-        private int EncontrarGeneroEnLista(Genero unGenero)
-        {
-            GeneroPuntaje genero = PuntajeGeneros.FirstOrDefault(x => x.Genero == unGenero.Nombre);
-            return PuntajeGeneros.IndexOf(genero);
-        }
-
         public List<Pelicula> PeliculasVistas { get => _peliculasVistas; set => _peliculasVistas = value; }
+
         public void AgregarPeliculaVista(Pelicula unaPelicula)
         {
-            ChequearQueNoEsteYaVista(unaPelicula);
             _peliculasVistas.Add(unaPelicula);
         }
 
-        public void ChequearQueNoEsteYaVista(Pelicula unaPelicula)
-        {
-            if (this.VioPelicula(unaPelicula))
-            {
-                throw new PeliculaYaVistaException();
-            }
-        }
-
-        public bool VioPelicula(Pelicula unaPelicula)
+        public bool EstaPeliculaVista(Pelicula unaPelicula)
         {
             return _peliculasVistas.Contains(unaPelicula);
         }
