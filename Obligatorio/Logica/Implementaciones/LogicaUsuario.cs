@@ -68,9 +68,6 @@ namespace Logica.Implementaciones
             if(usuario.Clave != clave) { throw new ClaveIncorrectaException(); }
         }
 
-
-        //================ARREGLAR==============
-
         public void AgregarPerfil(Usuario usuario, Perfil perfil)
         {
             MaximoDePerfiles(usuario);
