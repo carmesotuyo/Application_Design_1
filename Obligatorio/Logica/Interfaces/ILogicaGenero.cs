@@ -10,7 +10,8 @@ namespace Logica.Interfaces
 {
     public interface ILogicaGenero
     {
-        void AgregarGenero(Genero genero, GeneroRepo repo);
-        void EliminarGenero(Genero genero, GeneroRepo repo, PeliculaRepo repoPelis);
+        void AgregarGenero(Genero genero);
+        void EliminarGenero(Genero genero, ILogicaPelicula logicaPelicula);
+        List<Genero> Generos();
     }
 }

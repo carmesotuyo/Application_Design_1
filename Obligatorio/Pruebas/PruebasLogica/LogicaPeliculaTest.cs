@@ -15,7 +15,7 @@ namespace Pruebas.PruebasLogica
     {
         Pelicula unaPelicula = new Pelicula();
         PeliculaRepo repo = new PeliculaRepo();
-        LogicaPelicula logica = new LogicaPelicula();
+        LogicaPelicula logica = new LogicaPelicula(new PeliculaRepo());
 
         [TestMethod]
         public void AltaPeliculaTest()

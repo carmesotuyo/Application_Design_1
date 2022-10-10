@@ -10,21 +10,31 @@ namespace Repositorio
 {
     public class PeliculaRepo : IPeliculaRepo
     {
-        public List<Pelicula> peliculas = new List<Pelicula>();
+        private List<Pelicula> _peliculas = new List<Pelicula>();
+
+        public PeliculaRepo()
+        {
+            _peliculas = new List<Pelicula>();
+        }
         public bool EstaPelicula(Pelicula pelicula)
         {
-            return peliculas.Contains(pelicula);
+            return _peliculas.Contains(pelicula);
         }
         public void AgregarPelicula(Pelicula pelicula)
         {
-            peliculas.Add(pelicula);
+            _peliculas.Add(pelicula);
         }
         public void QuitarPelicula(Pelicula pelicula)
         {
             if (EstaPelicula(pelicula))
             {
-                peliculas.Remove(pelicula);
+                _peliculas.Remove(pelicula);
             }
+        }
+
+        public List<Pelicula> Peliculas()
+        {
+            return _peliculas;
         }
     }
 }

@@ -9,49 +9,61 @@ using System.Threading.Tasks;
 using Dominio.Exceptions;
 using System.Linq.Expressions;
 using Logica.Exceptions;
+using Repositorio.Interfaces;
 
 namespace Logica.Implementaciones
 {
     public class LogicaGenero : ILogicaGenero
     {
-        public void AgregarGenero(Genero genero, GeneroRepo repo)
+        private IGeneroRepo _repo;
+        public LogicaGenero(IGeneroRepo generoRepo)
         {
-            EvaluarSiEsDuplicado(genero, repo);
-            repo.AgregarGenero(genero);
+            _repo = generoRepo;
+        }
+        
+        public void AgregarGenero(Genero genero)
+        {
+            EvaluarSiEsDuplicado(genero);
+            _repo.AgregarGenero(genero);
         }
 
 
-        private static void EvaluarSiEsDuplicado(Genero genero, GeneroRepo repo)
+        private void EvaluarSiEsDuplicado(Genero genero)
         {
-            if (repo.EstaGenero(genero))
+            if (_repo.EstaGenero(genero))
             {
                 throw new GeneroDuplicadoException();
             }
         }
 
-        public void EliminarGenero(Genero genero, GeneroRepo repo, PeliculaRepo repoPelis)
+        public void EliminarGenero(Genero genero, ILogicaPelicula logicaPelicula)
         {
-            EvaluarSiNoExiste(genero, repo);
-            BuscarSiTienePeliculasAsociadas(genero, repoPelis);
-            repo.EliminarGenero(genero);
+            EvaluarSiNoExiste(genero);
+            BuscarSiTienePeliculasAsociadas(genero, logicaPelicula);
+            _repo.EliminarGenero(genero);
         }
 
-        private static void EvaluarSiNoExiste(Genero genero, GeneroRepo repo)
+        private void EvaluarSiNoExiste(Genero genero)
         {
-            if (!repo.EstaGenero(genero))
+            if (!_repo.EstaGenero(genero))
             {
                 throw new GeneroInexistenteException();
             }
         }
 
-        private static void BuscarSiTienePeliculasAsociadas(Genero genero, PeliculaRepo repoPelis)
+        private void BuscarSiTienePeliculasAsociadas(Genero genero, ILogicaPelicula logicaPelicula)
         {
-            List<Pelicula> EsGeneroPrincipal = repoPelis.peliculas.Where(p => p.GeneroPrincipal.Equals(genero)).ToList();
-            List<Pelicula> EsGeneroSecundario = repoPelis.peliculas.Where(p => p.GenerosSecundarios.Contains(genero)).ToList();
+            List<Pelicula> EsGeneroPrincipal = logicaPelicula.Peliculas().Where(p => p.GeneroPrincipal.Equals(genero)).ToList();
+            List<Pelicula> EsGeneroSecundario = logicaPelicula.Peliculas().Where(p => p.GenerosSecundarios.Contains(genero)).ToList();
             if (EsGeneroPrincipal.Count() > 0 || EsGeneroSecundario.Count() > 0)
             {
                 throw new GeneroConPeliculaAsociadaException();
             }
+        }
+
+        public List<Genero> Generos()
+        {
+            return _repo.Generos();
         }
     }
 }

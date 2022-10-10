@@ -10,11 +10,17 @@ namespace Repositorio
 {
     public class GeneroRepo : IGeneroRepo
     {
-        public List<Genero> generos = new List<Genero>();
+        private List<Genero> _generos = new List<Genero>();
+
+        public GeneroRepo()
+        {
+            _generos = new List<Genero>();
+        }
+
         public bool EstaGenero(Genero genero)
         {
             bool esta = false;
-            foreach (Genero generoGuardado in generos)
+            foreach (Genero generoGuardado in _generos)
             {
                 if(generoGuardado.Nombre == genero.Nombre)
                 {
@@ -25,12 +31,17 @@ namespace Repositorio
         }
         public void AgregarGenero(Genero genero)
         {
-            generos.Add(genero);
+            _generos.Add(genero);
         }
 
         public void EliminarGenero(Genero genero)
         {
-            generos.Remove(genero);
+            _generos.Remove(genero);
+        }
+
+        public List<Genero> Generos()
+        {
+            return _generos;
         }
     }
 }

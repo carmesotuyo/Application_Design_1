@@ -13,5 +13,6 @@ namespace Logica.Interfaces
         void AltaPelicula(Pelicula pelicula, PeliculaRepo repo);
         void BajaPelicula(Pelicula pelicula, PeliculaRepo repo);
         void VerInformacionDePelicula(Pelicula pelicula);
+        List<Pelicula> Peliculas();
     }
 }

@@ -28,7 +28,7 @@ namespace Logica.Implementaciones
 
         private List<Pelicula> FiltrarPeliculasNoAptas(PeliculaRepo repo)
         {
-            return repo.peliculas.Where(x => x.AptaTodoPublico == true).ToList();
+            return repo._peliculas.Where(x => x.AptaTodoPublico == true).ToList();
         }
     }
 }

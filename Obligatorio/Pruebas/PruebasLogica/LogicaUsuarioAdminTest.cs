@@ -162,11 +162,11 @@ namespace Pruebas.PruebasLogica
             repoPelis.AgregarPelicula(peliculaB);
             repoPelis.AgregarPelicula(peliculaC);
 
-            repoPelis.peliculas = logica.OrdenarPorGenero(admin, repoPelis);
+            repoPelis._peliculas = logica.OrdenarPorGenero(admin, repoPelis);
 
-            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaC;
-            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaB;
-            bool terceraPeliOrdenada = repoPelis.peliculas[2] == peliculaA;
+            bool primeraPeliOrdenada = repoPelis._peliculas[0] == peliculaC;
+            bool segundaPeliOrdenada = repoPelis._peliculas[1] == peliculaB;
+            bool terceraPeliOrdenada = repoPelis._peliculas[2] == peliculaA;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
         }
@@ -185,11 +185,11 @@ namespace Pruebas.PruebasLogica
             repoPelis.AgregarPelicula(peliculaB);
             repoPelis.AgregarPelicula(peliculaC);
 
-            repoPelis.peliculas = logica.OrdenarPorGenero(admin, repoPelis);
+            repoPelis._peliculas = logica.OrdenarPorGenero(admin, repoPelis);
 
-            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaC;
-            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
-            bool terceraPeliOrdenada = repoPelis.peliculas[2] == peliculaB;
+            bool primeraPeliOrdenada = repoPelis._peliculas[0] == peliculaC;
+            bool segundaPeliOrdenada = repoPelis._peliculas[1] == peliculaA;
+            bool terceraPeliOrdenada = repoPelis._peliculas[2] == peliculaB;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
         }
@@ -216,10 +216,10 @@ namespace Pruebas.PruebasLogica
             repoPelis.AgregarPelicula(peliculaA);
             repoPelis.AgregarPelicula(peliculaB);
 
-            repoPelis.peliculas = logica.OrdenarPorPatrocinio(admin, repoPelis);
+            repoPelis._peliculas = logica.OrdenarPorPatrocinio(admin, repoPelis);
 
-            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaB;
-            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
+            bool primeraPeliOrdenada = repoPelis._peliculas[0] == peliculaB;
+            bool segundaPeliOrdenada = repoPelis._peliculas[1] == peliculaA;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
         }
@@ -247,10 +247,10 @@ namespace Pruebas.PruebasLogica
             repoPelis.AgregarPelicula(peliculaA);
             repoPelis.AgregarPelicula(peliculaB);
 
-            repoPelis.peliculas = logica.OrdenarPorPatrocinio(admin, repoPelis);
+            repoPelis._peliculas = logica.OrdenarPorPatrocinio(admin, repoPelis);
 
-            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaB;
-            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
+            bool primeraPeliOrdenada = repoPelis._peliculas[0] == peliculaB;
+            bool segundaPeliOrdenada = repoPelis._peliculas[1] == peliculaA;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
         }
@@ -277,10 +277,10 @@ namespace Pruebas.PruebasLogica
             repoPelis.AgregarPelicula(peliculaA);
             repoPelis.AgregarPelicula(peliculaB);
 
-            repoPelis.peliculas = logica.OrdenarPorPatrocinio(admin, repoPelis);
+            repoPelis._peliculas = logica.OrdenarPorPatrocinio(admin, repoPelis);
 
-            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaB;
-            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
+            bool primeraPeliOrdenada = repoPelis._peliculas[0] == peliculaB;
+            bool segundaPeliOrdenada = repoPelis._peliculas[1] == peliculaA;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
         }
@@ -298,11 +298,11 @@ namespace Pruebas.PruebasLogica
             repoPelis.AgregarPelicula(peliculaB);
             repoPelis.AgregarPelicula(peliculaC);
 
-            repoPelis.peliculas = logica.OrdenarPorGenero(admin, repoPelis);
+            repoPelis._peliculas = logica.OrdenarPorGenero(admin, repoPelis);
 
-            bool primeraPeliOrdenada = repoPelis.peliculas[0] == peliculaC;
-            bool segundaPeliOrdenada = repoPelis.peliculas[1] == peliculaA;
-            bool terceraPeliOrdenada = repoPelis.peliculas[2] == peliculaB;
+            bool primeraPeliOrdenada = repoPelis._peliculas[0] == peliculaC;
+            bool segundaPeliOrdenada = repoPelis._peliculas[1] == peliculaA;
+            bool terceraPeliOrdenada = repoPelis._peliculas[2] == peliculaB;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
 
