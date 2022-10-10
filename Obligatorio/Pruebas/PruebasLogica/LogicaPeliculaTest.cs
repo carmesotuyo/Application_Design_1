@@ -20,15 +20,15 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void AltaPeliculaTest()
         {
-            logica.AltaPelicula(unaPelicula, repo);
+            logica.AltaPelicula(unaPelicula);
 
-            Assert.IsTrue(repo.EstaPelicula(unaPelicula));
+            Assert.IsTrue(logica.Peliculas().Contains(unaPelicula));
         }
 
         [TestMethod]
         public void BajaPeliculaTest()
         {
-            logica.BajaPelicula(unaPelicula, repo);
+            logica.BajaPelicula(unaPelicula);
 
             Assert.IsFalse(repo.EstaPelicula(unaPelicula));
         }

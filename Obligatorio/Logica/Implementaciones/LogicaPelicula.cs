@@ -17,14 +17,14 @@ namespace Logica.Implementaciones
         {
             _repo = peliculaRepo;
         }
-        public void AltaPelicula(Pelicula pelicula, PeliculaRepo repo)
+        public void AltaPelicula(Pelicula pelicula)
         {
-            repo.AgregarPelicula(pelicula);
+            _repo.AgregarPelicula(pelicula);
         }
 
-        public void BajaPelicula(Pelicula pelicula, PeliculaRepo repo)
+        public void BajaPelicula(Pelicula pelicula)
         {
-            repo.QuitarPelicula(pelicula);
+            _repo.QuitarPelicula(pelicula);
         }
 
         public List<Pelicula> Peliculas()
