@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using Repositorio.Interfaces;
 
 namespace Repositorio
 {
-    public class PeliculaRepo
+    public class PeliculaRepo : IPeliculaRepo
     {
         public List<Pelicula> peliculas = new List<Pelicula>();
         public bool EstaPelicula(Pelicula pelicula)

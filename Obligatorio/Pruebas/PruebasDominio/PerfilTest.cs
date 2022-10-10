@@ -124,17 +124,6 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NoInfantilException))]
-        public void OwnerInfantilTest()
-        {
-            Perfil unPerfil = new Perfil()
-            {
-                EsOwner = true
-            };
-            unPerfil.EsInfantil = true;
-        }
-
-        [TestMethod]
         public void AgregarPeliculaVistaTest()
         {
             Perfil unPerfil = new Perfil();
@@ -146,34 +135,24 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        [ExpectedException(typeof(PeliculaYaVistaException))]
-        public void AgregarPeliculaVistaDosVecesTest()
+        public void EstaPeliculaVistaTest()
         {
+
             Perfil unPerfil = new Perfil();
             Pelicula unaPelicula = new Pelicula();
 
             unPerfil.AgregarPeliculaVista(unaPelicula);
-            unPerfil.AgregarPeliculaVista(unaPelicula);
+
+            Assert.IsTrue(unPerfil.EstaPeliculaVista(unaPelicula));
         }
 
         [TestMethod]
-        public void VioPeliculaTest()
+        public void NoEstaPeliculaVistaTest()
         {
             Perfil unPerfil = new Perfil();
             Pelicula unaPelicula = new Pelicula();
 
-            unPerfil.AgregarPeliculaVista(unaPelicula);
-
-            Assert.IsTrue(unPerfil.VioPelicula(unaPelicula));
-        }
-
-        [TestMethod]
-        public void NoVioPeliculaTest()
-        {
-            Perfil unPerfil = new Perfil();
-            Pelicula unaPelicula = new Pelicula();
-
-            Assert.IsFalse(unPerfil.VioPelicula(unaPelicula));
+            Assert.IsFalse(unPerfil.EstaPeliculaVista(unaPelicula));
         }
 
         [TestMethod]
