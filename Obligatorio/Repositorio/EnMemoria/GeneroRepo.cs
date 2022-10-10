@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Repositorio.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace Repositorio
 {
-    public class GeneroRepo
+    public class GeneroRepo : IGeneroRepo
     {
         public List<Genero> generos = new List<Genero>();
-
         public bool EstaGenero(Genero genero)
         {
             bool esta = false;
