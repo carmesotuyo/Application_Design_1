@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="EnMemoria\GeneroRepo.cs" />
     <Compile Include="EnMemoria\PeliculaRepo.cs" />
+    <Compile Include="Interfaces\IGeneroRepo.cs" />
+    <Compile Include="Interfaces\IPeliculaRepo.cs" />
+    <Compile Include="Interfaces\IRepoUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EnMemoria\RepoUsuarios.cs" />
   </ItemGroup>
@@ -58,8 +61,6 @@
       <Name>Dominio</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
