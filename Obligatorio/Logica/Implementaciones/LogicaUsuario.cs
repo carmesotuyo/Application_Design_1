@@ -8,55 +8,62 @@ using Dominio.Exceptions;
 using Logica.Interfaces;
 using Logica.Exceptions;
 using Repositorio;
+using Repositorio.Interfaces;
 
 namespace Logica.Implementaciones
 {
     public class LogicaUsuario : ILogicaUsuario
     {
+        private IRepoUsuarios _repoUsuarios;
         private static int cantMaximaDePerfiles = 4;
-        public void RegistrarUsuario(Usuario usuario, RepoUsuarios repo)
+
+        public LogicaUsuario(IRepoUsuarios repoUsuarios)
         {
-            ValidarDatos(usuario, repo);
-            repo.AgregarUsuario(usuario);
+            _repoUsuarios = repoUsuarios;
+        }
+        public void RegistrarUsuario(Usuario usuario)
+        {
+            ValidarDatos(usuario);
+            _repoUsuarios.AgregarUsuario(usuario);
         }
 
-        private static void ValidarDatos(Usuario usuario, RepoUsuarios repo)
+        private void ValidarDatos(Usuario usuario)
         {
-            ValidarNombreUnico(usuario.Nombre, repo);
-            ValidarEmailUnico(usuario.Email, repo);
+            ValidarNombreUnico(usuario.Nombre);
+            ValidarEmailUnico(usuario.Email);
         }
 
-        private static void ValidarNombreUnico(string nombre, RepoUsuarios repo)
+        private void ValidarNombreUnico(string nombre)
         {
-            bool repetido = repo.usuarios.Where(n => n.Nombre == nombre).Any();
+            bool repetido = _repoUsuarios.Usuarios().Any(n => n.Nombre == nombre);
             if (repetido)
             {
                 throw new NombreUsuarioExistenteException();
             }
         }
 
-        private static void ValidarEmailUnico(string email, RepoUsuarios repo)
+        private void ValidarEmailUnico(string email)
         {
-            bool repetido = repo.usuarios.Where(n => n.Email == email).Any();
+            bool repetido = _repoUsuarios.Usuarios().Any(n => n.Email == email);
             if (repetido)
             {
                 throw new EmailExistenteException();
             }
         }
 
-        public Usuario IniciarSesion(string cuenta, string clave, RepoUsuarios repo)
+        public Usuario IniciarSesion(string cuenta, string clave)
         {
-            Usuario usuarioLogueado = ValidarNombreOEmail(cuenta, repo);
+            Usuario usuarioLogueado = ValidarNombreOEmail(cuenta);
             AutenticarClave(usuarioLogueado, clave);
             return usuarioLogueado;
         }
 
-        private Usuario ValidarNombreOEmail(string cuenta, RepoUsuarios repo)
+        private Usuario ValidarNombreOEmail(string cuenta)
         {
-            List<Usuario> usuario = repo.usuarios.Where(u => u.Nombre == cuenta).ToList();
+            List<Usuario> usuario = _repoUsuarios.Usuarios().Where(u => u.Nombre == cuenta).ToList();
             if (usuario.Count == 0)
             {
-                usuario = repo.usuarios.Where(u => u.Email == cuenta).ToList();
+                usuario = _repoUsuarios.Usuarios().Where(u => u.Email == cuenta).ToList();
                 if (usuario.Count == 0) { throw new NombreOEmailIncorrectoException(); }
             }
             Usuario usuarioLogueado = usuario[0];
@@ -112,6 +119,11 @@ namespace Logica.Implementaciones
             {
                 throw new EliminarOwnerException();
             }
+        }
+
+        public List<Usuario> Usuarios()
+        {
+            return _repoUsuarios.Usuarios();
         }
     }
 }

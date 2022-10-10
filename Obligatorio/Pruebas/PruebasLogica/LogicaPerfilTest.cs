@@ -19,7 +19,7 @@ namespace Pruebas.PruebasLogica
     {
         LogicaPerfil logica = new LogicaPerfil();
         LogicaPerfil logicaInfantil = new LogicaPerfilInfantil();
-        LogicaUsuario logicaUsuario = new LogicaUsuario();
+        LogicaUsuario logicaUsuario = new LogicaUsuario(new RepoUsuarios());
         Perfil unPerfil = new Perfil();
         enum Puntajes
         {

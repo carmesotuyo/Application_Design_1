@@ -9,6 +9,8 @@ using Repositorio;
 using Logica.Implementaciones;
 using Dominio.Exceptions;
 using Logica.Exceptions;
+using Repositorio.Interfaces;
+using Logica.Interfaces;
 
 namespace Pruebas.PruebasLogica
 {
@@ -18,14 +20,13 @@ namespace Pruebas.PruebasLogica
         Usuario usuario1 = new Usuario() { Nombre = "nombreDeUsuario1", Email = "juan@da1.com", Clave = "1234567890" };
         Usuario usuario2 = new Usuario() { Nombre = "nombreDeUsuario2", Email = "juancho@da1.com", Clave = "1234567890" };
         Usuario usuario3 = new Usuario() { Nombre = "nombreDeUsuario3", Email = "juana@da1.com", Clave = "1234567890" };
-        RepoUsuarios repo = new RepoUsuarios();
-        LogicaUsuario logica = new LogicaUsuario();
+        ILogicaUsuario logica = new LogicaUsuario(new RepoUsuarios());
 
         [TestMethod]
         public void RegistrarUsuarioTest()
         {
-            logica.RegistrarUsuario(usuario1, repo);
-            Assert.IsTrue(repo.EstaUsuario(usuario1));
+            logica.RegistrarUsuario(usuario1);
+            Assert.IsTrue(logica.Usuarios().Contains(usuario1));
         }
 
         [TestMethod]
@@ -33,8 +34,8 @@ namespace Pruebas.PruebasLogica
         public void RegistrarUsuarioNombreRepetidoTest()
         {
             usuario2.Nombre = usuario1.Nombre;
-            logica.RegistrarUsuario(usuario1, repo);
-            logica.RegistrarUsuario(usuario2, repo);
+            logica.RegistrarUsuario(usuario1);
+            logica.RegistrarUsuario(usuario2);
         }
 
         [TestMethod]
@@ -42,8 +43,8 @@ namespace Pruebas.PruebasLogica
         public void RegistrarUsuarioEmailRepetidoTest()
         {
             usuario2.Email = usuario1.Email;
-            logica.RegistrarUsuario(usuario1, repo);
-            logica.RegistrarUsuario(usuario2, repo);
+            logica.RegistrarUsuario(usuario1);
+            logica.RegistrarUsuario(usuario2);
         }
 
         [TestMethod]
@@ -51,8 +52,8 @@ namespace Pruebas.PruebasLogica
         {
             string cuenta = usuario1.Nombre;
             string clave = usuario1.Clave;
-            logica.RegistrarUsuario(usuario1, repo);
-            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+            logica.RegistrarUsuario(usuario1);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave);
             Assert.AreEqual(usuario1, usuarioLogueado);
         }
 
@@ -61,8 +62,8 @@ namespace Pruebas.PruebasLogica
         {
             string cuenta = usuario1.Email;
             string clave = usuario1.Clave;
-            logica.RegistrarUsuario(usuario1, repo);
-            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+            logica.RegistrarUsuario(usuario1);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave);
             Assert.AreEqual(usuario1, usuarioLogueado);
         }
 
@@ -72,8 +73,8 @@ namespace Pruebas.PruebasLogica
         {
             string cuenta = usuario1.Email;
             string clave = "";
-            logica.RegistrarUsuario(usuario1, repo);
-            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+            logica.RegistrarUsuario(usuario1);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave);
         }
 
         [TestMethod]
@@ -82,8 +83,8 @@ namespace Pruebas.PruebasLogica
         {
             string cuenta = usuario1.Nombre;
             string clave = "";
-            logica.RegistrarUsuario(usuario1, repo);
-            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+            logica.RegistrarUsuario(usuario1);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave);
         }
 
         [TestMethod]
@@ -92,8 +93,8 @@ namespace Pruebas.PruebasLogica
         {
             string cuenta = "";
             string clave = "";
-            logica.RegistrarUsuario(usuario1, repo);
-            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+            logica.RegistrarUsuario(usuario1);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave);
         }
 
         [TestMethod]
@@ -102,8 +103,8 @@ namespace Pruebas.PruebasLogica
         {
             string cuenta = "algo@algo.com";
             string clave = "";
-            logica.RegistrarUsuario(usuario1, repo);
-            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
+            logica.RegistrarUsuario(usuario1);
+            Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave);
         }
 
         [TestMethod]
