@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.lblBienvenido = new System.Windows.Forms.Label();
-            this.txtUser = new System.Windows.Forms.TextBox();
             this.txtClave = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lbl1 = new System.Windows.Forms.Label();
             this.lblRegistrarse = new System.Windows.Forms.LinkLabel();
+            this.txtCuenta = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblBienvenido
@@ -96,7 +96,7 @@
             // 
             this.txtCuenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCuenta.Location = new System.Drawing.Point(276, 160);
+            this.txtCuenta.Location = new System.Drawing.Point(276, 164);
             this.txtCuenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCuenta.Name = "txtCuenta";
             this.txtCuenta.Size = new System.Drawing.Size(409, 30);
@@ -108,11 +108,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Controls.Add(this.txtCuenta);
             this.Controls.Add(this.lblRegistrarse);
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtClave);
-            this.Controls.Add(this.txtUser);
             this.Controls.Add(this.lblBienvenido);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Login";
@@ -125,10 +125,10 @@
         #endregion
 
         private System.Windows.Forms.Label lblBienvenido;
-        private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.LinkLabel lblRegistrarse;
+        private System.Windows.Forms.TextBox txtCuenta;
     }
 }
