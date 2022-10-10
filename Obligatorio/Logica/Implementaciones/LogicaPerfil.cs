@@ -65,7 +65,7 @@ namespace Logica.Implementaciones
 
         public void MarcarComoInfantil(Perfil perfilInfantil, Perfil perfilOwner, Usuario usuario)
         {
-            PertenecenAlMismoUsuario(perfilInfantil, perfilOwner, usuario);
+           // PertenecenAlMismoUsuario(perfilInfantil, perfilOwner, usuario);
             ValidarPerfilOwner(perfilOwner);
             perfilInfantil.EsInfantil = true;
         }
@@ -78,10 +78,10 @@ namespace Logica.Implementaciones
             }
         }
 
-        private void PertenecenAlMismoUsuario(Perfil perfilInfantil, Perfil perfilOwner, Usuario usuario)
-        {
-            usuario.NoExistePerfil(perfilInfantil);
-            usuario.NoExistePerfil(perfilOwner);
-        }
+        //private void PertenecenAlMismoUsuario(Perfil perfilInfantil, Perfil perfilOwner, Usuario usuario)
+        //{
+        //    usuario.NoExistePerfil(perfilInfantil);
+        //    usuario.NoExistePerfil(perfilOwner);
+        //}
     }
 }

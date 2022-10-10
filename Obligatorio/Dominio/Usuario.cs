@@ -14,7 +14,6 @@ namespace Dominio
         private string _clave;
         private List<Perfil> _listaPerfiles;
         private bool _esAdmin;
-        private static int cantMaximaDePerfiles = 4;
 
         public Usuario() {
             _listaPerfiles = new List<Perfil>();
@@ -85,50 +84,57 @@ namespace Dominio
             }
         }
 
-        public void AgregarPerfil(Perfil perfil)
-        {
-            MaximoDePerfiles();
-            EsElPrimero(perfil);
-            _listaPerfiles.Add(perfil);
-        }
+        ////este va para la logica public ====CHECK
+        //public void AgregarPerfil(Perfil perfil)
+        //{
+        //    MaximoDePerfiles();
+        //    EsElPrimero(perfil);
+        //    _listaPerfiles.Add(perfil);
+        //}
 
-        private void MaximoDePerfiles()
-        {
-            if (_listaPerfiles.Count == cantMaximaDePerfiles)
-            {
-                throw new LimiteDePerfilesException();
-            }
-        }
+        ////este va para la logica
+        //private void MaximoDePerfiles()
+        //{
+        //    if (_listaPerfiles.Count == cantMaximaDePerfiles)
+        //    {
+        //        throw new LimiteDePerfilesException();
+        //    }
+        //}
 
-        private void EsElPrimero(Perfil perfil)
-        {
-            if(_listaPerfiles.Count == 0)
-            {
-                perfil.EsOwner = true;
-            }
-        }
+        ////este va para la logica
+        //private void EsElPrimero(Perfil perfil)
+        //{
+        //    if(_listaPerfiles.Count == 0)
+        //    {
+        //        perfil.EsOwner = true;
+        //    }
+        //}
 
-        public void QuitarPerfil(Perfil perfil)
-        {
-            NoExistePerfil(perfil);
-            EsPerfilOwner(perfil);
-            _listaPerfiles.Remove(perfil);
-        }
+        ////este va para la logica ===CHECK       
+        //public void QuitarPerfil(Perfil perfil)
+        //{
+        //    NoExistePerfil(perfil);
+        //    EsPerfilOwner(perfil);
+        //    _listaPerfiles.Remove(perfil);
+        //}
 
-        public void NoExistePerfil(Perfil perfil)
-        {
-            if (!Perfiles.Contains(perfil))
-            {
-                throw new NoExistePerfilException();
-            }
-        }
-        private void EsPerfilOwner(Perfil perfil)
-        {
-            if (perfil.EsOwner)
-            {
-                throw new EliminarOwnerException();
-            }
-        }
+        ////este va para la logica
+        //private void NoExistePerfil(Perfil perfil)
+        //{
+        //    if (!Perfiles.Contains(perfil))
+        //    {
+        //        throw new NoExistePerfilException();
+        //    }
+        //}
+
+        ////este va para la logica
+        //private void EsPerfilOwner(Perfil perfil)
+        //{
+        //    if (perfil.EsOwner)
+        //    {
+        //        throw new EliminarOwnerException();
+        //    }
+        //}
 
         public List<Perfil> Perfiles
         {

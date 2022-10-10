@@ -2,7 +2,6 @@
 using Dominio.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Dominio.Exceptions;
 
 namespace Pruebas.PruebasDominio
 {
@@ -80,7 +79,7 @@ namespace Pruebas.PruebasDominio
             int PinInvalido = 123456;
             Perfil unPerfil = new Perfil()
             {
-                Pin = 123456
+                Pin = PinInvalido
             };
         }
 

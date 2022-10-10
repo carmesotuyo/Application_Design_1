@@ -13,6 +13,7 @@ namespace Logica.Implementaciones
 {
     public class LogicaUsuario : ILogicaUsuario
     {
+        private static int cantMaximaDePerfiles = 4;
         public void RegistrarUsuario(Usuario usuario, RepoUsuarios repo)
         {
             ValidarDatos(usuario, repo);
@@ -65,6 +66,55 @@ namespace Logica.Implementaciones
         private void AutenticarClave(Usuario usuario, string clave)
         {
             if(usuario.Clave != clave) { throw new ClaveIncorrectaException(); }
+        }
+
+
+        //================ARREGLAR==============
+
+        public void AgregarPerfil(Usuario usuario, Perfil perfil)
+        {
+            MaximoDePerfiles(usuario);
+            EsElPrimero(usuario, perfil);
+            usuario.Perfiles.Add(perfil);
+        }
+
+        private void MaximoDePerfiles(Usuario usuario)
+        {
+            if (usuario.Perfiles.Count == cantMaximaDePerfiles)
+            {
+                throw new LimiteDePerfilesException();
+            }
+        }
+
+        private void EsElPrimero(Usuario usuario, Perfil perfil)
+        {
+            if (usuario.Perfiles.Count == 0)
+            {
+                perfil.EsOwner = true;
+            }
+        }
+     
+        public void QuitarPerfil(Usuario usuario, Perfil perfil)
+        {
+            NoExistePerfil(usuario, perfil);
+            EsPerfilOwner(perfil);
+            usuario.Perfiles.Remove(perfil);
+        }
+
+        private void NoExistePerfil(Usuario usuario, Perfil perfil)
+        {
+            if (!usuario.Perfiles.Contains(perfil))
+            {
+                throw new NoExistePerfilException();
+            }
+        }
+
+        private void EsPerfilOwner(Perfil perfil)
+        {
+            if (perfil.EsOwner)
+            {
+                throw new EliminarOwnerException();
+            }
         }
     }
 }
