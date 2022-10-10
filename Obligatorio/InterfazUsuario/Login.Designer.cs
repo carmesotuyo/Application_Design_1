@@ -69,6 +69,7 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Iniciar sesión";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // lbl1
             // 

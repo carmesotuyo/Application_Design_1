@@ -54,21 +54,22 @@
             // 
             this.btnCrear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrear.Location = new System.Drawing.Point(279, 589);
+            this.btnCrear.Location = new System.Drawing.Point(279, 506);
             this.btnCrear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(409, 34);
             this.btnCrear.TabIndex = 4;
             this.btnCrear.Text = "Crear mi cuenta";
             this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // lbl1
             // 
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1.Location = new System.Drawing.Point(275, 655);
+            this.lbl1.Location = new System.Drawing.Point(275, 582);
             this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(258, 25);
+            this.lbl1.Size = new System.Drawing.Size(206, 20);
             this.lbl1.TabIndex = 5;
             this.lbl1.Text = "¿Ya tienes una cuenta?";
             // 
@@ -76,12 +77,13 @@
             // 
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogin.Location = new System.Drawing.Point(587, 655);
+            this.lblLogin.Location = new System.Drawing.Point(584, 582);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(130, 25);
+            this.lblLogin.Size = new System.Drawing.Size(104, 20);
             this.lblLogin.TabIndex = 6;
             this.lblLogin.TabStop = true;
             this.lblLogin.Text = "Inicia Sesión";
+            this.lblLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLogin_LinkClicked);
             // 
             // txtEmail
             // 
@@ -143,6 +145,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Registro";
             this.Size = new System.Drawing.Size(1000, 750);
+            this.Load += new System.EventHandler(this.Registro_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
