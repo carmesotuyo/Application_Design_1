@@ -40,28 +40,19 @@
             // 
             this.lblBienvenido.AutoSize = true;
             this.lblBienvenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienvenido.Location = new System.Drawing.Point(385, 77);
+            this.lblBienvenido.Location = new System.Drawing.Point(385, 78);
             this.lblBienvenido.Name = "lblBienvenido";
             this.lblBienvenido.Size = new System.Drawing.Size(172, 36);
             this.lblBienvenido.TabIndex = 0;
             this.lblBienvenido.Text = "Bienvenido!";
             this.lblBienvenido.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // txtUser
-            // 
-            this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser.Location = new System.Drawing.Point(276, 161);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(409, 30);
-            this.txtUser.TabIndex = 1;
-            this.txtUser.Text = "Correo electrónico o username";
-            // 
             // txtClave
             // 
             this.txtClave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClave.Location = new System.Drawing.Point(276, 223);
+            this.txtClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(409, 30);
             this.txtClave.TabIndex = 2;
@@ -72,6 +63,7 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Location = new System.Drawing.Point(276, 289);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(409, 34);
             this.btnLogin.TabIndex = 3;
@@ -100,6 +92,17 @@
             this.lblRegistrarse.Text = "Registrarme";
             this.lblRegistrarse.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // txtCuenta
+            // 
+            this.txtCuenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCuenta.Location = new System.Drawing.Point(276, 160);
+            this.txtCuenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCuenta.Name = "txtCuenta";
+            this.txtCuenta.Size = new System.Drawing.Size(409, 30);
+            this.txtCuenta.TabIndex = 1;
+            this.txtCuenta.Text = "Correo electrónico o username";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -111,6 +114,7 @@
             this.Controls.Add(this.txtClave);
             this.Controls.Add(this.txtUser);
             this.Controls.Add(this.lblBienvenido);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Login";
             this.Size = new System.Drawing.Size(1000, 750);
             this.ResumeLayout(false);
