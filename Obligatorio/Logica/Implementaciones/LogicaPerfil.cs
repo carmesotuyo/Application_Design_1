@@ -87,12 +87,6 @@ namespace Logica.Implementaciones
             }
         }
 
-        private void PertenecenAlMismoUsuario(Perfil perfilInfantil, Perfil perfilOwner, Usuario usuario)
-        {
-            usuario.NoExistePerfil(perfilInfantil);
-            usuario.NoExistePerfil(perfilOwner);
-        }
-
         public void AgregarPeliculaVista(Pelicula unaPelicula, Perfil unPerfil)
         {
             ChequearQueNoEsteYaVista(unaPelicula, unPerfil);
