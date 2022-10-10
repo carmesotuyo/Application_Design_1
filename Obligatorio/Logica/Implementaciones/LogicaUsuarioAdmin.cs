@@ -12,6 +12,7 @@ namespace Logica.Implementaciones
 {
     public class LogicaUsuarioAdmin : ILogicaUsuarioAdmin
     {
+        //Estas son variables sueltas! hay que hacer un constructor y pasarle por parametro esto y tenerlo como atributo
         LogicaPelicula logicaPelicula = new LogicaPelicula();
         LogicaGenero logicaGenero = new LogicaGenero();
 
