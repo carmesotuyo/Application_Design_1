@@ -79,7 +79,7 @@ namespace Pruebas.PruebasLogica
 
             logica.MarcarComoVista(unaPelicula, unPerfil);
 
-            Assert.IsTrue(unPerfil.VioPelicula(unaPelicula));
+            Assert.IsTrue(unPerfil.EstaPeliculaVista(unaPelicula));
         }
 
         [TestMethod]
@@ -225,6 +225,79 @@ namespace Pruebas.PruebasLogica
             unUsuario.AgregarPerfil(otroOwner);
 
             logica.MarcarComoInfantil(otroOwner, unPerfil, unUsuario);
+        }
+
+        [TestMethod]
+        public void AgregarPeliculaVistaTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+
+            logica.AgregarPeliculaVista(unaPelicula, unPerfil);
+
+            Assert.IsTrue(unPerfil.EstaPeliculaVista(unaPelicula));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(PeliculaYaVistaException))]
+        public void AgregarPeliculaVistaDosVecesTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+
+            logica.AgregarPeliculaVista(unaPelicula, unPerfil);
+            logica.AgregarPeliculaVista(unaPelicula, unPerfil);
+        }
+
+
+        [TestMethod]
+        public void VioPeliculaTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+
+            logica.AgregarPeliculaVista(unaPelicula, unPerfil);
+
+            Assert.IsTrue(logica.VioPelicula(unaPelicula, unPerfil));
+        }
+
+        [TestMethod]
+        public void NoVioPeliculaTest()
+        {
+            Pelicula unaPelicula = new Pelicula();
+
+            Assert.IsFalse(logica.VioPelicula(unaPelicula, unPerfil));
+        }
+
+        [TestMethod]
+        public void ActualizarListadoPuntajeAgregandoGeneroTest()
+        {
+            GeneroRepo repo = new GeneroRepo();
+            Genero terror = new Genero() { Nombre = "Terror" };
+            repo.AgregarGenero(terror);
+            logica.AgregarGenero(unPerfil, terror);
+
+            Genero comedia = new Genero() { Nombre = "comedia" };
+            repo.AgregarGenero(comedia);
+
+            logica.ActualizarListadoGeneros(unPerfil, repo);
+
+            Assert.IsTrue(logica.EstaGenero(unPerfil, comedia));
+        }
+
+        [TestMethod]
+        public void ActualizarListadoPuntajeEliminandoGeneroTest()
+        {
+            GeneroRepo repo = new GeneroRepo();
+            Genero terror = new Genero() { Nombre = "Terror" };
+            repo.AgregarGenero(terror);
+
+            Genero comedia = new Genero() { Nombre = "comedia" };
+
+            logica.AgregarGenero(unPerfil, terror);
+            logica.AgregarGenero(unPerfil, comedia);
+
+
+            logica.ActualizarListadoGeneros(unPerfil, repo);
+
+            Assert.IsFalse(logica.EstaGenero(unPerfil, comedia));
         }
     }
 }
