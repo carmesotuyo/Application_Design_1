@@ -290,11 +290,12 @@ namespace Pruebas.PruebasLogica
             repo.AgregarGenero(terror);
 
             Genero comedia = new Genero() { Nombre = "comedia" };
+            repo.AgregarGenero(comedia);
 
             logica.AgregarGenero(unPerfil, terror);
             logica.AgregarGenero(unPerfil, comedia);
 
-
+            repo.EliminarGenero(comedia);
             logica.ActualizarListadoGeneros(unPerfil, repo);
 
             Assert.IsFalse(logica.EstaGenero(unPerfil, comedia));

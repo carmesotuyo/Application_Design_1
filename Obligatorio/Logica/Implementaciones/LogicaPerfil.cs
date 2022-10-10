@@ -145,8 +145,7 @@ namespace Logica.Implementaciones
         {
             foreach (GeneroPuntaje genero in unPerfil.PuntajeGeneros)
             {
-                List<Genero> busco = repo.generos.Where(x => x.Nombre == genero.Genero).ToList();
-                if (busco.Count == 0)
+                if (GeneroEliminado(repo, genero))
                 {
                     unPerfil.QuitarGeneroPuntaje(genero);
                 }
@@ -163,6 +162,12 @@ namespace Logica.Implementaciones
         {
             List<GeneroPuntaje> busco = unPerfil.PuntajeGeneros.Where(x => x.Genero == unGenero.Nombre).ToList();
             return busco.Count > 0;
+        }
+
+        public bool GeneroEliminado(GeneroRepo repo, GeneroPuntaje unGenero)
+        {
+            List<Genero> busco = repo.generos.Where(x => x.Nombre != unGenero.Genero).ToList();
+            return busco.Count == repo.generos.Count;
         }
     }
 }
