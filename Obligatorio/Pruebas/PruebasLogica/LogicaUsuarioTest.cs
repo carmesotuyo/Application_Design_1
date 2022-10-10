@@ -105,5 +105,91 @@ namespace Pruebas.PruebasLogica
             logica.RegistrarUsuario(usuario1, repo);
             Usuario usuarioLogueado = logica.IniciarSesion(cuenta, clave, repo);
         }
+
+        [TestMethod]
+        public void AgregarPerfilTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+            logica.AgregarPerfil(unUsuario, unPerfil);
+            Assert.IsTrue(unUsuario.Perfiles.Contains(unPerfil));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(LimiteDePerfilesException))]
+        public void AgregarMasDe4PerfilesTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+            Perfil unPerfil2 = new Perfil();
+            Perfil unPerfil3 = new Perfil();
+            Perfil unPerfil4 = new Perfil();
+            Perfil unPerfil5 = new Perfil();
+            logica.AgregarPerfil(unUsuario, unPerfil);
+            logica.AgregarPerfil(unUsuario, unPerfil2);
+            logica.AgregarPerfil(unUsuario, unPerfil3);
+            logica.AgregarPerfil(unUsuario, unPerfil4);
+            logica.AgregarPerfil(unUsuario, unPerfil5);
+        }
+
+        [TestMethod]
+        public void AgregarPrimerPerfilTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+
+            logica.AgregarPerfil(unUsuario, unPerfil);
+
+            Assert.IsTrue(unPerfil.EsOwner);
+        }
+
+        [TestMethod]
+        public void AgregarPerfilIntermedioTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+            Perfil otroPerfil = new Perfil();
+
+            logica.AgregarPerfil(unUsuario, unPerfil);
+            logica.AgregarPerfil(unUsuario, otroPerfil);
+
+            Assert.IsFalse(otroPerfil.EsOwner);
+        }
+
+        [TestMethod]
+        public void QuitarPerfilTest()
+        {
+            Usuario usuario = new Usuario();
+            Perfil unPerfil = new Perfil();
+            Perfil otroPerfil = new Perfil();
+
+            logica.AgregarPerfil(usuario, unPerfil);
+            logica.AgregarPerfil(usuario, otroPerfil);
+            logica.QuitarPerfil(usuario, otroPerfil);
+
+            Assert.IsFalse(usuario.Perfiles.Contains(otroPerfil));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoExistePerfilException))]
+        public void QuitarPerfilInexistenteTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil perfil = new Perfil();
+            logica.QuitarPerfil(unUsuario, perfil);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(EliminarOwnerException))]
+        public void QuitarPerfilOwnerTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil perfil = new Perfil()
+            {
+                EsOwner = true
+            };
+            logica.AgregarPerfil(unUsuario, perfil);
+            logica.QuitarPerfil(unUsuario, perfil);
+        }
     }
 }

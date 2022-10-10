@@ -14,7 +14,6 @@ namespace Dominio
         private string _clave;
         private List<Perfil> _listaPerfiles;
         private bool _esAdmin;
-        private static int cantMaximaDePerfiles = 4;
 
         public Usuario() {
             _listaPerfiles = new List<Perfil>();
@@ -82,51 +81,6 @@ namespace Dominio
             {
                 ChequearClaveValida(value);
                 _clave = value;
-            }
-        }
-
-        public void AgregarPerfil(Perfil perfil)
-        {
-            MaximoDePerfiles();
-            EsElPrimero(perfil);
-            _listaPerfiles.Add(perfil);
-        }
-
-        private void MaximoDePerfiles()
-        {
-            if (_listaPerfiles.Count == cantMaximaDePerfiles)
-            {
-                throw new LimiteDePerfilesException();
-            }
-        }
-
-        private void EsElPrimero(Perfil perfil)
-        {
-            if(_listaPerfiles.Count == 0)
-            {
-                perfil.EsOwner = true;
-            }
-        }
-
-        public void QuitarPerfil(Perfil perfil)
-        {
-            NoExistePerfil(perfil);
-            EsPerfilOwner(perfil);
-            _listaPerfiles.Remove(perfil);
-        }
-
-        public void NoExistePerfil(Perfil perfil)
-        {
-            if (!Perfiles.Contains(perfil))
-            {
-                throw new NoExistePerfilException();
-            }
-        }
-        private void EsPerfilOwner(Perfil perfil)
-        {
-            if (perfil.EsOwner)
-            {
-                throw new EliminarOwnerException();
             }
         }
 

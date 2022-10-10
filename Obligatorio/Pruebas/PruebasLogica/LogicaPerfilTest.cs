@@ -18,6 +18,7 @@ namespace Pruebas.PruebasLogica
     {
         LogicaPerfil logica = new LogicaPerfil();
         LogicaPerfil logicaInfantil = new LogicaPerfilInfantil();
+        LogicaUsuario logicaUsuario = new LogicaUsuario();
         Perfil unPerfil = new Perfil();
         enum Puntajes
         {
@@ -174,8 +175,8 @@ namespace Pruebas.PruebasLogica
             unPerfil.EsOwner = true;
             Perfil perfilInfantil = new Perfil() { EsInfantil = false };
             Usuario usuario = new Usuario();
-            usuario.AgregarPerfil(unPerfil);
-            usuario.AgregarPerfil(perfilInfantil);
+            logicaUsuario.AgregarPerfil(usuario, unPerfil);
+            logicaUsuario.AgregarPerfil(usuario, perfilInfantil);
 
             logica.MarcarComoInfantil(perfilInfantil, unPerfil, usuario);
 
@@ -191,26 +192,11 @@ namespace Pruebas.PruebasLogica
             Perfil perfilInfantil = new Perfil() { EsInfantil = false };
             Usuario usuario = new Usuario();
 
-            usuario.AgregarPerfil(perfilOwner);
-            usuario.AgregarPerfil(unPerfil);
-            usuario.AgregarPerfil(perfilInfantil);
+            logicaUsuario.AgregarPerfil(usuario, perfilOwner);
+            logicaUsuario.AgregarPerfil(usuario, unPerfil);
+            logicaUsuario.AgregarPerfil(usuario, perfilInfantil);
 
             logica.MarcarComoInfantil(perfilInfantil, unPerfil, usuario);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NoExistePerfilException))]
-        public void MarcarPerfilComoInfantilDeOtroUsuarioTest()
-        {
-            unPerfil.EsOwner = true;
-            Perfil perfilInfantil = new Perfil() { EsInfantil = false };
-            Usuario unUsuario = new Usuario();
-            Usuario otroUsuario = new Usuario();
-
-            unUsuario.AgregarPerfil(unPerfil);
-            otroUsuario.AgregarPerfil(perfilInfantil);
-
-            logica.MarcarComoInfantil(perfilInfantil, unPerfil, unUsuario);
         }
 
         [TestMethod]
@@ -221,8 +207,8 @@ namespace Pruebas.PruebasLogica
             Perfil otroOwner = new Perfil() { EsOwner = true };
             Usuario unUsuario = new Usuario();
 
-            unUsuario.AgregarPerfil(unPerfil);
-            unUsuario.AgregarPerfil(otroOwner);
+            logicaUsuario.AgregarPerfil(unUsuario, unPerfil);
+            logicaUsuario.AgregarPerfil(unUsuario, otroOwner);
 
             logica.MarcarComoInfantil(otroOwner, unPerfil, unUsuario);
         }

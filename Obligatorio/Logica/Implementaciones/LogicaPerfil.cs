@@ -1,4 +1,4 @@
-﻿using Dominio;
+using Dominio;
 using Logica.Interfaces;
 using Logica.Exceptions;
 using Repositorio;
@@ -66,7 +66,6 @@ namespace Logica.Implementaciones
 
         public void MarcarComoInfantil(Perfil perfilInfantil, Perfil perfilOwner, Usuario usuario)
         {
-            PertenecenAlMismoUsuario(perfilInfantil, perfilOwner, usuario);
             ValidarPerfilOwner(perfilOwner);
             ChequearQueNoEsOwner(perfilInfantil);
             perfilInfantil.EsInfantil = true;
