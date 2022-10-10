@@ -143,13 +143,27 @@ namespace Logica.Implementaciones
 
         private void QuitarGenerosEliminados(Perfil unPerfil, GeneroRepo repo)
         {
+            List<GeneroPuntaje> paraEliminar = BuscarGenerosEliminados(unPerfil, repo);
+
+            foreach (GeneroPuntaje genero in paraEliminar)
+            {
+                unPerfil.QuitarGeneroPuntaje(genero);
+            }
+        }
+
+        private List<GeneroPuntaje> BuscarGenerosEliminados(Perfil unPerfil, GeneroRepo repo)
+        {
+            List<GeneroPuntaje> paraEliminar = new List<GeneroPuntaje>();
+
             foreach (GeneroPuntaje genero in unPerfil.PuntajeGeneros)
             {
                 if (GeneroEliminado(repo, genero))
                 {
-                    unPerfil.QuitarGeneroPuntaje(genero);
+                    paraEliminar.Add(genero);
                 }
             }
+
+            return paraEliminar;
         }
 
         public void AgregarGenero(Perfil unPerfil, Genero unGenero)
