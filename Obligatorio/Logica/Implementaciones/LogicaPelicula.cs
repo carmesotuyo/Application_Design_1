@@ -17,7 +17,7 @@ namespace Logica.Implementaciones
         private IPeliculaRepo _repo;
         private List<Pelicula> _pelisAMostrar;
         private int _criterioElegido;
-        enum _criterio
+        enum _criterios
         {
             OrdenarPorGenero = 1,
             OrdenarPorPatrocinio = 2,

@@ -74,6 +74,8 @@ namespace Pruebas.PruebasLogica
             logica.AltaPelicula(peliculaB, admin);
             logica.AltaPelicula(peliculaC, admin);
 
+            logica.ElegirCriterioOrden(admin, 1); //deberia ser logica.Criterios(OrdenarPorGenero)
+
             logica.PeliculasAMostrar = logica.OrdenarPorGenero(admin);
 
             bool primeraPeliOrdenada = logica.PeliculasAMostrar[0] == peliculaC;
