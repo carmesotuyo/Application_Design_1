@@ -157,6 +157,27 @@ namespace Pruebas.PruebasLogica
         }
 
         [TestMethod]
+        public void OrdenarPeliculasConMismoNombreTest()
+        {
+            Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
+            Pelicula peliculaB = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
+            Pelicula peliculaC = new Pelicula() { Nombre = "Chucky", GeneroPrincipal = terror };
+
+            logica.AltaPelicula(peliculaA, admin);
+            logica.AltaPelicula(peliculaB, admin);
+            logica.AltaPelicula(peliculaC, admin);
+
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorGenero);
+            List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
+
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaC;
+            bool segundaPeliOrdenada = pelisMostradas[1] == peliculaB;
+            bool terceraPeliOrdenada = pelisMostradas[2] == peliculaA;
+
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
+        }
+
+        [TestMethod]
         public void OrdenarPeliculasPatrocinadasTest()
         {
             Pelicula peliculaA = new Pelicula()
@@ -241,24 +262,31 @@ namespace Pruebas.PruebasLogica
         }
 
         [TestMethod]
-        public void OrdenarPeliculasConMismoNombreTest()
+        public void OrdenarPeliculasPatrocinadasPorFechaAgregadasTest()
         {
-            Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
-            Pelicula peliculaB = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
-            Pelicula peliculaC = new Pelicula() { Nombre = "Chucky", GeneroPrincipal = terror };
+            Pelicula peliculaA = new Pelicula()
+            {
+                EsPatrocinada = true,
+                Nombre = "It",
+                GeneroPrincipal = terror
+            };
+            Pelicula peliculaB = new Pelicula()
+            {
+                EsPatrocinada = true,
+                Nombre = "It",
+                GeneroPrincipal = terror
+            };
 
             logica.AltaPelicula(peliculaA, admin);
             logica.AltaPelicula(peliculaB, admin);
-            logica.AltaPelicula(peliculaC, admin);
 
-            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorGenero);
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorPatrocinio);
             List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
 
-            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaC;
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaB;
             bool segundaPeliOrdenada = pelisMostradas[1] == peliculaA;
-            bool terceraPeliOrdenada = pelisMostradas[2] == peliculaB;
 
-            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
         }
 
         [TestMethod]
