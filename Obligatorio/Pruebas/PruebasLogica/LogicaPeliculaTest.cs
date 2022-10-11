@@ -20,7 +20,6 @@ namespace Pruebas.PruebasLogica
         LogicaPelicula logica = new LogicaPelicula(new PeliculaRepo());
         Usuario admin = new Usuario() { EsAdministrador = true };
 
-
         Perfil unPerfil = new Perfil();
         LogicaPerfil logicaPerfil = new LogicaPerfil();
 
@@ -282,10 +281,10 @@ namespace Pruebas.PruebasLogica
             logica.AltaPelicula(peliculaB, admin);
             logica.AltaPelicula(peliculaC, admin);
 
-            GeneroPuntaje generoPuntaje1 = new GeneroPuntaje() { Genero = terror.Nombre };
-            GeneroPuntaje generoPuntaje2 = new GeneroPuntaje() { Genero = comedia.Nombre };
-            unPerfil.AgregarGeneroPuntaje(generoPuntaje1);
-            unPerfil.AgregarGeneroPuntaje(generoPuntaje2);
+            LogicaGenero logicaGenero = new LogicaGenero(new GeneroRepo());
+            logicaGenero.AgregarGenero(admin, terror);
+            logicaGenero.AgregarGenero(admin, comedia);
+            logicaPerfil.ActualizarListadoGeneros(unPerfil, logicaGenero);
 
             logicaPerfil.PuntuarNegativo(peliculaA, unPerfil);
             logicaPerfil.PuntuarNegativo(peliculaB, unPerfil);
