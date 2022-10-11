@@ -21,8 +21,9 @@ namespace Logica.Implementaciones
             _repo = generoRepo;
         }
         
-        public void AgregarGenero(Genero genero)
+        public void AgregarGenero(Usuario admin, Genero genero)
         {
+            BloquearUsuarioNoAdmin(admin);
             EvaluarSiEsDuplicado(genero);
             _repo.AgregarGenero(genero);
         }
@@ -36,8 +37,9 @@ namespace Logica.Implementaciones
             }
         }
 
-        public void EliminarGenero(Genero genero, ILogicaPelicula logicaPelicula)
+        public void EliminarGenero(Usuario admin, Genero genero, ILogicaPelicula logicaPelicula)
         {
+            BloquearUsuarioNoAdmin(admin);
             EvaluarSiNoExiste(genero);
             BuscarSiTienePeliculasAsociadas(genero, logicaPelicula);
             _repo.EliminarGenero(genero);
@@ -58,6 +60,14 @@ namespace Logica.Implementaciones
             if (EsGeneroPrincipal.Count() > 0 || EsGeneroSecundario.Count() > 0)
             {
                 throw new GeneroConPeliculaAsociadaException();
+            }
+        }
+
+        private void BloquearUsuarioNoAdmin(Usuario admin)
+        {
+            if (!admin.EsAdministrador)
+            {
+                throw new UsuarioNoPermitidoException();
             }
         }
 

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\CriterioInexistenteException.cs" />
     <Compile Include="Exceptions\GeneroConPeliculaAsociadaException.cs" />
     <Compile Include="Exceptions\PerfilExceptions.cs" />
     <Compile Include="Exceptions\PinIncorrectoException.cs" />
@@ -50,13 +51,11 @@
     <Compile Include="Implementaciones\LogicaPelicula.cs" />
     <Compile Include="Implementaciones\LogicaPerfilInfantil.cs" />
     <Compile Include="Implementaciones\LogicaUsuario.cs" />
-    <Compile Include="Implementaciones\LogicaUsuarioAdmin.cs" />
     <Compile Include="Interfaces\ILogicaGenero.cs" />
     <Compile Include="Interfaces\ILogicaPelicula.cs" />
     <Compile Include="Interfaces\ILogicaUsuario.cs" />
     <Compile Include="Implementaciones\LogicaPerfil.cs" />
     <Compile Include="Interfaces\ILogicaPerfil.cs" />
-    <Compile Include="Interfaces\ILogicaUsuarioAdmin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
