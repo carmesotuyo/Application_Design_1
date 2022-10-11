@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\CriterioInexistenteException.cs" />
     <Compile Include="Exceptions\GeneroConPeliculaAsociadaException.cs" />
     <Compile Include="Exceptions\PerfilExceptions.cs" />
     <Compile Include="Exceptions\PinIncorrectoException.cs" />

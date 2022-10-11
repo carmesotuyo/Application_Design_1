@@ -15,13 +15,12 @@ namespace Logica.Implementaciones
     public class LogicaPelicula : ILogicaPelicula
     {
         private IPeliculaRepo _repo;
-        private List<Pelicula> _pelisAMostrar;
         private int _criterioElegido;
-        enum _criterios
+        public enum Criterios
         {
-            OrdenarPorGenero = 1,
-            OrdenarPorPatrocinio = 2,
-            OrdenarPorPuntaje = 3
+            OrdenarPorGenero = 0,
+            OrdenarPorPatrocinio = 1,
+            OrdenarPorPuntaje = 2
         }
 
         public LogicaPelicula(IPeliculaRepo peliculaRepo)
@@ -53,38 +52,40 @@ namespace Logica.Implementaciones
             return _repo.Peliculas();
         }
 
-        public List<Pelicula> PeliculasAMostrar { get => _pelisAMostrar; set => _pelisAMostrar = value; }
-
-        public int CriterioElegido { get => _criterioElegido; set => _criterioElegido = value; }
-
-        public void ElegirCriterioOrden(Usuario admin, int criterio)
-        {
-            BloquearUsuarioNoAdmin(admin);
-            ExisteCriterio(criterio);
-            CriterioElegido = criterio;
+        public int CriterioElegido { get => _criterioElegido; set
+            {
+                ExisteCriterio(value);
+                _criterioElegido = value;
+            }
         }
 
         private void ExisteCriterio(int criterio)
         {
-            if (!Enum.IsDefined(typeof(_criterio), criterio))
+            if (!Enum.IsDefined(typeof(Criterios), criterio))
             {
                 throw new CriterioInexistenteException();
             }
         }
 
-        public List<Pelicula> OrdenarPorGenero()
+        public void ElegirCriterioOrden(Usuario admin, int criterio)
+        {
+            BloquearUsuarioNoAdmin(admin);
+            CriterioElegido = criterio;
+        }
+
+        private List<Pelicula> OrdenarPorGenero()
         {
             return Peliculas().OrderBy(p => p.GeneroPrincipal.Nombre).ThenBy(p => p.Nombre).ToList();
         }
 
-        public List<Pelicula> OrdenarPorPatrocinio()
+        private List<Pelicula> OrdenarPorPatrocinio()
         {
             return Peliculas().OrderBy(p => p.EsPatrocinada = true)
                               .ThenBy(p => p.GeneroPrincipal.Nombre)
                               .ThenBy(p => p.Nombre).ToList();
         }
 
-        public List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil)
+        private List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil)
         {
 
             //string algo = unPerfil.PuntajeGeneros[0].Genero;
@@ -96,7 +97,7 @@ namespace Logica.Implementaciones
             //return Peliculas().OrderBy(p => p.GeneroPrincipal.Nombre = unPerfil.PuntajeGeneros.Genero)
             //                    .ThenBy(p => p.Nombre).ToList();
 
-            return Peliculas().OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre)).ToList();
+            return Peliculas().OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre)).ThenBy(p => p.Nombre).ToList();
             //var sortedSamples = listB.OrderBy(x => listA.IndexOf(x.Letter));
         }
 
@@ -104,15 +105,14 @@ namespace Logica.Implementaciones
         {
             switch (CriterioElegido)
             {
-                case 1:
+                case 0:
                     return OrdenarPorGenero();
-                    break;
-                case 2:
+                case 1:
                     return OrdenarPorPatrocinio();
-                    break;
-                case 3:
+                case 2:
                     return OrdenarPorPuntaje(unPerfil);
-                    break;
+                default:
+                    throw new CriterioInexistenteException();
             }
         }
     }

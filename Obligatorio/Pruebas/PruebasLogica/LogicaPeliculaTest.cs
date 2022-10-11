@@ -61,6 +61,7 @@ namespace Pruebas.PruebasLogica
         public void OrdenarPeliculasPorGeneroTest()
         {
             Usuario admin = new Usuario() { EsAdministrador = true };
+            Perfil unPerfil = new Perfil();
 
             Genero terror = new Genero() { Nombre = "Terror" };
             Genero comedia = new Genero() { Nombre = "Comedia" };
@@ -74,13 +75,12 @@ namespace Pruebas.PruebasLogica
             logica.AltaPelicula(peliculaB, admin);
             logica.AltaPelicula(peliculaC, admin);
 
-            logica.ElegirCriterioOrden(admin, 1); //deberia ser logica.Criterios(OrdenarPorGenero)
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorGenero);
+            List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
 
-            logica.PeliculasAMostrar = logica.OrdenarPorGenero(admin);
-
-            bool primeraPeliOrdenada = logica.PeliculasAMostrar[0] == peliculaC;
-            bool segundaPeliOrdenada = logica.PeliculasAMostrar[1] == peliculaB;
-            bool terceraPeliOrdenada = logica.PeliculasAMostrar[2] == peliculaA;
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaC;
+            bool segundaPeliOrdenada = pelisMostradas[1] == peliculaB;
+            bool terceraPeliOrdenada = pelisMostradas[2] == peliculaA;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
         }
@@ -89,6 +89,7 @@ namespace Pruebas.PruebasLogica
         public void OrdenarPeliculasPorGeneroEmpateTest()
         {
             Usuario admin = new Usuario() { EsAdministrador = true };
+            Perfil unPerfil = new Perfil();
             Genero terror = new Genero() { Nombre = "Terror" };
 
             Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
@@ -99,11 +100,12 @@ namespace Pruebas.PruebasLogica
             logica.AltaPelicula(peliculaB, admin);
             logica.AltaPelicula(peliculaC, admin);
 
-            logica.PeliculasAMostrar = logica.OrdenarPorGenero(admin);
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorGenero);
+            List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
 
-            bool primeraPeliOrdenada = logica.PeliculasAMostrar[0] == peliculaC;
-            bool segundaPeliOrdenada = logica.PeliculasAMostrar[1] == peliculaA;
-            bool terceraPeliOrdenada = logica.PeliculasAMostrar[2] == peliculaB;
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaC;
+            bool segundaPeliOrdenada = pelisMostradas[1] == peliculaA;
+            bool terceraPeliOrdenada = pelisMostradas[2] == peliculaB;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
         }
@@ -112,6 +114,7 @@ namespace Pruebas.PruebasLogica
         public void OrdenarPeliculasPatrocinadasTest()
         {
             Usuario admin = new Usuario() { EsAdministrador = true };
+            Perfil unPerfil = new Perfil();
             Genero terror = new Genero() { Nombre = "Terror" };
 
             Pelicula peliculaA = new Pelicula()
@@ -130,10 +133,11 @@ namespace Pruebas.PruebasLogica
             logica.AltaPelicula(peliculaA, admin);
             logica.AltaPelicula(peliculaB, admin);
 
-            logica.PeliculasAMostrar = logica.OrdenarPorPatrocinio(admin);
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorPatrocinio);
+            List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
 
-            bool primeraPeliOrdenada = logica.PeliculasAMostrar[0] == peliculaB;
-            bool segundaPeliOrdenada = logica.PeliculasAMostrar[1] == peliculaA;
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaB;
+            bool segundaPeliOrdenada = pelisMostradas[1] == peliculaA;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
         }
@@ -142,6 +146,7 @@ namespace Pruebas.PruebasLogica
         public void OrdenarPeliculasPatrocinadasPorGeneroTest()
         {
             Usuario admin = new Usuario() { EsAdministrador = true };
+            Perfil unPerfil = new Perfil();
             Genero terror = new Genero() { Nombre = "Terror" };
             Genero comedia = new Genero() { Nombre = "Comedia" };
 
@@ -161,10 +166,11 @@ namespace Pruebas.PruebasLogica
             logica.AltaPelicula(peliculaA, admin);
             logica.AltaPelicula(peliculaB, admin);
 
-            logica.PeliculasAMostrar = logica.OrdenarPorPatrocinio(admin);
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorPatrocinio);
+            List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
 
-            bool primeraPeliOrdenada = logica.PeliculasAMostrar[0] == peliculaB;
-            bool segundaPeliOrdenada = logica.PeliculasAMostrar[1] == peliculaA;
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaB;
+            bool segundaPeliOrdenada = pelisMostradas[1] == peliculaA;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
         }
@@ -173,6 +179,7 @@ namespace Pruebas.PruebasLogica
         public void OrdenarPeliculasPatrocinadasPorNombreTest()
         {
             Usuario admin = new Usuario() { EsAdministrador = true };
+            Perfil unPerfil = new Perfil();
             Genero terror = new Genero() { Nombre = "Terror" };
 
             Pelicula peliculaA = new Pelicula()
@@ -191,10 +198,11 @@ namespace Pruebas.PruebasLogica
             logica.AltaPelicula(peliculaA, admin);
             logica.AltaPelicula(peliculaB, admin);
 
-            logica.PeliculasAMostrar = logica.OrdenarPorPatrocinio(admin);
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorPatrocinio);
+            List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
 
-            bool primeraPeliOrdenada = logica.PeliculasAMostrar[0] == peliculaB;
-            bool segundaPeliOrdenada = logica.PeliculasAMostrar[1] == peliculaA;
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaB;
+            bool segundaPeliOrdenada = pelisMostradas[1] == peliculaA;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
         }
@@ -203,6 +211,7 @@ namespace Pruebas.PruebasLogica
         public void OrdenarPeliculasConMismoNombreTest()
         {
             Usuario admin = new Usuario() { EsAdministrador = true };
+            Perfil unPerfil = new Perfil();
             Genero terror = new Genero() { Nombre = "Terror" };
 
             Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
@@ -213,11 +222,12 @@ namespace Pruebas.PruebasLogica
             logica.AltaPelicula(peliculaB, admin);
             logica.AltaPelicula(peliculaC, admin);
 
-            logica.PeliculasAMostrar = logica.OrdenarPorGenero(admin);
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorGenero);
+            List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
 
-            bool primeraPeliOrdenada = logica.PeliculasAMostrar[0] == peliculaC;
-            bool segundaPeliOrdenada = logica.PeliculasAMostrar[1] == peliculaA;
-            bool terceraPeliOrdenada = logica.PeliculasAMostrar[2] == peliculaB;
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaC;
+            bool segundaPeliOrdenada = pelisMostradas[1] == peliculaA;
+            bool terceraPeliOrdenada = pelisMostradas[2] == peliculaB;
 
             Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
         }
@@ -226,7 +236,47 @@ namespace Pruebas.PruebasLogica
         public void OrdenarPeliculasPorPuntajeGenerosTest()
         {
             Usuario admin = new Usuario() { EsAdministrador = true };
-            Perfil perfil = new Perfil();
+            Perfil unPerfil = new Perfil();
+            LogicaPerfil logicaPerfil = new LogicaPerfil();
+
+            Genero terror = new Genero() { Nombre = "Terror" };
+            Genero comedia = new Genero() { Nombre = "comedia" };
+            Genero accion = new Genero() { Nombre = "accion" };
+
+            Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
+            Pelicula peliculaB = new Pelicula() { Nombre = "Yes Man", GeneroPrincipal = comedia };
+            Pelicula peliculaC = new Pelicula() { Nombre = "Avengers", GeneroPrincipal = accion };
+
+            logica.AltaPelicula(peliculaA, admin);
+            logica.AltaPelicula(peliculaB, admin);
+            logica.AltaPelicula(peliculaC, admin);
+
+            GeneroPuntaje generoPuntaje1 = new GeneroPuntaje() { Genero = terror.Nombre };
+            GeneroPuntaje generoPuntaje2 = new GeneroPuntaje() { Genero = comedia.Nombre };
+            GeneroPuntaje generoPuntaje3 = new GeneroPuntaje() { Genero = accion.Nombre };
+            unPerfil.AgregarGeneroPuntaje(generoPuntaje1);
+            unPerfil.AgregarGeneroPuntaje(generoPuntaje2);
+            unPerfil.AgregarGeneroPuntaje(generoPuntaje3);
+
+            logicaPerfil.PuntuarMuyPositivo(peliculaB, unPerfil);
+            logicaPerfil.PuntuarPositivo(peliculaC, unPerfil);
+            logicaPerfil.PuntuarNegativo(peliculaA, unPerfil);
+
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorPuntaje);
+            List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
+
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaB;
+            bool segundaPeliOrdenada = pelisMostradas[1] == peliculaC;
+            bool terceraPeliOrdenada = pelisMostradas[2] == peliculaA;
+
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
+        }
+
+        [TestMethod]
+        public void OrdenarPeliculasPorPuntajeAcumuladoGenerosTest()
+        {
+            Usuario admin = new Usuario() { EsAdministrador = true };
+            Perfil unPerfil = new Perfil();
             LogicaPerfil logicaPerfil = new LogicaPerfil();
 
             Genero terror = new Genero() { Nombre = "Terror" };
@@ -234,19 +284,86 @@ namespace Pruebas.PruebasLogica
 
             Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
             Pelicula peliculaB = new Pelicula() { Nombre = "Yes Man", GeneroPrincipal = comedia };
+            Pelicula peliculaC = new Pelicula() { Nombre = "Mamma Mia", GeneroPrincipal = comedia };
+
+            logica.AltaPelicula(peliculaA, admin);
+            logica.AltaPelicula(peliculaB, admin);
+            logica.AltaPelicula(peliculaC, admin);
+
+            GeneroPuntaje generoPuntaje1 = new GeneroPuntaje() { Genero = terror.Nombre };
+            GeneroPuntaje generoPuntaje2 = new GeneroPuntaje() { Genero = comedia.Nombre };
+            unPerfil.AgregarGeneroPuntaje(generoPuntaje1);
+            unPerfil.AgregarGeneroPuntaje(generoPuntaje2);
+
+            logicaPerfil.PuntuarMuyPositivo(peliculaB, unPerfil);
+            logicaPerfil.PuntuarPositivo(peliculaC, unPerfil);
+            logicaPerfil.PuntuarPositivo(peliculaA, unPerfil);
+
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorPuntaje);
+            List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
+
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaC;
+            bool segundaPeliOrdenada = pelisMostradas[1] == peliculaB;
+            bool terceraPeliOrdenada = pelisMostradas[2] == peliculaA;
+
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
+        }
+
+        [TestMethod]
+        public void OrdenarPeliculasPorPuntajeGenerosNegativoTest()
+        {
+            Usuario admin = new Usuario() { EsAdministrador = true };
+            Perfil unPerfil = new Perfil();
+            LogicaPerfil logicaPerfil = new LogicaPerfil();
+
+            Genero terror = new Genero() { Nombre = "Terror" };
+            Genero comedia = new Genero() { Nombre = "comedia" };
+
+            Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
+            Pelicula peliculaB = new Pelicula() { Nombre = "Yes Man", GeneroPrincipal = comedia };
+            Pelicula peliculaC = new Pelicula() { Nombre = "Mamma Mia", GeneroPrincipal = comedia };
+
+            logica.AltaPelicula(peliculaA, admin);
+            logica.AltaPelicula(peliculaB, admin);
+            logica.AltaPelicula(peliculaC, admin);
+
+            GeneroPuntaje generoPuntaje1 = new GeneroPuntaje() { Genero = terror.Nombre };
+            GeneroPuntaje generoPuntaje2 = new GeneroPuntaje() { Genero = comedia.Nombre };
+            unPerfil.AgregarGeneroPuntaje(generoPuntaje1);
+            unPerfil.AgregarGeneroPuntaje(generoPuntaje2);
+
+            logicaPerfil.PuntuarNegativo(peliculaA, unPerfil);
+            logicaPerfil.PuntuarNegativo(peliculaB, unPerfil);
+            logicaPerfil.PuntuarNegativo(peliculaC, unPerfil);
+
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorPuntaje);
+            List<Pelicula> pelisMostradas = logica.MostrarPeliculas(unPerfil);
+
+            bool primeraPeliOrdenada = pelisMostradas[0] == peliculaA;
+            bool segundaPeliOrdenada = pelisMostradas[1] == peliculaC;
+            bool terceraPeliOrdenada = pelisMostradas[2] == peliculaB;
+
+            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada && terceraPeliOrdenada);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(CriterioInexistenteException))]
+        public void OrdenarConCriterioInexistenteTest()
+        {
+            Usuario admin = new Usuario() { EsAdministrador = true };
+
+            Genero terror = new Genero() { Nombre = "Terror" };
+            Genero comedia = new Genero() { Nombre = "Comedia" };
+
+            Pelicula peliculaA = new Pelicula() { GeneroPrincipal = terror };
+            Pelicula peliculaB = new Pelicula() { GeneroPrincipal = comedia };
 
             logica.AltaPelicula(peliculaA, admin);
             logica.AltaPelicula(peliculaB, admin);
 
-            logicaPerfil.PuntuarMuyPositivo(peliculaB, perfil);
-            logicaPerfil.PuntuarNegativo(peliculaA, perfil);
-
-            logica.PeliculasAMostrar = logica.OrdenarPorPuntaje(admin);
-
-            bool primeraPeliOrdenada = logica.PeliculasAMostrar[0] == peliculaB;
-            bool segundaPeliOrdenada = logica.PeliculasAMostrar[1] == peliculaA;
-
-            Assert.IsTrue(primeraPeliOrdenada && segundaPeliOrdenada);
+            int criterioInvalido = 4;
+            logica.ElegirCriterioOrden(admin, criterioInvalido);
         }
+
     }
 }
