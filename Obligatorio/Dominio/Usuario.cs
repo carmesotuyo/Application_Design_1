@@ -12,6 +12,7 @@ namespace Dominio
         private string _nombreUsuario;
         private string _email;
         private string _clave;
+        private string _confirmarClave;
         private List<Perfil> _listaPerfiles;
         private bool _esAdmin;
 
@@ -81,6 +82,24 @@ namespace Dominio
             {
                 ChequearClaveValida(value);
                 _clave = value;
+            }
+        }
+
+        public string ConfirmarClave
+        {
+            get => _confirmarClave;
+            set
+            {
+                ChequearConfirmacionClave(value);
+                _confirmarClave = value;
+            }
+        }
+
+        private void ChequearConfirmacionClave(string confirmacionClave)
+        {
+            if (!confirmacionClave.Equals(_clave))
+            {
+                throw new ClaveNoCoincideException();
             }
         }
 
