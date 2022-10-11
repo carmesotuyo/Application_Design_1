@@ -26,6 +26,7 @@ namespace Logica.Implementaciones
         public LogicaPelicula(IPeliculaRepo peliculaRepo)
         {
             _repo = peliculaRepo;
+            CriterioElegido = (int)Criterios.OrdenarPorGenero;
         }
         public void AltaPelicula(Pelicula pelicula, Usuario admin)
         {
@@ -73,45 +74,46 @@ namespace Logica.Implementaciones
             CriterioElegido = criterio;
         }
 
-        private List<Pelicula> OrdenarPorGenero()
+        private List<Pelicula> OrdenarPorGenero(List<Pelicula> peliculas)
         {
-            return Peliculas().OrderBy(p => p.GeneroPrincipal.Nombre).ThenBy(p => p.Nombre).ToList();
+            return peliculas.OrderBy(p => p.GeneroPrincipal.Nombre).ThenBy(p => p.Nombre).ToList();
         }
 
-        private List<Pelicula> OrdenarPorPatrocinio()
+        private List<Pelicula> OrdenarPorPatrocinio(List<Pelicula> peliculas)
         {
-            return Peliculas().OrderBy(p => p.EsPatrocinada = true)
+            return peliculas.OrderBy(p => p.EsPatrocinada = true)
                               .ThenBy(p => p.GeneroPrincipal.Nombre)
                               .ThenBy(p => p.Nombre).ToList();
         }
 
-        private List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil)
+        private List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil, List<Pelicula> peliculas)
         {
             List<string> generos = unPerfil.PuntajeGeneros.OrderByDescending(g => g.Puntaje)
                                                           .Select(g => g.Genero).ToList();
 
-            return Peliculas().OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre))
+            return peliculas.OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre))
                               .ThenBy(p => p.Nombre).ToList();
         }
 
         public List<Pelicula> MostrarPeliculas(Perfil unPerfil)
         {
+            List<Pelicula> peliculasAMostrar = FiltrarPeliculasSiEsInfantil(unPerfil);
+
             switch (CriterioElegido)
             {
                 case 0:
-                    return OrdenarPorGenero();
+                    peliculasAMostrar = OrdenarPorGenero(peliculasAMostrar);
+                    break;
                 case 1:
-                    return OrdenarPorPatrocinio();
+                    peliculasAMostrar = OrdenarPorPatrocinio(peliculasAMostrar);
+                    break;
                 case 2:
-                    return OrdenarPorPuntaje(unPerfil);
+                    peliculasAMostrar = OrdenarPorPuntaje(unPerfil, peliculasAMostrar);
+                    break;
                 default:
                     throw new CriterioInexistenteException();
             }
-        }
-
-        public List<Pelicula> MostrarPeliculas(Perfil unPerfil)
-        {
-            return FiltrarPeliculasSiEsInfantil(unPerfil);
+            return peliculasAMostrar;
         }
 
         public List<Pelicula> FiltrarPeliculasSiEsInfantil(Perfil unPerfil)

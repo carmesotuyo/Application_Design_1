@@ -56,11 +56,21 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void FiltrarPeliculasNoAptasTest()
         {
-            Pelicula peliculaApta = new Pelicula() { AptaTodoPublico = true };
-            Pelicula peliculaNoApta = new Pelicula() { AptaTodoPublico = false };
+            Pelicula peliculaApta = new Pelicula()
+            {
+                Nombre = "Harry Potter",
+                GeneroPrincipal = accion,
+                AptaTodoPublico = true
+            };
+            Pelicula peliculaNoApta = new Pelicula()
+            {
+                Nombre = "It",
+                GeneroPrincipal = terror,
+                AptaTodoPublico = false
+            };
 
-            logica.AltaPelicula(peliculaApta);
-            logica.AltaPelicula(peliculaNoApta);
+            logica.AltaPelicula(peliculaApta, admin);
+            logica.AltaPelicula(peliculaNoApta, admin);
 
             Perfil unPerfil = new Perfil() { EsInfantil = true };
 
@@ -72,17 +82,27 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void NoFiltrarSiNoEsInfantilTest()
         {
-            Pelicula peliculaApta = new Pelicula() { AptaTodoPublico = true };
-            Pelicula peliculaNoApta = new Pelicula() { AptaTodoPublico = false };
+            Pelicula peliculaApta = new Pelicula() 
+            { 
+                Nombre = "Harry Potter", 
+                GeneroPrincipal = accion,
+                AptaTodoPublico = true 
+            };
+            Pelicula peliculaNoApta = new Pelicula() 
+            { 
+                Nombre = "It", 
+                GeneroPrincipal = terror,
+                AptaTodoPublico = false 
+            };
 
-            logica.AltaPelicula(peliculaApta);
-            logica.AltaPelicula(peliculaNoApta);
+            logica.AltaPelicula(peliculaApta, admin);
+            logica.AltaPelicula(peliculaNoApta, admin);
 
             Perfil unPerfil = new Perfil() { EsInfantil = false };
 
             List<Pelicula> todas = logica.MostrarPeliculas(unPerfil);
 
-            Assert.AreEqual(todas, logica.Peliculas());
+            Assert.AreEqual(todas.Count(), logica.Peliculas().Count());
         }
 
         [TestMethod]
