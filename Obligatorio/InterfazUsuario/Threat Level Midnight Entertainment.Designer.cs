@@ -39,7 +39,6 @@
             this.flpPanelPrincipal.Name = "flpPanelPrincipal";
             this.flpPanelPrincipal.Size = new System.Drawing.Size(983, 704);
             this.flpPanelPrincipal.TabIndex = 0;
-            this.flpPanelPrincipal.Paint += new System.Windows.Forms.PaintEventHandler(this.flpPanelPrincipal_Paint);
             // 
             // Threat_Level_Midnight_Entertainment
             // 
