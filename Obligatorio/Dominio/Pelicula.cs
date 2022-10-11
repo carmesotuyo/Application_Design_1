@@ -19,7 +19,6 @@ namespace Dominio
         private static int _contadorPeliculas = 0;
         private int _idPelicula;
         private string _poster;
-        private DateTime _fechaAgregada;
 
         public Pelicula()
         {
@@ -104,8 +103,6 @@ namespace Dominio
                 throw new DatoVacioException();
             }
         }
-
-        public DateTime FechaAgregada { get => _fechaAgregada; set => _fechaAgregada = value; }
 
         public override string ToString()
         {

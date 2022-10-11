@@ -31,7 +31,6 @@ namespace Logica.Implementaciones
         public void AltaPelicula(Pelicula pelicula, Usuario admin)
         {
             BloquearUsuarioNoAdmin(admin);
-            pelicula.FechaAgregada = DateTime.Now;
             _repo.AgregarPelicula(pelicula);
         }
 
@@ -79,14 +78,14 @@ namespace Logica.Implementaciones
         {
             return peliculas.OrderBy(p => p.GeneroPrincipal.Nombre)
                             .ThenBy(p => p.Nombre)
-                            .ThenByDescending(p => p.FechaAgregada).ToList();
+                            .ThenByDescending(p => p.Identificador).ToList();
         }
 
         private List<Pelicula> OrdenarPorPatrocinio(List<Pelicula> peliculas)
         {
             return peliculas.OrderBy(p => p.EsPatrocinada = true)
                               .ThenBy(p => p.GeneroPrincipal.Nombre)
-                              .ThenBy(p => p.Nombre).ThenByDescending(p => p.FechaAgregada).ToList();
+                              .ThenBy(p => p.Nombre).ThenByDescending(p => p.Identificador).ToList();
         }
 
         private List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil, List<Pelicula> peliculas)
@@ -95,7 +94,7 @@ namespace Logica.Implementaciones
                                                           .Select(g => g.Genero).ToList();
 
             return peliculas.OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre))
-                            .ThenBy(p => p.Nombre).ThenByDescending(p => p.FechaAgregada).ToList();
+                            .ThenBy(p => p.Nombre).ThenByDescending(p => p.Identificador).ToList();
         }
 
         public List<Pelicula> MostrarPeliculas(Perfil unPerfil)

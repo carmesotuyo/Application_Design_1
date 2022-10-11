@@ -199,15 +199,5 @@ namespace Pruebas.PruebasDominio
 
             Assert.AreEqual(unaPelicula.ToString(), "Harry Potter");
         }
-
-        [TestMethod]
-        public void FechaAgregadaTest()
-        {
-            DateTime ahora = DateTime.Now;
-
-            unaPelicula.FechaAgregada = ahora;
-
-            Assert.AreEqual(unaPelicula.FechaAgregada, ahora);
-        }
     }
 }
