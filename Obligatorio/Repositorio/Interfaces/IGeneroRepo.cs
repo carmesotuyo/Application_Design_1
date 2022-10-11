@@ -12,5 +12,6 @@ namespace Repositorio.Interfaces
         bool EstaGenero(Genero genero);
         void AgregarGenero(Genero genero);
         void EliminarGenero(Genero genero);
+        List<Genero> Generos();
     }
 }

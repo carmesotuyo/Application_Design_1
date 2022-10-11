@@ -10,21 +10,31 @@ namespace Repositorio
 {
     public class RepoUsuarios : IRepoUsuarios
     {
-        public List<Usuario> usuarios = new List<Usuario>();
+        private List<Usuario> _usuarios = new List<Usuario>();
+
+        public RepoUsuarios()
+        {
+            _usuarios = new List<Usuario>();
+        }
+
         public bool EstaUsuario(Usuario usuario)
         {
-            return usuarios.Contains(usuario);
+            return _usuarios.Contains(usuario);
         }
         public void AgregarUsuario(Usuario usuario)
         {
-            usuarios.Add(usuario);
+            _usuarios.Add(usuario);
         }
         public void QuitarUsuario(Usuario usuario)
         {
             if (EstaUsuario(usuario))
             {
-                usuarios.Remove(usuario);
+                _usuarios.Remove(usuario);
             }
+        }
+        public List<Usuario> Usuarios()
+        {
+            return _usuarios;
         }
     }
 }

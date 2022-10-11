@@ -1,6 +1,7 @@
 ﻿using Dominio;
 using Logica.Interfaces;
 using Repositorio;
+using Repositorio.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,24 @@ namespace Logica.Implementaciones
 {
     public class LogicaPelicula : ILogicaPelicula
     {
-        public void AltaPelicula(Pelicula pelicula, PeliculaRepo repo)
+        private IPeliculaRepo _repo;
+        public LogicaPelicula(IPeliculaRepo peliculaRepo)
         {
-            repo.AgregarPelicula(pelicula);
+            _repo = peliculaRepo;
+        }
+        public void AltaPelicula(Pelicula pelicula)
+        {
+            _repo.AgregarPelicula(pelicula);
         }
 
-        public void BajaPelicula(Pelicula pelicula, PeliculaRepo repo)
+        public void BajaPelicula(Pelicula pelicula)
         {
-            repo.QuitarPelicula(pelicula);
+            _repo.QuitarPelicula(pelicula);
+        }
+
+        public List<Pelicula> Peliculas()
+        {
+            return _repo.Peliculas();
         }
 
         public void VerInformacionDePelicula(Pelicula pelicula)

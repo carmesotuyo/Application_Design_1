@@ -34,9 +34,9 @@ namespace Logica.Implementaciones
             }
         }
 
-        public virtual List<Pelicula> MostrarPeliculas(PeliculaRepo repo)
+        public virtual List<Pelicula> MostrarPeliculas(ILogicaPelicula logicaPelicula)
         {
-            return repo.peliculas;
+            return logicaPelicula.Peliculas();
         }
 
         public void MarcarComoVista(Pelicula unaPelicula, Perfil unPerfil)
@@ -117,15 +117,15 @@ namespace Logica.Implementaciones
             return unPerfil.PuntajeGeneros.IndexOf(genero);
         }
 
-        public void ActualizarListadoGeneros(Perfil unPerfil, GeneroRepo repo)
+        public void ActualizarListadoGeneros(Perfil unPerfil, ILogicaGenero logicaGenero)
         {
-            QuitarGenerosEliminados(unPerfil, repo);
-            AgregarNuevosGeneros(unPerfil, repo);
+            QuitarGenerosEliminados(unPerfil, logicaGenero);
+            AgregarNuevosGeneros(unPerfil, logicaGenero);
         }
 
-        private void AgregarNuevosGeneros(Perfil unPerfil, GeneroRepo repo)
+        private void AgregarNuevosGeneros(Perfil unPerfil, ILogicaGenero logicaGenero)
         {
-            foreach (Genero genero in repo.generos)
+            foreach (Genero genero in logicaGenero.Generos())
             {
                 if(!EstaGenero(unPerfil, genero))
                 {
@@ -134,9 +134,9 @@ namespace Logica.Implementaciones
             }
         }
 
-        private void QuitarGenerosEliminados(Perfil unPerfil, GeneroRepo repo)
+        private void QuitarGenerosEliminados(Perfil unPerfil, ILogicaGenero logicaGenero)
         {
-            List<GeneroPuntaje> paraEliminar = BuscarGenerosEliminados(unPerfil, repo);
+            List<GeneroPuntaje> paraEliminar = BuscarGenerosEliminados(unPerfil, logicaGenero);
 
             foreach (GeneroPuntaje genero in paraEliminar)
             {
@@ -144,13 +144,13 @@ namespace Logica.Implementaciones
             }
         }
 
-        private List<GeneroPuntaje> BuscarGenerosEliminados(Perfil unPerfil, GeneroRepo repo)
+        private List<GeneroPuntaje> BuscarGenerosEliminados(Perfil unPerfil, ILogicaGenero logicaGenero)
         {
             List<GeneroPuntaje> paraEliminar = new List<GeneroPuntaje>();
 
             foreach (GeneroPuntaje genero in unPerfil.PuntajeGeneros)
             {
-                if (GeneroEliminado(repo, genero))
+                if (GeneroEliminado(logicaGenero, genero))
                 {
                     paraEliminar.Add(genero);
                 }
@@ -171,10 +171,10 @@ namespace Logica.Implementaciones
             return busco.Count > 0;
         }
 
-        public bool GeneroEliminado(GeneroRepo repo, GeneroPuntaje unGenero)
+        public bool GeneroEliminado(ILogicaGenero logicaGenero, GeneroPuntaje unGenero)
         {
-            List<Genero> busco = repo.generos.Where(x => x.Nombre != unGenero.Genero).ToList();
-            return busco.Count == repo.generos.Count;
+            List<Genero> busco = logicaGenero.Generos().Where(x => x.Nombre != unGenero.Genero).ToList();
+            return busco.Count == logicaGenero.Generos().Count;
         }
     }
 }

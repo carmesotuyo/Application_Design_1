@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Repositorio;
 using Logica.Implementaciones;
 using Dominio.Exceptions;
+using Repositorio.Interfaces;
+using Logica.Interfaces;
 
 namespace Pruebas.PruebasLogica
 {
@@ -16,8 +18,7 @@ namespace Pruebas.PruebasLogica
     {
         Genero unGenero = new Genero();
         Genero otroGenero = new Genero();
-        GeneroRepo repo = new GeneroRepo();
-        LogicaGenero logica = new LogicaGenero();
+        LogicaGenero logica = new LogicaGenero(new GeneroRepo());
 
         [TestMethod]
         public void AgregarGeneroTest()
@@ -25,7 +26,7 @@ namespace Pruebas.PruebasLogica
             unGenero.Nombre = "Suspenso";
             unGenero.Descripcion = "Descripcion de suspenso";
 
-            logica.AgregarGenero(unGenero, repo);
+            logica.AgregarGenero(unGenero);
         }
 
         [TestMethod]
@@ -34,10 +35,10 @@ namespace Pruebas.PruebasLogica
             unGenero.Nombre = "Accion";
             otroGenero.Nombre = "Comedia";
 
-            logica.AgregarGenero(unGenero, repo);
-            logica.AgregarGenero(otroGenero, repo);
+            logica.AgregarGenero(unGenero);
+            logica.AgregarGenero(otroGenero);
 
-            Assert.IsTrue(repo.EstaGenero(unGenero) && repo.EstaGenero(otroGenero));
+            Assert.IsTrue(logica.Generos().Contains(unGenero) && logica.Generos().Contains(otroGenero));
         }
 
         [TestMethod]
@@ -47,20 +48,21 @@ namespace Pruebas.PruebasLogica
             unGenero.Nombre = "Accion";
             otroGenero.Nombre = "acciON";
 
-            logica.AgregarGenero(unGenero, repo);
-            logica.AgregarGenero(otroGenero, repo);
+            logica.AgregarGenero(unGenero);
+            logica.AgregarGenero(otroGenero);
         }
 
         [TestMethod]
         public void EliminarGeneroTest()
         {
             PeliculaRepo repoPelis = new PeliculaRepo();
+            ILogicaPelicula logicaPeli = new LogicaPelicula(repoPelis);
             unGenero.Nombre = "Comedia";
 
-            logica.AgregarGenero(unGenero, repo);
-            logica.EliminarGenero(unGenero, repo, repoPelis);
+            logica.AgregarGenero(unGenero);
+            logica.EliminarGenero(unGenero, logicaPeli);
 
-            Assert.IsFalse(repo.EstaGenero(unGenero));
+            Assert.IsFalse(logica.Generos().Contains(unGenero));
         }
 
         [TestMethod]
@@ -68,8 +70,9 @@ namespace Pruebas.PruebasLogica
         public void EliminarGeneroInexistenteTest()
         {
             PeliculaRepo repoPelis = new PeliculaRepo();
+            ILogicaPelicula logicaPeli = new LogicaPelicula(repoPelis);
 
-            logica.EliminarGenero(unGenero, repo, repoPelis);
+            logica.EliminarGenero(unGenero, logicaPeli);
         }
     }
 }

@@ -12,32 +12,44 @@ namespace Logica.Implementaciones
 {
     public class LogicaUsuarioAdmin : ILogicaUsuarioAdmin
     {
-        LogicaPelicula logicaPelicula = new LogicaPelicula();
-        LogicaGenero logicaGenero = new LogicaGenero();
+        //===================================================================
+        // Las logicas se instancian una sola vez en program, una vez que se instancia la logica usuarioadmin no se actualizan las otras logicas que tienen los repos
+        // Las opciones para los metodos de admin se pueden administrar desde la UI que se vean o no
+        //
+        //La solución tal vez seria pasar por parametro la logica pelis o genero en cada metodo
+        //===================================================================
+        private LogicaPelicula _logicaPelicula;
+        private LogicaGenero _logicaGenero;
 
-        public void AltaGenero(Usuario admin, Genero unGenero, GeneroRepo repo)
+        public LogicaUsuarioAdmin(LogicaPelicula logicaPelicula, LogicaGenero logicaGenero)
         {
-            BloquearUsuarioNoAdmin(admin);
-            logicaGenero.AgregarGenero(unGenero, repo);
+            _logicaPelicula = logicaPelicula;
+            _logicaGenero = logicaGenero;
         }
 
-        public void AltaPelicula(Usuario admin, Pelicula unaPelicula, PeliculaRepo repo)
+        public void AltaGenero(Usuario admin, Genero unGenero)
         {
             BloquearUsuarioNoAdmin(admin);
-            logicaPelicula.AltaPelicula(unaPelicula, repo);
+            _logicaGenero.AgregarGenero(unGenero);
+        }
+
+        public void AltaPelicula(Usuario admin, Pelicula unaPelicula)
+        {
+            BloquearUsuarioNoAdmin(admin);
+            _logicaPelicula.AltaPelicula(unaPelicula);
             
         }
 
-        public void BajaGenero(Usuario admin, Genero unGenero, GeneroRepo repo, PeliculaRepo repoPelis)
+        public void BajaGenero(Usuario admin, Genero unGenero)
         {
             BloquearUsuarioNoAdmin(admin);
-            logicaGenero.EliminarGenero(unGenero, repo, repoPelis);
+            _logicaGenero.EliminarGenero(unGenero, _logicaPelicula);
         }
 
-        public void BajaPelicula(Usuario admin, Pelicula unaPelicula, PeliculaRepo repo)
+        public void BajaPelicula(Usuario admin, Pelicula unaPelicula)
         {
             BloquearUsuarioNoAdmin(admin);
-            logicaPelicula.BajaPelicula(unaPelicula, repo);
+            _logicaPelicula.BajaPelicula(unaPelicula);
         }
 
         private static void BloquearUsuarioNoAdmin(Usuario admin)
@@ -48,14 +60,19 @@ namespace Logica.Implementaciones
             }
         }
 
-        public List<Pelicula> OrdenarPorGenero(Usuario admin, PeliculaRepo repo)
+        //Se pretende cambiar el orden de la lista general?
+        //pasar por parametro a la logica de pelis, tal; vez que logica de pelis tenga un atributo que sea pelis para mostrar
+        public List<Pelicula> OrdenarPorGenero(Usuario admin)
         {
-            return repo.peliculas.OrderBy(p => p.GeneroPrincipal.Nombre).ThenBy(p => p.Nombre).ToList();
+            BloquearUsuarioNoAdmin(admin);
+            return _logicaPelicula.Peliculas().OrderBy(p => p.GeneroPrincipal.Nombre).ThenBy(p => p.Nombre).ToList();
         }
 
-        public List<Pelicula> OrdenarPorPatrocinio(Usuario admin, PeliculaRepo repo)
+        
+        public List<Pelicula> OrdenarPorPatrocinio(Usuario admin)
         {
-            return repo.peliculas.OrderBy(p => p.EsPatrocinada = true)
+            BloquearUsuarioNoAdmin(admin);
+            return _logicaPelicula.Peliculas().OrderBy(p => p.EsPatrocinada = true)
                                  .ThenBy(p => p.GeneroPrincipal.Nombre)
                                  .ThenBy(p => p.Nombre).ToList();
         }

@@ -12,5 +12,6 @@ namespace Repositorio.Interfaces
         bool EstaPelicula(Pelicula pelicula);
         void AgregarPelicula(Pelicula pelicula);
         void QuitarPelicula(Pelicula pelicula);
+        List<Pelicula> Peliculas();
     }
 }

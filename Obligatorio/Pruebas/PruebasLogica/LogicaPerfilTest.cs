@@ -10,6 +10,7 @@ using Logica.Implementaciones;
 using Logica.Exceptions;
 using Repositorio;
 using Dominio.Exceptions;
+using Logica.Interfaces;
 
 namespace Pruebas.PruebasLogica
 {
@@ -18,7 +19,7 @@ namespace Pruebas.PruebasLogica
     {
         LogicaPerfil logica = new LogicaPerfil();
         LogicaPerfil logicaInfantil = new LogicaPerfilInfantil();
-        LogicaUsuario logicaUsuario = new LogicaUsuario();
+        LogicaUsuario logicaUsuario = new LogicaUsuario(new RepoUsuarios());
         Perfil unPerfil = new Perfil();
         enum Puntajes
         {
@@ -100,13 +101,14 @@ namespace Pruebas.PruebasLogica
         public void FiltrarPeliculasNoAptasTest()
         {
             PeliculaRepo repo = new PeliculaRepo();
+            ILogicaPelicula logicaPeli = new LogicaPelicula(repo);
             Pelicula peliculaApta = new Pelicula() { AptaTodoPublico = true };
             Pelicula peliculaNoApta = new Pelicula() { AptaTodoPublico = false };
             repo.AgregarPelicula(peliculaApta);
             repo.AgregarPelicula(peliculaNoApta);
             Perfil unPerfil = new Perfil() { EsInfantil = true };
 
-            List<Pelicula> soloAptas = logicaInfantil.MostrarPeliculas(repo);
+            List<Pelicula> soloAptas = logicaInfantil.MostrarPeliculas(logicaPeli);
 
             Assert.IsTrue(soloAptas.Count == 1);
         }
@@ -115,15 +117,16 @@ namespace Pruebas.PruebasLogica
         public void NoFiltrarSiNoEsInfantilTest()
         {
             PeliculaRepo repo = new PeliculaRepo();
+            ILogicaPelicula logicaPeli = new LogicaPelicula(repo);
             Pelicula peliculaApta = new Pelicula() { AptaTodoPublico = true };
             Pelicula peliculaNoApta = new Pelicula() { AptaTodoPublico = false };
             repo.AgregarPelicula(peliculaApta);
             repo.AgregarPelicula(peliculaNoApta);
             Perfil unPerfil = new Perfil() { EsInfantil = false };
 
-            List<Pelicula> todas = logica.MostrarPeliculas(repo);
+            List<Pelicula> todas = logica.MostrarPeliculas(logicaPeli);
 
-            Assert.AreEqual(todas, repo.peliculas);
+            Assert.AreEqual(todas, logicaPeli.Peliculas());
         }
 
         [TestMethod]
@@ -256,6 +259,7 @@ namespace Pruebas.PruebasLogica
         public void ActualizarListadoPuntajeAgregandoGeneroTest()
         {
             GeneroRepo repo = new GeneroRepo();
+            ILogicaGenero logicaGenero = new LogicaGenero(repo);
             Genero terror = new Genero() { Nombre = "Terror" };
             repo.AgregarGenero(terror);
             logica.AgregarGenero(unPerfil, terror);
@@ -263,7 +267,7 @@ namespace Pruebas.PruebasLogica
             Genero comedia = new Genero() { Nombre = "comedia" };
             repo.AgregarGenero(comedia);
 
-            logica.ActualizarListadoGeneros(unPerfil, repo);
+            logica.ActualizarListadoGeneros(unPerfil, logicaGenero);
 
             Assert.IsTrue(logica.EstaGenero(unPerfil, comedia));
         }
@@ -272,6 +276,7 @@ namespace Pruebas.PruebasLogica
         public void ActualizarListadoPuntajeEliminandoGeneroTest()
         {
             GeneroRepo repo = new GeneroRepo();
+            ILogicaGenero logicaGenero = new LogicaGenero(repo);
             Genero terror = new Genero() { Nombre = "Terror" };
             repo.AgregarGenero(terror);
 
@@ -282,7 +287,7 @@ namespace Pruebas.PruebasLogica
             logica.AgregarGenero(unPerfil, comedia);
 
             repo.EliminarGenero(comedia);
-            logica.ActualizarListadoGeneros(unPerfil, repo);
+            logica.ActualizarListadoGeneros(unPerfil, logicaGenero);
 
             Assert.IsFalse(logica.EstaGenero(unPerfil, comedia));
         }

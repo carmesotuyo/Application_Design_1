@@ -10,12 +10,14 @@ namespace Logica.Interfaces
 {
     public interface ILogicaUsuario
     {
-        void RegistrarUsuario(Usuario usuario, RepoUsuarios repo);
+        void RegistrarUsuario(Usuario usuario);
 
-        Usuario IniciarSesion(string cuenta, string clave, RepoUsuarios repo);
+        Usuario IniciarSesion(string cuenta, string clave);
 
         void AgregarPerfil(Usuario usuario, Perfil perfil);
 
         void QuitarPerfil(Usuario usuario, Perfil perfil);
+
+        List<Usuario> Usuarios();
     }
 }

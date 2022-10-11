@@ -21,14 +21,14 @@ namespace Logica.Implementaciones
             return unPerfil;
         }
 
-        public override List<Pelicula> MostrarPeliculas(PeliculaRepo repo)
+        public override List<Pelicula> MostrarPeliculas(ILogicaPelicula logicaPelicula)
         {
-            return FiltrarPeliculasNoAptas(repo);
+            return FiltrarPeliculasNoAptas(logicaPelicula.Peliculas());
         }
 
-        private List<Pelicula> FiltrarPeliculasNoAptas(PeliculaRepo repo)
+        private List<Pelicula> FiltrarPeliculasNoAptas(List<Pelicula> peliculas)
         {
-            return repo.peliculas.Where(x => x.AptaTodoPublico == true).ToList();
+            return peliculas.Where(x => x.AptaTodoPublico == true).ToList();
         }
     }
 }
