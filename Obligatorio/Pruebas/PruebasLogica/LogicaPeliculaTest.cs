@@ -18,12 +18,19 @@ namespace Pruebas.PruebasLogica
         Pelicula unaPelicula = new Pelicula();
         PeliculaRepo repo = new PeliculaRepo();
         LogicaPelicula logica = new LogicaPelicula(new PeliculaRepo());
+        Usuario admin = new Usuario() { EsAdministrador = true };
+
+
+        Perfil unPerfil = new Perfil();
+        LogicaPerfil logicaPerfil = new LogicaPerfil();
+
+        Genero terror = new Genero() { Nombre = "Terror" };
+        Genero comedia = new Genero() { Nombre = "comedia" };
+        Genero accion = new Genero() { Nombre = "accion" };
 
         [TestMethod]
         public void AltaPeliculaTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-
             logica.AltaPelicula(unaPelicula, admin);
 
             Assert.IsTrue(logica.Peliculas().Contains(unaPelicula));
@@ -41,8 +48,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void BajaPeliculaTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-
             logica.BajaPelicula(unaPelicula, admin);
 
             Assert.IsFalse(repo.EstaPelicula(unaPelicula));
@@ -60,13 +65,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void OrdenarPeliculasPorGeneroTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Perfil unPerfil = new Perfil();
-
-            Genero terror = new Genero() { Nombre = "Terror" };
-            Genero comedia = new Genero() { Nombre = "Comedia" };
-            Genero accion = new Genero() { Nombre = "Acción" };
-
             Pelicula peliculaA = new Pelicula() { GeneroPrincipal = terror };
             Pelicula peliculaB = new Pelicula() { GeneroPrincipal = comedia };
             Pelicula peliculaC = new Pelicula() { GeneroPrincipal = accion };
@@ -88,10 +86,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void OrdenarPeliculasPorGeneroEmpateTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Perfil unPerfil = new Perfil();
-            Genero terror = new Genero() { Nombre = "Terror" };
-
             Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
             Pelicula peliculaB = new Pelicula() { Nombre = "La huerfana", GeneroPrincipal = terror };
             Pelicula peliculaC = new Pelicula() { Nombre = "Chucky", GeneroPrincipal = terror };
@@ -113,10 +107,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void OrdenarPeliculasPatrocinadasTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Perfil unPerfil = new Perfil();
-            Genero terror = new Genero() { Nombre = "Terror" };
-
             Pelicula peliculaA = new Pelicula()
             {
                 EsPatrocinada = false,
@@ -145,11 +135,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void OrdenarPeliculasPatrocinadasPorGeneroTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Perfil unPerfil = new Perfil();
-            Genero terror = new Genero() { Nombre = "Terror" };
-            Genero comedia = new Genero() { Nombre = "Comedia" };
-
             Pelicula peliculaA = new Pelicula()
             {
                 EsPatrocinada = true,
@@ -178,10 +163,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void OrdenarPeliculasPatrocinadasPorNombreTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Perfil unPerfil = new Perfil();
-            Genero terror = new Genero() { Nombre = "Terror" };
-
             Pelicula peliculaA = new Pelicula()
             {
                 EsPatrocinada = true,
@@ -210,10 +191,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void OrdenarPeliculasConMismoNombreTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Perfil unPerfil = new Perfil();
-            Genero terror = new Genero() { Nombre = "Terror" };
-
             Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
             Pelicula peliculaB = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
             Pelicula peliculaC = new Pelicula() { Nombre = "Chucky", GeneroPrincipal = terror };
@@ -235,14 +212,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void OrdenarPeliculasPorPuntajeGenerosTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Perfil unPerfil = new Perfil();
-            LogicaPerfil logicaPerfil = new LogicaPerfil();
-
-            Genero terror = new Genero() { Nombre = "Terror" };
-            Genero comedia = new Genero() { Nombre = "comedia" };
-            Genero accion = new Genero() { Nombre = "accion" };
-
             Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
             Pelicula peliculaB = new Pelicula() { Nombre = "Yes Man", GeneroPrincipal = comedia };
             Pelicula peliculaC = new Pelicula() { Nombre = "Avengers", GeneroPrincipal = accion };
@@ -275,13 +244,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void OrdenarPeliculasPorPuntajeAcumuladoGenerosTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Perfil unPerfil = new Perfil();
-            LogicaPerfil logicaPerfil = new LogicaPerfil();
-
-            Genero terror = new Genero() { Nombre = "Terror" };
-            Genero comedia = new Genero() { Nombre = "comedia" };
-
             Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
             Pelicula peliculaB = new Pelicula() { Nombre = "Yes Man", GeneroPrincipal = comedia };
             Pelicula peliculaC = new Pelicula() { Nombre = "Mamma Mia", GeneroPrincipal = comedia };
@@ -312,13 +274,6 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void OrdenarPeliculasPorPuntajeGenerosNegativoTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-            Perfil unPerfil = new Perfil();
-            LogicaPerfil logicaPerfil = new LogicaPerfil();
-
-            Genero terror = new Genero() { Nombre = "Terror" };
-            Genero comedia = new Genero() { Nombre = "comedia" };
-
             Pelicula peliculaA = new Pelicula() { Nombre = "It", GeneroPrincipal = terror };
             Pelicula peliculaB = new Pelicula() { Nombre = "Yes Man", GeneroPrincipal = comedia };
             Pelicula peliculaC = new Pelicula() { Nombre = "Mamma Mia", GeneroPrincipal = comedia };
@@ -350,11 +305,6 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(CriterioInexistenteException))]
         public void OrdenarConCriterioInexistenteTest()
         {
-            Usuario admin = new Usuario() { EsAdministrador = true };
-
-            Genero terror = new Genero() { Nombre = "Terror" };
-            Genero comedia = new Genero() { Nombre = "Comedia" };
-
             Pelicula peliculaA = new Pelicula() { GeneroPrincipal = terror };
             Pelicula peliculaB = new Pelicula() { GeneroPrincipal = comedia };
 
