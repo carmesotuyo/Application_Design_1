@@ -87,18 +87,11 @@ namespace Logica.Implementaciones
 
         private List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil)
         {
+            List<string> generos = unPerfil.PuntajeGeneros.OrderByDescending(g => g.Puntaje)
+                                                          .Select(g => g.Genero).ToList();
 
-            //string algo = unPerfil.PuntajeGeneros[0].Genero;
-
-            //List<GeneroPuntaje> generosPuntuados = unPerfil.PuntajeGeneros.OrderByDescending(g => g.Puntaje).ToList();
-
-            List<string> generos = unPerfil.PuntajeGeneros.OrderByDescending(g => g.Puntaje).Select(g => g.Genero).ToList();
-
-            //return Peliculas().OrderBy(p => p.GeneroPrincipal.Nombre = unPerfil.PuntajeGeneros.Genero)
-            //                    .ThenBy(p => p.Nombre).ToList();
-
-            return Peliculas().OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre)).ThenBy(p => p.Nombre).ToList();
-            //var sortedSamples = listB.OrderBy(x => listA.IndexOf(x.Letter));
+            return Peliculas().OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre))
+                              .ThenBy(p => p.Nombre).ToList();
         }
 
         public List<Pelicula> MostrarPeliculas(Perfil unPerfil)
