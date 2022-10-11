@@ -11,7 +11,6 @@ namespace Logica.Interfaces
     public interface ILogicaPerfil
     {
         Perfil AccederAlPerfil(Perfil unPerfil, int pin);
-        List<Pelicula> MostrarPeliculas(ILogicaPelicula logicaPelicula);
         void MarcarComoVista(Pelicula unaPelicula, Perfil unPerfil);
 
         void PuntuarNegativo(Pelicula unaPelicula, Perfil unPerfil);

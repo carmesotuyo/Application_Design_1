@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Repositorio;
 using Logica.Implementaciones;
+using Logica.Interfaces;
 using Logica.Exceptions;
 using System.Runtime.Remoting.Messaging;
 
@@ -16,7 +17,6 @@ namespace Pruebas.PruebasLogica
     public class LogicaPeliculaTest
     {
         Pelicula unaPelicula = new Pelicula();
-        PeliculaRepo repo = new PeliculaRepo();
         LogicaPelicula logica = new LogicaPelicula(new PeliculaRepo());
         Usuario admin = new Usuario() { EsAdministrador = true };
 
@@ -49,7 +49,40 @@ namespace Pruebas.PruebasLogica
         {
             logica.BajaPelicula(unaPelicula, admin);
 
-            Assert.IsFalse(repo.EstaPelicula(unaPelicula));
+            Assert.IsFalse(logica.Peliculas().Contains(unaPelicula));
+        }
+
+
+        [TestMethod]
+        public void FiltrarPeliculasNoAptasTest()
+        {
+            Pelicula peliculaApta = new Pelicula() { AptaTodoPublico = true };
+            Pelicula peliculaNoApta = new Pelicula() { AptaTodoPublico = false };
+
+            logica.AltaPelicula(peliculaApta);
+            logica.AltaPelicula(peliculaNoApta);
+
+            Perfil unPerfil = new Perfil() { EsInfantil = true };
+
+            List<Pelicula> soloAptas = logica.MostrarPeliculas(unPerfil);
+
+            Assert.IsTrue(soloAptas.Count == 1);
+        }
+
+        [TestMethod]
+        public void NoFiltrarSiNoEsInfantilTest()
+        {
+            Pelicula peliculaApta = new Pelicula() { AptaTodoPublico = true };
+            Pelicula peliculaNoApta = new Pelicula() { AptaTodoPublico = false };
+
+            logica.AltaPelicula(peliculaApta);
+            logica.AltaPelicula(peliculaNoApta);
+
+            Perfil unPerfil = new Perfil() { EsInfantil = false };
+
+            List<Pelicula> todas = logica.MostrarPeliculas(unPerfil);
+
+            Assert.AreEqual(todas, logica.Peliculas());
         }
 
         [TestMethod]
