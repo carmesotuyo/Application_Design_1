@@ -9,7 +9,4 @@ namespace Logica.Exceptions
     public class PerfilNoOwnerException : Exception
     {
     }
-    public class PerfilNoInfantilException : Exception
-    {
-    }
 }

@@ -36,5 +36,21 @@ namespace Logica.Implementaciones
         {
             throw new NotImplementedException();
         }
+
+        public List<Pelicula> MostrarPeliculas(Perfil unPerfil)
+        {
+            return FiltrarPeliculasSiEsInfantil(unPerfil);
+        }
+
+        public List<Pelicula> FiltrarPeliculasSiEsInfantil(Perfil unPerfil)
+        {
+            List<Pelicula> peliculas = Peliculas();
+
+            if (unPerfil.EsInfantil)
+            {
+                peliculas = Peliculas().Where(x => x.AptaTodoPublico == true).ToList();
+            }
+            return peliculas;
+        }
     }
 }

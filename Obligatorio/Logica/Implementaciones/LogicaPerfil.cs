@@ -22,7 +22,10 @@ namespace Logica.Implementaciones
 
         public virtual Perfil AccederAlPerfil(Perfil unPerfil, int pin)
         {
-            ValidarPin(unPerfil, pin);
+            if (!unPerfil.EsInfantil)
+            {
+                ValidarPin(unPerfil, pin);
+            }
             return unPerfil;
         }
 
@@ -32,11 +35,6 @@ namespace Logica.Implementaciones
             {
                 throw new PinIncorrectoException();
             }
-        }
-
-        public virtual List<Pelicula> MostrarPeliculas(ILogicaPelicula logicaPelicula)
-        {
-            return logicaPelicula.Peliculas();
         }
 
         public void MarcarComoVista(Pelicula unaPelicula, Perfil unPerfil)
