@@ -100,9 +100,9 @@ namespace Pruebas.PruebasLogica
         public void AccederAPerfilAdultoTest()
         {
             unPerfil.EsInfantil = false;
-            unPerfil.Pin = 1234;
+            unPerfil.Pin = 12345;
 
-            Perfil AccesoCorrecto = logica.AccederAlPerfil(unPerfil, 1234);
+            Perfil AccesoCorrecto = logica.AccederAlPerfil(unPerfil, 12345);
 
             Assert.IsTrue(AccesoCorrecto.Equals(unPerfil));
         }
@@ -112,17 +112,17 @@ namespace Pruebas.PruebasLogica
         public void AccederConPinIncorrectoTest()
         {
             unPerfil.EsInfantil = false;
-            unPerfil.Pin = 1234;
+            unPerfil.Pin = 12345;
 
-            Perfil AccesoIncorrecto = logica.AccederAlPerfil(unPerfil, 1111);
+            Perfil AccesoIncorrecto = logica.AccederAlPerfil(unPerfil, 11111);
         }
 
         [TestMethod]
         public void AccederAPerfilInfantilTest()
         {
             unPerfil.EsInfantil = true;
-            unPerfil.Pin = 1234;
-            int pinSinImportancia = 0;
+            unPerfil.Pin = 12345;
+            int pinSinImportancia = 10000;
 
             Perfil AccesoCorrecto = logica.AccederAlPerfil(unPerfil, pinSinImportancia);
 
