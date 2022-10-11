@@ -19,7 +19,7 @@ namespace Dominio
 
         private static int _minCharsAlias = 1;
         private static int _maxCharsAlias = 15;
-        private static int _minValorPin = 00000;
+        private static int _minValorPin = 10000;
         private static int _maxValorPin = 99999;
 
         public Perfil()

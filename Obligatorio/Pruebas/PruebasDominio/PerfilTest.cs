@@ -67,9 +67,9 @@ namespace Pruebas.PruebasDominio
         {
             Perfil unPerfil = new Perfil()
             {
-                Pin = 1234
+                Pin = 12345
             };
-            Assert.AreEqual(unPerfil.Pin, 1234);
+            Assert.AreEqual(unPerfil.Pin, 12345);
         }
 
         [TestMethod]
