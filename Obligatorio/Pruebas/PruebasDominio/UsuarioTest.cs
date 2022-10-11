@@ -152,6 +152,28 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
+        public void ClaveYConfirmacionCoincidenTest()
+        {
+            Usuario unUsuario = new Usuario()
+            {
+                Clave = "admin12345678",
+                ConfirmarClave = "admin12345678"
+            };
+            Assert.AreEqual(unUsuario.Clave, unUsuario.ConfirmarClave);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ClaveNoCoincideException))]
+        public void ClaveNoCoindiceConConfirmacionTest()
+        {
+            Usuario unUsuario = new Usuario()
+            {
+                Clave = "admin12345678",
+                ConfirmarClave = "incorrecta"
+            };
+        }
+
+        [TestMethod]
         public void DevolverNombreTest()
         {
             Usuario unUsuario = new Usuario()

@@ -17,9 +17,9 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaUsuarioTest
     {
-        Usuario usuario1 = new Usuario() { Nombre = "nombreDeUsuario1", Email = "juan@da1.com", Clave = "1234567890" };
-        Usuario usuario2 = new Usuario() { Nombre = "nombreDeUsuario2", Email = "juancho@da1.com", Clave = "1234567890" };
-        Usuario usuario3 = new Usuario() { Nombre = "nombreDeUsuario3", Email = "juana@da1.com", Clave = "1234567890" };
+        Usuario usuario1 = new Usuario() { Nombre = "nombreDeUsuario1", Email = "juan@da1.com", Clave = "1234567890", ConfirmarClave = "1234567890" };
+        Usuario usuario2 = new Usuario() { Nombre = "nombreDeUsuario2", Email = "juancho@da1.com", Clave = "1234567890", ConfirmarClave = "1234567890" };
+        //Usuario usuario3 = new Usuario() { Nombre = "nombreDeUsuario3", Email = "juana@da1.com", Clave = "1234567890", ConfirmarClave = "diferente" };
         ILogicaUsuario logica = new LogicaUsuario(new RepoUsuarios());
 
         [TestMethod]

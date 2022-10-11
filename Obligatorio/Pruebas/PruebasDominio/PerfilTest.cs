@@ -84,6 +84,28 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
+        public void PinYConfirmacionCoincidenTest()
+        {
+            Perfil unPerfil = new Perfil()
+            {
+                Pin = 12345,
+                ConfirmarPin = 12345
+            };
+            Assert.AreEqual(unPerfil.Pin, unPerfil.ConfirmarPin);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(PinNoCoincideException))]
+        public void PinNoCoincideConConfirmacionTest()
+        {
+            Perfil unPerfil = new Perfil()
+            {
+                Pin = 12345,
+                ConfirmarPin = 54321
+            };
+        }
+
+        [TestMethod]
         public void PerfilInfantilTest()
         {
             Perfil unPerfil = new Perfil()
