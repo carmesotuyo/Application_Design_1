@@ -33,12 +33,12 @@ namespace Logica.Implementaciones
             _logicaGenero.AgregarGenero(unGenero);
         }
 
-        public void AltaPelicula(Usuario admin, Pelicula unaPelicula)
-        {
-            BloquearUsuarioNoAdmin(admin);
-            _logicaPelicula.AltaPelicula(unaPelicula);
+        //public void AltaPelicula(Usuario admin, Pelicula unaPelicula)
+        //{
+        //    BloquearUsuarioNoAdmin(admin);
+        //    _logicaPelicula.AltaPelicula(unaPelicula);
             
-        }
+        //}
 
         public void BajaGenero(Usuario admin, Genero unGenero)
         {
@@ -46,35 +46,35 @@ namespace Logica.Implementaciones
             _logicaGenero.EliminarGenero(unGenero, _logicaPelicula);
         }
 
-        public void BajaPelicula(Usuario admin, Pelicula unaPelicula)
-        {
-            BloquearUsuarioNoAdmin(admin);
-            _logicaPelicula.BajaPelicula(unaPelicula);
-        }
+        //public void BajaPelicula(Usuario admin, Pelicula unaPelicula)
+        //{
+        //    BloquearUsuarioNoAdmin(admin);
+        //    _logicaPelicula.BajaPelicula(unaPelicula);
+        //}
 
-        private static void BloquearUsuarioNoAdmin(Usuario admin)
-        {
-            if (!admin.EsAdministrador)
-            {
-                throw new UsuarioNoPermitidoException();
-            }
-        }
+        //private static void BloquearUsuarioNoAdmin(Usuario admin)
+        //{
+        //    if (!admin.EsAdministrador)
+        //    {
+        //        throw new UsuarioNoPermitidoException();
+        //    }
+        //}
 
         //Se pretende cambiar el orden de la lista general?
         //pasar por parametro a la logica de pelis, tal; vez que logica de pelis tenga un atributo que sea pelis para mostrar
-        public List<Pelicula> OrdenarPorGenero(Usuario admin)
-        {
-            BloquearUsuarioNoAdmin(admin);
-            return _logicaPelicula.Peliculas().OrderBy(p => p.GeneroPrincipal.Nombre).ThenBy(p => p.Nombre).ToList();
-        }
+        //public List<Pelicula> OrdenarPorGenero(Usuario admin)
+        //{
+        //    BloquearUsuarioNoAdmin(admin);
+        //    return _logicaPelicula.Peliculas().OrderBy(p => p.GeneroPrincipal.Nombre).ThenBy(p => p.Nombre).ToList();
+        //}
 
         
-        public List<Pelicula> OrdenarPorPatrocinio(Usuario admin)
-        {
-            BloquearUsuarioNoAdmin(admin);
-            return _logicaPelicula.Peliculas().OrderBy(p => p.EsPatrocinada = true)
-                                 .ThenBy(p => p.GeneroPrincipal.Nombre)
-                                 .ThenBy(p => p.Nombre).ToList();
-        }
+        //public List<Pelicula> OrdenarPorPatrocinio(Usuario admin)
+        //{
+        //    BloquearUsuarioNoAdmin(admin);
+        //    return _logicaPelicula.Peliculas().OrderBy(p => p.EsPatrocinada = true)
+        //                         .ThenBy(p => p.GeneroPrincipal.Nombre)
+        //                         .ThenBy(p => p.Nombre).ToList();
+        //}
     }
 }

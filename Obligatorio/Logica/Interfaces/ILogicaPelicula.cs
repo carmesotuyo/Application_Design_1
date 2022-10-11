@@ -10,9 +10,10 @@ namespace Logica.Interfaces
 {
     public interface ILogicaPelicula
     {
-        void AltaPelicula(Pelicula pelicula);
-        void BajaPelicula(Pelicula pelicula);
-        void VerInformacionDePelicula(Pelicula pelicula);
+        void AltaPelicula(Pelicula pelicula, Usuario usuarioAdmin);
+        void BajaPelicula(Pelicula pelicula, Usuario usuarioAdmin);
+        void ElegirCriterioOrden(Usuario usuarioAdmin, int criterio);
+        List<Pelicula> MostrarPeliculas(Perfil unPerfil);
         List<Pelicula> Peliculas();
     }
 }
