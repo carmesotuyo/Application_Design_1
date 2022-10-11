@@ -133,7 +133,7 @@ namespace Pruebas.PruebasLogica
         public void MarcarPerfilComoInfantilTest()
         {
             unPerfil.EsOwner = true;
-            Perfil perfilInfantil = new Perfil() { EsInfantil = false };
+            Perfil perfilInfantil = new Perfil() { Alias = "fer", EsInfantil = false };
             Usuario usuario = new Usuario();
             logicaUsuario.AgregarPerfil(usuario, unPerfil);
             logicaUsuario.AgregarPerfil(usuario, perfilInfantil);
@@ -148,8 +148,8 @@ namespace Pruebas.PruebasLogica
         public void MarcarPerfilComoInfantilSinPermisosTest()
         {
             unPerfil.EsOwner = false;
-            Perfil perfilOwner = new Perfil() { EsOwner = true };
-            Perfil perfilInfantil = new Perfil() { EsInfantil = false };
+            Perfil perfilOwner = new Perfil() { Alias = "carme", EsOwner = true };
+            Perfil perfilInfantil = new Perfil() { Alias = "fer", EsInfantil = false };
             Usuario usuario = new Usuario();
 
             logicaUsuario.AgregarPerfil(usuario, perfilOwner);
@@ -164,7 +164,7 @@ namespace Pruebas.PruebasLogica
         public void MarcarOwnerComoInfantilTest()
         {
             unPerfil.EsOwner = true;
-            Perfil otroOwner = new Perfil() { EsOwner = true };
+            Perfil otroOwner = new Perfil() { Alias = "carme", EsOwner = true };
             Usuario unUsuario = new Usuario();
 
             logicaUsuario.AgregarPerfil(unUsuario, unPerfil);

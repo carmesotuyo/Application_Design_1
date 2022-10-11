@@ -120,11 +120,11 @@ namespace Pruebas.PruebasLogica
         public void AgregarMasDe4PerfilesTest()
         {
             Usuario unUsuario = new Usuario();
-            Perfil unPerfil = new Perfil();
-            Perfil unPerfil2 = new Perfil();
-            Perfil unPerfil3 = new Perfil();
-            Perfil unPerfil4 = new Perfil();
-            Perfil unPerfil5 = new Perfil();
+            Perfil unPerfil = new Perfil() { Alias = "carme" };
+            Perfil unPerfil2 = new Perfil() { Alias = "fer" };
+            Perfil unPerfil3 = new Perfil() { Alias = "carmela" };
+            Perfil unPerfil4 = new Perfil() { Alias = "fernando" };
+            Perfil unPerfil5 = new Perfil() { Alias = "ultimo" };
             logica.AgregarPerfil(unUsuario, unPerfil);
             logica.AgregarPerfil(unUsuario, unPerfil2);
             logica.AgregarPerfil(unUsuario, unPerfil3);
@@ -147,8 +147,8 @@ namespace Pruebas.PruebasLogica
         public void AgregarPerfilIntermedioTest()
         {
             Usuario unUsuario = new Usuario();
-            Perfil unPerfil = new Perfil();
-            Perfil otroPerfil = new Perfil();
+            Perfil unPerfil = new Perfil() { Alias = "carme" };
+            Perfil otroPerfil = new Perfil() { Alias = "fer" };
 
             logica.AgregarPerfil(unUsuario, unPerfil);
             logica.AgregarPerfil(unUsuario, otroPerfil);
@@ -157,11 +157,23 @@ namespace Pruebas.PruebasLogica
         }
 
         [TestMethod]
+        [ExpectedException(typeof(AliasRepetidoException))]
+        public void AgregarPerfilAliasRepetidoTest()
+        {
+            Usuario unUsuario = new Usuario();
+            Perfil unPerfil = new Perfil() { Alias = "carme" };
+            Perfil otroPerfil = new Perfil() { Alias = "carme" };
+
+            logica.AgregarPerfil(unUsuario, unPerfil);
+            logica.AgregarPerfil(unUsuario, otroPerfil);
+        }
+
+        [TestMethod]
         public void QuitarPerfilTest()
         {
             Usuario usuario = new Usuario();
-            Perfil unPerfil = new Perfil();
-            Perfil otroPerfil = new Perfil();
+            Perfil unPerfil = new Perfil() { Alias = "carme" };
+            Perfil otroPerfil = new Perfil() { Alias = "fer" };
 
             logica.AgregarPerfil(usuario, unPerfil);
             logica.AgregarPerfil(usuario, otroPerfil);

@@ -9,6 +9,7 @@ namespace Logica.Exceptions
     public class NombreUsuarioExistenteException : Exception
     {
     }
+
     public class EmailExistenteException : Exception
     {
     }
@@ -16,7 +17,12 @@ namespace Logica.Exceptions
     public class NombreOEmailIncorrectoException : Exception 
     {
     }
+
     public class ClaveIncorrectaException : Exception
+    {
+    }
+
+    public class AliasRepetidoException : Exception
     {
     }
 }
