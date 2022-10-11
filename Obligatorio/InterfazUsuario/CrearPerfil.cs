@@ -35,6 +35,7 @@ namespace InterfazUsuario
                 {
                     Alias = txtAlias.Text,
                     Pin = int.Parse(txtPin.Text),
+                    ConfirmarPin = int.Parse(txtPinConfirm.Text)
                 };
                 _logicaUsuario.AgregarPerfil(_usuario, perfil);
                 MessageBox.Show($"Se creó el perfil {perfil} del usuario {_usuario}");
@@ -47,6 +48,10 @@ namespace InterfazUsuario
             catch (PinInvalidoException)
             {
                 MessageBox.Show("Pin inválido");
+            }
+            catch (PinNoCoincideException)
+            {
+                MessageBox.Show("El pin y su confirmación no son iguales");
             }
         }
     }
