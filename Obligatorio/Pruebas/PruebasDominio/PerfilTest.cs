@@ -74,9 +74,20 @@ namespace Pruebas.PruebasDominio
 
         [TestMethod]
         [ExpectedException(typeof(PinInvalidoException))]
-        public void PinInvalidoTest()
+        public void PinInvalidoLargoTest()
         {
             int PinInvalido = 123456;
+            Perfil unPerfil = new Perfil()
+            {
+                Pin = PinInvalido
+            };
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(PinInvalidoException))]
+        public void PinInvalidoCortoTest()
+        {
+            int PinInvalido = 1234;
             Perfil unPerfil = new Perfil()
             {
                 Pin = PinInvalido

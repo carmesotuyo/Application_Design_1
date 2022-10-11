@@ -19,8 +19,7 @@ namespace Dominio
 
         private static int _minCharsAlias = 1;
         private static int _maxCharsAlias = 15;
-        private static int _minValorPin = 10000;
-        private static int _maxValorPin = 99999;
+        private static int _cantDigitosPin = 5;
 
         public Perfil()
         {
@@ -69,7 +68,7 @@ namespace Dominio
 
         private void ValidarPin(int value)
         {
-            if (value < _minValorPin || value > _maxValorPin) {
+            if (value.ToString().Length != _cantDigitosPin) {
                 throw new PinInvalidoException();
             }
             
