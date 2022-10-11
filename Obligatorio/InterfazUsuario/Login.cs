@@ -17,15 +17,18 @@ namespace InterfazUsuario
     public partial class Login : UserControl
     {
         private ILogicaUsuario _logica;
-        public Login(ILogicaUsuario logica)
+        Threat_Level_Midnight_Entertainment _ventanaPrincipal;
+
+        public Login(ILogicaUsuario logica, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             _logica = logica;
+            _ventanaPrincipal = ventanaPrincipal;
             InitializeComponent();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            _ventanaPrincipal.CambiarRegistroUsuario();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -33,11 +36,13 @@ namespace InterfazUsuario
             try
             {
                 _logica.IniciarSesion(txtCuenta.Text, txtClave.Text);
-                MessageBox.Show("Inicio de sesión exitosa");
-            } catch(NombreOEmailIncorrectoException)
+                MessageBox.Show($"Has iniciado sesión con {txtCuenta.Text}");
+            } 
+            catch(NombreOEmailIncorrectoException)
             {
                 MessageBox.Show("Nombre o email incorrecto");
-            }catch(ClaveIncorrectaException)
+            }
+            catch(ClaveIncorrectaException)
             {
                 MessageBox.Show("Clave incorrecta");
             }

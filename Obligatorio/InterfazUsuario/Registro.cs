@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using Dominio.Exceptions;
+using Logica.Exceptions;
 using Logica.Implementaciones;
 using Logica.Interfaces;
 using System;
@@ -17,9 +18,12 @@ namespace InterfazUsuario
     public partial class Registro : UserControl
     {
         private ILogicaUsuario _logica;
-        public Registro(ILogicaUsuario logica)
+        Threat_Level_Midnight_Entertainment _ventanaPrincipal;
+
+        public Registro(ILogicaUsuario logica, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             _logica = logica;
+            _ventanaPrincipal = ventanaPrincipal;
             InitializeComponent();
         }
 
@@ -34,31 +38,35 @@ namespace InterfazUsuario
                     Clave = txtClave.Text,
                 };
                 _logica.RegistrarUsuario(usuario);
-                MessageBox.Show("Usuario Registrado con exito!");
-            } catch (NombreUsuarioException)
+                MessageBox.Show($"El usuario {usuario} se registró con exito!");
+                _ventanaPrincipal.CambiarRegistroPerfil(usuario);
+            } 
+            catch (NombreUsuarioException)
             {
                 MessageBox.Show("Ese nombre de usuario no da");
             }
             catch (EmailInvalidoException)
             {
-                MessageBox.Show("Ese mail no");
+                MessageBox.Show("Email inválido");
             }
             catch (ClaveInvalidaException)
             {
-                MessageBox.Show("Con esa clave te hackean");
+                MessageBox.Show("Clave inválida");
+            }
+            catch (NombreUsuarioExistenteException)
+            {
+                MessageBox.Show("El nombre de usuario ya está en uso");
+            }
+            catch (EmailExistenteException)
+            {
+                MessageBox.Show("El email ya está en uso");
             }
         }
 
         private void lblLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            
+            _ventanaPrincipal.CambiarLogin();
         }
 
-        private void Registro_Load(object sender, EventArgs e)
-        {
-            //flpPanelPrincipal.Controls.Clear();
-            //flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario));
-            //flpPanelPrincipal.Controls.Add(new Registro(_logicaUsuario));
-        }
     }
 }

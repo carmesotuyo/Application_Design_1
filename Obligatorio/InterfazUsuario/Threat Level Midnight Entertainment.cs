@@ -1,4 +1,5 @@
-﻿using Logica.Implementaciones;
+﻿using Dominio;
+using Logica.Implementaciones;
 using Logica.Interfaces;
 using Repositorio;
 using System;
@@ -30,8 +31,24 @@ namespace InterfazUsuario
 
             InitializeComponent();
             flpPanelPrincipal.Controls.Clear();
-            //flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario));
-            flpPanelPrincipal.Controls.Add(new Registro(_logicaUsuario));
+            flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
+            
+        }
+
+        public void CambiarRegistroUsuario()
+        {
+            flpPanelPrincipal.Controls.Clear();
+            flpPanelPrincipal.Controls.Add(new Registro(_logicaUsuario, this));
+        }
+        public void CambiarLogin()
+        {
+            flpPanelPrincipal.Controls.Clear();
+            flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
+        }
+        public void CambiarRegistroPerfil(Usuario usuario)
+        {
+            flpPanelPrincipal.Controls.Clear();
+            flpPanelPrincipal.Controls.Add(new CrearPerfil(usuario, _logicaUsuario, this));
         }
 
         private void flpPanelPrincipal_Paint(object sender, PaintEventArgs e)

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.txtAlias = new System.Windows.Forms.TextBox();
-            this.btnLogin = new System.Windows.Forms.Button();
+            this.btnCrear = new System.Windows.Forms.Button();
             this.txtPin = new System.Windows.Forms.TextBox();
             this.lblNuevoPerfil = new System.Windows.Forms.Label();
             this.txtPinConfirm = new System.Windows.Forms.TextBox();
@@ -46,17 +46,18 @@
             this.txtAlias.TabIndex = 5;
             this.txtAlias.Text = "Alias";
             // 
-            // btnLogin
+            // btnCrear
             // 
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(277, 360);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(409, 34);
-            this.btnLogin.TabIndex = 7;
-            this.btnLogin.Text = "Iniciar sesión";
-            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnCrear.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCrear.Location = new System.Drawing.Point(277, 360);
+            this.btnCrear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCrear.Name = "btnCrear";
+            this.btnCrear.Size = new System.Drawing.Size(409, 34);
+            this.btnCrear.TabIndex = 7;
+            this.btnCrear.Text = "Crear perfil";
+            this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // txtPin
             // 
@@ -98,7 +99,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Controls.Add(this.txtPinConfirm);
             this.Controls.Add(this.txtAlias);
-            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.txtPin);
             this.Controls.Add(this.lblNuevoPerfil);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -112,7 +113,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtAlias;
-        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.TextBox txtPin;
         private System.Windows.Forms.Label lblNuevoPerfil;
         private System.Windows.Forms.TextBox txtPinConfirm;
