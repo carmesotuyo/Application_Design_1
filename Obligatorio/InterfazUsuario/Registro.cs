@@ -36,6 +36,7 @@ namespace InterfazUsuario
                     Nombre = txtUserName.Text,
                     Email = txtEmail.Text,
                     Clave = txtClave.Text,
+                    ConfirmarClave = txtConfClave.Text
                 };
                 _logica.RegistrarUsuario(usuario);
                 MessageBox.Show($"El usuario {usuario} se registró con exito!");
@@ -60,6 +61,10 @@ namespace InterfazUsuario
             catch (EmailExistenteException)
             {
                 MessageBox.Show("El email ya está en uso");
+            }
+            catch (ClaveNoCoincideException)
+            {
+                MessageBox.Show("Las contraseñas no coinciden");
             }
         }
 
