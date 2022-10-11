@@ -11,6 +11,7 @@ namespace Dominio
     {
         private string _alias;
         private int _pin;
+        private int _confirmarPin;
         private bool _esInfantil;
         private bool _esOwner;
         private List<GeneroPuntaje> _puntajeGeneros;
@@ -72,6 +73,16 @@ namespace Dominio
                 throw new PinInvalidoException();
             }
             
+        }
+
+        public int ConfirmarPin { get => _confirmarPin; set { ChequearConfirmacionPin(value); _confirmarPin = value; } }
+
+        private void ChequearConfirmacionPin(int confirmacionPin)
+        {
+            if (!confirmacionPin.Equals(_pin))
+            {
+                throw new PinNoCoincideException();
+            }
         }
 
         public bool EsOwner { get => _esOwner; set => _esOwner = value; }
