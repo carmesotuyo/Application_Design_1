@@ -33,11 +33,11 @@
             // 
             // flpPanelPrincipal
             // 
-            this.flpPanelPrincipal.Location = new System.Drawing.Point(1, 2);
-            this.flpPanelPrincipal.MaximumSize = new System.Drawing.Size(800, 600);
-            this.flpPanelPrincipal.MinimumSize = new System.Drawing.Size(800, 600);
+            this.flpPanelPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.flpPanelPrincipal.MaximumSize = new System.Drawing.Size(983, 704);
+            this.flpPanelPrincipal.MinimumSize = new System.Drawing.Size(983, 704);
             this.flpPanelPrincipal.Name = "flpPanelPrincipal";
-            this.flpPanelPrincipal.Size = new System.Drawing.Size(800, 600);
+            this.flpPanelPrincipal.Size = new System.Drawing.Size(983, 704);
             this.flpPanelPrincipal.TabIndex = 0;
             this.flpPanelPrincipal.Paint += new System.Windows.Forms.PaintEventHandler(this.flpPanelPrincipal_Paint);
             // 
@@ -48,7 +48,11 @@
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(982, 703);
             this.Controls.Add(this.flpPanelPrincipal);
+            this.MaximumSize = new System.Drawing.Size(1000, 750);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1000, 750);
             this.Name = "Threat_Level_Midnight_Entertainment";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Threat_Level_Midnight_Entertainment";
             this.ResumeLayout(false);
 
