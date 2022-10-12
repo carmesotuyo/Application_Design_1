@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Logica.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +16,17 @@ namespace InterfazUsuario
     {
         private Usuario _usuario;
         private Perfil _perfil;
+        private ILogicaGenero _logicaGenero;
+        private ILogicaPelicula _logicaPelicula;
         private Threat_Level_Midnight_Entertainment _ventanaPrincipal;
-        public MenuAdmin(Usuario usuario, Perfil perfil, Threat_Level_Midnight_Entertainment ventanaPrincipal)
+        public MenuAdmin(Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPelicula logicaPelicula, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             InitializeComponent();
             flpAdministrador.Controls.Clear();
             flpAdministrador.Controls.Add(new AgregarPelicula(this));
             _ventanaPrincipal = ventanaPrincipal;
+            _logicaGenero = logicaGenero;
+            _logicaPelicula = logicaPelicula;
             _usuario = usuario;
             _perfil = perfil;
         }
@@ -44,12 +49,12 @@ namespace InterfazUsuario
         public void CambiarAgregarGenero()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new AgregarGenero(this));
+            flpAdministrador.Controls.Add(new AgregarGenero(_usuario, _logicaGenero, this));
         }
         public void CambiarQuitarGenero()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new QuitarGenero(this));
+            flpAdministrador.Controls.Add(new QuitarGenero(_usuario, _logicaGenero, _logicaPelicula, this));
         }
 
         private void btnAltaPeli_Click(object sender, EventArgs e)

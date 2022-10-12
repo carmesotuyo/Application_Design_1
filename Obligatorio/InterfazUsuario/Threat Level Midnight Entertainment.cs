@@ -32,9 +32,7 @@ namespace InterfazUsuario
             InitializeComponent();
             flpPanelPrincipal.Controls.Clear();
             flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
-            //flpPanelPrincipal.Controls.Add(new MenuAdmin(this));
             CredencialesAdmin();
-
         }
 
         private void CredencialesAdmin()
@@ -49,7 +47,7 @@ namespace InterfazUsuario
             };
             _logicaUsuario.RegistrarUsuario(admin);
         }
-
+       
         public void CambiarRegistroUsuario()
         {
             flpPanelPrincipal.Controls.Clear();
@@ -78,7 +76,7 @@ namespace InterfazUsuario
         public void CambiarMenuAdmin(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, this));
+            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, _logicaGenero, _logicaPelicula, this));
         }
     }
 }
