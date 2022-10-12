@@ -103,13 +103,7 @@ namespace Dominio
             }
         }
 
-        public List<Perfil> Perfiles
-        {
-            get => _listaPerfiles; set
-            {
-                _listaPerfiles = value;
-            }
-        }
+        public List<Perfil> Perfiles { get => _listaPerfiles; }
 
         public bool EsAdministrador { get => _esAdmin; set => _esAdmin = value; }
 
