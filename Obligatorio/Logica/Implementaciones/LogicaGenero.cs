@@ -71,7 +71,7 @@ namespace Logica.Implementaciones
             }
         }
 
-        public List<Genero> Generos()
+        public IList<Genero> Generos()
         {
             return _repo.Generos();
         }

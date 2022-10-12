@@ -205,6 +205,7 @@
             this.Controls.Add(this.lblTitulo);
             this.Name = "AgregarPelicula";
             this.Size = new System.Drawing.Size(794, 533);
+            this.Load += new System.EventHandler(this.AgregarPelicula_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imgPoster)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

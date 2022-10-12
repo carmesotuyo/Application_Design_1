@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Logica.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +16,14 @@ namespace InterfazUsuario
     {
         private Usuario _usuario;
         private Perfil _perfil;
+        private ILogicaPelicula _logicaPelicula;
+        private ILogicaGenero _logicaGenero;
         private Threat_Level_Midnight_Entertainment _ventanaPrincipal;
-        public MenuAdmin(Usuario usuario, Perfil perfil, Threat_Level_Midnight_Entertainment ventanaPrincipal)
+        public MenuAdmin(Usuario usuario, Perfil perfil, ILogicaPelicula logicaPelicula, ILogicaGenero logicaGenero, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             InitializeComponent();
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new AgregarPelicula(this));
+            flpAdministrador.Controls.Add(new AgregarPelicula(_usuario, _logicaPelicula, _logicaGenero, this));
             _ventanaPrincipal = ventanaPrincipal;
             _usuario = usuario;
             _perfil = perfil;
@@ -29,7 +32,7 @@ namespace InterfazUsuario
         public void CambiarAgregarPeli()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new AgregarPelicula(this));
+            flpAdministrador.Controls.Add(new AgregarPelicula(_usuario, _logicaPelicula, _logicaGenero, this));
         }
         public void CambiarQuitarPeli()
         {

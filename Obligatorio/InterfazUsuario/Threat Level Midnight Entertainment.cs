@@ -31,26 +31,44 @@ namespace InterfazUsuario
 
             InitializeComponent();
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
-            flpPanelPrincipal.Controls.Add(new MenuAdmin(_usuario, _perfil, this));
-            CredencialesAdmin();
+            //flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
+            //Prueba Agregar Peli
+            Usuario admin = CredencialesAdmin();
+            Perfil perfilAdmin = Perfiladmin(admin);
+            flpPanelPrincipal.Controls.Add(new MenuAdmin(admin, perfilAdmin, _logicaPelicula, _logicaGenero, this));
+        }    
 
-        }
-
-        private void CredencialesAdmin()
+    //Cambiar para que sea void!!
+    private Usuario CredencialesAdmin()
+    {
+        Usuario admin = new Usuario()
         {
-            Usuario admin = new Usuario()
-            {
-                Nombre = "administrador",
-                Email = "admin@admin.com",
-                Clave = "admin12345",
-                ConfirmarClave = "admin12345",
-                EsAdministrador = true
-            };
-            _logicaUsuario.RegistrarUsuario(admin);
-        }
+            Nombre = "administrador",
+            Email = "admin@admin.com",
+            Clave = "admin12345",
+            ConfirmarClave = "admin12345",
+            EsAdministrador = true
+        };
+        _logicaUsuario.RegistrarUsuario(admin);
+        return admin;
+    }
+    //===========================================================================
+    //Borrar este metodo despues de terminar Lista Perfiles
+    private Perfil Perfiladmin(Usuario usuario)
+    {
+        Perfil perfil = new Perfil()
+        {
+            Alias = "admin",
+            Pin = 12345,
+            ConfirmarPin = 12345,
+            EsOwner = true
+        };
+        _logicaUsuario.AgregarPerfil(usuario, perfil);
+        return perfil;
+    }
+    //=========================================================================
 
-        public void CambiarRegistroUsuario()
+    public void CambiarRegistroUsuario()
         {
             flpPanelPrincipal.Controls.Clear();
             flpPanelPrincipal.Controls.Add(new Registro(_logicaUsuario, this));
@@ -78,7 +96,7 @@ namespace InterfazUsuario
         public void CambiarMenuAdmin(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, this));
+            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, _logicaPelicula, _logicaGenero, this));
         }
     }
 }
