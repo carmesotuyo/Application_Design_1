@@ -28,6 +28,7 @@ namespace InterfazUsuario
             _menuAdmin = menuAdmin;
             _usuario = usuario;
             InitializeComponent();
+            cbGeneros.Items.AddRange(_logicaGenero.Generos().ToArray());
         }
 
         private void AgregarPelicula_Load(object sender, EventArgs e)
@@ -37,7 +38,7 @@ namespace InterfazUsuario
         private void ActualizarComboGeneros()
         {
             //cbGeneros.Items.Clear();
-            //cbGeneros.Items.AddRange(_logicaGenero.Generos().ToArray());
+           // cbGeneros.Items.AddRange(_logicaGenero.Generos().ToArray());
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

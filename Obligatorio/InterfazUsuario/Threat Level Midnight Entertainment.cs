@@ -35,7 +35,7 @@ namespace InterfazUsuario
             //Prueba Agregar Peli
             Usuario admin = CredencialesAdmin();
             Perfil perfilAdmin = Perfiladmin(admin);
-            flpPanelPrincipal.Controls.Add(new MenuAdmin(admin, perfilAdmin, _logicaPelicula, _logicaGenero, this));
+            flpPanelPrincipal.Controls.Add(new MenuAdmin(admin, perfilAdmin, _logicaGenero, _logicaPelicula, this));
         }    
 
     //Cambiar para que sea void!!
@@ -96,7 +96,7 @@ namespace InterfazUsuario
         public void CambiarMenuAdmin(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, _logicaPelicula, _logicaGenero, this));
+            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, _logicaGenero, _logicaPelicula, this));
         }
     }
 }
