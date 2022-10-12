@@ -110,8 +110,6 @@ namespace Logica.Implementaciones
                 case 2:
                     peliculasAMostrar = OrdenarPorPuntaje(unPerfil, peliculasAMostrar);
                     break;
-                default:
-                    throw new CriterioInexistenteException();
             }
             return peliculasAMostrar;
         }
