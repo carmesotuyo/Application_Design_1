@@ -126,5 +126,15 @@ namespace Pruebas.PruebasLogica
             logica.AgregarGenero(admin, otroGenero);
             logica.EliminarGenero(admin, otroGenero, logicaPeli);
         }
+
+        [TestMethod]
+        public void DarGeneroTest()
+        {
+            Genero unGenero = new Genero() { Nombre = "Comedia" };
+
+            string generoDevuelto = logica.DarGenero(unGenero);
+
+            Assert.AreEqual(generoDevuelto, "Comedia");
+        }
     }
 }

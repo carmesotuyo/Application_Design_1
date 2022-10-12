@@ -15,5 +15,6 @@ namespace Logica.Interfaces
         void ElegirCriterioOrden(Usuario usuarioAdmin, int criterio);
         List<Pelicula> MostrarPeliculas(Perfil unPerfil);
         List<Pelicula> Peliculas();
+        string DarPelicula(Pelicula pelicula);
     }
 }

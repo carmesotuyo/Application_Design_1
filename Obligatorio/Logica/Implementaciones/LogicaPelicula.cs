@@ -126,5 +126,10 @@ namespace Logica.Implementaciones
             }
             return peliculas;
         }
+
+        public string DarPelicula(Pelicula pelicula)
+        {
+            return pelicula.ToString();
+        }
     }
 }

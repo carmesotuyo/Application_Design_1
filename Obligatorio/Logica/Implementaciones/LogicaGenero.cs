@@ -75,5 +75,10 @@ namespace Logica.Implementaciones
         {
             return _repo.Generos();
         }
+
+        public string DarGenero(Genero genero)
+        {
+            return genero.ToString();
+        }
     }
 }

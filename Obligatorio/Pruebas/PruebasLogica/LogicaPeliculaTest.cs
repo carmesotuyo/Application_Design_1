@@ -395,5 +395,15 @@ namespace Pruebas.PruebasLogica
             logica.ElegirCriterioOrden(admin, criterioInvalido);
         }
 
+        [TestMethod]
+        public void DarPeliculaTest()
+        {
+            unaPelicula.Nombre = "Harry Potter";
+
+            string peliculaDevuelta = logica.DarPelicula(unaPelicula);
+
+            Assert.AreEqual(peliculaDevuelta, "Harry Potter");
+        }
+
     }
 }
