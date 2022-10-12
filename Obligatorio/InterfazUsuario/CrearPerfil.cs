@@ -39,7 +39,7 @@ namespace InterfazUsuario
                 };
                 _logicaUsuario.AgregarPerfil(_usuario, perfil);
                 MessageBox.Show($"Se creó el perfil {perfil} del usuario {_usuario}");
-                _ventanaPrincipal.CambiarLogin();
+                _ventanaPrincipal.CambiarMenuPeliculas(_usuario, perfil);
             }
             catch (AliasInvalidoException)
             {
@@ -52,6 +52,14 @@ namespace InterfazUsuario
             catch (PinNoCoincideException)
             {
                 MessageBox.Show("El pin y su confirmación no son iguales");
+            }
+            catch (System.FormatException)
+            {
+                MessageBox.Show("El pin solo debe contener numeros");
+            }
+            catch (LimiteDePerfilesException)
+            {
+                MessageBox.Show("Solo puede tener hasta 4 perfiles");
             }
         }
     }
