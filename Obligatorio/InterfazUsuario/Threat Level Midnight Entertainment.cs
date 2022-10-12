@@ -31,44 +31,24 @@ namespace InterfazUsuario
 
             InitializeComponent();
             flpPanelPrincipal.Controls.Clear();
-            //flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
-            //Prueba Agregar Peli
-            Usuario admin = CredencialesAdmin();
-            Perfil perfilAdmin = Perfiladmin(admin);
-            flpPanelPrincipal.Controls.Add(new MenuAdmin(admin, perfilAdmin, _logicaGenero, _logicaPelicula, this));
-        }    
+            flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
+            CredencialesAdmin();
+        }
 
-    //Cambiar para que sea void!!
-    private Usuario CredencialesAdmin()
-    {
-        Usuario admin = new Usuario()
+        private void CredencialesAdmin()
         {
-            Nombre = "administrador",
-            Email = "admin@admin.com",
-            Clave = "admin12345",
-            ConfirmarClave = "admin12345",
-            EsAdministrador = true
-        };
-        _logicaUsuario.RegistrarUsuario(admin);
-        return admin;
-    }
-    //===========================================================================
-    //Borrar este metodo despues de terminar Lista Perfiles
-    private Perfil Perfiladmin(Usuario usuario)
-    {
-        Perfil perfil = new Perfil()
-        {
-            Alias = "admin",
-            Pin = 12345,
-            ConfirmarPin = 12345,
-            EsOwner = true
-        };
-        _logicaUsuario.AgregarPerfil(usuario, perfil);
-        return perfil;
-    }
-    //=========================================================================
+            Usuario admin = new Usuario()
+            {
+                Nombre = "administrador",
+                Email = "admin@admin.com",
+                Clave = "admin12345",
+                ConfirmarClave = "admin12345",
+                EsAdministrador = true
+            };
+            _logicaUsuario.RegistrarUsuario(admin);
+        }
 
-    public void CambiarRegistroUsuario()
+        public void CambiarRegistroUsuario()
         {
             flpPanelPrincipal.Controls.Clear();
             flpPanelPrincipal.Controls.Add(new Registro(_logicaUsuario, this));

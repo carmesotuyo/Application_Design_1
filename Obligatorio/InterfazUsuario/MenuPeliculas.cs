@@ -26,12 +26,12 @@ namespace InterfazUsuario
             _logicaPelicula = logicaPelicula;
             
             InitializeComponent();
-            botonAdmin(_usuario);
+            botonAdmin(_usuario, _perfil);
         }
 
-        void botonAdmin(Usuario usuario)
+        void botonAdmin(Usuario usuario, Perfil perfil)
         {
-            if (!usuario.EsAdministrador)
+            if (!usuario.EsAdministrador || !perfil.EsOwner)
             {
                 btnAdmin.Visible = false;
             }

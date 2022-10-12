@@ -49,12 +49,12 @@ namespace InterfazUsuario
         public void CambiarAgregarGenero()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new AgregarGenero(this));
+            flpAdministrador.Controls.Add(new AgregarGenero(_usuario, _logicaGenero, this));
         }
         public void CambiarQuitarGenero()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new QuitarGenero(this));
+            flpAdministrador.Controls.Add(new QuitarGenero(_usuario, _logicaGenero, _logicaPelicula, this));
         }
 
         private void btnAltaPeli_Click(object sender, EventArgs e)
