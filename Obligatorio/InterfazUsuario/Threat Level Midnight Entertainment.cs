@@ -32,7 +32,7 @@ namespace InterfazUsuario
             InitializeComponent();
             flpPanelPrincipal.Controls.Clear();
             flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
-            //flpPanelPrincipal.Controls.Add(new MenuAdmin(this));
+            flpPanelPrincipal.Controls.Add(new MenuAdmin(_usuario, _perfil, this));
             CredencialesAdmin();
 
         }
