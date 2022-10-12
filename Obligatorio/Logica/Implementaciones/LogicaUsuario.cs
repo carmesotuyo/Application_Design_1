@@ -79,6 +79,7 @@ namespace Logica.Implementaciones
         {
             MaximoDePerfiles(usuario);
             EsElPrimero(usuario, perfil);
+            ValidarAliasUnico(usuario, perfil);
             usuario.Perfiles.Add(perfil);
         }
 
@@ -95,6 +96,17 @@ namespace Logica.Implementaciones
             if (usuario.Perfiles.Count == 0)
             {
                 perfil.EsOwner = true;
+            }
+        }
+
+        private void ValidarAliasUnico(Usuario usuario, Perfil perfil)
+        {
+            foreach(Perfil perfilExistente in usuario.Perfiles)
+            {
+                if(perfilExistente.Alias == perfil.Alias)
+                {
+                    throw new AliasRepetidoException();
+                }
             }
         }
      

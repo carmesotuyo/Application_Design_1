@@ -46,9 +46,7 @@
     <Compile Include="GeneroPuntaje.cs" />
     <Compile Include="Perfil.cs" />
     <Compile Include="Exceptions\DatoVacioException.cs" />
-    <Compile Include="Exceptions\GeneroDuplicadoException.cs" />
-    <Compile Include="Exceptions\GeneroInexistenteException.cs" />
-    <Compile Include="Exceptions\GeneroInvalidoException.cs" />
+    <Compile Include="Exceptions\GeneroException.cs" />
     <Compile Include="Genero.cs" />
     <Compile Include="Pelicula.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

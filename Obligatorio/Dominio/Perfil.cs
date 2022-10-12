@@ -89,13 +89,7 @@ namespace Dominio
         public bool EsInfantil { get => _esInfantil; set { _esInfantil = value; } 
         }
 
-        public List<GeneroPuntaje> PuntajeGeneros
-        {
-            get => _puntajeGeneros; set
-            {
-                _puntajeGeneros = value;
-            }
-        }
+        public List<GeneroPuntaje> PuntajeGeneros { get => _puntajeGeneros; }
 
         public void AgregarGeneroPuntaje(GeneroPuntaje generoPuntaje)
         {
@@ -107,7 +101,7 @@ namespace Dominio
             _puntajeGeneros.Remove(generoPuntaje);
         }
 
-        public List<Pelicula> PeliculasVistas { get => _peliculasVistas; set => _peliculasVistas = value; }
+        public List<Pelicula> PeliculasVistas { get => _peliculasVistas; }
 
         public void AgregarPeliculaVista(Pelicula unaPelicula)
         {

@@ -41,12 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\CriterioInexistenteException.cs" />
-    <Compile Include="Exceptions\GeneroConPeliculaAsociadaException.cs" />
+    <Compile Include="Exceptions\PeliculaExceptions.cs" />
+    <Compile Include="Exceptions\GeneroExceptions.cs" />
     <Compile Include="Exceptions\PerfilExceptions.cs" />
-    <Compile Include="Exceptions\PinIncorrectoException.cs" />
-    <Compile Include="Exceptions\UsuarioAdminExceptions.cs" />
-    <Compile Include="Exceptions\UsuarioException.cs" />
+    <Compile Include="Exceptions\UsuarioExceptions.cs" />
     <Compile Include="Implementaciones\LogicaGenero.cs" />
     <Compile Include="Implementaciones\LogicaPelicula.cs" />
     <Compile Include="Implementaciones\LogicaUsuario.cs" />

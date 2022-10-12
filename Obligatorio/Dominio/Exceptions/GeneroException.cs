@@ -9,4 +9,10 @@ namespace Dominio.Exceptions
     public class GeneroDuplicadoException : Exception
     {
     }
+    public class GeneroInexistenteException : Exception
+    {
+    }
+    public class GeneroInvalidoException : Exception
+    {
+    }
 }

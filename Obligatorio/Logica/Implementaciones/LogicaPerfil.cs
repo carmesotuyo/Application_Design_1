@@ -39,7 +39,7 @@ namespace Logica.Implementaciones
 
         public void MarcarComoVista(Pelicula unaPelicula, Perfil unPerfil)
         {
-            unPerfil.AgregarPeliculaVista(unaPelicula);
+            AgregarPeliculaVista(unaPelicula, unPerfil);
             PuntuarPositivo(unaPelicula, unPerfil);
         }
 

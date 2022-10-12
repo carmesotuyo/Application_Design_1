@@ -9,4 +9,7 @@ namespace Logica.Exceptions
     public class PerfilNoOwnerException : Exception
     {
     }
+    public class PinIncorrectoException : Exception
+    {
+    }
 }

@@ -12,11 +12,16 @@ namespace Logica.Exceptions
     public class EmailExistenteException : Exception
     {
     }
-
     public class NombreOEmailIncorrectoException : Exception 
     {
     }
     public class ClaveIncorrectaException : Exception
+    {
+    }
+    public class AliasRepetidoException : Exception
+    {
+    }
+    public class UsuarioNoPermitidoException : Exception
     {
     }
 }
