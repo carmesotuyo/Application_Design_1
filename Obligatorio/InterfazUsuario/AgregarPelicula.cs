@@ -27,18 +27,25 @@ namespace InterfazUsuario
             _logicaPelicula = ilogicaPelicula;
             _menuAdmin = menuAdmin;
             _usuario = usuario;
+
             InitializeComponent();
-            cbGeneros.Items.AddRange(_logicaGenero.Generos().ToArray());
+            ActualizarComboGeneros();
+
         }
 
         private void AgregarPelicula_Load(object sender, EventArgs e)
         {
-            ActualizarComboGeneros();
+            //ActualizarComboGeneros();
         }
         private void ActualizarComboGeneros()
         {
-            //cbGeneros.Items.Clear();
-           // cbGeneros.Items.AddRange(_logicaGenero.Generos().ToArray());
+            cbGeneros.Items.Clear();
+            //cbGeneros.Items.AddRange(_logicaGenero.Generos().ToArray());
+            IList<Genero> generos = _logicaGenero.Generos();
+            foreach (Genero genero in generos)
+            {
+                cbGeneros.Items.Add(genero.Nombre);
+            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
