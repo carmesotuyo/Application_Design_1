@@ -162,6 +162,7 @@
             this.lbGeneros.ItemHeight = 16;
             this.lbGeneros.Location = new System.Drawing.Point(415, 146);
             this.lbGeneros.Name = "lbGeneros";
+            this.lbGeneros.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbGeneros.Size = new System.Drawing.Size(261, 84);
             this.lbGeneros.TabIndex = 4;
             // 

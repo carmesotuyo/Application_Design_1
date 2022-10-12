@@ -12,6 +12,6 @@ namespace Logica.Interfaces
     {
         void AgregarGenero(Usuario usuarioAdmin, Genero genero);
         void EliminarGenero(Usuario usuarioAdmin, Genero genero, ILogicaPelicula logicaPelicula);
-        IList<Genero> Generos();
+        List<Genero> Generos();
     }
 }

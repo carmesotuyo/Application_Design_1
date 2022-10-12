@@ -23,12 +23,12 @@ namespace InterfazUsuario
         {
             InitializeComponent();
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new AgregarPelicula(_usuario, _logicaPelicula, _logicaGenero, this));
             _ventanaPrincipal = ventanaPrincipal;
             _logicaGenero = logicaGenero;
             _logicaPelicula = logicaPelicula;
             _usuario = usuario;
             _perfil = perfil;
+            flpAdministrador.Controls.Add(new AgregarPelicula(_usuario, _logicaPelicula, _logicaGenero, this));
         }
 
         public void CambiarAgregarPeli()

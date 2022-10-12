@@ -27,51 +27,68 @@ namespace InterfazUsuario
             _logicaPelicula = ilogicaPelicula;
             _menuAdmin = menuAdmin;
             _usuario = usuario;
-
             InitializeComponent();
-            ActualizarComboGeneros();
-
         }
 
-        private void AgregarPelicula_Load(object sender, EventArgs e)
-        {
-            //ActualizarComboGeneros();
-        }
+        
         private void ActualizarComboGeneros()
         {
             cbGeneros.Items.Clear();
-            //cbGeneros.Items.AddRange(_logicaGenero.Generos().ToArray());
-            IList<Genero> generos = _logicaGenero.Generos();
-            foreach (Genero genero in generos)
-            {
-                cbGeneros.Items.Add(genero.Nombre);
-            }
+            cbGeneros.Items.AddRange(_logicaGenero.Generos().ToArray());
+        }
+
+        private void ActualizarBoxGeneros()
+        {
+            lbGeneros.Items.Clear();
+            lbGeneros.Items.AddRange(_logicaGenero.Generos().ToArray());
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
-                Genero generoPrincipal = (Genero)cbGeneros.SelectedItem;
+                Genero generoPrincipal = cbGeneros.SelectedItem as Genero;
+                List<Genero> generosSecundarios = new List<Genero>();
+                foreach(Genero genero in lbGeneros.SelectedItems)
+                {
+                    generosSecundarios.Add(genero);
+                }
+
                 Pelicula pelicula = new Pelicula()
                 {
                     Nombre = txtNombre.Text,
                     Descripcion = txtDescripcion.Text,
                     GeneroPrincipal = generoPrincipal,
+                    GenerosSecundarios = generosSecundarios,
                     Poster = _imgPelicula,
                     EsPatrocinada = ckbEsPatrocinada.Checked,
                     AptaTodoPublico = ckbEsApta.Checked
                 };
                 _logicaPelicula.AltaPelicula(pelicula, _usuario);
                 MessageBox.Show($"Pelicula {pelicula.Nombre} se agregó correctamente");
+                Limpiar();
             }
             catch (GeneroInvalidoException)
             {
-                MessageBox.Show("Genero invalido");
+                MessageBox.Show("El genero principal no puede esta en el secundario");
             }
+            catch (DatoVacioException)
+            {
+                MessageBox.Show("Todavia quedan campos vacios");
+            }
+            
         }
 
-     
+        private void Limpiar()
+        {
+            txtNombre.Text = "";
+            txtDescripcion.Text = "";
+            imgPoster.Image = null;
+            ckbEsApta.Checked = false;
+            ckbEsPatrocinada.Checked = false;
+            ActualizarComboGeneros();
+            ActualizarBoxGeneros();
+        }
 
         private void btnPoster_Click(object sender, EventArgs e)
         {
@@ -87,10 +104,7 @@ namespace InterfazUsuario
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //Get the path of specified file
                     filePath = openFileDialog.FileName;
-
-                    //Read the contents of the file into a stream
                     var fileStream = openFileDialog.OpenFile();
 
                     using (StreamReader reader = new StreamReader(fileStream))
@@ -104,6 +118,10 @@ namespace InterfazUsuario
             }
         }
 
-        
+        private void AgregarPelicula_Load(object sender, EventArgs e)
+        {
+            ActualizarComboGeneros();
+            ActualizarBoxGeneros();
+        }
     }
 }
