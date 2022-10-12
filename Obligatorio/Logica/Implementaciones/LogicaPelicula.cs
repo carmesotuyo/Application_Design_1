@@ -76,14 +76,16 @@ namespace Logica.Implementaciones
 
         private List<Pelicula> OrdenarPorGenero(List<Pelicula> peliculas)
         {
-            return peliculas.OrderBy(p => p.GeneroPrincipal.Nombre).ThenBy(p => p.Nombre).ToList();
+            return peliculas.OrderBy(p => p.GeneroPrincipal.Nombre)
+                            .ThenBy(p => p.Nombre)
+                            .ThenByDescending(p => p.Identificador).ToList();
         }
 
         private List<Pelicula> OrdenarPorPatrocinio(List<Pelicula> peliculas)
         {
             return peliculas.OrderBy(p => p.EsPatrocinada = true)
                               .ThenBy(p => p.GeneroPrincipal.Nombre)
-                              .ThenBy(p => p.Nombre).ToList();
+                              .ThenBy(p => p.Nombre).ThenByDescending(p => p.Identificador).ToList();
         }
 
         private List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil, List<Pelicula> peliculas)
@@ -92,7 +94,7 @@ namespace Logica.Implementaciones
                                                           .Select(g => g.Genero).ToList();
 
             return peliculas.OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre))
-                              .ThenBy(p => p.Nombre).ToList();
+                            .ThenBy(p => p.Nombre).ThenByDescending(p => p.Identificador).ToList();
         }
 
         public List<Pelicula> MostrarPeliculas(Perfil unPerfil)
