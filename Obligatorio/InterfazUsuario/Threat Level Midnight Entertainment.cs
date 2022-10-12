@@ -31,13 +31,17 @@ namespace InterfazUsuario
 
             InitializeComponent();
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
-            //flpPanelPrincipal.Controls.Add(new MenuAdmin(this));
-            CredencialesAdmin();
+            //flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
+            Usuario admin = CredencialesAdmin();
+            Perfil perfilAdmin = Perfiladmin(admin);
+            //Prueba Lista de perfiles
+            CambiarListaPerfiles(admin, perfilAdmin);
+            
 
         }
 
-        private void CredencialesAdmin()
+        //Cambiar para que sea void!!
+        private Usuario CredencialesAdmin()
         {
             Usuario admin = new Usuario()
             {
@@ -48,7 +52,23 @@ namespace InterfazUsuario
                 EsAdministrador = true
             };
             _logicaUsuario.RegistrarUsuario(admin);
+            return admin;
         }
+        //===========================================================================
+        //Borrar este metodo despues de terminar Lista Perfiles
+        private Perfil Perfiladmin(Usuario usuario)
+        {
+            Perfil perfil = new Perfil()
+            {
+                Alias = "admin",
+                Pin = 12345,
+                ConfirmarPin = 12345,
+                EsOwner = true
+            };
+            _logicaUsuario.AgregarPerfil(usuario, perfil);
+            return perfil;
+        }
+        //=========================================================================
 
         public void CambiarRegistroUsuario()
         {
@@ -79,6 +99,12 @@ namespace InterfazUsuario
         {
             flpPanelPrincipal.Controls.Clear();
             flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, this));
+        }
+
+        public void CambiarPedirPinn(Usuario usuario, Perfil perfil)
+        {
+            flpPanelPrincipal.Controls.Clear();
+            flpPanelPrincipal.Controls.Add(new PedirPinDeSeguridad(perfil, usuario, _logicaPerfil, this));
         }
     }
 }
