@@ -53,6 +53,11 @@ namespace InterfazUsuario
             {
                 MessageBox.Show($"El género no es valido");
             }
+            catch (DatoVacioException)
+            {
+                MessageBox.Show($"Debe ingresar el nombre");
+            }
+            
         }
     }
 }

@@ -58,7 +58,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(346, 574);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(289, 59);
-            this.btnAgregar.TabIndex = 4;
+            this.btnAgregar.TabIndex = 0;
             this.btnAgregar.Text = "Agregar Perfil";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);

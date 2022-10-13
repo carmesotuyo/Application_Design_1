@@ -193,6 +193,13 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
+        [ExpectedException(typeof(NullException))]
+        public void PosterPeliculaNullTest()
+        {
+            unaPelicula.Poster = null;
+        }
+
+        [TestMethod]
         public void DevolverNombreTest()
         {
             unaPelicula.Nombre = "Harry Potter";

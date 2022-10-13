@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.Exceptions;
 using Logica.Exceptions;
 using Logica.Interfaces;
 using Repositorio;
@@ -37,7 +38,15 @@ namespace Logica.Implementaciones
         public void BajaPelicula(Pelicula pelicula, Usuario admin)
         {
             BloquearUsuarioNoAdmin(admin);
+            ChequearNull(pelicula);
             _repo.QuitarPelicula(pelicula);
+        }
+        private void ChequearNull(Pelicula pelicula)
+        {
+            if (pelicula == null)
+            {
+                throw new NullException();
+            }
         }
 
         private void BloquearUsuarioNoAdmin(Usuario admin)

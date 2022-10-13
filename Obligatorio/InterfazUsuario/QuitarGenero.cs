@@ -52,6 +52,10 @@ namespace InterfazUsuario
             {
                 MessageBox.Show($"El genero seleccionado no se puede eliminar");
             }
+            catch (NullException)
+            {
+                MessageBox.Show("Debe seleccionar un genero");
+            }
         }
         
 

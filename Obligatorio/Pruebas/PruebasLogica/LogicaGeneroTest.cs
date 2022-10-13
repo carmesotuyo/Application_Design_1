@@ -98,6 +98,16 @@ namespace Pruebas.PruebasLogica
         }
 
         [TestMethod]
+        [ExpectedException(typeof(NullException))]
+        public void EliminarGeneroNullTest()
+        {
+            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaRepo());
+            Genero unGenero = null;
+
+            logica.EliminarGenero(admin, unGenero, logicaPeli);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(GeneroConPeliculaAsociadaException))]
         public void EliminarGeneroConPeliculasAsociadasComoPrincipalTest()
         {

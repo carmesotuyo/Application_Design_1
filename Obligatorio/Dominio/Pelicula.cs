@@ -69,8 +69,17 @@ namespace Dominio
         public static int ContadorPeliculas { get => _contadorPeliculas; set => _contadorPeliculas = value; }
         public string Poster { get => _poster; set
             {
+                ChequearNull(value);
                 ChequearStringVacio(value);
                 _poster = value;
+            }
+        }
+
+        private void ChequearNull(String value)
+        {
+            if(value == null)
+            {
+                throw new NullException();
             }
         }
 

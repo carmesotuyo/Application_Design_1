@@ -9,4 +9,7 @@ namespace Dominio.Exceptions
     public class DatoVacioException : Exception
     {
     }
+    public class NullException : Exception
+    {
+    }
 }
