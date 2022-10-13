@@ -46,7 +46,7 @@ namespace InterfazUsuario
             };
             _logicaUsuario.RegistrarUsuario(admin);
         }
-       
+
         public void CambiarRegistroUsuario()
         {
             flpPanelPrincipal.Controls.Clear();

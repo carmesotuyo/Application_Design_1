@@ -116,6 +116,11 @@ namespace Logica.Implementaciones
             return peliculasAMostrar;
         }
 
+        public string CriterioSeleccionado()
+        {
+            return Enum.GetName(typeof(Criterios), _criterioElegido);
+        }
+
         public List<Pelicula> FiltrarPeliculasSiEsInfantil(Perfil unPerfil)
         {
             List<Pelicula> peliculas = Peliculas();

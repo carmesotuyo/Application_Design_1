@@ -14,7 +14,6 @@ namespace Logica.Interfaces
         void ActualizarListadoGeneros(Perfil unPerfil, ILogicaGenero logicaGenero);
         bool VioPelicula(Pelicula unaPelicula, Perfil unPerfil);
         void MarcarComoVista(Pelicula unaPelicula, Perfil unPerfil);
-
         void PuntuarNegativo(Pelicula unaPelicula, Perfil unPerfil);
         void PuntuarPositivo(Pelicula unaPelicula, Perfil unPerfil);
         void PuntuarMuyPositivo(Pelicula unaPelicula, Perfil unPerfil);
