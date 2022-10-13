@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblPeriles = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // txtAlias
@@ -124,11 +125,24 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Confirmar Pin:";
             // 
+            // lblPeriles
+            // 
+            this.lblPeriles.AutoSize = true;
+            this.lblPeriles.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblPeriles.Location = new System.Drawing.Point(22, 17);
+            this.lblPeriles.Name = "lblPeriles";
+            this.lblPeriles.Size = new System.Drawing.Size(76, 25);
+            this.lblPeriles.TabIndex = 11;
+            this.lblPeriles.TabStop = true;
+            this.lblPeriles.Text = "Perfiles";
+            this.lblPeriles.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblPeriles_LinkClicked);
+            // 
             // CrearPerfil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.lblPeriles);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -155,5 +169,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.LinkLabel lblPeriles;
     }
 }

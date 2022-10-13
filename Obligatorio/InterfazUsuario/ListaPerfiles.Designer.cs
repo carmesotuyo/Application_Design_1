@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.flpListaPerfiles = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblVolver = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label1
@@ -63,11 +64,24 @@
             this.flpListaPerfiles.Size = new System.Drawing.Size(856, 228);
             this.flpListaPerfiles.TabIndex = 2;
             // 
+            // lblVolver
+            // 
+            this.lblVolver.AutoSize = true;
+            this.lblVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblVolver.Location = new System.Drawing.Point(883, 35);
+            this.lblVolver.Name = "lblVolver";
+            this.lblVolver.Size = new System.Drawing.Size(68, 25);
+            this.lblVolver.TabIndex = 3;
+            this.lblVolver.TabStop = true;
+            this.lblVolver.Text = "Volver";
+            this.lblVolver.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVolver_LinkClicked);
+            // 
             // ListaPerfiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.lblVolver);
             this.Controls.Add(this.flpListaPerfiles);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.label1);
@@ -83,5 +97,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.FlowLayoutPanel flpListaPerfiles;
+        private System.Windows.Forms.LinkLabel lblVolver;
     }
 }

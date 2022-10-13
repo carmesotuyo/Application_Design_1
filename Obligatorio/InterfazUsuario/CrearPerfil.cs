@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using Dominio.Exceptions;
+using Logica.Exceptions;
 using Logica.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,16 @@ namespace InterfazUsuario
             {
                 MessageBox.Show("Solo puede tener hasta 4 perfiles");
             }
+            catch (AliasRepetidoException)
+            {
+                MessageBox.Show("Ya existe un alias igual");
+            }
+            
+        }
+
+        private void lblPeriles_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _ventanaPrincipal.CambiarSeleccionarPerfil(_usuario);
         }
     }
 }
