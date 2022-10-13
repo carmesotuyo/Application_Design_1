@@ -31,12 +31,32 @@ namespace InterfazUsuario
             _logicaGenero = new LogicaGenero(new GeneroRepo());
 
             InitializeComponent();
-            flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
-            CredencialesAdmin();
+            //flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
+            //CredencialesAdmin();
+
+            //==============================
+
+            Usuario admin = CredencialesAdmin();
+            Perfil perfilAdmin = Perfiladmin(admin);
+            //Pelicula pelicula = AgregarPelicula(admin);
+            AgregarPelicula1(admin);
+            AgregarPelicula2(admin);
+            AgregarPelicula3(admin);
+            AgregarPelicula4(admin);
+            AgregarPelicula5(admin);
+            flpPanelPrincipal.Controls.Add(new MenuAdmin(admin, perfilAdmin, _logicaGenero, _logicaPelicula, this));
+            //flpPanelPrincipal.Controls.Add(new VerPelicula(pelicula, admin, perfilAdmin, _logicaPerfil, _logicaGenero, this));
+            //==============================
+
         }
 
-        private void CredencialesAdmin()
+        //====================Pelicula Prueba=================
+
+
+        //====================================================
+
+        //Cambiar para que sea void!!
+        private Usuario CredencialesAdmin()
         {
             Usuario admin = new Usuario()
             {
@@ -47,7 +67,115 @@ namespace InterfazUsuario
                 EsAdministrador = true
             };
             _logicaUsuario.RegistrarUsuario(admin);
+            return admin;
         }
+        //===========================================================================
+        //Borrar este metodo despues de terminar Lista Perfiles
+        private Perfil Perfiladmin(Usuario usuario)
+        {
+            Perfil perfil = new Perfil()
+            {
+                Alias = "admin",
+                Pin = 12345,
+                ConfirmarPin = 12345,
+                EsOwner = true
+            };
+            _logicaUsuario.AgregarPerfil(usuario, perfil);
+            return perfil;
+        }
+        //======================================================================
+
+        private void AgregarPelicula1(Usuario usuario)
+        {
+            Genero genero = new Genero()
+            {
+                Nombre = "Infantil",
+            };
+            _logicaGenero.AgregarGenero(usuario, genero);
+            Pelicula pelicula = new Pelicula()
+            {
+                Nombre = "Madagascar",
+                GeneroPrincipal = genero,
+                Descripcion = "Esta es una descripción",
+                AptaTodoPublico = false,
+                Poster = "C:\\Users\\fe-fe\\Desktop\\Madagascar.jpg",
+            };
+            _logicaPelicula.AltaPelicula(pelicula, usuario);
+        }
+
+        private void AgregarPelicula2(Usuario usuario)
+        {
+            Genero genero = new Genero()
+            {
+                Nombre = "Fantasia",
+            };
+            _logicaGenero.AgregarGenero(usuario, genero);
+            Pelicula pelicula = new Pelicula()
+            {
+                Nombre = "Harry Potter",
+                GeneroPrincipal = genero,
+                Descripcion = "Esta es una descripción",
+                AptaTodoPublico = true,
+                Poster = "C:\\Users\\fe-fe\\Desktop\\HarryPoter.jpeg",
+            };
+            _logicaPelicula.AltaPelicula(pelicula, usuario);
+        }
+
+        private void AgregarPelicula3(Usuario usuario)
+        {
+            Genero genero = new Genero()
+            {
+                Nombre = "Aventura",
+            };
+            _logicaGenero.AgregarGenero(usuario, genero);
+            Pelicula pelicula = new Pelicula()
+            {
+                Nombre = "Jumanji",
+                GeneroPrincipal = genero,
+                Descripcion = "Esta es una descripción",
+                AptaTodoPublico = true,
+                Poster = "C:\\Users\\fe-fe\\Desktop\\jumanji.jpg",
+            };
+            _logicaPelicula.AltaPelicula(pelicula, usuario);
+        }
+
+        private void AgregarPelicula4(Usuario usuario)
+        {
+            Genero genero = new Genero()
+            {
+                Nombre = "Ciencia Ficción",
+            };
+            _logicaGenero.AgregarGenero(usuario, genero);
+            Pelicula pelicula = new Pelicula()
+            {
+                Nombre = "Los Vengadores",
+                GeneroPrincipal = genero,
+                Descripcion = "Esta es una descripción",
+                AptaTodoPublico = false,
+                Poster = "C:\\Users\\fe-fe\\Desktop\\Vengadores.jpg",
+            };
+            _logicaPelicula.AltaPelicula(pelicula, usuario);
+        }
+
+        private void AgregarPelicula5(Usuario usuario)
+        {
+            Genero genero = new Genero()
+            {
+                Nombre = "Acción",
+            };
+            _logicaGenero.AgregarGenero(usuario, genero);
+            Pelicula pelicula = new Pelicula()
+            {
+                Nombre = "Mi Villano Favorito",
+                GeneroPrincipal = genero,
+                Descripcion = "Esta es una descripción",
+                AptaTodoPublico = false,
+                Poster = "C:\\Users\\fe-fe\\Desktop\\Minions.jpg",
+            };
+            _logicaPelicula.AltaPelicula(pelicula, usuario);
+        }
+
+        //======================================================================
 
         public void CambiarRegistroUsuario()
         {

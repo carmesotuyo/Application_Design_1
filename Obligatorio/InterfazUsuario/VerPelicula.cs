@@ -77,5 +77,10 @@ namespace InterfazUsuario
             _logicaPerfil.MarcarComoVista(_pelicula, _perfil);
             btnVista.Enabled = false;
         }
+
+        private void lblVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _ventanaPrincipal.CambiarMenuPeliculas(_usuario, _perfil);
+        }
     }
 }

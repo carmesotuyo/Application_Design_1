@@ -42,22 +42,23 @@
             // 
             this.lblPerfil.AutoSize = true;
             this.lblPerfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblPerfil.Location = new System.Drawing.Point(13, 10);
+            this.lblPerfil.Location = new System.Drawing.Point(34, 10);
             this.lblPerfil.Name = "lblPerfil";
-            this.lblPerfil.Size = new System.Drawing.Size(55, 25);
+            this.lblPerfil.Size = new System.Drawing.Size(95, 31);
             this.lblPerfil.TabIndex = 0;
             this.lblPerfil.TabStop = true;
-            this.lblPerfil.Text = "Perfil";
+            this.lblPerfil.Text = "Perfiles";
             this.lblPerfil.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblPerfil_LinkClicked);
             // 
             // btnAltaPeli
             // 
+            this.btnAltaPeli.BackColor = System.Drawing.Color.White;
             this.btnAltaPeli.Location = new System.Drawing.Point(82, 61);
             this.btnAltaPeli.Name = "btnAltaPeli";
             this.btnAltaPeli.Size = new System.Drawing.Size(140, 40);
             this.btnAltaPeli.TabIndex = 1;
             this.btnAltaPeli.Text = "Agregar pelicula";
-            this.btnAltaPeli.UseVisualStyleBackColor = true;
+            this.btnAltaPeli.UseVisualStyleBackColor = false;
             this.btnAltaPeli.Click += new System.EventHandler(this.btnAltaPeli_Click);
             // 
             // btnBajaPeli
@@ -103,7 +104,7 @@
             // 
             // flpAdministrador
             // 
-            this.flpAdministrador.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.flpAdministrador.BackColor = System.Drawing.Color.Gainsboro;
             this.flpAdministrador.Location = new System.Drawing.Point(82, 131);
             this.flpAdministrador.Name = "flpAdministrador";
             this.flpAdministrador.Size = new System.Drawing.Size(794, 533);
@@ -113,7 +114,7 @@
             // 
             this.lblAtras.AutoSize = true;
             this.lblAtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblAtras.Location = new System.Drawing.Point(821, 10);
+            this.lblAtras.Location = new System.Drawing.Point(902, 10);
             this.lblAtras.Name = "lblAtras";
             this.lblAtras.Size = new System.Drawing.Size(58, 25);
             this.lblAtras.TabIndex = 6;
@@ -125,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.Controls.Add(this.lblAtras);
             this.Controls.Add(this.flpAdministrador);
             this.Controls.Add(this.btnSorting);
