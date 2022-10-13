@@ -44,7 +44,7 @@ namespace InterfazUsuario
         public void CambiarOrdenarPelis()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new OrdenarPeliculas(this));
+            flpAdministrador.Controls.Add(new OrdenarPeliculas(_usuario, _logicaPelicula, this));
         }
         public void CambiarAgregarGenero()
         {

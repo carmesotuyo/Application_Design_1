@@ -13,6 +13,7 @@ namespace Logica.Interfaces
         void AltaPelicula(Pelicula pelicula, Usuario usuarioAdmin);
         void BajaPelicula(Pelicula pelicula, Usuario usuarioAdmin);
         void ElegirCriterioOrden(Usuario usuarioAdmin, int criterio);
+        string CriterioSeleccionado();
         List<Pelicula> MostrarPeliculas(Perfil unPerfil);
         List<Pelicula> Peliculas();
     }
