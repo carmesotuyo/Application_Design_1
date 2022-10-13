@@ -90,7 +90,7 @@ namespace Logica.Implementaciones
             ChequearQueNoEsteYaVista(unaPelicula, unPerfil);
             unPerfil.AgregarPeliculaVista(unaPelicula);
         }
-        public void ChequearQueNoEsteYaVista(Pelicula unaPelicula, Perfil unPerfil)
+        private void ChequearQueNoEsteYaVista(Pelicula unaPelicula, Perfil unPerfil)
         {
             if (VioPelicula(unaPelicula, unPerfil))
             {
@@ -169,7 +169,7 @@ namespace Logica.Implementaciones
             return busco.Count > 0;
         }
 
-        public bool GeneroEliminado(ILogicaGenero logicaGenero, GeneroPuntaje unGenero)
+        private bool GeneroEliminado(ILogicaGenero logicaGenero, GeneroPuntaje unGenero)
         {
             List<Genero> busco = logicaGenero.Generos().Where(x => x.Nombre != unGenero.Genero).ToList();
             return busco.Count == logicaGenero.Generos().Count;

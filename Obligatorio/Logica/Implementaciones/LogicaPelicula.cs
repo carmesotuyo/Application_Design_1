@@ -130,7 +130,7 @@ namespace Logica.Implementaciones
             return Enum.GetName(typeof(Criterios), _criterioElegido);
         }
 
-        public List<Pelicula> FiltrarPeliculasSiEsInfantil(Perfil unPerfil)
+        private List<Pelicula> FiltrarPeliculasSiEsInfantil(Perfil unPerfil)
         {
             List<Pelicula> peliculas = Peliculas();
 

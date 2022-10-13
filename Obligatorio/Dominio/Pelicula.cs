@@ -98,14 +98,14 @@ namespace Dominio
             }
         }
 
-        private static void ChequearStringVacio(string value)
+        private void ChequearStringVacio(string value)
         {
             if (value.Length == 0)
             {
                 throw new DatoVacioException();
             }
         }
-        private static void ChequearGeneroVacio(Genero genero)
+        private void ChequearGeneroVacio(Genero genero)
         {
             if (genero == null)
             {
