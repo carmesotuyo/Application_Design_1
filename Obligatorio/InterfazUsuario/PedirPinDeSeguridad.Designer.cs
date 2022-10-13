@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblIngresarPin = new System.Windows.Forms.Label();
             this.txtPin = new System.Windows.Forms.TextBox();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.lblAtras = new System.Windows.Forms.LinkLabel();
@@ -45,15 +45,15 @@
             this.lblTitulo.TabIndex = 1;
             this.lblTitulo.Text = "Hola alias!";
             // 
-            // label1
+            // lblIngresarPin
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(311, 286);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 25);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Ingrese su pin:";
+            this.lblIngresarPin.AutoSize = true;
+            this.lblIngresarPin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblIngresarPin.Location = new System.Drawing.Point(311, 286);
+            this.lblIngresarPin.Name = "lblIngresarPin";
+            this.lblIngresarPin.Size = new System.Drawing.Size(140, 25);
+            this.lblIngresarPin.TabIndex = 2;
+            this.lblIngresarPin.Text = "Ingrese su pin:";
             // 
             // txtPin
             // 
@@ -94,7 +94,7 @@
             this.Controls.Add(this.lblAtras);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.txtPin);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblIngresarPin);
             this.Controls.Add(this.lblTitulo);
             this.Name = "PedirPinDeSeguridad";
             this.Size = new System.Drawing.Size(1000, 750);
@@ -106,7 +106,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblIngresarPin;
         private System.Windows.Forms.TextBox txtPin;
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.LinkLabel lblAtras;

@@ -126,6 +126,12 @@
     <Compile Include="Threat Level Midnight Entertainment.Designer.cs">
       <DependentUpon>Threat Level Midnight Entertainment.cs</DependentUpon>
     </Compile>
+    <Compile Include="VerPelicula.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VerPelicula.Designer.cs">
+      <DependentUpon>VerPelicula.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AgregarGenero.resx">
       <DependentUpon>AgregarGenero.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Threat Level Midnight Entertainment.resx">
       <DependentUpon>Threat Level Midnight Entertainment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerPelicula.resx">
+      <DependentUpon>VerPelicula.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -30,18 +30,20 @@
         {
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblDesc = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.ckbEsApta = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ckbEsPatrocinada = new System.Windows.Forms.CheckBox();
+            this.cbGeneros = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.imgPoster = new System.Windows.Forms.PictureBox();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.txtDescripcion = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lbGeneros = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnPoster = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPoster)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -57,128 +59,155 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(46, 83);
+            this.lblNombre.Location = new System.Drawing.Point(86, 69);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(56, 16);
+            this.lblNombre.Size = new System.Drawing.Size(59, 16);
             this.lblNombre.TabIndex = 1;
-            this.lblNombre.Text = "Nombre";
+            this.lblNombre.Text = "Nombre:";
             // 
-            // textBox1
+            // txtNombre
             // 
-            this.textBox1.Location = new System.Drawing.Point(49, 103);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(263, 22);
-            this.textBox1.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(49, 208);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(263, 22);
-            this.textBox2.TabIndex = 4;
+            this.txtNombre.Location = new System.Drawing.Point(89, 88);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(263, 22);
+            this.txtNombre.TabIndex = 1;
             // 
             // lblDesc
             // 
             this.lblDesc.AutoSize = true;
-            this.lblDesc.Location = new System.Drawing.Point(46, 187);
+            this.lblDesc.Location = new System.Drawing.Point(86, 126);
             this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(79, 16);
+            this.lblDesc.Size = new System.Drawing.Size(82, 16);
             this.lblDesc.TabIndex = 3;
-            this.lblDesc.Text = "Descripción";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 307);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 16);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Es apta para todo público";
+            this.lblDesc.Text = "Descripción:";
             // 
             // ckbEsApta
             // 
             this.ckbEsApta.AutoSize = true;
-            this.ckbEsApta.Location = new System.Drawing.Point(49, 332);
+            this.ckbEsApta.Location = new System.Drawing.Point(414, 260);
             this.ckbEsApta.Name = "ckbEsApta";
-            this.ckbEsApta.Size = new System.Drawing.Size(18, 17);
+            this.ckbEsApta.Size = new System.Drawing.Size(183, 20);
             this.ckbEsApta.TabIndex = 6;
+            this.ckbEsApta.Text = "Es apta para todo público";
             this.ckbEsApta.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // ckbEsPatrocinada
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 357);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 16);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Es patrocinada";
+            this.ckbEsPatrocinada.AutoSize = true;
+            this.ckbEsPatrocinada.Location = new System.Drawing.Point(414, 289);
+            this.ckbEsPatrocinada.Name = "ckbEsPatrocinada";
+            this.ckbEsPatrocinada.Size = new System.Drawing.Size(120, 20);
+            this.ckbEsPatrocinada.TabIndex = 7;
+            this.ckbEsPatrocinada.Text = "Es patrocinada";
+            this.ckbEsPatrocinada.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // cbGeneros
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(49, 380);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(18, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(49, 154);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(263, 24);
-            this.comboBox1.TabIndex = 9;
+            this.cbGeneros.FormattingEnabled = true;
+            this.cbGeneros.Location = new System.Drawing.Point(415, 86);
+            this.cbGeneros.Name = "cbGeneros";
+            this.cbGeneros.Size = new System.Drawing.Size(263, 24);
+            this.cbGeneros.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 135);
+            this.label3.Location = new System.Drawing.Point(414, 67);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 20);
+            this.label3.Size = new System.Drawing.Size(55, 16);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Género";
+            this.label3.Text = "Género:";
             // 
-            // pictureBox1
+            // imgPoster
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(558, 103);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(170, 145);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.imgPoster.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.imgPoster.Location = new System.Drawing.Point(89, 261);
+            this.imgPoster.Name = "imgPoster";
+            this.imgPoster.Size = new System.Drawing.Size(263, 113);
+            this.imgPoster.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgPoster.TabIndex = 11;
+            this.imgPoster.TabStop = false;
             // 
-            // button1
+            // btnAgregar
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(276, 428);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(217, 46);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Agregar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnAgregar.Location = new System.Drawing.Point(276, 451);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(217, 46);
+            this.btnAgregar.TabIndex = 8;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(89, 146);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(263, 77);
+            this.txtDescripcion.TabIndex = 3;
+            this.txtDescripcion.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(412, 126);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(139, 16);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Géneros secundarios:";
+            // 
+            // lbGeneros
+            // 
+            this.lbGeneros.FormattingEnabled = true;
+            this.lbGeneros.ItemHeight = 16;
+            this.lbGeneros.Location = new System.Drawing.Point(415, 146);
+            this.lbGeneros.Name = "lbGeneros";
+            this.lbGeneros.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lbGeneros.Size = new System.Drawing.Size(261, 84);
+            this.lbGeneros.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(86, 242);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 16);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Poster:";
+            // 
+            // btnPoster
+            // 
+            this.btnPoster.Location = new System.Drawing.Point(89, 380);
+            this.btnPoster.Name = "btnPoster";
+            this.btnPoster.Size = new System.Drawing.Size(98, 28);
+            this.btnPoster.TabIndex = 5;
+            this.btnPoster.Text = "Seleccionar";
+            this.btnPoster.UseVisualStyleBackColor = true;
+            this.btnPoster.Click += new System.EventHandler(this.btnPoster_Click);
             // 
             // AgregarPelicula
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnPoster);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lbGeneros);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.imgPoster);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbGeneros);
+            this.Controls.Add(this.ckbEsPatrocinada);
             this.Controls.Add(this.ckbEsApta);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.lblDesc);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblTitulo);
             this.Name = "AgregarPelicula";
             this.Size = new System.Drawing.Size(794, 533);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Load += new System.EventHandler(this.AgregarPelicula_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.imgPoster)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,16 +217,18 @@
 
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblDesc;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox ckbEsApta;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox ckbEsPatrocinada;
+        private System.Windows.Forms.ComboBox cbGeneros;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox imgPoster;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.RichTextBox txtDescripcion;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox lbGeneros;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnPoster;
     }
 }

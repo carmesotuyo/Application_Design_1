@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Logica.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,11 +17,13 @@ namespace InterfazUsuario
         private Threat_Level_Midnight_Entertainment _ventanaPrincipal;
         private Usuario _usuario;
         private Perfil _perfil;
-        public ListaPerfiles(Perfil perfil, Usuario usuario, Threat_Level_Midnight_Entertainment ventanaPrincipal)
+        private ILogicaUsuario _logicaUsuario;
+        public ListaPerfiles(Perfil perfil, Usuario usuario, ILogicaUsuario logicaUsuario, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             InitializeComponent();
             _perfil = perfil;
             _usuario = usuario;
+            _logicaUsuario = logicaUsuario;
             _ventanaPrincipal = ventanaPrincipal;
             CargarPerfiles();
 
@@ -31,9 +34,11 @@ namespace InterfazUsuario
         {
             _ventanaPrincipal.CambiarRegistroPerfil(_usuario);
         }
-        //flpListaPerfiles - flp con size 198, 222  --  flpImagen con size 193, 120
         private void CargarPerfiles()
         {
+            flpListaPerfiles.Controls.Clear();
+            int index = 0;
+            bool esOwner = _perfil.EsOwner;
             foreach(Perfil perfil in _usuario.Perfiles)
             {
                 FlowLayoutPanel flpPerfil = new System.Windows.Forms.FlowLayoutPanel();
@@ -46,6 +51,8 @@ namespace InterfazUsuario
                 flpPerfilImagen.Size = new Size(145, 75);
                 flpPerfilImagen.BorderStyle = BorderStyle.FixedSingle;
                 flpPerfilImagen.BackColor = SystemColors.Control;
+                flpPerfilImagen.TabIndex = index;
+                flpPerfilImagen.Click += new EventHandler(AccederPerfil);
                 flpPerfil.Controls.Add(flpPerfilImagen);
 
                 Label alias = new Label();
@@ -57,15 +64,50 @@ namespace InterfazUsuario
                     CheckBox esInfantil = new CheckBox();
                     esInfantil.Text = "Es infantil";
                     esInfantil.Checked = perfil.EsInfantil;
+                    esInfantil.TabIndex = index;
+                    if (!esOwner) { esInfantil.Visible = false; };
+                    esInfantil.Click += new EventHandler(EsInfantil);
                     flpPerfil.Controls.Add(esInfantil);
 
                     LinkLabel eliminar = new LinkLabel();
                     eliminar.Text = "Eliminar";
+                    eliminar.TabIndex = index;
+                    if (!esOwner) { eliminar.Visible = false; };
+                    eliminar.Click += new EventHandler(EliminarPerfil);
                     flpPerfil.Controls.Add(eliminar);
                 }
-
+                index++;
             }
         }
 
+        private void EliminarPerfil(object sender, EventArgs e)
+        {
+            LinkLabel perfilSeleccionado = sender as LinkLabel;
+            int index = perfilSeleccionado.TabIndex;
+            Perfil perfil = _usuario.Perfiles[index];
+            _logicaUsuario.QuitarPerfil(_usuario, perfil);
+            CargarPerfiles();
+        }
+
+        private void EsInfantil(object sender, EventArgs e)
+        {
+            CheckBox perfilSeleccionado = sender as CheckBox;
+            int index = perfilSeleccionado.TabIndex;
+            Perfil perfil = _usuario.Perfiles[index];
+            perfil.EsInfantil = perfilSeleccionado.Checked;
+        }
+
+        private void AccederPerfil(object sender, EventArgs e)
+        {
+            FlowLayoutPanel perfilSeleccionado = sender as FlowLayoutPanel;
+            int index = perfilSeleccionado.TabIndex;
+            Perfil perfil = _usuario.Perfiles[index];
+            if (perfil.EsInfantil)
+            {
+                _ventanaPrincipal.CambiarMenuPeliculas(_usuario, perfil);
+            }
+            _ventanaPrincipal.CambiarPedirPin(_usuario, perfil, _perfil);
+            
+        }
     }
 }

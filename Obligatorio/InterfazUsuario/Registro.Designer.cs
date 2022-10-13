@@ -58,7 +58,7 @@
             this.btnCrear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(409, 34);
-            this.btnCrear.TabIndex = 4;
+            this.btnCrear.TabIndex = 5;
             this.btnCrear.Text = "Crear mi cuenta";
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
@@ -93,7 +93,7 @@
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(409, 30);
-            this.txtEmail.TabIndex = 7;
+            this.txtEmail.TabIndex = 1;
             this.txtEmail.Text = "Correo electrónico";
             // 
             // txtUserName
@@ -104,7 +104,7 @@
             this.txtUserName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(409, 30);
-            this.txtUserName.TabIndex = 8;
+            this.txtUserName.TabIndex = 2;
             this.txtUserName.Text = "Nombre de usuario";
             // 
             // txtClave
@@ -115,7 +115,7 @@
             this.txtClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(409, 30);
-            this.txtClave.TabIndex = 9;
+            this.txtClave.TabIndex = 3;
             this.txtClave.Text = "Contraseña";
             // 
             // txtConfClave
@@ -126,7 +126,7 @@
             this.txtConfClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtConfClave.Name = "txtConfClave";
             this.txtConfClave.Size = new System.Drawing.Size(409, 30);
-            this.txtConfClave.TabIndex = 10;
+            this.txtConfClave.TabIndex = 4;
             this.txtConfClave.Text = "Confirmar contraseña";
             // 
             // Registro

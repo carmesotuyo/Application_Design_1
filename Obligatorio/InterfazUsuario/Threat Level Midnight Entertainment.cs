@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,13 +33,23 @@ namespace InterfazUsuario
             InitializeComponent();
             flpPanelPrincipal.Controls.Clear();
             //flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
+            //CredencialesAdmin();
+
+            //==============================
+
             Usuario admin = CredencialesAdmin();
             Perfil perfilAdmin = Perfiladmin(admin);
-            //Prueba Lista de perfiles
-            CambiarListaPerfiles(admin, perfilAdmin);
-            
+            flpPanelPrincipal.Controls.Add(new ListaPerfiles(perfilAdmin, admin, _logicaUsuario, this));
+            //flpPanelPrincipal.Controls.Add(new MenuAdmin(admin, perfilAdmin, _logicaGenero, _logicaPelicula, this));
+            //flpPanelPrincipal.Controls.Add(new VerPelicula(pelicula, admin, perfilAdmin, _logicaPerfil, _logicaGenero, this));
+            //==============================
 
         }
+
+        //====================Pelicula Prueba=================
+
+
+        //====================================================
 
         //Cambiar para que sea void!!
         private Usuario CredencialesAdmin()
@@ -68,7 +79,7 @@ namespace InterfazUsuario
             _logicaUsuario.AgregarPerfil(usuario, perfil);
             return perfil;
         }
-        //=========================================================================
+        //======================================================================
 
         public void CambiarRegistroUsuario()
         {
@@ -88,23 +99,28 @@ namespace InterfazUsuario
         public void CambiarListaPerfiles(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new ListaPerfiles(perfil, usuario, this));
+            flpPanelPrincipal.Controls.Add(new ListaPerfiles(perfil, usuario, _logicaUsuario, this));
         }
         public void CambiarMenuPeliculas(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new MenuPeliculas(this, usuario, perfil, _logicaPelicula));
+            flpPanelPrincipal.Controls.Add(new MenuPeliculas(this, usuario, perfil, _logicaGenero, _logicaPerfil, _logicaPelicula));
         }
         public void CambiarMenuAdmin(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, this));
+            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, _logicaGenero, _logicaPelicula, this));
         }
-
-        public void CambiarPedirPinn(Usuario usuario, Perfil perfil)
+        public void CambiarVerPelicula(Pelicula pelicula,Perfil perfil, ILogicaPerfil logicaPerfil, ILogicaGenero logicaGenero, Usuario usuario)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new PedirPinDeSeguridad(perfil, usuario, _logicaPerfil, this));
+            flpPanelPrincipal.Controls.Add(new VerPelicula(pelicula, usuario, perfil, logicaPerfil, logicaGenero, this));
+        }
+
+        public void CambiarPedirPin(Usuario usuario, Perfil perfil, Perfil perfil1Anterior)
+        {
+            flpPanelPrincipal.Controls.Clear();
+            flpPanelPrincipal.Controls.Add(new PedirPinDeSeguridad(perfil, perfil1Anterior, usuario, _logicaPerfil, this));
         }
     }
 }

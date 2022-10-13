@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Logica.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,26 +16,30 @@ namespace InterfazUsuario
     {
         private Usuario _usuario;
         private Perfil _perfil;
-        private Threat_Level_Midnight_Entertainment _ventanaPrincipal;
-        public MenuAdmin(Usuario usuario, Perfil perfil, Threat_Level_Midnight_Entertainment ventanaPrincipal)
+        private ILogicaGenero _logicaGenero;
+        private ILogicaPelicula _logicaPelicula;
+        public Threat_Level_Midnight_Entertainment _ventanaPrincipal;
+        public MenuAdmin(Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPelicula logicaPelicula, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             InitializeComponent();
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new AgregarPelicula(this));
             _ventanaPrincipal = ventanaPrincipal;
+            _logicaGenero = logicaGenero;
+            _logicaPelicula = logicaPelicula;
             _usuario = usuario;
             _perfil = perfil;
+            flpAdministrador.Controls.Add(new AgregarPelicula(_usuario, _logicaPelicula, _logicaGenero, this));
         }
 
         public void CambiarAgregarPeli()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new AgregarPelicula(this));
+            flpAdministrador.Controls.Add(new AgregarPelicula(_usuario, _logicaPelicula, _logicaGenero, this));
         }
         public void CambiarQuitarPeli()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new QuitarPelicula(this));
+            flpAdministrador.Controls.Add(new QuitarPelicula(_usuario, _logicaPelicula, this));
         }
         public void CambiarOrdenarPelis()
         {
@@ -44,12 +49,12 @@ namespace InterfazUsuario
         public void CambiarAgregarGenero()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new AgregarGenero(this));
+            flpAdministrador.Controls.Add(new AgregarGenero(_usuario, _logicaGenero, this));
         }
         public void CambiarQuitarGenero()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new QuitarGenero(this));
+            flpAdministrador.Controls.Add(new QuitarGenero(_usuario, _logicaGenero, _logicaPelicula, this));
         }
 
         private void btnAltaPeli_Click(object sender, EventArgs e)

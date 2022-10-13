@@ -88,7 +88,7 @@
             this.lblRegistrarse.Location = new System.Drawing.Point(584, 398);
             this.lblRegistrarse.Name = "lblRegistrarse";
             this.lblRegistrarse.Size = new System.Drawing.Size(101, 20);
-            this.lblRegistrarse.TabIndex = 5;
+            this.lblRegistrarse.TabIndex = 4;
             this.lblRegistrarse.TabStop = true;
             this.lblRegistrarse.Text = "Registrarme";
             this.lblRegistrarse.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
