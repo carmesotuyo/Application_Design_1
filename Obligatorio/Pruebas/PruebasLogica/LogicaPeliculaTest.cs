@@ -48,6 +48,8 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void BajaPeliculaTest()
         {
+            logica.AltaPelicula(unaPelicula, admin);
+            
             logica.BajaPelicula(unaPelicula, admin);
 
             Assert.IsFalse(logica.Peliculas().Contains(unaPelicula));
@@ -402,6 +404,16 @@ namespace Pruebas.PruebasLogica
 
             int criterioInvalido = 4;
             logica.ElegirCriterioOrden(admin, criterioInvalido);
+        }
+
+        [TestMethod]
+        public void CriterioSeleccionadoTest()
+        {
+            string criterio = LogicaPelicula.Criterios.OrdenarPorPuntaje.ToString();
+            
+            logica.ElegirCriterioOrden(admin, (int)LogicaPelicula.Criterios.OrdenarPorPuntaje);
+
+            Assert.AreEqual(logica.CriterioSeleccionado(), criterio);
         }
 
     }
