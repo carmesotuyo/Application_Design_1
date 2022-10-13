@@ -43,7 +43,7 @@
             this.txtAlias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAlias.Name = "txtAlias";
             this.txtAlias.Size = new System.Drawing.Size(409, 30);
-            this.txtAlias.TabIndex = 5;
+            this.txtAlias.TabIndex = 1;
             this.txtAlias.Text = "Alias";
             // 
             // btnCrear
@@ -54,7 +54,7 @@
             this.btnCrear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(409, 34);
-            this.btnCrear.TabIndex = 7;
+            this.btnCrear.TabIndex = 4;
             this.btnCrear.Text = "Crear perfil";
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
@@ -67,7 +67,7 @@
             this.txtPin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPin.Name = "txtPin";
             this.txtPin.Size = new System.Drawing.Size(409, 30);
-            this.txtPin.TabIndex = 6;
+            this.txtPin.TabIndex = 2;
             this.txtPin.Text = "Pin de seguridad";
             // 
             // lblNuevoPerfil
@@ -89,7 +89,7 @@
             this.txtPinConfirm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPinConfirm.Name = "txtPinConfirm";
             this.txtPinConfirm.Size = new System.Drawing.Size(409, 30);
-            this.txtPinConfirm.TabIndex = 8;
+            this.txtPinConfirm.TabIndex = 3;
             this.txtPinConfirm.Text = "Confirmar pin";
             // 
             // CrearPerfil

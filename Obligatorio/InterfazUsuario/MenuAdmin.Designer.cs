@@ -55,7 +55,7 @@
             this.btnAltaPeli.Location = new System.Drawing.Point(82, 61);
             this.btnAltaPeli.Name = "btnAltaPeli";
             this.btnAltaPeli.Size = new System.Drawing.Size(140, 40);
-            this.btnAltaPeli.TabIndex = 4;
+            this.btnAltaPeli.TabIndex = 1;
             this.btnAltaPeli.Text = "Agregar pelicula";
             this.btnAltaPeli.UseVisualStyleBackColor = true;
             this.btnAltaPeli.Click += new System.EventHandler(this.btnAltaPeli_Click);
@@ -65,7 +65,7 @@
             this.btnBajaPeli.Location = new System.Drawing.Point(245, 61);
             this.btnBajaPeli.Name = "btnBajaPeli";
             this.btnBajaPeli.Size = new System.Drawing.Size(140, 40);
-            this.btnBajaPeli.TabIndex = 5;
+            this.btnBajaPeli.TabIndex = 2;
             this.btnBajaPeli.Text = "Quitar pelicula";
             this.btnBajaPeli.UseVisualStyleBackColor = true;
             this.btnBajaPeli.Click += new System.EventHandler(this.btnBajaPeli_Click_1);
@@ -75,7 +75,7 @@
             this.btnAltaGenero.Location = new System.Drawing.Point(574, 61);
             this.btnAltaGenero.Name = "btnAltaGenero";
             this.btnAltaGenero.Size = new System.Drawing.Size(140, 40);
-            this.btnAltaGenero.TabIndex = 6;
+            this.btnAltaGenero.TabIndex = 4;
             this.btnAltaGenero.Text = "Agregar género";
             this.btnAltaGenero.UseVisualStyleBackColor = true;
             this.btnAltaGenero.Click += new System.EventHandler(this.btnAltaGenero_Click);
@@ -85,7 +85,7 @@
             this.btnBajaGenero.Location = new System.Drawing.Point(736, 61);
             this.btnBajaGenero.Name = "btnBajaGenero";
             this.btnBajaGenero.Size = new System.Drawing.Size(140, 40);
-            this.btnBajaGenero.TabIndex = 7;
+            this.btnBajaGenero.TabIndex = 5;
             this.btnBajaGenero.Text = "Quitar género";
             this.btnBajaGenero.UseVisualStyleBackColor = true;
             this.btnBajaGenero.Click += new System.EventHandler(this.btnBajaGenero_Click);
@@ -96,7 +96,7 @@
             this.btnSorting.Location = new System.Drawing.Point(409, 61);
             this.btnSorting.Name = "btnSorting";
             this.btnSorting.Size = new System.Drawing.Size(140, 40);
-            this.btnSorting.TabIndex = 8;
+            this.btnSorting.TabIndex = 3;
             this.btnSorting.Text = "Ordenar peliculas";
             this.btnSorting.UseVisualStyleBackColor = false;
             this.btnSorting.Click += new System.EventHandler(this.btnSorting_Click);
@@ -115,8 +115,8 @@
             this.lblAtras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblAtras.Location = new System.Drawing.Point(821, 10);
             this.lblAtras.Name = "lblAtras";
-            this.lblAtras.Size = new System.Drawing.Size(73, 31);
-            this.lblAtras.TabIndex = 10;
+            this.lblAtras.Size = new System.Drawing.Size(58, 25);
+            this.lblAtras.TabIndex = 6;
             this.lblAtras.TabStop = true;
             this.lblAtras.Text = "Atras";
             this.lblAtras.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblAtras_LinkClicked);

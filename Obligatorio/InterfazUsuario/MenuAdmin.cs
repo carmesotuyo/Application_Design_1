@@ -18,7 +18,7 @@ namespace InterfazUsuario
         private Perfil _perfil;
         private ILogicaGenero _logicaGenero;
         private ILogicaPelicula _logicaPelicula;
-        private Threat_Level_Midnight_Entertainment _ventanaPrincipal;
+        public Threat_Level_Midnight_Entertainment _ventanaPrincipal;
         public MenuAdmin(Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPelicula logicaPelicula, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             InitializeComponent();

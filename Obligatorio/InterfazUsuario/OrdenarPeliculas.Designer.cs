@@ -50,14 +50,14 @@
             this.comboBox1.Location = new System.Drawing.Point(219, 110);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(337, 24);
-            this.comboBox1.TabIndex = 3;
+            this.comboBox1.TabIndex = 1;
             // 
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(315, 157);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(127, 39);
-            this.btnEliminar.TabIndex = 4;
+            this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Ordenar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 

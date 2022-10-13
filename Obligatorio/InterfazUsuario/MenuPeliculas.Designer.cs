@@ -35,20 +35,20 @@
             // 
             // btnCerrarSesion
             // 
-            this.btnCerrarSesion.Location = new System.Drawing.Point(782, 18);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(726, 18);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(100, 29);
-            this.btnCerrarSesion.TabIndex = 6;
+            this.btnCerrarSesion.TabIndex = 3;
             this.btnCerrarSesion.Text = "Cerrar sesión";
             this.btnCerrarSesion.UseVisualStyleBackColor = true;
             this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // btnAdmin
             // 
-            this.btnAdmin.Location = new System.Drawing.Point(662, 18);
+            this.btnAdmin.Location = new System.Drawing.Point(601, 18);
             this.btnAdmin.Name = "btnAdmin";
             this.btnAdmin.Size = new System.Drawing.Size(103, 29);
-            this.btnAdmin.TabIndex = 5;
+            this.btnAdmin.TabIndex = 2;
             this.btnAdmin.Text = "Administrar";
             this.btnAdmin.UseVisualStyleBackColor = true;
             this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
@@ -60,7 +60,7 @@
             this.lblPerfil.Location = new System.Drawing.Point(19, 17);
             this.lblPerfil.Name = "lblPerfil";
             this.lblPerfil.Size = new System.Drawing.Size(55, 25);
-            this.lblPerfil.TabIndex = 4;
+            this.lblPerfil.TabIndex = 1;
             this.lblPerfil.TabStop = true;
             this.lblPerfil.Text = "Perfil";
             this.lblPerfil.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblPerfil_LinkClicked);
