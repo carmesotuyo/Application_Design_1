@@ -37,6 +37,7 @@
             this.btnPositivo = new System.Windows.Forms.Button();
             this.btnMuyPositivo = new System.Windows.Forms.Button();
             this.btnVista = new System.Windows.Forms.Button();
+            this.lblVolver = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.imgPelicula)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,7 +83,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtDescripcion.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDescripcion.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -134,10 +135,24 @@
             this.btnVista.UseVisualStyleBackColor = true;
             this.btnVista.Click += new System.EventHandler(this.button4_Click);
             // 
+            // lblVolver
+            // 
+            this.lblVolver.AutoSize = true;
+            this.lblVolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblVolver.Location = new System.Drawing.Point(18, 16);
+            this.lblVolver.Name = "lblVolver";
+            this.lblVolver.Size = new System.Drawing.Size(56, 20);
+            this.lblVolver.TabIndex = 6;
+            this.lblVolver.TabStop = true;
+            this.lblVolver.Text = "Volver";
+            this.lblVolver.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVolver_LinkClicked);
+            // 
             // VerPelicula
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.lblVolver);
             this.Controls.Add(this.btnVista);
             this.Controls.Add(this.btnMuyPositivo);
             this.Controls.Add(this.btnPositivo);
@@ -166,5 +181,6 @@
         private System.Windows.Forms.Button btnPositivo;
         private System.Windows.Forms.Button btnMuyPositivo;
         private System.Windows.Forms.Button btnVista;
+        private System.Windows.Forms.LinkLabel lblVolver;
     }
 }

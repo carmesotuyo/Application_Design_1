@@ -31,11 +31,9 @@ namespace InterfazUsuario
             _logicaGenero = new LogicaGenero(new GeneroRepo());
 
             InitializeComponent();
-            flpPanelPrincipal.Controls.Clear();
             flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
             CredencialesAdmin();
         }
-
         private void CredencialesAdmin()
         {
             Usuario admin = new Usuario()
@@ -48,7 +46,7 @@ namespace InterfazUsuario
             };
             _logicaUsuario.RegistrarUsuario(admin);
         }
-
+       
         public void CambiarRegistroUsuario()
         {
             flpPanelPrincipal.Controls.Clear();
