@@ -12,34 +12,31 @@ using System.Windows.Forms;
 
 namespace InterfazUsuario
 {
-    public partial class ListaPerfiles : UserControl
+    public partial class SeleccionarPerfil : UserControl
     {
+
         private Threat_Level_Midnight_Entertainment _ventanaPrincipal;
         private Usuario _usuario;
-        private Perfil _perfil;
         private ILogicaUsuario _logicaUsuario;
-        public ListaPerfiles(Perfil perfil, Usuario usuario, ILogicaUsuario logicaUsuario, Threat_Level_Midnight_Entertainment ventanaPrincipal)
+        public SeleccionarPerfil(Usuario usuario, ILogicaUsuario logicaUsuario, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             InitializeComponent();
-            _perfil = perfil;
             _usuario = usuario;
             _logicaUsuario = logicaUsuario;
             _ventanaPrincipal = ventanaPrincipal;
             CargarPerfiles();
-
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             _ventanaPrincipal.CambiarRegistroPerfil(_usuario);
         }
+
         private void CargarPerfiles()
         {
             flpListaPerfiles.Controls.Clear();
             int index = 0;
-            bool esOwner = _perfil.EsOwner;
-            foreach(Perfil perfil in _usuario.Perfiles)
+            foreach (Perfil perfil in _usuario.Perfiles)
             {
                 FlowLayoutPanel flpPerfil = new System.Windows.Forms.FlowLayoutPanel();
                 flpPerfil.BackColor = SystemColors.Control;
@@ -58,43 +55,8 @@ namespace InterfazUsuario
                 Label alias = new Label();
                 alias.Text = perfil.Alias;
                 flpPerfil.Controls.Add(alias);
-
-                if (!perfil.EsOwner)
-                {
-                    CheckBox esInfantil = new CheckBox();
-                    esInfantil.Text = "Es infantil";
-                    esInfantil.Checked = perfil.EsInfantil;
-                    esInfantil.TabIndex = index;
-                    if (!esOwner) { esInfantil.Visible = false; };
-                    esInfantil.Click += new EventHandler(EsInfantil);
-                    flpPerfil.Controls.Add(esInfantil);
-
-                    LinkLabel eliminar = new LinkLabel();
-                    eliminar.Text = "Eliminar";
-                    eliminar.TabIndex = index;
-                    if (!esOwner) { eliminar.Visible = false; };
-                    eliminar.Click += new EventHandler(EliminarPerfil);
-                    flpPerfil.Controls.Add(eliminar);
-                }
                 index++;
             }
-        }
-
-        private void EliminarPerfil(object sender, EventArgs e)
-        {
-            LinkLabel perfilSeleccionado = sender as LinkLabel;
-            int index = perfilSeleccionado.TabIndex;
-            Perfil perfil = _usuario.Perfiles[index];
-            _logicaUsuario.QuitarPerfil(_usuario, perfil);
-            CargarPerfiles();
-        }
-
-        private void EsInfantil(object sender, EventArgs e)
-        {
-            CheckBox perfilSeleccionado = sender as CheckBox;
-            int index = perfilSeleccionado.TabIndex;
-            Perfil perfil = _usuario.Perfiles[index];
-            perfil.EsInfantil = perfilSeleccionado.Checked;
         }
 
         private void AccederPerfil(object sender, EventArgs e)
@@ -106,7 +68,8 @@ namespace InterfazUsuario
             {
                 _ventanaPrincipal.CambiarMenuPeliculas(_usuario, perfil);
             }
-            _ventanaPrincipal.CambiarPedirPin(_usuario, perfil, _perfil);
+            _ventanaPrincipal.CambiarPedirPin(_usuario, perfil, perfil);
+
         }
     }
 }

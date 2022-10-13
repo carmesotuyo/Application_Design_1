@@ -37,8 +37,7 @@ namespace InterfazUsuario
             {
                 Usuario usuario = _logica.IniciarSesion(txtCuenta.Text, txtClave.Text);
                 MessageBox.Show($"Has iniciado sesión con {usuario}");
-                //_ventanaPrincipal.CambiarSeleccionarPerfil(usuario);
-                _ventanaPrincipal.CambiarRegistroPerfil(usuario);
+                _ventanaPrincipal.CambiarSeleccionarPerfil(usuario);
             } 
             catch(NombreOEmailIncorrectoException)
             {

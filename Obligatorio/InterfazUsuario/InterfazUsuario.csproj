@@ -120,6 +120,12 @@
     <Compile Include="Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
     </Compile>
+    <Compile Include="SeleccionarPerfil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SeleccionarPerfil.Designer.cs">
+      <DependentUpon>SeleccionarPerfil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Threat Level Midnight Entertainment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeleccionarPerfil.resx">
+      <DependentUpon>SeleccionarPerfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Threat Level Midnight Entertainment.resx">
       <DependentUpon>Threat Level Midnight Entertainment.cs</DependentUpon>

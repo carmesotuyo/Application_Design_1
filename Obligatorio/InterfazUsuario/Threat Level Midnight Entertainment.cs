@@ -90,5 +90,10 @@ namespace InterfazUsuario
             flpPanelPrincipal.Controls.Clear();
             flpPanelPrincipal.Controls.Add(new PedirPinDeSeguridad(perfil, perfil1Anterior, usuario, _logicaPerfil, this));
         }
+        public void CambiarSeleccionarPerfil(Usuario usuario)
+        {
+            flpPanelPrincipal.Controls.Clear();
+            flpPanelPrincipal.Controls.Add(new SeleccionarPerfil(usuario, _logicaUsuario, this));
+        }
     }
 }
