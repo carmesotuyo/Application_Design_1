@@ -200,7 +200,7 @@ namespace Pruebas.PruebasLogica
             Pelicula peliculaB = new Pelicula()
             {
                 EsPatrocinada = true,
-                Nombre = "Chucky",
+                Nombre = "Pesadilla en la Calle Elm",
                 GeneroPrincipal = terror
             };
 

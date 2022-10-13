@@ -92,7 +92,7 @@ namespace Logica.Implementaciones
 
         private List<Pelicula> OrdenarPorPatrocinio(List<Pelicula> peliculas)
         {
-            return peliculas.OrderBy(p => p.EsPatrocinada = true)
+            return peliculas.OrderByDescending(p => p.EsPatrocinada)
                               .ThenBy(p => p.GeneroPrincipal.Nombre)
                               .ThenBy(p => p.Nombre).ThenByDescending(p => p.Identificador).ToList();
         }
