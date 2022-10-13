@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -112,6 +113,14 @@ namespace Pruebas.PruebasLogica
             Usuario comun = new Usuario() { EsAdministrador = false };
 
             logica.BajaPelicula(unaPelicula, comun);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullException))]
+        public void BajaPeliculaNullTest()
+        {
+            Pelicula pelicula = null;
+            logica.BajaPelicula(pelicula, admin);
         }
 
         [TestMethod]

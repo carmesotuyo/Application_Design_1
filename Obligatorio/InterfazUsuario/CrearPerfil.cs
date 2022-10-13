@@ -43,7 +43,7 @@ namespace InterfazUsuario
             }
             catch (AliasInvalidoException)
             {
-                MessageBox.Show("Alias inválido");
+                MessageBox.Show("Alias debe tener un mínimo 1 y máximo 15 caracteres");
             }
             catch (PinInvalidoException)
             {

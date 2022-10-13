@@ -39,10 +39,19 @@ namespace Logica.Implementaciones
 
         public void EliminarGenero(Usuario admin, Genero genero, ILogicaPelicula logicaPelicula)
         {
+            ChequearNull(genero);
             BloquearUsuarioNoAdmin(admin);
             EvaluarSiNoExiste(genero);
             BuscarSiTienePeliculasAsociadas(genero, logicaPelicula);
             _repo.EliminarGenero(genero);
+        }
+
+        private void ChequearNull(Genero genero)
+        {
+            if (genero == null)
+            {
+                throw new NullException();
+            }
         }
 
         private void EvaluarSiNoExiste(Genero genero)

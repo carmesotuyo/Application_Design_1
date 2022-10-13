@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.Exceptions;
 using Logica.Implementaciones;
 using Logica.Interfaces;
 using System;
@@ -36,10 +37,19 @@ namespace InterfazUsuario
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Pelicula pelicula = cbPeliculas.SelectedItem as Pelicula;
-            _logicaPelicula.BajaPelicula(pelicula, _usuario);
-            MessageBox.Show($"La pelicula {pelicula} se eliminó con éxito");
-            _menuAdmin.CambiarQuitarPeli();
+           try
+            {
+                Pelicula pelicula = cbPeliculas.SelectedItem as Pelicula;
+                _logicaPelicula.BajaPelicula(pelicula, _usuario);
+                MessageBox.Show($"La pelicula {pelicula} se eliminó con éxito");
+                _menuAdmin.CambiarQuitarPeli();
+            }
+            catch(NullException)
+            {
+                MessageBox.Show("Debe seleccionar una pelicula");
+            }
+            
+            
         }
     }
 }

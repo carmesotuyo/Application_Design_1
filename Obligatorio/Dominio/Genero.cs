@@ -21,7 +21,7 @@ namespace Dominio
 
         public string Descripcion { get => _descripcion; set => _descripcion = value; }
         
-        private static void ChequearStringVacio(string value)
+        private void ChequearStringVacio(string value)
         {
             if (value.Length == 0)
             {
@@ -29,7 +29,7 @@ namespace Dominio
             }
         }
 
-        private string CorregirFormato(String texto)
+        private string CorregirFormato(string texto)
         {
             ChequearStringVacio(texto);
             return char.ToUpper(texto[0]) + texto.ToLower().Substring(1);

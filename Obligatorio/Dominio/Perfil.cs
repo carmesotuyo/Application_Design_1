@@ -58,7 +58,7 @@ namespace Dominio
             }
         }
 
-        private static string QuitarNumeros(string value)
+        private string QuitarNumeros(string value)
         {
             char[] numeros = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ' ' };
             return value.Trim(numeros); ;

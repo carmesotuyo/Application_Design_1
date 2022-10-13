@@ -33,6 +33,7 @@ namespace InterfazUsuario
         
         private void ActualizarComboGeneros()
         {
+            cbGeneros.Text = "";
             cbGeneros.Items.Clear();
             cbGeneros.Items.AddRange(_logicaGenero.Generos().ToArray());
         }
@@ -58,8 +59,8 @@ namespace InterfazUsuario
                 {
                     Nombre = txtNombre.Text,
                     Descripcion = txtDescripcion.Text,
-                    GeneroPrincipal = generoPrincipal,
                     GenerosSecundarios = generosSecundarios,
+                    GeneroPrincipal = generoPrincipal,
                     Poster = _imgPelicula,
                     EsPatrocinada = ckbEsPatrocinada.Checked,
                     AptaTodoPublico = ckbEsApta.Checked
@@ -76,7 +77,11 @@ namespace InterfazUsuario
             {
                 MessageBox.Show("Todavia quedan campos vacios");
             }
-            
+            catch (NullException)
+            {
+                MessageBox.Show("Debe seleccionar una imagen");
+            }
+
         }
 
         private void Limpiar()

@@ -45,6 +45,7 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnAgregar.Location = new System.Drawing.Point(348, 580);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(289, 59);

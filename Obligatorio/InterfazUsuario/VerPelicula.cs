@@ -60,16 +60,19 @@ namespace InterfazUsuario
         private void btnNegativo_Click(object sender, EventArgs e)
         {
             _logicaPerfil.PuntuarNegativo(_pelicula, _perfil);
+            MessageBox.Show("Has puntuado esta pelicula como negativa :(");
         }
 
         private void btnPositivo_Click(object sender, EventArgs e)
         {
             _logicaPerfil.PuntuarPositivo(_pelicula, _perfil);
+            MessageBox.Show("Has puntuado esta pelicula como positiva :)");
         }
 
         private void btnMuyPositivo_Click(object sender, EventArgs e)
         {
             _logicaPerfil.PuntuarMuyPositivo(_pelicula, _perfil);
+            MessageBox.Show("Has puntuado esta pelicula como muy positiva :D");
         }
 
         private void button4_Click(object sender, EventArgs e)

@@ -69,8 +69,17 @@ namespace Dominio
         public static int ContadorPeliculas { get => _contadorPeliculas; set => _contadorPeliculas = value; }
         public string Poster { get => _poster; set
             {
+                ChequearNull(value);
                 ChequearStringVacio(value);
                 _poster = value;
+            }
+        }
+
+        private void ChequearNull(String value)
+        {
+            if(value == null)
+            {
+                throw new NullException();
             }
         }
 
@@ -89,14 +98,14 @@ namespace Dominio
             }
         }
 
-        private static void ChequearStringVacio(string value)
+        private void ChequearStringVacio(string value)
         {
             if (value.Length == 0)
             {
                 throw new DatoVacioException();
             }
         }
-        private static void ChequearGeneroVacio(Genero genero)
+        private void ChequearGeneroVacio(Genero genero)
         {
             if (genero == null)
             {
