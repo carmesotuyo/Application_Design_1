@@ -44,7 +44,7 @@ namespace InterfazUsuario
             } 
             catch (NombreUsuarioException)
             {
-                MessageBox.Show("Ese nombre de usuario no da");
+                MessageBox.Show("Ese nombre de usuario debe contener entre 10 y 20 caracteres");
             }
             catch (EmailInvalidoException)
             {
