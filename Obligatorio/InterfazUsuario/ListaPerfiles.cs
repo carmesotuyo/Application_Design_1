@@ -108,5 +108,10 @@ namespace InterfazUsuario
             }
             _ventanaPrincipal.CambiarPedirPin(_usuario, perfil, _perfil);
         }
+
+        private void lblVolver_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _ventanaPrincipal.CambiarMenuPeliculas(_usuario, _perfil);
+        }
     }
 }

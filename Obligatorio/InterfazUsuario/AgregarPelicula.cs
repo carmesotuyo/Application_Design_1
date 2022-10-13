@@ -103,7 +103,7 @@ namespace InterfazUsuario
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Image Files | *.jpg; *.png;";
+                openFileDialog.Filter = "Image Files | *.jpg; *.jpeg; *.png;";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
