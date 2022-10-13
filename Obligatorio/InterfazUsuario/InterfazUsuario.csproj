@@ -94,6 +94,12 @@
     <Compile Include="OrdenarPeliculas.Designer.cs">
       <DependentUpon>OrdenarPeliculas.cs</DependentUpon>
     </Compile>
+    <Compile Include="PedirPinDeSeguridad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PedirPinDeSeguridad.Designer.cs">
+      <DependentUpon>PedirPinDeSeguridad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuitarGenero.cs">
@@ -113,6 +119,12 @@
     </Compile>
     <Compile Include="Registro.Designer.cs">
       <DependentUpon>Registro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionarPerfil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SeleccionarPerfil.Designer.cs">
+      <DependentUpon>SeleccionarPerfil.cs</DependentUpon>
     </Compile>
     <Compile Include="Threat Level Midnight Entertainment.cs">
       <SubType>Form</SubType>
@@ -150,6 +162,9 @@
     <EmbeddedResource Include="OrdenarPeliculas.resx">
       <DependentUpon>OrdenarPeliculas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PedirPinDeSeguridad.resx">
+      <DependentUpon>PedirPinDeSeguridad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -158,6 +173,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="QuitarGenero.resx">
       <DependentUpon>QuitarGenero.cs</DependentUpon>
@@ -167,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeleccionarPerfil.resx">
+      <DependentUpon>SeleccionarPerfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Threat Level Midnight Entertainment.resx">
       <DependentUpon>Threat Level Midnight Entertainment.cs</DependentUpon>
@@ -200,6 +219,9 @@
       <Project>{974c33f4-dc33-4328-8864-8697519fc466}</Project>
       <Name>Repositorio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuario.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

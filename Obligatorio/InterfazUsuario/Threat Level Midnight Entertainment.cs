@@ -35,6 +35,7 @@ namespace InterfazUsuario
             flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
             CredencialesAdmin();
         }
+
         private void CredencialesAdmin()
         {
             Usuario admin = new Usuario()
@@ -66,7 +67,7 @@ namespace InterfazUsuario
         public void CambiarListaPerfiles(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new ListaPerfiles(perfil, usuario, this));
+            flpPanelPrincipal.Controls.Add(new ListaPerfiles(perfil, usuario, _logicaUsuario, this));
         }
         public void CambiarMenuPeliculas(Usuario usuario, Perfil perfil)
         {
@@ -82,6 +83,17 @@ namespace InterfazUsuario
         {
             flpPanelPrincipal.Controls.Clear();
             flpPanelPrincipal.Controls.Add(new VerPelicula(pelicula, usuario, perfil, logicaPerfil, logicaGenero, this));
+        }
+
+        public void CambiarPedirPin(Usuario usuario, Perfil perfil, Perfil perfil1Anterior)
+        {
+            flpPanelPrincipal.Controls.Clear();
+            flpPanelPrincipal.Controls.Add(new PedirPinDeSeguridad(perfil, perfil1Anterior, usuario, _logicaPerfil, this));
+        }
+        public void CambiarSeleccionarPerfil(Usuario usuario)
+        {
+            flpPanelPrincipal.Controls.Clear();
+            flpPanelPrincipal.Controls.Add(new SeleccionarPerfil(usuario, _logicaUsuario, this));
         }
     }
 }

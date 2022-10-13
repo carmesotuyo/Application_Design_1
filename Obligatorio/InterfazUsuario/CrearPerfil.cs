@@ -47,7 +47,7 @@ namespace InterfazUsuario
             }
             catch (PinInvalidoException)
             {
-                MessageBox.Show("Pin inválido");
+                MessageBox.Show("El pin debe contener 5 digitos numericos");
             }
             catch (PinNoCoincideException)
             {
