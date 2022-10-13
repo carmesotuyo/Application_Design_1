@@ -17,21 +17,11 @@ namespace Repositorio
             _usuarios = new List<Usuario>();
         }
 
-        public bool EstaUsuario(Usuario usuario)
-        {
-            return _usuarios.Contains(usuario);
-        }
         public void AgregarUsuario(Usuario usuario)
         {
             _usuarios.Add(usuario);
         }
-        public void QuitarUsuario(Usuario usuario)
-        {
-            if (EstaUsuario(usuario))
-            {
-                _usuarios.Remove(usuario);
-            }
-        }
+
         public List<Usuario> Usuarios()
         {
             return _usuarios;

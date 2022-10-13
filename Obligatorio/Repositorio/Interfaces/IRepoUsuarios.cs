@@ -10,8 +10,6 @@ namespace Repositorio.Interfaces
     public interface IRepoUsuarios
     {
         List<Usuario> Usuarios();
-        bool EstaUsuario(Usuario usuario);
         void AgregarUsuario(Usuario usuario);
-        void QuitarUsuario(Usuario usuario);
     }
 }
