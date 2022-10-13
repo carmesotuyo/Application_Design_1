@@ -34,6 +34,8 @@
             this.lbl1 = new System.Windows.Forms.Label();
             this.lblRegistrarse = new System.Windows.Forms.LinkLabel();
             this.txtCuenta = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblBienvenido
@@ -51,21 +53,21 @@
             // 
             this.txtClave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClave.Location = new System.Drawing.Point(276, 223);
+            this.txtClave.Location = new System.Drawing.Point(276, 265);
             this.txtClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtClave.Name = "txtClave";
+            this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(409, 30);
             this.txtClave.TabIndex = 2;
-            this.txtClave.Text = "Contraseña";
             // 
             // btnLogin
             // 
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(276, 289);
+            this.btnLogin.Location = new System.Drawing.Point(276, 329);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(409, 34);
+            this.btnLogin.Size = new System.Drawing.Size(409, 54);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Iniciar sesión";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -97,18 +99,39 @@
             // 
             this.txtCuenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCuenta.Location = new System.Drawing.Point(276, 164);
+            this.txtCuenta.Location = new System.Drawing.Point(276, 198);
             this.txtCuenta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCuenta.Name = "txtCuenta";
             this.txtCuenta.Size = new System.Drawing.Size(409, 30);
             this.txtCuenta.TabIndex = 1;
-            this.txtCuenta.Text = "Correo electrónico o username";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label1.Location = new System.Drawing.Point(272, 175);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(245, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Correo electrónico o username:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label2.Location = new System.Drawing.Point(272, 243);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 20);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Contraseña:";
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCuenta);
             this.Controls.Add(this.lblRegistrarse);
             this.Controls.Add(this.lbl1);
@@ -131,5 +154,7 @@
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.LinkLabel lblRegistrarse;
         private System.Windows.Forms.TextBox txtCuenta;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

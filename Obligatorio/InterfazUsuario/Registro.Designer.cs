@@ -36,6 +36,10 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtClave = new System.Windows.Forms.TextBox();
             this.txtConfClave = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblBienvenido
@@ -54,10 +58,10 @@
             // 
             this.btnCrear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrear.Location = new System.Drawing.Point(279, 506);
+            this.btnCrear.Location = new System.Drawing.Point(279, 483);
             this.btnCrear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(409, 34);
+            this.btnCrear.Size = new System.Drawing.Size(409, 57);
             this.btnCrear.TabIndex = 5;
             this.btnCrear.Text = "Crear mi cuenta";
             this.btnCrear.UseVisualStyleBackColor = true;
@@ -94,7 +98,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(409, 30);
             this.txtEmail.TabIndex = 1;
-            this.txtEmail.Text = "Correo electrónico";
             // 
             // txtUserName
             // 
@@ -105,7 +108,6 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(409, 30);
             this.txtUserName.TabIndex = 2;
-            this.txtUserName.Text = "Nombre de usuario";
             // 
             // txtClave
             // 
@@ -114,9 +116,9 @@
             this.txtClave.Location = new System.Drawing.Point(279, 325);
             this.txtClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtClave.Name = "txtClave";
+            this.txtClave.PasswordChar = '*';
             this.txtClave.Size = new System.Drawing.Size(409, 30);
             this.txtClave.TabIndex = 3;
-            this.txtClave.Text = "Contraseña";
             // 
             // txtConfClave
             // 
@@ -125,15 +127,59 @@
             this.txtConfClave.Location = new System.Drawing.Point(279, 398);
             this.txtConfClave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtConfClave.Name = "txtConfClave";
+            this.txtConfClave.PasswordChar = '*';
             this.txtConfClave.Size = new System.Drawing.Size(409, 30);
             this.txtConfClave.TabIndex = 4;
-            this.txtConfClave.Text = "Confirmar contraseña";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label1.Location = new System.Drawing.Point(275, 160);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 20);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Correo electrónico:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label2.Location = new System.Drawing.Point(275, 232);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(156, 20);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Nombre de usuario:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label3.Location = new System.Drawing.Point(275, 303);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 20);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Contraseña:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label4.Location = new System.Drawing.Point(275, 376);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(176, 20);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Confirmar contraseña:";
             // 
             // Registro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtConfClave);
             this.Controls.Add(this.txtClave);
             this.Controls.Add(this.txtUserName);
@@ -160,5 +206,9 @@
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.TextBox txtConfClave;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

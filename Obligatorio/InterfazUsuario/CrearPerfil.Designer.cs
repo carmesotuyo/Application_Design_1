@@ -33,27 +33,29 @@
             this.txtPin = new System.Windows.Forms.TextBox();
             this.lblNuevoPerfil = new System.Windows.Forms.Label();
             this.txtPinConfirm = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtAlias
             // 
             this.txtAlias.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAlias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAlias.Location = new System.Drawing.Point(277, 161);
+            this.txtAlias.Location = new System.Drawing.Point(277, 205);
             this.txtAlias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAlias.Name = "txtAlias";
             this.txtAlias.Size = new System.Drawing.Size(409, 30);
             this.txtAlias.TabIndex = 1;
-            this.txtAlias.Text = "Alias";
             // 
             // btnCrear
             // 
             this.btnCrear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrear.Location = new System.Drawing.Point(277, 360);
+            this.btnCrear.Location = new System.Drawing.Point(277, 418);
             this.btnCrear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(409, 34);
+            this.btnCrear.Size = new System.Drawing.Size(409, 63);
             this.btnCrear.TabIndex = 4;
             this.btnCrear.Text = "Crear perfil";
             this.btnCrear.UseVisualStyleBackColor = true;
@@ -63,12 +65,12 @@
             // 
             this.txtPin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPin.Location = new System.Drawing.Point(277, 224);
+            this.txtPin.Location = new System.Drawing.Point(277, 268);
             this.txtPin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPin.Name = "txtPin";
+            this.txtPin.PasswordChar = '*';
             this.txtPin.Size = new System.Drawing.Size(409, 30);
             this.txtPin.TabIndex = 2;
-            this.txtPin.Text = "Pin de seguridad";
             // 
             // lblNuevoPerfil
             // 
@@ -85,18 +87,51 @@
             // 
             this.txtPinConfirm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPinConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPinConfirm.Location = new System.Drawing.Point(277, 289);
+            this.txtPinConfirm.Location = new System.Drawing.Point(277, 333);
             this.txtPinConfirm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPinConfirm.Name = "txtPinConfirm";
+            this.txtPinConfirm.PasswordChar = '*';
             this.txtPinConfirm.Size = new System.Drawing.Size(409, 30);
             this.txtPinConfirm.TabIndex = 3;
-            this.txtPinConfirm.Text = "Confirmar pin";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label1.Location = new System.Drawing.Point(273, 183);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Alias:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label2.Location = new System.Drawing.Point(273, 246);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Pin:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label3.Location = new System.Drawing.Point(273, 311);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(117, 20);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Confirmar Pin:";
             // 
             // CrearPerfil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPinConfirm);
             this.Controls.Add(this.txtAlias);
             this.Controls.Add(this.btnCrear);
@@ -117,5 +152,8 @@
         private System.Windows.Forms.TextBox txtPin;
         private System.Windows.Forms.Label lblNuevoPerfil;
         private System.Windows.Forms.TextBox txtPinConfirm;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

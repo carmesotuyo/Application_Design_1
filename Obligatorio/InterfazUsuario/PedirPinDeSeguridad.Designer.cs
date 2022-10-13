@@ -49,7 +49,7 @@
             // 
             this.lblIngresarPin.AutoSize = true;
             this.lblIngresarPin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblIngresarPin.Location = new System.Drawing.Point(311, 286);
+            this.lblIngresarPin.Location = new System.Drawing.Point(417, 239);
             this.lblIngresarPin.Name = "lblIngresarPin";
             this.lblIngresarPin.Size = new System.Drawing.Size(140, 25);
             this.lblIngresarPin.TabIndex = 2;
@@ -57,17 +57,17 @@
             // 
             // txtPin
             // 
-            this.txtPin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtPin.Location = new System.Drawing.Point(316, 314);
+            this.txtPin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.txtPin.Location = new System.Drawing.Point(372, 279);
             this.txtPin.Name = "txtPin";
             this.txtPin.PasswordChar = '*';
-            this.txtPin.Size = new System.Drawing.Size(368, 30);
+            this.txtPin.Size = new System.Drawing.Size(225, 41);
             this.txtPin.TabIndex = 3;
             // 
             // btnIngresar
             // 
             this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnIngresar.Location = new System.Drawing.Point(427, 374);
+            this.btnIngresar.Location = new System.Drawing.Point(422, 347);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(130, 47);
             this.btnIngresar.TabIndex = 4;

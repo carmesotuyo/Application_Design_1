@@ -44,7 +44,7 @@
             this.lblPerfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblPerfil.Location = new System.Drawing.Point(34, 10);
             this.lblPerfil.Name = "lblPerfil";
-            this.lblPerfil.Size = new System.Drawing.Size(95, 31);
+            this.lblPerfil.Size = new System.Drawing.Size(76, 25);
             this.lblPerfil.TabIndex = 0;
             this.lblPerfil.TabStop = true;
             this.lblPerfil.Text = "Perfiles";
@@ -104,7 +104,7 @@
             // 
             // flpAdministrador
             // 
-            this.flpAdministrador.BackColor = System.Drawing.Color.Gainsboro;
+            this.flpAdministrador.BackColor = System.Drawing.Color.WhiteSmoke;
             this.flpAdministrador.Location = new System.Drawing.Point(82, 131);
             this.flpAdministrador.Name = "flpAdministrador";
             this.flpAdministrador.Size = new System.Drawing.Size(794, 533);
@@ -126,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.lblAtras);
             this.Controls.Add(this.flpAdministrador);
             this.Controls.Add(this.btnSorting);
