@@ -69,7 +69,6 @@ namespace InterfazUsuario
                 _ventanaPrincipal.CambiarMenuPeliculas(_usuario, perfil);
             }
             _ventanaPrincipal.CambiarPedirPin(_usuario, perfil, perfil);
-
         }
     }
 }
