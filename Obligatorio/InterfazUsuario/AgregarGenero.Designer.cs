@@ -51,7 +51,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(248, 169);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(263, 22);
-            this.txtDescripcion.TabIndex = 14;
+            this.txtDescripcion.TabIndex = 2;
             // 
             // lblDesc
             // 
@@ -67,7 +67,7 @@
             this.txtNombre.Location = new System.Drawing.Point(248, 111);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(263, 22);
-            this.txtNombre.TabIndex = 12;
+            this.txtNombre.TabIndex = 1;
             // 
             // lblNombre
             // 
@@ -84,7 +84,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(273, 258);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(217, 46);
-            this.btnAgregar.TabIndex = 15;
+            this.btnAgregar.TabIndex = 3;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);

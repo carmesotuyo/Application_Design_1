@@ -58,7 +58,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(316, 158);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(127, 39);
-            this.btnEliminar.TabIndex = 7;
+            this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -69,7 +69,7 @@
             this.cbGeneros.Location = new System.Drawing.Point(212, 111);
             this.cbGeneros.Name = "cbGeneros";
             this.cbGeneros.Size = new System.Drawing.Size(337, 24);
-            this.cbGeneros.TabIndex = 6;
+            this.cbGeneros.TabIndex = 1;
             // 
             // QuitarGenero
             // 

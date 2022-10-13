@@ -50,14 +50,14 @@
             this.cbPeliculas.Location = new System.Drawing.Point(214, 116);
             this.cbPeliculas.Name = "cbPeliculas";
             this.cbPeliculas.Size = new System.Drawing.Size(337, 24);
-            this.cbPeliculas.TabIndex = 2;
+            this.cbPeliculas.TabIndex = 1;
             // 
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(312, 161);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(127, 39);
-            this.btnEliminar.TabIndex = 3;
+            this.btnEliminar.TabIndex = 2;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
