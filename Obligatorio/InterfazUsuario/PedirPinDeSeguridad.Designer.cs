@@ -91,6 +91,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.lblAtras);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.txtPin);

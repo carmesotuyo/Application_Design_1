@@ -18,14 +18,12 @@ namespace InterfazUsuario
         private MenuAdmin _menuAdmin;
         private ILogicaPelicula _logicaPelicula;
         private Usuario _usuario;
-        private string _criterioSeleccionado;
         public OrdenarPeliculas(Usuario usuario, ILogicaPelicula logicaPelicula, MenuAdmin menuAdmin)
         {
             InitializeComponent();
             _menuAdmin = menuAdmin;
             _logicaPelicula = logicaPelicula;
             _usuario = usuario;
-            _criterioSeleccionado = "Por género";
             CargarComboCriterio();
         }
 
@@ -44,7 +42,6 @@ namespace InterfazUsuario
             {
                 int criterio = cbCriterio.SelectedIndex;
                 _logicaPelicula.ElegirCriterioOrden(_usuario, criterio);
-                _criterioSeleccionado = cbCriterio.Text;
                 lblCriterio.Text = _logicaPelicula.CriterioSeleccionado();
             }
             catch(CriterioInexistenteException)
