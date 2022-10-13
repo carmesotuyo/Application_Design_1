@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DB98A041-1CBD-41B1-9A02-D5E2D038B040}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>InterfazUsuario</RootNamespace>
+    <AssemblyName>InterfazUsuario</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgregarGenero.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AgregarGenero.Designer.cs">
+      <DependentUpon>AgregarGenero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarPelicula.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AgregarPelicula.Designer.cs">
+      <DependentUpon>AgregarPelicula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrearPerfil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrearPerfil.Designer.cs">
+      <DependentUpon>CrearPerfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListaPerfiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListaPerfiles.Designer.cs">
+      <DependentUpon>ListaPerfiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MenuAdmin.Designer.cs">
+      <DependentUpon>MenuAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPeliculas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MenuPeliculas.Designer.cs">
+      <DependentUpon>MenuPeliculas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenarPeliculas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrdenarPeliculas.Designer.cs">
+      <DependentUpon>OrdenarPeliculas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PedirPinDeSeguridad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PedirPinDeSeguridad.Designer.cs">
+      <DependentUpon>PedirPinDeSeguridad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuitarGenero.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuitarGenero.Designer.cs">
+      <DependentUpon>QuitarGenero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuitarPelicula.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuitarPelicula.Designer.cs">
+      <DependentUpon>QuitarPelicula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Registro.Designer.cs">
+      <DependentUpon>Registro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SeleccionarPerfil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SeleccionarPerfil.Designer.cs">
+      <DependentUpon>SeleccionarPerfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Threat Level Midnight Entertainment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Threat Level Midnight Entertainment.Designer.cs">
+      <DependentUpon>Threat Level Midnight Entertainment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerPelicula.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VerPelicula.Designer.cs">
+      <DependentUpon>VerPelicula.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AgregarGenero.resx">
+      <DependentUpon>AgregarGenero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarPelicula.resx">
+      <DependentUpon>AgregarPelicula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearPerfil.resx">
+      <DependentUpon>CrearPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaPerfiles.resx">
+      <DependentUpon>ListaPerfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuAdmin.resx">
+      <DependentUpon>MenuAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuPeliculas.resx">
+      <DependentUpon>MenuPeliculas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenarPeliculas.resx">
+      <DependentUpon>OrdenarPeliculas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PedirPinDeSeguridad.resx">
+      <DependentUpon>PedirPinDeSeguridad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="QuitarGenero.resx">
+      <DependentUpon>QuitarGenero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuitarPelicula.resx">
+      <DependentUpon>QuitarPelicula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registro.resx">
+      <DependentUpon>Registro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeleccionarPerfil.resx">
+      <DependentUpon>SeleccionarPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Threat Level Midnight Entertainment.resx">
+      <DependentUpon>Threat Level Midnight Entertainment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerPelicula.resx">
+      <DependentUpon>VerPelicula.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{72E1B2A8-6160-4E3E-B561-BC94B6C8406B}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logica\Logica.csproj">
+      <Project>{BC36CCD2-5F12-4166-8EF9-E9273B324E1C}</Project>
+      <Name>Logica</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositorio\Repositorio.csproj">
+      <Project>{974c33f4-dc33-4328-8864-8697519fc466}</Project>
+      <Name>Repositorio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuario.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
