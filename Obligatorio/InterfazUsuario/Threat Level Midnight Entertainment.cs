@@ -2,6 +2,7 @@
 using Logica.Implementaciones;
 using Logica.Interfaces;
 using Repositorio;
+using Repositorio.EnDataBase;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,7 +29,7 @@ namespace InterfazUsuario
             _logicaUsuario = new LogicaUsuario(new RepoUsuarios());
             _logicaPerfil = new LogicaPerfil();
             _logicaPelicula = new LogicaPelicula(new PeliculaRepo());
-            _logicaGenero = new LogicaGenero(new GeneroRepo());
+            _logicaGenero = new LogicaGenero(new GeneroDBRepo());
 
             InitializeComponent();
             flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
