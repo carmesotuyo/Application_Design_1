@@ -21,12 +21,24 @@ namespace Repositorio.EnDataBase
 
         public bool EstaPelicula(Pelicula pelicula)
         {
-            throw new NotImplementedException();
+            bool esta = false;
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                Pelicula peliculaBuscada = tlmeContext.Peliculas.FirstOrDefault(p => p.Nombre == pelicula.Nombre);
+                if (peliculaBuscada != null)
+                {
+                    esta = true;
+                }
+            }
+            return esta;
         }
 
         public List<Pelicula> Peliculas()
         {
-            throw new NotImplementedException();
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                return tlmeContext.Peliculas.ToList();
+            }
         }
 
         public void QuitarPelicula(Pelicula pelicula)
