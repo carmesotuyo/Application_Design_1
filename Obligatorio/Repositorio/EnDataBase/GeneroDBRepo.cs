@@ -21,7 +21,12 @@ namespace Repositorio.EnDataBase
 
         public void EliminarGenero(Genero genero)
         {
-            throw new NotImplementedException();
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                Genero generoABorrar = tlmeContext.Generos.FirstOrDefault(g => g.Nombre == genero.Nombre);
+                tlmeContext.Generos.Remove(generoABorrar);
+                tlmeContext.SaveChanges();
+            }
         }
 
         public bool EstaGenero(Genero genero)
