@@ -52,7 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfiguracionesDominio\ConfigGenero.cs" />
+    <Compile Include="ConfiguracionesDominio\ConfigGeneroPuntaje.cs" />
+    <Compile Include="ConfiguracionesDominio\ConfigPelicula.cs" />
     <Compile Include="EnDataBase\GeneroDBRepo.cs" />
+    <Compile Include="EnDataBase\PeliculaDBRepo.cs" />
     <Compile Include="EnDataBase\ThreatLevelMidnightEntertainmentDBContext.cs" />
     <Compile Include="EnMemoria\GeneroRepo.cs" />
     <Compile Include="EnMemoria\PeliculaRepo.cs" />

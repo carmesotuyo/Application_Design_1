@@ -12,6 +12,7 @@ namespace Repositorio.EnDataBase
     public class ThreatLevelMidnightEntertainmentDBContext : DbContext
     {
         public DbSet<Genero> Generos { get; set; }
+        public DbSet<Pelicula> Peliculas { get; set; }
 
         public ThreatLevelMidnightEntertainmentDBContext() : base("ThreatLevelMidnightEntertainmentDB")
         {
@@ -20,6 +21,7 @@ namespace Repositorio.EnDataBase
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             ConfigGenero.ConfigurarEntidad(modelBuilder);
+            ConfigPelicula.ConfigurarEntidad(modelBuilder);
         }
     }
 }

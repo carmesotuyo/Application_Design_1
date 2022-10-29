@@ -25,7 +25,7 @@ namespace Repositorio.EnDataBase
             {
                 Genero generoABorrar = tlmeContext.Generos.FirstOrDefault(g => g.Nombre == genero.Nombre);
                 tlmeContext.Generos.Remove(generoABorrar);
-                tlmeContext.SaveChanges();
+                tlmeContext.SaveChanges(); 
             }
         }
 
