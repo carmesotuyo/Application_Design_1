@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Repositorio.ConfiguracionesDominio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,6 +15,11 @@ namespace Repositorio.EnDataBase
 
         public ThreatLevelMidnightEntertainmentDBContext() : base("ThreatLevelMidnightEntertainmentDB")
         {
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            ConfigGenero.ConfigurarEntidad(modelBuilder);
         }
     }
 }

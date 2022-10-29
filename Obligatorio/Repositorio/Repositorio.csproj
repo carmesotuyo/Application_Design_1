@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfiguracionesDominio\ConfigGenero.cs" />
     <Compile Include="EnDataBase\GeneroDBRepo.cs" />
     <Compile Include="EnDataBase\ThreatLevelMidnightEntertainmentDBContext.cs" />
     <Compile Include="EnMemoria\GeneroRepo.cs" />
