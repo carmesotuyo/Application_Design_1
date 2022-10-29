@@ -26,12 +26,24 @@ namespace Repositorio.EnDataBase
 
         public bool EstaGenero(Genero genero)
         {
-            throw new NotImplementedException();
+            bool esta = false;
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                Genero generoBuscado = tlmeContext.Generos.FirstOrDefault(g => g.Nombre == genero.Nombre);
+                if(generoBuscado != null)
+                {
+                    esta = true;
+                }
+            }
+            return esta;
         }
 
         public List<Genero> Generos()
         {
-            throw new NotImplementedException();
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                return tlmeContext.Generos.ToList();
+            }
         }
     }
 }

@@ -28,6 +28,14 @@ namespace Logica.Implementaciones
             _repo.AgregarGenero(genero);
         }
 
+        private void BloquearUsuarioNoAdmin(Usuario admin)
+        {
+            if (!admin.EsAdministrador)
+            {
+                throw new UsuarioNoPermitidoException();
+            }
+        }
+
 
         private void EvaluarSiEsDuplicado(Genero genero)
         {
@@ -69,14 +77,6 @@ namespace Logica.Implementaciones
             if (EsGeneroPrincipal.Count() > 0 || EsGeneroSecundario.Count() > 0)
             {
                 throw new GeneroConPeliculaAsociadaException();
-            }
-        }
-
-        private void BloquearUsuarioNoAdmin(Usuario admin)
-        {
-            if (!admin.EsAdministrador)
-            {
-                throw new UsuarioNoPermitidoException();
             }
         }
 
