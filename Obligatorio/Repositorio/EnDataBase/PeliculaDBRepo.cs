@@ -16,22 +16,21 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
-
-                //var generosSecundarios = tlmeContext.Peliculas
-                //                        .Include(p => p.GenerosSecundarios)
-                //                        .FirstOrDefault(p => p.Identificador == pelicula.Identificador).GenerosSecundarios;
-                foreach (var generosEnMemoria in pelicula.GenerosSecundarios)
-                {
-                    //if (generosSecundarios.FirstOrDefault(x => x.Nombre == generosEnMemoria.Nombre) is null)
-                    //{
-                    //    tlmeContext.Entry(generosEnMemoria).State = EntityState.Added;
-                    //}
-                    tlmeContext.Entry(generosEnMemoria).State = EntityState.Unchanged;
-                }
-
+                MantenerGenerosSinCambios(pelicula, tlmeContext);
                 tlmeContext.Peliculas.Add(pelicula);
                 tlmeContext.SaveChanges();
+            }
+        }
+
+        private static void MantenerGenerosSinCambios(Pelicula pelicula, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
+        {
+            using (tlmeContext) {
+                tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
+
+                foreach (var generosEnMemoria in pelicula.GenerosSecundarios)
+                {
+                    tlmeContext.Entry(generosEnMemoria).State = EntityState.Unchanged;
+                }
             }
         }
 
