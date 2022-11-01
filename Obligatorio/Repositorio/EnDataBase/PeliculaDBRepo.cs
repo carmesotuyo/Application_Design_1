@@ -43,7 +43,15 @@ namespace Repositorio.EnDataBase
 
         public void QuitarPelicula(Pelicula pelicula)
         {
-            throw new NotImplementedException();
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                if (EstaPelicula(pelicula))
+                {
+                    Pelicula peliculaABorrar = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
+                    tlmeContext.Peliculas.Remove(peliculaABorrar);
+                    tlmeContext.SaveChanges();
+                }
+            }
         }
     }
 }

@@ -12,10 +12,10 @@ namespace Repositorio.ConfiguracionesDominio
     {
         public static void ConfigurarEntidad(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Pelicula>().ToTable("peliculas");
-            modelBuilder.Entity<Pelicula>().HasKey(p => p.Identificador);
-            modelBuilder.Entity<Pelicula>().HasMany<Genero>(p => p.GenerosSecundarios);
-            modelBuilder.Entity<Pelicula>().HasRequired<Genero>(p => p.GeneroPrincipal);
+            modelBuilder.Entity<Pelicula>().ToTable("peliculas")
+                .HasKey(p => p.Identificador)
+                .HasMany(p => p.GenerosSecundarios);
+            modelBuilder.Entity<Pelicula>().HasRequired(p => p.GeneroPrincipal);
         }
     }
 }
