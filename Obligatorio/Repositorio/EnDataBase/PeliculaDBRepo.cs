@@ -24,13 +24,11 @@ namespace Repositorio.EnDataBase
 
         private static void MantenerGenerosSinCambios(Pelicula pelicula, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
         {
-            using (tlmeContext) {
-                tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
+            tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
 
-                foreach (var generosEnMemoria in pelicula.GenerosSecundarios)
-                {
-                    tlmeContext.Entry(generosEnMemoria).State = EntityState.Unchanged;
-                }
+            foreach (var generosEnMemoria in pelicula.GenerosSecundarios)
+            {
+                tlmeContext.Entry(generosEnMemoria).State = EntityState.Unchanged;
             }
         }
 
@@ -52,7 +50,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Peliculas.ToList();
+                return tlmeContext.Peliculas.Include(x=> x.GeneroPrincipal).ToList();
             }
         }
 

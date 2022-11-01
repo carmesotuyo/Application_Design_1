@@ -16,7 +16,7 @@ namespace Repositorio.ConfiguracionesDominio
                 .HasKey(p => p.Identificador)
                 .HasMany(p => p.GenerosSecundarios)
                 .WithMany(g => g.PeliculasAsociadas);
-            modelBuilder.Entity<Pelicula>().HasRequired(p => p.GeneroPrincipal);
+            //modelBuilder.Entity<Pelicula>().HasRequired(p => p.GeneroPrincipal);
         }
     }
 }

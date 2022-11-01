@@ -62,9 +62,9 @@
     <Compile Include="Interfaces\IGeneroRepo.cs" />
     <Compile Include="Interfaces\IPeliculaRepo.cs" />
     <Compile Include="Interfaces\IRepoUsuarios.cs" />
-    <Compile Include="Migrations\202211010148010_TablasGeneroYPelicula.cs" />
-    <Compile Include="Migrations\202211010148010_TablasGeneroYPelicula.designer.cs">
-      <DependentUpon>202211010148010_TablasGeneroYPelicula.cs</DependentUpon>
+    <Compile Include="Migrations\202211011231143_TablasGeneroYPelicula.cs" />
+    <Compile Include="Migrations\202211011231143_TablasGeneroYPelicula.designer.cs">
+      <DependentUpon>202211011231143_TablasGeneroYPelicula.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,8 +87,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202211010148010_TablasGeneroYPelicula.resx">
-      <DependentUpon>202211010148010_TablasGeneroYPelicula.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202211011231143_TablasGeneroYPelicula.resx">
+      <DependentUpon>202211011231143_TablasGeneroYPelicula.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
