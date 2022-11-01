@@ -14,7 +14,8 @@ namespace Repositorio.ConfiguracionesDominio
         {
             modelBuilder.Entity<Pelicula>().ToTable("peliculas")
                 .HasKey(p => p.Identificador)
-                .HasMany(p => p.GenerosSecundarios);
+                .HasMany(p => p.GenerosSecundarios)
+                .WithMany(g => g.PeliculasAsociadas);
             modelBuilder.Entity<Pelicula>().HasRequired(p => p.GeneroPrincipal);
         }
     }

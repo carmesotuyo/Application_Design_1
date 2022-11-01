@@ -12,7 +12,7 @@ namespace Dominio
     {
         private string _nombre;
         private Genero _generoPrincipal;
-        private List<Genero> _generosSecundarios;
+        private IList<Genero> _generosSecundarios;
         private string _descripcion;
         private bool _aptaTodoPublico;
         private bool _patrocinada;
@@ -55,7 +55,7 @@ namespace Dominio
         }
 
 
-        public List<Genero> GenerosSecundarios { get => _generosSecundarios; set
+        public IList<Genero> GenerosSecundarios { get => _generosSecundarios; set
             {
                 _generosSecundarios = value;
             } 
