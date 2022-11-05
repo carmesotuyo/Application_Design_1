@@ -11,7 +11,9 @@ namespace Dominio
     {
         private int _puntaje;
         private Genero _genero;
+        private string _nombreGenero;
         private Perfil _perfil;
+        private string _aliasPerfil;
 
         public GeneroPuntaje()
         {
@@ -47,6 +49,9 @@ namespace Dominio
                 _perfil = value;  
             }
         }
+
+        public string NombreGenero { get => _nombreGenero; set => _nombreGenero = this.Genero.Nombre; }
+        public string AliasPerfil { get => _aliasPerfil; set => _aliasPerfil = this.Perfil.Alias; }
 
         public void ModificarPuntaje(int value)
         {

@@ -13,7 +13,7 @@ namespace Repositorio.ConfiguracionesDominio
         public static void ConfigurarEntidad(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<GeneroPuntaje>().ToTable("generos_puntajes");
-            modelBuilder.Entity<GeneroPuntaje>().HasKey(g => new { g.Perfil, g.Genero });
+            modelBuilder.Entity<GeneroPuntaje>().HasKey(g => new { g.AliasPerfil, g.NombreGenero });
         }
     }
 }

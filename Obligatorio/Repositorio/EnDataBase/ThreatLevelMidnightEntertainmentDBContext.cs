@@ -25,6 +25,9 @@ namespace Repositorio.EnDataBase
         {
             ConfigGenero.ConfigurarEntidad(modelBuilder);
             ConfigPelicula.ConfigurarEntidad(modelBuilder);
+            ConfigGeneroPuntaje.ConfigurarEntidad(modelBuilder);
+            ConfigPerfil.ConfigurarEntidad(modelBuilder);
+            ConfigUsuario.ConfigurarEntidad(modelBuilder);
         }
     }
 }

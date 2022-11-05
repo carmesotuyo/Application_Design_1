@@ -17,6 +17,7 @@ namespace Dominio
         private List<GeneroPuntaje> _puntajeGeneros;
         private List<Pelicula> _peliculasVistas;
         private Usuario _usuario;
+        private string _nombreUsuario;
 
         private static int _minCharsAlias = 1;
         private static int _maxCharsAlias = 15;
@@ -114,6 +115,7 @@ namespace Dominio
         }
 
         public Usuario Usuario { get => _usuario; set { _usuario = value; } }
+        public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = this.Usuario.Nombre; }
 
         public override string ToString()
         {

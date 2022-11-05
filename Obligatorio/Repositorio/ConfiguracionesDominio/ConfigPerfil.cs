@@ -13,7 +13,7 @@ namespace Repositorio.ConfiguracionesDominio
         public static void ConfigurarEntidad(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Perfil>().ToTable("perfiles");
-            modelBuilder.Entity<Perfil>().HasKey(p => new { p.Alias, p.Usuario });
+            modelBuilder.Entity<Perfil>().HasKey(p => new { p.Alias, p.NombreUsuario });
         }
     }
 }

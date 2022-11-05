@@ -2,6 +2,7 @@
 using Repositorio.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,8 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.GenerosPuntajes.ToList();
+                return tlmeContext.GenerosPuntajes.Include(x => x.Genero)
+                    .Include(x=> x.Perfil).ToList();
             }
         }
     }

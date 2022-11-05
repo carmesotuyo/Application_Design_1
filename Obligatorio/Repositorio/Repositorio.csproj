@@ -73,6 +73,10 @@
     <Compile Include="Migrations\202211011231143_TablasGeneroYPelicula.designer.cs">
       <DependentUpon>202211011231143_TablasGeneroYPelicula.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211052346580_TablasGeneroPuntaje-Perfil-Usuario.cs" />
+    <Compile Include="Migrations\202211052346580_TablasGeneroPuntaje-Perfil-Usuario.designer.cs">
+      <DependentUpon>202211052346580_TablasGeneroPuntaje-Perfil-Usuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EnMemoria\RepoUsuarios.cs" />
@@ -96,6 +100,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202211011231143_TablasGeneroYPelicula.resx">
       <DependentUpon>202211011231143_TablasGeneroYPelicula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211052346580_TablasGeneroPuntaje-Perfil-Usuario.resx">
+      <DependentUpon>202211052346580_TablasGeneroPuntaje-Perfil-Usuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
