@@ -8,14 +8,12 @@ using System.Threading.Tasks;
 
 namespace Repositorio.ConfiguracionesDominio
 {
-    public static class ConfigPelicula
+    public static class ConfigGeneroPuntaje
     {
         public static void ConfigurarEntidad(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Pelicula>().ToTable("peliculas")
-                .HasKey(p => p.Identificador)
-                .HasMany(p => p.GenerosSecundarios)
-                .WithMany(g => g.PeliculasAsociadas);
+            modelBuilder.Entity<GeneroPuntaje>().ToTable("generos_puntajes");
+            modelBuilder.Entity<GeneroPuntaje>().HasKey(g => new { g.Perfil, g.Genero });
         }
     }
 }

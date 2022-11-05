@@ -13,6 +13,9 @@ namespace Repositorio.EnDataBase
     {
         public DbSet<Genero> Generos { get; set; }
         public DbSet<Pelicula> Peliculas { get; set; }
+        public DbSet<GeneroPuntaje> GenerosPuntajes { get; set; }
+        public DbSet<Perfil> Perfiles { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         public ThreatLevelMidnightEntertainmentDBContext() : base("ThreatLevelMidnightEntertainmentDB")
         {

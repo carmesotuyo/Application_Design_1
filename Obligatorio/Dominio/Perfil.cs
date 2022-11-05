@@ -16,6 +16,7 @@ namespace Dominio
         private bool _esOwner;
         private List<GeneroPuntaje> _puntajeGeneros;
         private List<Pelicula> _peliculasVistas;
+        private Usuario _usuario;
 
         private static int _minCharsAlias = 1;
         private static int _maxCharsAlias = 15;
@@ -86,8 +87,7 @@ namespace Dominio
 
         public bool EsOwner { get => _esOwner; set => _esOwner = value; }
 
-        public bool EsInfantil { get => _esInfantil; set { _esInfantil = value; } 
-        }
+        public bool EsInfantil { get => _esInfantil; set => _esInfantil = value; }
 
         public List<GeneroPuntaje> PuntajeGeneros { get => _puntajeGeneros; }
 
@@ -112,6 +112,8 @@ namespace Dominio
         {
             return _peliculasVistas.Contains(unaPelicula);
         }
+
+        public Usuario Usuario { get => _usuario; set { _usuario = value; } }
 
         public override string ToString()
         {
