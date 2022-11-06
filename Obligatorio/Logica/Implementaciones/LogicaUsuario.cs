@@ -15,11 +15,13 @@ namespace Logica.Implementaciones
     public class LogicaUsuario : ILogicaUsuario
     {
         private IRepoUsuarios _repoUsuarios;
+        private IPerfilRepo _repoPerfiles;
         private static int cantMaximaDePerfiles = 4;
 
-        public LogicaUsuario(IRepoUsuarios repoUsuarios)
+        public LogicaUsuario(IRepoUsuarios repoUsuarios, IPerfilRepo repoPerfiles)
         {
             _repoUsuarios = repoUsuarios;
+            _repoPerfiles = repoPerfiles;
         }
         public void RegistrarUsuario(Usuario usuario)
         {
@@ -90,6 +92,8 @@ namespace Logica.Implementaciones
             MaximoDePerfiles(usuario);
             EsElPrimero(usuario, perfil);
             ValidarAliasUnico(usuario, perfil);
+            perfil.AsociarUsuario(usuario);
+            _repoPerfiles.AgregarPerfil(perfil);
             usuario.Perfiles.Add(perfil);
         }
 
@@ -124,6 +128,7 @@ namespace Logica.Implementaciones
         {
             NoExistePerfil(usuario, perfil);
             EsPerfilOwner(perfil);
+            _repoPerfiles.EliminarPerfil(perfil);
             usuario.Perfiles.Remove(perfil);
         }
 

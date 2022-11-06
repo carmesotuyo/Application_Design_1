@@ -14,7 +14,7 @@ namespace Logica.Implementaciones
 {
     public class LogicaPerfil : ILogicaPerfil
     {
-        private IPerfilRepo _repo;
+        //private IPerfilRepo _repo;
         enum Puntajes
         {
             PuntajeNegativo = -1,
@@ -22,10 +22,10 @@ namespace Logica.Implementaciones
             PuntajeMuyPositivo = 2
         }
 
-        public LogicaPerfil(IPerfilRepo perfilRepo)
-        {
-            _repo = perfilRepo;
-        }
+        //public LogicaPerfil(IPerfilRepo perfilRepo)
+        //{
+        //    _repo = perfilRepo;
+        //}
 
         public virtual Perfil AccederAlPerfil(Perfil unPerfil, int pin)
         {

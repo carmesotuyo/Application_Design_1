@@ -15,8 +15,24 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
+                MantenerEntidadesSinCambios(perfil, tlmeContext);
                 tlmeContext.Perfiles.Add(perfil);
                 tlmeContext.SaveChanges();
+            }
+        }
+
+        public void MantenerEntidadesSinCambios(Perfil perfil, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
+        {
+            tlmeContext.Entry(perfil.Usuario).State = EntityState.Unchanged;
+
+            foreach (var peliculaVista in perfil.PeliculasVistas)
+            {
+                tlmeContext.Entry(peliculaVista).State = EntityState.Unchanged;
+            }
+
+            foreach (var puntajeGenero in perfil.PuntajeGeneros)
+            {
+                tlmeContext.Entry(puntajeGenero).State = EntityState.Unchanged;
             }
         }
 

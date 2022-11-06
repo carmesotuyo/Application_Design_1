@@ -117,6 +117,11 @@ namespace Dominio
         public Usuario Usuario { get => _usuario; set { _usuario = value; } }
         public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = this.Usuario.Nombre; }
 
+        public void AsociarUsuario(Usuario usuario)
+        {
+            Usuario = usuario;
+            NombreUsuario = usuario.Nombre;
+        }
         public override string ToString()
         {
             return Alias;
