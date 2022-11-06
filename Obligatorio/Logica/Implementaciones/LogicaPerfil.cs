@@ -8,16 +8,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio.Exceptions;
+using Repositorio.Interfaces;
 
 namespace Logica.Implementaciones
 {
     public class LogicaPerfil : ILogicaPerfil
     {
+        private IPerfilRepo _repo;
         enum Puntajes
         {
             PuntajeNegativo = -1,
             PuntajePositivo = 1,
             PuntajeMuyPositivo = 2
+        }
+
+        public LogicaPerfil(IPerfilRepo perfilRepo)
+        {
+            _repo = perfilRepo;
         }
 
         public virtual Perfil AccederAlPerfil(Perfil unPerfil, int pin)

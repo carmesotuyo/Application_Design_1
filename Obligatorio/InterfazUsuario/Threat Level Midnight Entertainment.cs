@@ -27,7 +27,7 @@ namespace InterfazUsuario
         public Threat_Level_Midnight_Entertainment()
         {
             _logicaUsuario = new LogicaUsuario(new UsuarioDBRepo());
-            _logicaPerfil = new LogicaPerfil();
+            _logicaPerfil = new LogicaPerfil(new PerfilDBRepo());
             _logicaPelicula = new LogicaPelicula(new PeliculaDBRepo());
             _logicaGenero = new LogicaGenero(new GeneroDBRepo());
 
@@ -45,7 +45,10 @@ namespace InterfazUsuario
                 ConfirmarClave = "admin12345",
                 EsAdministrador = true
             };
-            _logicaUsuario.RegistrarUsuario(admin);
+            if (!_logicaUsuario.ExisteUsuario(admin))
+            {
+                _logicaUsuario.RegistrarUsuario(admin);
+            }
         }
 
         public void CambiarRegistroUsuario()

@@ -27,6 +27,16 @@ namespace Logica.Implementaciones
             _repoUsuarios.AgregarUsuario(usuario);
         }
 
+        public bool ExisteUsuario(Usuario usuario)
+        {
+            bool existe = false;
+            if (_repoUsuarios.EstaUsuario(usuario))
+            {
+                existe = true;
+            }
+            return existe;
+        }
+
         private void ValidarDatos(Usuario usuario)
         {
             ValidarNombreUnico(usuario.Nombre);

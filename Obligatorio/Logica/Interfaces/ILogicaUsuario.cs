@@ -11,6 +11,7 @@ namespace Logica.Interfaces
     public interface ILogicaUsuario
     {
         void RegistrarUsuario(Usuario usuario);
+        bool ExisteUsuario(Usuario usuario);
 
         Usuario IniciarSesion(string cuenta, string clave);
 

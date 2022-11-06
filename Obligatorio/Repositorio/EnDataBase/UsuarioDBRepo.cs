@@ -19,6 +19,20 @@ namespace Repositorio.EnDataBase
             }
         }
 
+        public bool EstaUsuario(Usuario usuario)
+        {
+            bool esta = false;
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                Usuario usuarioBuscado = tlmeContext.Usuarios.FirstOrDefault(u => u.Nombre == usuario.Nombre);
+                if (usuarioBuscado != null)
+                {
+                    esta = true;
+                }
+            }
+            return esta;
+        }
+
         public List<Usuario> Usuarios()
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
