@@ -100,7 +100,7 @@ namespace Logica.Implementaciones
         private List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil, List<Pelicula> peliculas)
         {
             List<string> generos = unPerfil.PuntajeGeneros.OrderByDescending(g => g.Puntaje)
-                                                          .Select(g => g.Genero).ToList();
+                                                          .Select(g => g.NombreGenero).ToList();
 
             return peliculas.OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre))
                             .ThenBy(p => p.Nombre).ThenByDescending(p => p.Identificador).ToList();

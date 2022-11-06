@@ -111,7 +111,7 @@ namespace Logica.Implementaciones
 
         private int EncontrarGeneroEnLista(Perfil unPerfil, Genero unGenero)
         {
-            GeneroPuntaje genero = unPerfil.PuntajeGeneros.FirstOrDefault(x => x.Genero == unGenero.Nombre);
+            GeneroPuntaje genero = unPerfil.PuntajeGeneros.FirstOrDefault(x => x.NombreGenero == unGenero.Nombre);
             return unPerfil.PuntajeGeneros.IndexOf(genero);
         }
 
@@ -159,19 +159,19 @@ namespace Logica.Implementaciones
 
         public void AgregarGenero(Perfil unPerfil, Genero unGenero)
         {
-            GeneroPuntaje nuevo = new GeneroPuntaje() { Genero = unGenero.Nombre };
+            GeneroPuntaje nuevo = new GeneroPuntaje() { Genero = unGenero };
             unPerfil.AgregarGeneroPuntaje(nuevo);
         }
 
         public bool EstaGenero(Perfil unPerfil, Genero unGenero)
         {
-            List<GeneroPuntaje> busco = unPerfil.PuntajeGeneros.Where(x => x.Genero == unGenero.Nombre).ToList();
+            List<GeneroPuntaje> busco = unPerfil.PuntajeGeneros.Where(x => x.NombreGenero == unGenero.Nombre).ToList();
             return busco.Count > 0;
         }
 
         private bool GeneroEliminado(ILogicaGenero logicaGenero, GeneroPuntaje unGenero)
         {
-            List<Genero> busco = logicaGenero.Generos().Where(x => x.Nombre != unGenero.Genero).ToList();
+            List<Genero> busco = logicaGenero.Generos().Where(x => x.Nombre != unGenero.NombreGenero).ToList();
             return busco.Count == logicaGenero.Generos().Count;
         }
     }

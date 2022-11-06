@@ -26,7 +26,7 @@ namespace InterfazUsuario
 
         public Threat_Level_Midnight_Entertainment()
         {
-            _logicaUsuario = new LogicaUsuario(new RepoUsuarios());
+            _logicaUsuario = new LogicaUsuario(new UsuarioDBRepo());
             _logicaPerfil = new LogicaPerfil();
             _logicaPelicula = new LogicaPelicula(new PeliculaDBRepo());
             _logicaGenero = new LogicaGenero(new GeneroDBRepo());
