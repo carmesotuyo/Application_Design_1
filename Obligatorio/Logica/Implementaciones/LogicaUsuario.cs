@@ -94,12 +94,12 @@ namespace Logica.Implementaciones
             ValidarAliasUnico(usuario, perfil);
             perfil.AsociarUsuario(usuario);
             _repoPerfiles.AgregarPerfil(perfil);
-            usuario.Perfiles.Add(perfil);
+            //usuario.Perfiles.Add(perfil);
         }
 
         private void MaximoDePerfiles(Usuario usuario)
         {
-            if (usuario.Perfiles.Count == cantMaximaDePerfiles)
+            if (PerfilesAsociados(usuario).Count == cantMaximaDePerfiles)
             {
                 throw new LimiteDePerfilesException();
             }
@@ -107,7 +107,7 @@ namespace Logica.Implementaciones
 
         private void EsElPrimero(Usuario usuario, Perfil perfil)
         {
-            if (usuario.Perfiles.Count == 0)
+            if (PerfilesAsociados(usuario).Count == 0)
             {
                 perfil.EsOwner = true;
             }
@@ -115,7 +115,7 @@ namespace Logica.Implementaciones
 
         private void ValidarAliasUnico(Usuario usuario, Perfil perfil)
         {
-            foreach(Perfil perfilExistente in usuario.Perfiles)
+            foreach(Perfil perfilExistente in PerfilesAsociados(usuario))
             {
                 if(perfilExistente.Alias == perfil.Alias)
                 {
@@ -129,12 +129,12 @@ namespace Logica.Implementaciones
             NoExistePerfil(usuario, perfil);
             EsPerfilOwner(perfil);
             _repoPerfiles.EliminarPerfil(perfil);
-            usuario.Perfiles.Remove(perfil);
+            //usuario.Perfiles.Remove(perfil);
         }
 
         private void NoExistePerfil(Usuario usuario, Perfil perfil)
         {
-            if (!usuario.Perfiles.Contains(perfil))
+            if (!PerfilesAsociados(usuario).Contains(perfil))
             {
                 throw new NoExistePerfilException();
             }
@@ -146,6 +146,11 @@ namespace Logica.Implementaciones
             {
                 throw new EliminarOwnerException();
             }
+        }
+
+        public List<Perfil> PerfilesAsociados(Usuario usuario)
+        {
+            return _repoPerfiles.PerfilesDeUsuario(usuario);
         }
 
         public List<Usuario> Usuarios()

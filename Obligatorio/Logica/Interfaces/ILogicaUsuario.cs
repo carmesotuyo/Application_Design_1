@@ -19,6 +19,8 @@ namespace Logica.Interfaces
 
         void QuitarPerfil(Usuario usuario, Perfil perfil);
 
+        List<Perfil> PerfilesAsociados(Usuario usuario);
+
         List<Usuario> Usuarios();
     }
 }

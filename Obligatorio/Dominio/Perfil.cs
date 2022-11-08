@@ -92,15 +92,15 @@ namespace Dominio
 
         public List<GeneroPuntaje> PuntajeGeneros { get => _puntajeGeneros; }
 
-        public void AgregarGeneroPuntaje(GeneroPuntaje generoPuntaje)
-        {
-            _puntajeGeneros.Add(generoPuntaje);
-        }
+        //public void AgregarGeneroPuntaje(GeneroPuntaje generoPuntaje)
+        //{
+        //    _puntajeGeneros.Add(generoPuntaje);
+        //}
 
-        public void QuitarGeneroPuntaje(GeneroPuntaje generoPuntaje)
-        {
-            _puntajeGeneros.Remove(generoPuntaje);
-        }
+        //public void QuitarGeneroPuntaje(GeneroPuntaje generoPuntaje)
+        //{
+        //    _puntajeGeneros.Remove(generoPuntaje);
+        //}
 
         public List<Pelicula> PeliculasVistas { get => _peliculasVistas; }
 
@@ -115,7 +115,7 @@ namespace Dominio
         }
 
         public Usuario Usuario { get => _usuario; set { _usuario = value; } }
-        public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = this.Usuario.Nombre; }
+        public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
 
         public void AsociarUsuario(Usuario usuario)
         {

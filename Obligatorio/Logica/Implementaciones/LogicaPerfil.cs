@@ -9,12 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Dominio.Exceptions;
 using Repositorio.Interfaces;
+using Repositorio.EnDataBase;
 
 namespace Logica.Implementaciones
 {
     public class LogicaPerfil : ILogicaPerfil
     {
         //private IPerfilRepo _repo;
+        private IGeneroPuntajeRepo _repoGeneroPuntaje;
         enum Puntajes
         {
             PuntajeNegativo = -1,
@@ -22,10 +24,10 @@ namespace Logica.Implementaciones
             PuntajeMuyPositivo = 2
         }
 
-        //public LogicaPerfil(IPerfilRepo perfilRepo)
-        //{
-        //    _repo = perfilRepo;
-        //}
+        public LogicaPerfil(IGeneroPuntajeRepo generoPuntajeRepo)
+        {
+            _repoGeneroPuntaje = generoPuntajeRepo;
+        }
 
         public virtual Perfil AccederAlPerfil(Perfil unPerfil, int pin)
         {
@@ -112,8 +114,18 @@ namespace Logica.Implementaciones
 
         public void ModificarPuntajeGenero(Perfil unPerfil, Genero unGenero, int puntaje)
         {
-            int index = EncontrarGeneroEnLista(unPerfil, unGenero);
-            unPerfil.PuntajeGeneros[index].ModificarPuntaje(puntaje);
+            //int index = EncontrarGeneroEnLista(unPerfil, unGenero);
+            //unPerfil.PuntajeGeneros[index].ModificarPuntaje(puntaje);
+            ValidarQueExisteGeneroPuntuado(unGenero, unPerfil);
+            _repoGeneroPuntaje.ModificarPuntaje(unGenero, unPerfil, puntaje);
+        }
+
+        private void ValidarQueExisteGeneroPuntuado(Genero unGenero, Perfil unPerfil)
+        {
+            if(!_repoGeneroPuntaje.EstaGeneroPuntaje(unGenero, unPerfil))
+            {
+                throw new GeneroInexistenteException();
+            }
         }
 
         private int EncontrarGeneroEnLista(Perfil unPerfil, Genero unGenero)

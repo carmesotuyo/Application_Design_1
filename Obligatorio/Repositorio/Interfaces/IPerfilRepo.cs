@@ -13,5 +13,6 @@ namespace Repositorio.Interfaces
         void AgregarPerfil(Perfil perfil);
         void EliminarPerfil(Perfil perfil);
         List<Perfil> Perfiles();
+        List<Perfil> PerfilesDeUsuario(Usuario usuario);
     }
 }

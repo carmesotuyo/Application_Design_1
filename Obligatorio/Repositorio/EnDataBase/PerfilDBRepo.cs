@@ -69,5 +69,13 @@ namespace Repositorio.EnDataBase
                 return tlmeContext.Perfiles.Include(x => x.Usuario).ToList();
             }
         }
+
+        public List<Perfil> PerfilesDeUsuario(Usuario usuario)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                return tlmeContext.Perfiles.Where(x => x.Usuario.Nombre == usuario.Nombre).ToList();
+            }
+        }
     }
 }

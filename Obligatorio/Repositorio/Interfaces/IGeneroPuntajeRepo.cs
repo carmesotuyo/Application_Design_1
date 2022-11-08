@@ -9,9 +9,10 @@ namespace Repositorio.Interfaces
 {
     public interface IGeneroPuntajeRepo
     {
-        bool EstaGeneroPuntaje(GeneroPuntaje generoPuntaje);
+        bool EstaGeneroPuntaje(Genero genero, Perfil perfil);
         void AgregarGeneroPuntaje(GeneroPuntaje generoPuntaje);
         void EliminarGeneroPuntaje(GeneroPuntaje generoPuntaje);
+        void ModificarPuntaje(Genero genero, Perfil perfil, int puntaje);
         List<GeneroPuntaje> GenerosPuntajes();
     }
 }

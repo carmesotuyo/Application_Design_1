@@ -2,6 +2,7 @@
 using Repositorio.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,19 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
+                //MantenerEntidadesSinCambios(usuario, tlmeContext);
                 tlmeContext.Usuarios.Add(usuario);
                 tlmeContext.SaveChanges();
             }
         }
+
+        //public void MantenerEntidadesSinCambios(Usuario usuario, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
+        //{
+        //    foreach (var perfil in usuario.Perfiles)
+        //    {
+        //        tlmeContext.Entry(perfil).State = EntityState.Unchanged;
+        //    }
+        //}
 
         public bool EstaUsuario(Usuario usuario)
         {
