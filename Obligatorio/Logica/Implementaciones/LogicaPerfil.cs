@@ -128,11 +128,11 @@ namespace Logica.Implementaciones
             }
         }
 
-        private int EncontrarGeneroEnLista(Perfil unPerfil, Genero unGenero)
-        {
-            GeneroPuntaje genero = unPerfil.PuntajeGeneros.FirstOrDefault(x => x.NombreGenero == unGenero.Nombre);
-            return unPerfil.PuntajeGeneros.IndexOf(genero);
-        }
+        //private int EncontrarGeneroEnLista(Perfil unPerfil, Genero unGenero)
+        //{
+        //    GeneroPuntaje genero = unPerfil.PuntajeGeneros.FirstOrDefault(x => x.NombreGenero == unGenero.Nombre);
+        //    return unPerfil.PuntajeGeneros.IndexOf(genero);
+        //}
 
         public void ActualizarListadoGeneros(Perfil unPerfil, ILogicaGenero logicaGenero)
         {
@@ -178,14 +178,22 @@ namespace Logica.Implementaciones
 
         public void AgregarGenero(Perfil unPerfil, Genero unGenero)
         {
-            GeneroPuntaje nuevo = new GeneroPuntaje() { Genero = unGenero };
-            unPerfil.AgregarGeneroPuntaje(nuevo);
+            GeneroPuntaje nuevo = new GeneroPuntaje() 
+            { 
+                Genero = unGenero, 
+                Perfil = unPerfil, 
+                AliasPerfil = unPerfil.Alias,
+                NombreGenero = unGenero.Nombre
+            };
+            //unPerfil.AgregarGeneroPuntaje(nuevo);
+            _repoGeneroPuntaje.AgregarGeneroPuntaje(nuevo);
         }
 
         public bool EstaGenero(Perfil unPerfil, Genero unGenero)
         {
-            List<GeneroPuntaje> busco = unPerfil.PuntajeGeneros.Where(x => x.NombreGenero == unGenero.Nombre).ToList();
-            return busco.Count > 0;
+            //List<GeneroPuntaje> busco = unPerfil.PuntajeGeneros.Where(x => x.NombreGenero == unGenero.Nombre).ToList();
+            //return busco.Count > 0;
+            return _repoGeneroPuntaje.EstaGeneroPuntaje(unGenero, unPerfil);
         }
 
         private bool GeneroEliminado(ILogicaGenero logicaGenero, GeneroPuntaje unGenero)
