@@ -15,8 +15,11 @@ namespace Logica.Implementaciones
 {
     public class LogicaPerfil : ILogicaPerfil
     {
-        //private IPerfilRepo _repo;
+        //los repos deberian pasarse por parametro, no estar aca (creo)
+        private IPerfilRepo _repoPerfil;
         private IGeneroPuntajeRepo _repoGeneroPuntaje;
+        private IPeliculaRepo _repoPelicula;
+        private IGeneroRepo _repoGenero;
         enum Puntajes
         {
             PuntajeNegativo = -1,
@@ -24,9 +27,13 @@ namespace Logica.Implementaciones
             PuntajeMuyPositivo = 2
         }
 
-        public LogicaPerfil(IGeneroPuntajeRepo generoPuntajeRepo)
+        //Horrible esto ya se muchos parametros
+        public LogicaPerfil(IPerfilRepo perfilRepo, IGeneroPuntajeRepo generoPuntajeRepo, IPeliculaRepo repoPeli, IGeneroRepo repoGenero)
         {
+            _repoPerfil = perfilRepo;
             _repoGeneroPuntaje = generoPuntajeRepo;
+            _repoPelicula = repoPeli;
+            _repoGenero = repoGenero;
         }
 
         public virtual Perfil AccederAlPerfil(Perfil unPerfil, int pin)
@@ -55,7 +62,8 @@ namespace Logica.Implementaciones
         public void PuntuarMuyPositivo(Pelicula unaPelicula, Perfil unPerfil)
         {
             ModificarPuntajeGenero(unPerfil, unaPelicula.GeneroPrincipal, (int) Puntajes.PuntajeMuyPositivo);
-            foreach(Genero genero in unaPelicula.GenerosSecundarios)
+            
+            foreach(Genero genero in _repoPelicula.DevolverGenerosAsociados(unaPelicula))
             {
                 ModificarPuntajeGenero(unPerfil, genero, (int)Puntajes.PuntajePositivo);
             }
@@ -114,8 +122,6 @@ namespace Logica.Implementaciones
 
         public void ModificarPuntajeGenero(Perfil unPerfil, Genero unGenero, int puntaje)
         {
-            //int index = EncontrarGeneroEnLista(unPerfil, unGenero);
-            //unPerfil.PuntajeGeneros[index].ModificarPuntaje(puntaje);
             ValidarQueExisteGeneroPuntuado(unGenero, unPerfil);
             _repoGeneroPuntaje.ModificarPuntaje(unGenero, unPerfil, puntaje);
         }
@@ -128,46 +134,40 @@ namespace Logica.Implementaciones
             }
         }
 
-        //private int EncontrarGeneroEnLista(Perfil unPerfil, Genero unGenero)
-        //{
-        //    GeneroPuntaje genero = unPerfil.PuntajeGeneros.FirstOrDefault(x => x.NombreGenero == unGenero.Nombre);
-        //    return unPerfil.PuntajeGeneros.IndexOf(genero);
-        //}
-
-        public void ActualizarListadoGeneros(Perfil unPerfil, ILogicaGenero logicaGenero)
+        public void ActualizarListadoGeneros(Perfil unPerfil)
         {
-            QuitarGenerosEliminados(unPerfil, logicaGenero);
-            AgregarNuevosGeneros(unPerfil, logicaGenero);
+            QuitarGenerosEliminados(unPerfil);
+            AgregarNuevosGeneros(unPerfil);
         }
 
-        private void AgregarNuevosGeneros(Perfil unPerfil, ILogicaGenero logicaGenero)
+        private void AgregarNuevosGeneros(Perfil unPerfil)
         {
-            foreach (Genero genero in logicaGenero.Generos())
+            foreach (Genero genero in _repoGenero.Generos())
             {
-                if(!EstaGenero(unPerfil, genero))
+                if(!EstaGeneroPuntuado(unPerfil, genero))
                 {
                     AgregarGenero(unPerfil, genero);
                 }
             }
         }
 
-        private void QuitarGenerosEliminados(Perfil unPerfil, ILogicaGenero logicaGenero)
+        private void QuitarGenerosEliminados(Perfil unPerfil)
         {
-            List<GeneroPuntaje> paraEliminar = BuscarGenerosEliminados(unPerfil, logicaGenero);
+            List<GeneroPuntaje> paraEliminar = BuscarGenerosEliminados(unPerfil);
 
             foreach (GeneroPuntaje genero in paraEliminar)
             {
-                unPerfil.QuitarGeneroPuntaje(genero);
+                _repoGeneroPuntaje.EliminarGeneroPuntaje(genero);
             }
         }
 
-        private List<GeneroPuntaje> BuscarGenerosEliminados(Perfil unPerfil, ILogicaGenero logicaGenero)
+        private List<GeneroPuntaje> BuscarGenerosEliminados(Perfil unPerfil)
         {
             List<GeneroPuntaje> paraEliminar = new List<GeneroPuntaje>();
 
-            foreach (GeneroPuntaje genero in unPerfil.PuntajeGeneros)
+            foreach (GeneroPuntaje genero in _repoPerfil.GenerosPuntuados(unPerfil))
             {
-                if (GeneroEliminado(logicaGenero, genero))
+                if (GeneroEliminado(genero))
                 {
                     paraEliminar.Add(genero);
                 }
@@ -185,21 +185,17 @@ namespace Logica.Implementaciones
                 AliasPerfil = unPerfil.Alias,
                 NombreGenero = unGenero.Nombre
             };
-            //unPerfil.AgregarGeneroPuntaje(nuevo);
             _repoGeneroPuntaje.AgregarGeneroPuntaje(nuevo);
         }
 
-        public bool EstaGenero(Perfil unPerfil, Genero unGenero)
+        public bool EstaGeneroPuntuado(Perfil unPerfil, Genero unGenero)
         {
-            //List<GeneroPuntaje> busco = unPerfil.PuntajeGeneros.Where(x => x.NombreGenero == unGenero.Nombre).ToList();
-            //return busco.Count > 0;
             return _repoGeneroPuntaje.EstaGeneroPuntaje(unGenero, unPerfil);
         }
 
-        private bool GeneroEliminado(ILogicaGenero logicaGenero, GeneroPuntaje unGenero)
+        private bool GeneroEliminado(GeneroPuntaje unGenero)
         {
-            List<Genero> busco = logicaGenero.Generos().Where(x => x.Nombre != unGenero.NombreGenero).ToList();
-            return busco.Count == logicaGenero.Generos().Count;
+            return !_repoGenero.EstaGenero(unGenero.Genero);
         }
     }
 }

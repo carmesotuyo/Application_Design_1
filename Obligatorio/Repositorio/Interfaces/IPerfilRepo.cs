@@ -12,6 +12,7 @@ namespace Repositorio.Interfaces
         bool EstaPerfil(Perfil perfil);
         void AgregarPerfil(Perfil perfil);
         void EliminarPerfil(Perfil perfil);
+        List<GeneroPuntaje> GenerosPuntuados(Perfil perfil);
         List<Perfil> Perfiles();
         List<Perfil> PerfilesDeUsuario(Usuario usuario);
     }

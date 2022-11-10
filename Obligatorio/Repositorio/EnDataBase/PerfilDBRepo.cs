@@ -77,5 +77,13 @@ namespace Repositorio.EnDataBase
                 return tlmeContext.Perfiles.Where(x => x.Usuario.Nombre == usuario.Nombre).ToList();
             }
         }
+
+        public List<GeneroPuntaje> GenerosPuntuados(Perfil perfil)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                return tlmeContext.GenerosPuntajes.Where(x => x.Perfil.Alias == perfil.Alias).ToList();
+            }
+        }
     }
 }

@@ -92,16 +92,6 @@ namespace Dominio
 
         public List<GeneroPuntaje> PuntajeGeneros { get => _puntajeGeneros; }
 
-        //public void AgregarGeneroPuntaje(GeneroPuntaje generoPuntaje)
-        //{
-        //    _puntajeGeneros.Add(generoPuntaje);
-        //}
-
-        //public void QuitarGeneroPuntaje(GeneroPuntaje generoPuntaje)
-        //{
-        //    _puntajeGeneros.Remove(generoPuntaje);
-        //}
-
         public List<Pelicula> PeliculasVistas { get => _peliculasVistas; }
 
         public void AgregarPeliculaVista(Pelicula unaPelicula)

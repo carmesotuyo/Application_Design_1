@@ -66,5 +66,14 @@ namespace Repositorio.EnDataBase
                 }
             }
         }
+
+        public List<Genero> DevolverGenerosAsociados(Pelicula pelicula)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                //chequear si funciona, me suena que el .GenerosSecundarios toma la lista en memoria y no la tabla entre las relaciones
+                return tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador).GenerosSecundarios.ToList(); ;
+            }
+        }
     }
 }

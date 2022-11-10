@@ -19,7 +19,7 @@ namespace Dominio
         private static int _contadorPeliculas = 0;
         private int _idPelicula;
         private string _poster;
-        private List<Perfil> _perfilesQueLaVieron;
+        private IList<Perfil> _perfilesQueLaVieron;
 
         public Pelicula()
         {
@@ -75,7 +75,7 @@ namespace Dominio
                 _poster = value;
             }
         }
-        public List<Perfil> PerfilesQueLaVieron { get => _perfilesQueLaVieron; set => _perfilesQueLaVieron = value; }
+        public IList<Perfil> PerfilesQueLaVieron { get => _perfilesQueLaVieron; set => _perfilesQueLaVieron = value; }
 
         private void ChequearNull(String value)
         {

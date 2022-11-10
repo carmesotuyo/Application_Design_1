@@ -50,8 +50,8 @@ namespace Dominio
             }
         }
 
-        public string NombreGenero { get => _nombreGenero; set => _nombreGenero = this.Genero.Nombre; }
-        public string AliasPerfil { get => _aliasPerfil; set => _aliasPerfil = this.Perfil.Alias; }
+        public string NombreGenero { get => _nombreGenero; set => _nombreGenero = value; }
+        public string AliasPerfil { get => _aliasPerfil; set => _aliasPerfil = value; }
 
         public void ModificarPuntaje(int value)
         {

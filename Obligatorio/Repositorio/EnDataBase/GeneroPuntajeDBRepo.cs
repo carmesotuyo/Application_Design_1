@@ -15,9 +15,16 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
+                MantenerEntidadesSinCambios(generoPuntaje, tlmeContext);
                 tlmeContext.GenerosPuntajes.Add(generoPuntaje);
                 tlmeContext.SaveChanges();
             }
+        }
+
+        private static void MantenerEntidadesSinCambios(GeneroPuntaje generoPuntaje, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
+        {
+            tlmeContext.Entry(generoPuntaje.Genero).State = EntityState.Unchanged;
+            tlmeContext.Entry(generoPuntaje.Perfil).State = EntityState.Unchanged;
         }
 
         public void EliminarGeneroPuntaje(GeneroPuntaje generoPuntaje)
@@ -25,9 +32,14 @@ namespace Repositorio.EnDataBase
             using(ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 GeneroPuntaje generoABorrar = tlmeContext.GenerosPuntajes
-                    .FirstOrDefault(g => g.Perfil == generoPuntaje.Perfil && g.Genero == generoPuntaje.Genero);
-                tlmeContext.GenerosPuntajes.Remove(generoABorrar);
-                tlmeContext.SaveChanges();
+                    .FirstOrDefault(g => g.Perfil.Alias == generoPuntaje.Perfil.Alias
+                                    && g.Perfil.NombreUsuario == generoPuntaje.Perfil.NombreUsuario
+                                    && g.Genero.Nombre == generoPuntaje.Genero.Nombre);
+                if(generoABorrar != null)
+                {
+                    tlmeContext.GenerosPuntajes.Remove(generoABorrar);
+                    tlmeContext.SaveChanges();
+                }
             }
         }
 
@@ -37,7 +49,9 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 GeneroPuntaje generoBuscado = tlmeContext.GenerosPuntajes
-                    .FirstOrDefault(g => g.Perfil == perfil && g.Genero == genero);
+                    .FirstOrDefault(g => g.Perfil.Alias == perfil.Alias 
+                                    && g.Perfil.NombreUsuario == perfil.NombreUsuario
+                                    && g.Genero.Nombre == genero.Nombre);
                 if (generoBuscado != null)
                 {
                     esta = true;
@@ -68,8 +82,10 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.GenerosPuntajes.FirstOrDefault(g => g.Perfil == perfil && g.Genero == genero);//.Include(x => x.Genero)
-                    //.Include(x => x.Perfil);
+                return tlmeContext.GenerosPuntajes.Include(g => g.Genero).Include(g => g.Perfil)
+                                    .FirstOrDefault(g => g.Perfil.Alias == perfil.Alias
+                                    && g.Perfil.NombreUsuario == perfil.NombreUsuario
+                                    && g.Genero.Nombre == genero.Nombre);
             };
         }
     }

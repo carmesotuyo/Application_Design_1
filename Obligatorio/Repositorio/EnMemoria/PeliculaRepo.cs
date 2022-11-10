@@ -36,5 +36,10 @@ namespace Repositorio
         {
             return _peliculas;
         }
+
+        public List<Genero> DevolverGenerosAsociados(Pelicula pelicula)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
