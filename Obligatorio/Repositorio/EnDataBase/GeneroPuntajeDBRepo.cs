@@ -64,7 +64,10 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                EncontrarGeneroPuntaje(genero, perfil).ModificarPuntaje(puntaje);
+                GeneroPuntaje encontrado = EncontrarGeneroPuntaje(genero, perfil);
+                encontrado.ModificarPuntaje(puntaje);
+                tlmeContext.Entry(encontrado).State = EntityState.Modified;
+                MantenerEntidadesSinCambios(encontrado, tlmeContext);
                 tlmeContext.SaveChanges();
             }
         }

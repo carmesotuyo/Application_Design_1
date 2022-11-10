@@ -82,7 +82,8 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.GenerosPuntajes.Where(x => x.Perfil.Alias == perfil.Alias).ToList();
+                return tlmeContext.GenerosPuntajes.Include(x => x.Genero).Include(x => x.Perfil)
+                                                    .Where(x => x.Perfil.Alias == perfil.Alias).ToList();
             }
         }
     }
