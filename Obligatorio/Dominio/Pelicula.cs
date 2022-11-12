@@ -58,6 +58,10 @@ namespace Dominio
 
         public IList<Genero> GenerosSecundarios { get => _generosSecundarios; set
             {
+                foreach(var genero in value)
+                {
+                    ChequearNoCoincideConPrincipal(genero);
+                }
                 _generosSecundarios = value;
             } 
         }
@@ -85,6 +89,7 @@ namespace Dominio
             }
         }
 
+        //este metodo se usa solo en los tests, rariii
         public void AgregarGeneroSecundario(Genero genero)
         {
             ChequearGeneroVacio(genero);

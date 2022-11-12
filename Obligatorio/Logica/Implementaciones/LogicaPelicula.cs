@@ -32,6 +32,7 @@ namespace Logica.Implementaciones
         public void AltaPelicula(Pelicula pelicula, Usuario admin)
         {
             BloquearUsuarioNoAdmin(admin);
+            //ChequearGenerosRepetidos(pelicula);
             _repo.AgregarPelicula(pelicula);
         }
 
@@ -56,6 +57,14 @@ namespace Logica.Implementaciones
                 throw new UsuarioNoPermitidoException();
             }
         }
+
+        //private void ChequearGenerosRepetidos(Pelicula pelicula)
+        //{
+        //    if (_repo.DevolverGenerosAsociados(pelicula).Contains(pelicula.GeneroPrincipal))
+        //    {
+        //        throw new GeneroInvalidoException(); //moverlo a las exceptions de logica, sacarlo del dominio si es que no se usa en el dominio
+        //    }
+        //}
 
         public List<Pelicula> Peliculas()
         {
