@@ -105,7 +105,7 @@ namespace Logica.Implementaciones
         public void AgregarPeliculaVista(Pelicula unaPelicula, Perfil unPerfil)
         {
             ChequearQueNoEsteYaVista(unaPelicula, unPerfil);
-            unPerfil.AgregarPeliculaVista(unaPelicula); //modificar esto, controlarlo en el repo
+            _repoPerfil.AgregarPeliculaVista(unPerfil, unaPelicula);
         }
         private void ChequearQueNoEsteYaVista(Pelicula unaPelicula, Perfil unPerfil)
         {
@@ -117,7 +117,8 @@ namespace Logica.Implementaciones
 
         public bool VioPelicula(Pelicula unaPelicula, Perfil unPerfil)
         {
-            return unPerfil.EstaPeliculaVista(unaPelicula); //modificar esto, controlarlo en el repo
+            //no esta funcionando
+            return _repoPerfil.PeliculasVistas(unPerfil).Contains(unaPelicula);
         }
 
         public void ModificarPuntajeGenero(Perfil unPerfil, Genero unGenero, int puntaje)
@@ -147,7 +148,7 @@ namespace Logica.Implementaciones
             {
                 if(!EstaGeneroPuntuado(unPerfil, genero))
                 {
-                    AgregarGenero(unPerfil, genero);
+                    AgregarGeneroPuntuado(unPerfil, genero);
                 }
             }
         }
@@ -177,7 +178,7 @@ namespace Logica.Implementaciones
             return paraEliminar;
         }
 
-        public void AgregarGenero(Perfil unPerfil, Genero unGenero)
+        public void AgregarGeneroPuntuado(Perfil unPerfil, Genero unGenero)
         {
             GeneroPuntaje nuevo = new GeneroPuntaje() 
             { 

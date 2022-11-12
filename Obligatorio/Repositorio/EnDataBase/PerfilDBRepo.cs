@@ -15,13 +15,13 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                MantenerEntidadesSinCambios(perfil, tlmeContext);
+                MantenerEntidadesPerfilSinCambios(perfil, tlmeContext);
                 tlmeContext.Perfiles.Add(perfil);
                 tlmeContext.SaveChanges();
             }
         }
 
-        public void MantenerEntidadesSinCambios(Perfil perfil, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
+        public void MantenerEntidadesPerfilSinCambios(Perfil perfil, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
         {
             tlmeContext.Entry(perfil.Usuario).State = EntityState.Unchanged;
 
@@ -66,7 +66,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Perfiles.Include(x => x.Usuario).ToList();
+                return tlmeContext.Perfiles.Include(x => x.Usuario).Include(x => x.PeliculasVistas).ToList();
             }
         }
 
@@ -82,6 +82,8 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
+                //editar, ojo que los alias de perfiles pueden ser iguales, verificar el usuario tambien
+                //usar las FK y sacar los atributos string inventados
                 return tlmeContext.GenerosPuntajes.Include(x => x.Genero).Include(x => x.Perfil)
                                                     .Where(x => x.Perfil.Alias == perfil.Alias).ToList();
             }
@@ -89,12 +91,27 @@ namespace Repositorio.EnDataBase
 
         public List<Pelicula> PeliculasVistas(Perfil perfil)
         {
-            //using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
-            //{
-            //    return tlmeContext.GenerosPuntajes.Include(x => x.Genero).Include(x => x.Perfil)
-            //                                        .Where(x => x.Perfil.Alias == perfil.Alias).ToList();
-            //}
-            throw new NotImplementedException();
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                //ver si funciona
+                return tlmeContext.Perfiles.Include(p => p.PeliculasVistas)
+                    .Where(p => p.Alias == perfil.Alias && p.Usuario == perfil.Usuario)
+                    .SelectMany(p => p.PeliculasVistas).ToList();
+            }
+        }
+
+        public void AgregarPeliculaVista(Perfil perfil, Pelicula pelicula)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                //tlmeContext.Entry(perfil).State = EntityState.Unchanged;
+                tlmeContext.Entry(pelicula).State = EntityState.Unchanged;
+                tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
+                //MantenerEntidadesPerfilSinCambios(perfil, tlmeContext);
+                tlmeContext.Perfiles.FirstOrDefault(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario)
+                            .PeliculasVistas.Add(pelicula);
+                tlmeContext.SaveChanges();
+            }
         }
     }
 }
