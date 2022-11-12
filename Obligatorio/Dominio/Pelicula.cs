@@ -49,9 +49,12 @@ namespace Dominio
 
         private void ChequearNoIncluidoEnSecundarios(Genero unGenero)
         {
-            if (GenerosSecundarios.Contains(unGenero))
+            foreach(Genero genero in GenerosSecundarios)
             {
-                throw new GeneroInvalidoException();
+                if(genero.Nombre == unGenero.Nombre)
+                {
+                    throw new GeneroInvalidoException();
+                }
             }
         }
 
