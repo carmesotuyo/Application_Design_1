@@ -15,5 +15,6 @@ namespace Repositorio.Interfaces
         List<GeneroPuntaje> GenerosPuntuados(Perfil perfil);
         List<Perfil> Perfiles();
         List<Perfil> PerfilesDeUsuario(Usuario usuario);
+        List<Pelicula> PeliculasVistas(Perfil perfil);
     }
 }

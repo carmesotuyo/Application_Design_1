@@ -86,5 +86,15 @@ namespace Repositorio.EnDataBase
                                                     .Where(x => x.Perfil.Alias == perfil.Alias).ToList();
             }
         }
+
+        public List<Pelicula> PeliculasVistas(Perfil perfil)
+        {
+            //using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            //{
+            //    return tlmeContext.GenerosPuntajes.Include(x => x.Genero).Include(x => x.Perfil)
+            //                                        .Where(x => x.Perfil.Alias == perfil.Alias).ToList();
+            //}
+            throw new NotImplementedException();
+        }
     }
 }
