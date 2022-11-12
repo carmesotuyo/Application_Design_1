@@ -95,7 +95,7 @@ namespace Repositorio.EnDataBase
             {
                 //ver si funciona
                 return tlmeContext.Perfiles.Include(p => p.PeliculasVistas)
-                    .Where(p => p.Alias == perfil.Alias && p.Usuario == perfil.Usuario)
+                    .Where(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario)
                     .SelectMany(p => p.PeliculasVistas).ToList();
             }
         }

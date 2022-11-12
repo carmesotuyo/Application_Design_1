@@ -117,8 +117,19 @@ namespace Logica.Implementaciones
 
         public bool VioPelicula(Pelicula unaPelicula, Perfil unPerfil)
         {
-            //no esta funcionando
-            return _repoPerfil.PeliculasVistas(unPerfil).Contains(unaPelicula);
+           //return _repoPerfil.PeliculasVistas(unPerfil).Contains(unaPelicula);
+
+            bool vio = false;
+
+            foreach(var pelicula in _repoPerfil.PeliculasVistas(unPerfil))
+            {
+                if(pelicula.Identificador == unaPelicula.Identificador)
+                {
+                    vio = true;
+                }
+            }
+
+            return vio;
         }
 
         public void ModificarPuntajeGenero(Perfil unPerfil, Genero unGenero, int puntaje)
