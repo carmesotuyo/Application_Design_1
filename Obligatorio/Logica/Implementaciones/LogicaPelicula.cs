@@ -16,6 +16,7 @@ namespace Logica.Implementaciones
     public class LogicaPelicula : ILogicaPelicula
     {
         private IPeliculaRepo _repo;
+        private IPerfilRepo _repoPerfil;
         private int _criterioElegido;
         public enum Criterios
         {
@@ -24,15 +25,15 @@ namespace Logica.Implementaciones
             OrdenarPorPuntaje = 2
         }
 
-        public LogicaPelicula(IPeliculaRepo peliculaRepo)
+        public LogicaPelicula(IPeliculaRepo peliculaRepo, IPerfilRepo perfilRepo)
         {
             _repo = peliculaRepo;
+            _repoPerfil = perfilRepo;
             CriterioElegido = (int)Criterios.OrdenarPorGenero;
         }
         public void AltaPelicula(Pelicula pelicula, Usuario admin)
         {
             BloquearUsuarioNoAdmin(admin);
-            //ChequearGenerosRepetidos(pelicula);
             _repo.AgregarPelicula(pelicula);
         }
 
@@ -57,14 +58,6 @@ namespace Logica.Implementaciones
                 throw new UsuarioNoPermitidoException();
             }
         }
-
-        //private void ChequearGenerosRepetidos(Pelicula pelicula)
-        //{
-        //    if (_repo.DevolverGenerosAsociados(pelicula).Contains(pelicula.GeneroPrincipal))
-        //    {
-        //        throw new GeneroInvalidoException(); //moverlo a las exceptions de logica, sacarlo del dominio si es que no se usa en el dominio
-        //    }
-        //}
 
         public List<Pelicula> Peliculas()
         {
@@ -108,8 +101,10 @@ namespace Logica.Implementaciones
 
         private List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil, List<Pelicula> peliculas)
         {
-            List<string> generos = unPerfil.PuntajeGeneros.OrderByDescending(g => g.Puntaje)
-                                                          .Select(g => g.NombreGenero).ToList();
+            //List<string> generos = unPerfil.PuntajeGeneros.OrderByDescending(g => g.Puntaje)
+            //                                              .Select(g => g.NombreGenero).ToList();
+            List<string> generos = _repoPerfil.GenerosPuntuados(unPerfil).OrderByDescending(g => g.Puntaje)
+                                                .Select(g => g.Genero.Nombre).ToList();
 
             return peliculas.OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre))
                             .ThenBy(p => p.Nombre).ThenByDescending(p => p.Identificador).ToList();

@@ -85,7 +85,8 @@ namespace Repositorio.EnDataBase
                 //editar, ojo que los alias de perfiles pueden ser iguales, verificar el usuario tambien
                 //usar las FK y sacar los atributos string inventados
                 return tlmeContext.GenerosPuntajes.Include(x => x.Genero).Include(x => x.Perfil)
-                                                    .Where(x => x.Perfil.Alias == perfil.Alias).ToList();
+                     .Where(x => x.Perfil.Alias == perfil.Alias).ToList();
+                // && x.Perfil.Usuario.Nombre == perfil.Usuario.Nombre
             }
         }
 
