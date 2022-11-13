@@ -54,6 +54,10 @@ namespace InterfazUsuario
             {
                 MessageBox.Show("Pin incorrecto");
             }
+            catch(System.FormatException)
+            {
+                MessageBox.Show("El pin debe contener 5 numeros");
+            }
         }
 
         private void lblAtras_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
