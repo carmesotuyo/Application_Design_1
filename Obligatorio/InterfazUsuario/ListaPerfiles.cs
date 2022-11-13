@@ -18,12 +18,14 @@ namespace InterfazUsuario
         private Usuario _usuario;
         private Perfil _perfil;
         private ILogicaUsuario _logicaUsuario;
-        public ListaPerfiles(Perfil perfil, Usuario usuario, ILogicaUsuario logicaUsuario, Threat_Level_Midnight_Entertainment ventanaPrincipal)
+        private ILogicaPerfil _logicaPerfil;
+        public ListaPerfiles(Perfil perfil, Usuario usuario, ILogicaUsuario logicaUsuario, ILogicaPerfil logicaPerfil, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             InitializeComponent();
             _perfil = perfil;
             _usuario = usuario;
             _logicaUsuario = logicaUsuario;
+            _logicaPerfil = logicaPerfil;
             _ventanaPrincipal = ventanaPrincipal;
             CargarPerfiles();
 
@@ -95,6 +97,8 @@ namespace InterfazUsuario
             int index = perfilSeleccionado.TabIndex;
             Perfil perfil = _logicaUsuario.PerfilesAsociados(_usuario)[index];
             perfil.EsInfantil = perfilSeleccionado.Checked;
+            //if (perfilSeleccionado.Checked) { _logicaPerfil.MarcarComoInfantil(perfil, )} //esta linea deberia suplantar a la de arriba,
+            //pero falta traer el perfil desde el que se marca para verificar que es owner
         }
 
         private void AccederPerfil(object sender, EventArgs e)
