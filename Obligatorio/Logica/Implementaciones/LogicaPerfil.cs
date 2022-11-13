@@ -77,11 +77,11 @@ namespace Logica.Implementaciones
             ModificarPuntajeGenero(unPerfil, unaPelicula.GeneroPrincipal, (int)Puntajes.PuntajeNegativo);
         }
 
-        public void MarcarComoInfantil(Perfil perfilInfantil, Perfil perfilOwner, Usuario usuario)
+        public void MarcarComoInfantil(Perfil perfilInfantil, Perfil perfilOwner)
         {
             ValidarPerfilOwner(perfilOwner);
             ChequearQueNoEsOwner(perfilInfantil);
-            perfilInfantil.EsInfantil = true;
+            _repoPerfil.MarcarComoInfantil(perfilInfantil);
         }
 
         private void ValidarPerfilOwner(Perfil unPerfil)

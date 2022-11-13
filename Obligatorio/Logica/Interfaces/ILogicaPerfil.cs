@@ -18,5 +18,6 @@ namespace Logica.Interfaces
         void PuntuarNegativo(Pelicula unaPelicula, Perfil unPerfil);
         void PuntuarPositivo(Pelicula unaPelicula, Perfil unPerfil);
         void PuntuarMuyPositivo(Pelicula unaPelicula, Perfil unPerfil);
+        void MarcarComoInfantil(Perfil perfilInfantil, Perfil perfilOwner);
     }
 }
