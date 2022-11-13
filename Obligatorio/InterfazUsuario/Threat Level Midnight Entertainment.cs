@@ -69,7 +69,7 @@ namespace InterfazUsuario
         public void CambiarListaPerfiles(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new ListaPerfiles(perfil, usuario, _logicaUsuario, this));
+            flpPanelPrincipal.Controls.Add(new ListaPerfiles(perfil, usuario, _logicaUsuario, _logicaPerfil, this));
         }
         public void CambiarMenuPeliculas(Usuario usuario, Perfil perfil)
         {

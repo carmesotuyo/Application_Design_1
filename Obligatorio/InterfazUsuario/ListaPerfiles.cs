@@ -96,9 +96,7 @@ namespace InterfazUsuario
             CheckBox perfilSeleccionado = sender as CheckBox;
             int index = perfilSeleccionado.TabIndex;
             Perfil perfil = _logicaUsuario.PerfilesAsociados(_usuario)[index];
-            perfil.EsInfantil = perfilSeleccionado.Checked;
-            //if (perfilSeleccionado.Checked) { _logicaPerfil.MarcarComoInfantil(perfil, )} //esta linea deberia suplantar a la de arriba,
-            //pero falta traer el perfil desde el que se marca para verificar que es owner
+            if (perfilSeleccionado.Checked) { _logicaPerfil.MarcarComoInfantil(perfil, _perfil); };
         }
 
         private void AccederPerfil(object sender, EventArgs e)
