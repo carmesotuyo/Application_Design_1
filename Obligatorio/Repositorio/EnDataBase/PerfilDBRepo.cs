@@ -55,7 +55,9 @@ namespace Repositorio.EnDataBase
                             && g.Perfil.NombreUsuario == generoPuntuado.Perfil.NombreUsuario && g.NombreGenero == generoPuntuado.NombreGenero);
                 if (generoABorrar != null)
                 {
-                    tlmeContext.GenerosPuntajes.Remove(generoABorrar);
+                    tlmeContext.GenerosPuntajes.Remove(generoABorrar); 
+                    tlmeContext.Entry(generoABorrar.Genero).State = EntityState.Unchanged;
+                    tlmeContext.Entry(generoABorrar.Perfil).State = EntityState.Deleted;
                     tlmeContext.SaveChanges();
                 }
             }
