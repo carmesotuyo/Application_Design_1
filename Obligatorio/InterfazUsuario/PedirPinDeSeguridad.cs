@@ -56,7 +56,7 @@ namespace InterfazUsuario
             }
             catch(System.FormatException)
             {
-                MessageBox.Show("El pin debe contener 5 numeros");
+                MessageBox.Show("Solo de admiten números");
             }
         }
 
