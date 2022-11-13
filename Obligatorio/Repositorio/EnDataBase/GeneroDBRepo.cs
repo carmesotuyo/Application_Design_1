@@ -23,7 +23,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                Genero generoABorrar = tlmeContext.Generos.FirstOrDefault(g => g.Equals(genero));
+                Genero generoABorrar = tlmeContext.Generos.FirstOrDefault(g => g.Nombre == genero.Nombre);
                 tlmeContext.Generos.Remove(generoABorrar);
                 tlmeContext.SaveChanges(); 
             }
@@ -34,7 +34,7 @@ namespace Repositorio.EnDataBase
             bool esta = false;
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                Genero generoBuscado = tlmeContext.Generos.FirstOrDefault(g => g.Equals(genero));
+                Genero generoBuscado = tlmeContext.Generos.FirstOrDefault(g => g.Nombre == genero.Nombre);
                 if(generoBuscado != null)
                 {
                     esta = true;

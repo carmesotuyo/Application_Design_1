@@ -40,9 +40,24 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                Perfil perfilABorrar = tlmeContext.Perfiles.FirstOrDefault(p => p.Equals(perfil));
+                Perfil perfilABorrar = tlmeContext.Perfiles.FirstOrDefault(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario);
                 tlmeContext.Perfiles.Remove(perfilABorrar);
+                EliminarGenerosPuntuados(perfil, tlmeContext);
                 tlmeContext.SaveChanges();
+            }
+        }
+
+        private void EliminarGenerosPuntuados(Perfil perfil, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
+        {
+            foreach(var generoPuntuado in GenerosPuntuados(perfil))
+            {
+                GeneroPuntaje generoABorrar = tlmeContext.GenerosPuntajes.FirstOrDefault(g => g.AliasPerfil == generoPuntuado.AliasPerfil
+                            && g.Perfil.NombreUsuario == generoPuntuado.Perfil.NombreUsuario && g.NombreGenero == generoPuntuado.NombreGenero);
+                if (generoABorrar != null)
+                {
+                    tlmeContext.GenerosPuntajes.Remove(generoABorrar);
+                    tlmeContext.SaveChanges();
+                }
             }
         }
 
@@ -51,7 +66,7 @@ namespace Repositorio.EnDataBase
             bool esta = false;
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                Perfil perfilBuscado = tlmeContext.Perfiles.FirstOrDefault(p => p.Equals(perfil));
+                Perfil perfilBuscado = tlmeContext.Perfiles.FirstOrDefault(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario);
                 if (perfilBuscado != null)
                 {
                     esta = true;
@@ -72,7 +87,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Perfiles.Where(x => x.Usuario.Equals(usuario)).ToList();
+                return tlmeContext.Perfiles.Where(x => x.Usuario.Nombre == usuario.Nombre).ToList();
             }
         }
 
@@ -81,7 +96,7 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 return tlmeContext.GenerosPuntajes.Include(x => x.Genero).Include(x => x.Perfil)
-                     .Where(x => x.Perfil.Equals(perfil)).ToList();
+                     .Where(x => x.Perfil.Alias == perfil.Alias && x.Perfil.NombreUsuario == perfil.NombreUsuario).ToList();
             }
         }
 
@@ -90,7 +105,7 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 //ver si funciona
-                return tlmeContext.Perfiles.Include(p => p.PeliculasVistas).Where(p => p.Equals(perfil))
+                return tlmeContext.Perfiles.Include(p => p.PeliculasVistas).Where(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario)
                     .SelectMany(p => p.PeliculasVistas).ToList();
             }
         }
@@ -103,7 +118,7 @@ namespace Repositorio.EnDataBase
                 tlmeContext.Entry(pelicula).State = EntityState.Unchanged;
                 tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
                 //MantenerEntidadesPerfilSinCambios(perfil, tlmeContext);
-                tlmeContext.Perfiles.FirstOrDefault(p => p.Equals(perfil)).PeliculasVistas.Add(pelicula);
+                tlmeContext.Perfiles.FirstOrDefault(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario).PeliculasVistas.Add(pelicula);
                 tlmeContext.SaveChanges();
             }
         }

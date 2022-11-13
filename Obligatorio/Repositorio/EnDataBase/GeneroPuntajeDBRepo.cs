@@ -31,8 +31,8 @@ namespace Repositorio.EnDataBase
         {
             using(ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                GeneroPuntaje generoABorrar = tlmeContext.GenerosPuntajes
-                    .FirstOrDefault(g => g.Perfil.Equals(generoPuntaje.Perfil) && g.Genero.Equals(generoPuntaje.Genero));
+                GeneroPuntaje generoABorrar = tlmeContext.GenerosPuntajes.FirstOrDefault(g => g.AliasPerfil == generoPuntaje.AliasPerfil 
+                            && g.Perfil.NombreUsuario == generoPuntaje.Perfil.NombreUsuario && g.NombreGenero == generoPuntaje.NombreGenero);
                 if(generoABorrar != null)
                 {
                     tlmeContext.GenerosPuntajes.Remove(generoABorrar);
@@ -46,8 +46,8 @@ namespace Repositorio.EnDataBase
             bool esta = false;
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                GeneroPuntaje generoBuscado = tlmeContext.GenerosPuntajes
-                    .FirstOrDefault(g => g.Perfil.Equals(perfil) && g.Genero.Equals(genero));
+                GeneroPuntaje generoBuscado = tlmeContext.GenerosPuntajes.FirstOrDefault(g => g.Perfil.Alias == perfil.Alias 
+                                        && g.Perfil.NombreUsuario == perfil.NombreUsuario && g.Genero.Nombre == genero.Nombre);
                 if (generoBuscado != null)
                 {
                     esta = true;
@@ -81,8 +81,8 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.GenerosPuntajes.Include(g => g.Genero).Include(g => g.Perfil)
-                                    .FirstOrDefault(g => g.Perfil.Equals(perfil) && g.Genero.Equals(genero));
+                return tlmeContext.GenerosPuntajes.Include(g => g.Genero).Include(g => g.Perfil).FirstOrDefault(g => g.Perfil.Alias == perfil.Alias 
+                                                            && g.Perfil.NombreUsuario == perfil.NombreUsuario && g.Genero.Nombre == genero.Nombre);
             };
         }
     }
