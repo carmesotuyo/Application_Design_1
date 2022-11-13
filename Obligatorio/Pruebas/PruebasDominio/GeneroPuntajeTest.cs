@@ -35,20 +35,24 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void NombreGeneroValidoTest()
         {
+            Genero genero = new Genero() { Nombre = "Terror" };
             GeneroPuntaje unGeneroPuntaje = new GeneroPuntaje()
             {
-                Genero = "Terror"
+                Genero = genero
             };
-            Assert.AreEqual(unGeneroPuntaje.Genero, "Terror");
+            Assert.AreEqual(unGeneroPuntaje.Genero.Nombre, "Terror");
         }
 
         [TestMethod]
         [ExpectedException(typeof(DatoVacioException))]
         public void NombreGeneroVacioTest()
         {
+
+            Genero genero = new Genero() { Nombre = "" };
+
             GeneroPuntaje unGeneroPuntaje = new GeneroPuntaje()
             {
-                Genero = ""
+                Genero = genero
             };
 
         }
