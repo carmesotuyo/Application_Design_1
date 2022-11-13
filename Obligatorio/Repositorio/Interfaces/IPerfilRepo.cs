@@ -17,5 +17,6 @@ namespace Repositorio.Interfaces
         List<Perfil> PerfilesDeUsuario(Usuario usuario);
         List<Pelicula> PeliculasVistas(Perfil perfil);
         void AgregarPeliculaVista(Perfil perfil, Pelicula pelicula);
+        void MarcarComoInfantil(Perfil perfil);
     }
 }

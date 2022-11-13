@@ -81,7 +81,7 @@ namespace Logica.Implementaciones
         {
             ValidarPerfilOwner(perfilOwner);
             ChequearQueNoEsOwner(perfilInfantil);
-            perfilInfantil.EsInfantil = true;
+            _repoPerfil.MarcarComoInfantil(perfilInfantil);
         }
 
         private void ValidarPerfilOwner(Perfil unPerfil)

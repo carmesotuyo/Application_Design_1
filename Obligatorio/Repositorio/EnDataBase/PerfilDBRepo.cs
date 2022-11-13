@@ -127,5 +127,15 @@ namespace Repositorio.EnDataBase
                 tlmeContext.SaveChanges();
             }
         }
+
+        public void MarcarComoInfantil(Perfil perfil)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                tlmeContext.Entry(perfil.Usuario).State = EntityState.Unchanged;
+                tlmeContext.Perfiles.FirstOrDefault(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario).EsInfantil = true;
+                tlmeContext.SaveChanges();
+            }
+        }
     }
 }
