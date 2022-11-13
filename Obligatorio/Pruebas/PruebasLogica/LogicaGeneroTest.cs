@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Repositorio;
+using Repositorio.EnDataBase;
 using Logica.Implementaciones;
 using Dominio.Exceptions;
 using Repositorio.Interfaces;
@@ -17,7 +18,7 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaGeneroTest
     {
-        LogicaGenero logica = new LogicaGenero(new GeneroRepo());
+        LogicaGenero logica = new LogicaGenero(new GeneroDBRepo());
         Usuario admin = new Usuario() { EsAdministrador = true };
 
         [TestMethod]
@@ -66,7 +67,7 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void EliminarGeneroTest()
         {
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaRepo());
+            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
             Genero unGenero = new Genero() { Nombre = "Comedia" };
 
             logica.AgregarGenero(admin, unGenero);
@@ -80,7 +81,7 @@ namespace Pruebas.PruebasLogica
         public void EliminarGeneroSinPermisoTest()
         {
             Usuario comun = new Usuario() { EsAdministrador = false };
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaRepo());
+            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
             Genero unGenero = new Genero() { Nombre = "Comedia" };
 
             logica.AgregarGenero(admin, unGenero);
@@ -91,7 +92,7 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(GeneroInexistenteException))]
         public void EliminarGeneroInexistenteTest()
         {
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaRepo());
+            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
             Genero unGenero = new Genero() { Nombre = "Comedia" };
 
             logica.EliminarGenero(admin, unGenero, logicaPeli);
@@ -101,7 +102,7 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(NullException))]
         public void EliminarGeneroNullTest()
         {
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaRepo());
+            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
             Genero unGenero = null;
 
             logica.EliminarGenero(admin, unGenero, logicaPeli);
@@ -111,7 +112,7 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(GeneroConPeliculaAsociadaException))]
         public void EliminarGeneroConPeliculasAsociadasComoPrincipalTest()
         {
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaRepo());
+            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
             Genero unGenero = new Genero() { Nombre = "Comedia" };
 
             Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = unGenero };
@@ -125,7 +126,7 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(GeneroConPeliculaAsociadaException))]
         public void EliminarGeneroConPeliculasAsociadasComoSecundarioTest()
         {
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaRepo());
+            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
             Genero unGenero = new Genero() { Nombre = "Comedia" };
             Genero otroGenero = new Genero() { Nombre = "Terror" };
 

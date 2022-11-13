@@ -137,24 +137,24 @@ namespace Pruebas.PruebasDominio
             Assert.IsFalse(unPerfil.EsInfantil);
         }
 
-        [TestMethod]
-        public void AgregarGeneroPuntajeTest()
-        {
-            Perfil unPerfil = new Perfil();
-            GeneroPuntaje generoPuntaje = new GeneroPuntaje();
-            unPerfil.AgregarGeneroPuntaje(generoPuntaje);
-            Assert.IsTrue(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
-        }
+        //[TestMethod]
+        //public void AgregarGeneroPuntajeTest()
+        //{
+        //    Perfil unPerfil = new Perfil();
+        //    GeneroPuntaje generoPuntaje = new GeneroPuntaje();
+        //    unPerfil.AgregarGeneroPuntaje(generoPuntaje);
+        //    Assert.IsTrue(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
+        //}
 
-        [TestMethod]
-        public void QuitarGeneroPuntajeTest()
-        {
-            Perfil unPerfil = new Perfil();
-            GeneroPuntaje generoPuntaje = new GeneroPuntaje();
-            unPerfil.AgregarGeneroPuntaje(generoPuntaje);
-            unPerfil.QuitarGeneroPuntaje(generoPuntaje);
-            Assert.IsFalse(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
-        }
+        //[TestMethod]
+        //public void QuitarGeneroPuntajeTest()
+        //{
+        //    Perfil unPerfil = new Perfil();
+        //    GeneroPuntaje generoPuntaje = new GeneroPuntaje();
+        //    unPerfil.AgregarGeneroPuntaje(generoPuntaje);
+        //    unPerfil.QuitarGeneroPuntaje(generoPuntaje);
+        //    Assert.IsFalse(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
+        //}
 
         [TestMethod]
         public void AgregarPeliculaVistaTest()
