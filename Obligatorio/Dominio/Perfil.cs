@@ -116,5 +116,16 @@ namespace Dominio
         {
             return Alias;
         }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj != null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Perfil perfil = (Perfil)obj;
+                ret = perfil.Alias == this.Alias && perfil.Usuario == this.Usuario;
+            }
+            return ret;
+        }
     }
 }

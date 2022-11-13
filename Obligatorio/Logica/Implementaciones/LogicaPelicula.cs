@@ -101,12 +101,10 @@ namespace Logica.Implementaciones
 
         private List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil, List<Pelicula> peliculas)
         {
-            //List<string> generos = unPerfil.PuntajeGeneros.OrderByDescending(g => g.Puntaje)
-            //                                              .Select(g => g.NombreGenero).ToList();
-            List<string> generos = _repoPerfil.GenerosPuntuados(unPerfil).OrderByDescending(g => g.Puntaje)
-                                                .Select(g => g.Genero.Nombre).ToList();
+            List<Genero> generos = _repoPerfil.GenerosPuntuados(unPerfil).OrderByDescending(g => g.Puntaje)
+                                                .Select(g => g.Genero).ToList();
 
-            return peliculas.OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre))
+            return peliculas.OrderBy(p => generos.IndexOf(p.GeneroPrincipal))
                             .ThenBy(p => p.Nombre).ThenByDescending(p => p.Identificador).ToList();
         }
 

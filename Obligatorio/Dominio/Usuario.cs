@@ -111,5 +111,16 @@ namespace Dominio
         {
             return Nombre;
         }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj != null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Usuario usuario = (Usuario) obj;
+                ret = usuario.Nombre == this.Nombre && usuario.Email == this.Email;
+            }
+            return ret;
+        }
     }
 }

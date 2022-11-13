@@ -127,5 +127,16 @@ namespace Dominio
         {
             return Nombre;
         }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj != null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Pelicula pelicula = (Pelicula)obj;
+                ret = pelicula.Identificador == this.Identificador;
+            }
+            return ret;
+        }
     }
 }

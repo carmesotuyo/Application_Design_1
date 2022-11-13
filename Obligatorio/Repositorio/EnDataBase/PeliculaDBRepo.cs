@@ -37,7 +37,7 @@ namespace Repositorio.EnDataBase
             bool esta = false;
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                Pelicula peliculaBuscada = tlmeContext.Peliculas.FirstOrDefault(p => p.Nombre == pelicula.Nombre);
+                Pelicula peliculaBuscada = tlmeContext.Peliculas.FirstOrDefault(p => p.Equals(pelicula));
                 if (peliculaBuscada != null)
                 {
                     esta = true;
@@ -60,7 +60,7 @@ namespace Repositorio.EnDataBase
             {
                 if (EstaPelicula(pelicula))
                 {
-                    Pelicula peliculaABorrar = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
+                    Pelicula peliculaABorrar = tlmeContext.Peliculas.FirstOrDefault(p => p.Equals(pelicula));
                     tlmeContext.Peliculas.Remove(peliculaABorrar);
                     tlmeContext.SaveChanges();
                 }
@@ -71,7 +71,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Peliculas.Where(p => p.Identificador == pelicula.Identificador).SelectMany(p => p.GenerosSecundarios).ToList();
+                return tlmeContext.Peliculas.Where(p => p.Equals(pelicula)).SelectMany(p => p.GenerosSecundarios).ToList();
             }
         }
     }

@@ -94,7 +94,6 @@ namespace Logica.Implementaciones
             ValidarAliasUnico(usuario, perfil);
             perfil.AsociarUsuario(usuario);
             _repoPerfiles.AgregarPerfil(perfil);
-            //usuario.Perfiles.Add(perfil);
         }
 
         private void MaximoDePerfiles(Usuario usuario)
@@ -129,7 +128,6 @@ namespace Logica.Implementaciones
             NoExistePerfil(usuario, perfil);
             EsPerfilOwner(perfil);
             _repoPerfiles.EliminarPerfil(perfil);
-            //usuario.Perfiles.Remove(perfil);
         }
 
         private void NoExistePerfil(Usuario usuario, Perfil perfil)

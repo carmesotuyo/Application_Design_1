@@ -42,5 +42,16 @@ namespace Dominio
         {
             return Nombre;
         }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj !=null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Genero genero = (Genero)obj;
+                ret = genero.Nombre == this.Nombre;
+            }
+            return ret;
+        }
     }
 }
