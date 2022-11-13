@@ -40,9 +40,11 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                Perfil perfilABorrar = tlmeContext.Perfiles.FirstOrDefault(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario);
+                Perfil perfilABorrar = tlmeContext.Perfiles.Include(x=> x.PuntajeGeneros).FirstOrDefault(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario);
+                //aca pasan cosas raras y se cae, ojo
+                EliminarGenerosPuntuados(perfilABorrar, tlmeContext);
                 tlmeContext.Perfiles.Remove(perfilABorrar);
-                EliminarGenerosPuntuados(perfil, tlmeContext);
+                tlmeContext.Entry(perfilABorrar).State = EntityState.Deleted;
                 tlmeContext.SaveChanges();
             }
         }
@@ -51,13 +53,14 @@ namespace Repositorio.EnDataBase
         {
             foreach(var generoPuntuado in GenerosPuntuados(perfil))
             {
-                GeneroPuntaje generoABorrar = tlmeContext.GenerosPuntajes.FirstOrDefault(g => g.AliasPerfil == generoPuntuado.AliasPerfil
+                GeneroPuntaje generoABorrar = tlmeContext.GenerosPuntajes.Include(x=> x.Genero).Include(x=> x.Perfil).FirstOrDefault(g => g.AliasPerfil == generoPuntuado.AliasPerfil
                             && g.Perfil.NombreUsuario == generoPuntuado.Perfil.NombreUsuario && g.NombreGenero == generoPuntuado.NombreGenero);
                 if (generoABorrar != null)
                 {
-                    tlmeContext.GenerosPuntajes.Remove(generoABorrar); 
                     tlmeContext.Entry(generoABorrar.Genero).State = EntityState.Unchanged;
-                    tlmeContext.Entry(generoABorrar.Perfil).State = EntityState.Deleted;
+                    tlmeContext.Entry(generoABorrar.Perfil).State = EntityState.Unchanged;
+                    tlmeContext.GenerosPuntajes.Remove(generoABorrar);
+                    tlmeContext.Entry(generoABorrar).State = EntityState.Deleted;
                     tlmeContext.SaveChanges();
                 }
             }
