@@ -11,14 +11,15 @@ using Logica.Exceptions;
 using Repositorio;
 using Dominio.Exceptions;
 using Logica.Interfaces;
+using Repositorio.EnDataBase;
 
 namespace Pruebas.PruebasLogica
 {
     [TestClass]
     public class LogicaPerfilTest
     {
-        LogicaPerfil logica = new LogicaPerfil();
-        LogicaUsuario logicaUsuario = new LogicaUsuario(new RepoUsuarios());
+        LogicaPerfil logicaPerfil = new LogicaPerfil(new PerfilDBRepo(), new GeneroPuntajeDBRepo(), new PeliculaDBRepo(), new GeneroDBRepo());
+        LogicaUsuario logicaUsuario = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
         Perfil unPerfil = new Perfil();
         enum Puntajes
         {
@@ -32,10 +33,10 @@ namespace Pruebas.PruebasLogica
         {
             Genero comedia = new Genero() { Nombre = "comedia" };
             Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = comedia };
-            GeneroPuntaje generoPuntaje = new GeneroPuntaje() { Genero = comedia.Nombre };
-            unPerfil.AgregarGeneroPuntaje(generoPuntaje);
 
-            logica.PuntuarNegativo(unaPelicula, unPerfil);
+            logicaPerfil.AgregarGeneroPuntuado(unPerfil, comedia);
+
+            logicaPerfil.PuntuarNegativo(unaPelicula, unPerfil);
 
             Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == (int)Puntajes.Negativo);
         }
@@ -45,10 +46,9 @@ namespace Pruebas.PruebasLogica
         {
             Genero comedia = new Genero() { Nombre = "comedia" };
             Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = comedia };
-            GeneroPuntaje generoPuntaje = new GeneroPuntaje() { Genero = comedia.Nombre };
-            unPerfil.AgregarGeneroPuntaje(generoPuntaje);
+            logicaPerfil.AgregarGeneroPuntuado(unPerfil, comedia);
 
-            logica.PuntuarPositivo(unaPelicula, unPerfil);
+            logicaPerfil.PuntuarPositivo(unaPelicula, unPerfil);
 
             Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == (int)Puntajes.Positivo);
         }
@@ -60,12 +60,11 @@ namespace Pruebas.PruebasLogica
             Genero romance = new Genero() { Nombre = "Romance" };
             Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = comedia };
             unaPelicula.AgregarGeneroSecundario(romance);
-            GeneroPuntaje generoComedia = new GeneroPuntaje() { Genero = comedia.Nombre };
-            GeneroPuntaje generoRomance = new GeneroPuntaje() { Genero = romance.Nombre };
-            unPerfil.AgregarGeneroPuntaje(generoComedia);
-            unPerfil.AgregarGeneroPuntaje(generoRomance);
 
-            logica.PuntuarMuyPositivo(unaPelicula, unPerfil);
+            logicaPerfil.AgregarGeneroPuntuado(unPerfil, comedia);
+            logicaPerfil.AgregarGeneroPuntuado(unPerfil, romance);
+
+            logicaPerfil.PuntuarMuyPositivo(unaPelicula, unPerfil);
 
             Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == (int)Puntajes.MuyPositivo && unPerfil.PuntajeGeneros[1].Puntaje == (int)Puntajes.Positivo);
         }
@@ -75,10 +74,10 @@ namespace Pruebas.PruebasLogica
         {
             Genero comedia = new Genero() { Nombre = "comedia" };
             Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = comedia };
-            GeneroPuntaje generoComedia = new GeneroPuntaje() { Genero = comedia.Nombre };
-            unPerfil.AgregarGeneroPuntaje(generoComedia);
 
-            logica.MarcarComoVista(unaPelicula, unPerfil);
+            logicaPerfil.AgregarGeneroPuntuado(unPerfil, comedia);
+
+            logicaPerfil.MarcarComoVista(unaPelicula, unPerfil);
 
             Assert.IsTrue(unPerfil.EstaPeliculaVista(unaPelicula));
         }
@@ -88,10 +87,9 @@ namespace Pruebas.PruebasLogica
         {
             Genero comedia = new Genero() { Nombre = "comedia" };
             Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = comedia };
-            GeneroPuntaje generoComedia = new GeneroPuntaje() { Genero = comedia.Nombre };
-            
-            unPerfil.AgregarGeneroPuntaje(generoComedia);
-            logica.MarcarComoVista(unaPelicula, unPerfil);
+
+            logicaPerfil.AgregarGeneroPuntuado(unPerfil, comedia);
+            logicaPerfil.MarcarComoVista(unaPelicula, unPerfil);
 
             Assert.IsTrue(unPerfil.PuntajeGeneros[0].Puntaje == (int)Puntajes.Positivo);
         }
@@ -102,7 +100,7 @@ namespace Pruebas.PruebasLogica
             unPerfil.EsInfantil = false;
             unPerfil.Pin = 12345;
 
-            Perfil AccesoCorrecto = logica.AccederAlPerfil(unPerfil, 12345);
+            Perfil AccesoCorrecto = logicaPerfil.AccederAlPerfil(unPerfil, 12345);
 
             Assert.IsTrue(AccesoCorrecto.Equals(unPerfil));
         }
@@ -114,7 +112,7 @@ namespace Pruebas.PruebasLogica
             unPerfil.EsInfantil = false;
             unPerfil.Pin = 12345;
 
-            Perfil AccesoIncorrecto = logica.AccederAlPerfil(unPerfil, 11111);
+            Perfil AccesoIncorrecto = logicaPerfil.AccederAlPerfil(unPerfil, 11111);
         }
 
         [TestMethod]
@@ -124,7 +122,7 @@ namespace Pruebas.PruebasLogica
             unPerfil.Pin = 12345;
             int pinSinImportancia = 10000;
 
-            Perfil AccesoCorrecto = logica.AccederAlPerfil(unPerfil, pinSinImportancia);
+            Perfil AccesoCorrecto = logicaPerfil.AccederAlPerfil(unPerfil, pinSinImportancia);
 
             Assert.IsTrue(AccesoCorrecto.Equals(unPerfil));
         }
@@ -138,7 +136,7 @@ namespace Pruebas.PruebasLogica
             logicaUsuario.AgregarPerfil(usuario, unPerfil);
             logicaUsuario.AgregarPerfil(usuario, perfilInfantil);
 
-            logica.MarcarComoInfantil(perfilInfantil, unPerfil, usuario);
+            logicaPerfil.MarcarComoInfantil(perfilInfantil, unPerfil, usuario);
 
             Assert.IsTrue(perfilInfantil.EsInfantil);
         }
@@ -156,7 +154,7 @@ namespace Pruebas.PruebasLogica
             logicaUsuario.AgregarPerfil(usuario, unPerfil);
             logicaUsuario.AgregarPerfil(usuario, perfilInfantil);
 
-            logica.MarcarComoInfantil(perfilInfantil, unPerfil, usuario);
+            logicaPerfil.MarcarComoInfantil(perfilInfantil, unPerfil, usuario);
         }
 
         [TestMethod]
@@ -170,7 +168,7 @@ namespace Pruebas.PruebasLogica
             logicaUsuario.AgregarPerfil(unUsuario, unPerfil);
             logicaUsuario.AgregarPerfil(unUsuario, otroOwner);
 
-            logica.MarcarComoInfantil(otroOwner, unPerfil, unUsuario);
+            logicaPerfil.MarcarComoInfantil(otroOwner, unPerfil, unUsuario);
         }
 
         [TestMethod]
@@ -178,7 +176,7 @@ namespace Pruebas.PruebasLogica
         {
             Pelicula unaPelicula = new Pelicula();
 
-            logica.AgregarPeliculaVista(unaPelicula, unPerfil);
+            logicaPerfil.AgregarPeliculaVista(unaPelicula, unPerfil);
 
             Assert.IsTrue(unPerfil.EstaPeliculaVista(unaPelicula));
         }
@@ -189,8 +187,8 @@ namespace Pruebas.PruebasLogica
         {
             Pelicula unaPelicula = new Pelicula();
 
-            logica.AgregarPeliculaVista(unaPelicula, unPerfil);
-            logica.AgregarPeliculaVista(unaPelicula, unPerfil);
+            logicaPerfil.AgregarPeliculaVista(unaPelicula, unPerfil);
+            logicaPerfil.AgregarPeliculaVista(unaPelicula, unPerfil);
         }
 
 
@@ -199,9 +197,9 @@ namespace Pruebas.PruebasLogica
         {
             Pelicula unaPelicula = new Pelicula();
 
-            logica.AgregarPeliculaVista(unaPelicula, unPerfil);
+            logicaPerfil.AgregarPeliculaVista(unaPelicula, unPerfil);
 
-            Assert.IsTrue(logica.VioPelicula(unaPelicula, unPerfil));
+            Assert.IsTrue(logicaPerfil.VioPelicula(unaPelicula, unPerfil));
         }
 
         [TestMethod]
@@ -209,7 +207,7 @@ namespace Pruebas.PruebasLogica
         {
             Pelicula unaPelicula = new Pelicula();
 
-            Assert.IsFalse(logica.VioPelicula(unaPelicula, unPerfil));
+            Assert.IsFalse(logicaPerfil.VioPelicula(unaPelicula, unPerfil));
         }
 
         [TestMethod]

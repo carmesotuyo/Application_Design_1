@@ -16,6 +16,8 @@ namespace Dominio
         private bool _esOwner;
         private List<GeneroPuntaje> _puntajeGeneros;
         private List<Pelicula> _peliculasVistas;
+        private Usuario _usuario;
+        private string _nombreUsuario;
 
         private static int _minCharsAlias = 1;
         private static int _maxCharsAlias = 15;
@@ -86,20 +88,9 @@ namespace Dominio
 
         public bool EsOwner { get => _esOwner; set => _esOwner = value; }
 
-        public bool EsInfantil { get => _esInfantil; set { _esInfantil = value; } 
-        }
+        public bool EsInfantil { get => _esInfantil; set => _esInfantil = value; }
 
         public List<GeneroPuntaje> PuntajeGeneros { get => _puntajeGeneros; }
-
-        public void AgregarGeneroPuntaje(GeneroPuntaje generoPuntaje)
-        {
-            _puntajeGeneros.Add(generoPuntaje);
-        }
-
-        public void QuitarGeneroPuntaje(GeneroPuntaje generoPuntaje)
-        {
-            _puntajeGeneros.Remove(generoPuntaje);
-        }
 
         public List<Pelicula> PeliculasVistas { get => _peliculasVistas; }
 
@@ -113,9 +104,28 @@ namespace Dominio
             return _peliculasVistas.Contains(unaPelicula);
         }
 
+        public Usuario Usuario { get => _usuario; set { _usuario = value; } }
+        public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
+
+        public void AsociarUsuario(Usuario usuario)
+        {
+            Usuario = usuario;
+            NombreUsuario = usuario.Nombre;
+        }
         public override string ToString()
         {
             return Alias;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj != null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Perfil perfil = (Perfil)obj;
+                ret = perfil.Alias == this.Alias && perfil.Usuario == this.Usuario;
+            }
+            return ret;
         }
     }
 }

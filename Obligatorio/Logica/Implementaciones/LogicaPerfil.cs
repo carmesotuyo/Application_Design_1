@@ -8,16 +8,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio.Exceptions;
+using Repositorio.Interfaces;
+using Repositorio.EnDataBase;
 
 namespace Logica.Implementaciones
 {
     public class LogicaPerfil : ILogicaPerfil
     {
+        private IPerfilRepo _repoPerfil;
+        private IGeneroPuntajeRepo _repoGeneroPuntaje;
+        private IPeliculaRepo _repoPelicula;
+        private IGeneroRepo _repoGenero;
         enum Puntajes
         {
             PuntajeNegativo = -1,
             PuntajePositivo = 1,
             PuntajeMuyPositivo = 2
+        }
+
+        public LogicaPerfil(IPerfilRepo perfilRepo, IGeneroPuntajeRepo generoPuntajeRepo, IPeliculaRepo repoPeli, IGeneroRepo repoGenero)
+        {
+            _repoPerfil = perfilRepo;
+            _repoGeneroPuntaje = generoPuntajeRepo;
+            _repoPelicula = repoPeli;
+            _repoGenero = repoGenero;
         }
 
         public virtual Perfil AccederAlPerfil(Perfil unPerfil, int pin)
@@ -46,7 +60,8 @@ namespace Logica.Implementaciones
         public void PuntuarMuyPositivo(Pelicula unaPelicula, Perfil unPerfil)
         {
             ModificarPuntajeGenero(unPerfil, unaPelicula.GeneroPrincipal, (int) Puntajes.PuntajeMuyPositivo);
-            foreach(Genero genero in unaPelicula.GenerosSecundarios)
+            
+            foreach(Genero genero in _repoPelicula.DevolverGenerosAsociados(unaPelicula))
             {
                 ModificarPuntajeGenero(unPerfil, genero, (int)Puntajes.PuntajePositivo);
             }
@@ -88,8 +103,9 @@ namespace Logica.Implementaciones
         public void AgregarPeliculaVista(Pelicula unaPelicula, Perfil unPerfil)
         {
             ChequearQueNoEsteYaVista(unaPelicula, unPerfil);
-            unPerfil.AgregarPeliculaVista(unaPelicula);
+            _repoPerfil.AgregarPeliculaVista(unPerfil, unaPelicula);
         }
+
         private void ChequearQueNoEsteYaVista(Pelicula unaPelicula, Perfil unPerfil)
         {
             if (VioPelicula(unaPelicula, unPerfil))
@@ -100,55 +116,58 @@ namespace Logica.Implementaciones
 
         public bool VioPelicula(Pelicula unaPelicula, Perfil unPerfil)
         {
-            return unPerfil.EstaPeliculaVista(unaPelicula);
+           return _repoPerfil.PeliculasVistas(unPerfil).Contains(unaPelicula);
         }
 
         public void ModificarPuntajeGenero(Perfil unPerfil, Genero unGenero, int puntaje)
         {
-            int index = EncontrarGeneroEnLista(unPerfil, unGenero);
-            unPerfil.PuntajeGeneros[index].ModificarPuntaje(puntaje);
+            ValidarQueExisteGeneroPuntuado(unGenero, unPerfil);
+            _repoGeneroPuntaje.ModificarPuntaje(unGenero, unPerfil, puntaje);
         }
 
-        private int EncontrarGeneroEnLista(Perfil unPerfil, Genero unGenero)
+        //agregar metodo que agarre esta excepcion
+        private void ValidarQueExisteGeneroPuntuado(Genero unGenero, Perfil unPerfil)
         {
-            GeneroPuntaje genero = unPerfil.PuntajeGeneros.FirstOrDefault(x => x.Genero == unGenero.Nombre);
-            return unPerfil.PuntajeGeneros.IndexOf(genero);
-        }
-
-        public void ActualizarListadoGeneros(Perfil unPerfil, ILogicaGenero logicaGenero)
-        {
-            QuitarGenerosEliminados(unPerfil, logicaGenero);
-            AgregarNuevosGeneros(unPerfil, logicaGenero);
-        }
-
-        private void AgregarNuevosGeneros(Perfil unPerfil, ILogicaGenero logicaGenero)
-        {
-            foreach (Genero genero in logicaGenero.Generos())
+            if(!_repoGeneroPuntaje.EstaGeneroPuntaje(unGenero, unPerfil))
             {
-                if(!EstaGenero(unPerfil, genero))
+                throw new GeneroInexistenteException();
+            }
+        }
+
+        public void ActualizarListadoGeneros(Perfil unPerfil)
+        {
+            QuitarGenerosEliminados(unPerfil);
+            AgregarNuevosGeneros(unPerfil);
+        }
+
+        private void AgregarNuevosGeneros(Perfil unPerfil)
+        {
+            foreach (Genero genero in _repoGenero.Generos())
+            {
+                if(!_repoGeneroPuntaje.EstaGeneroPuntaje(genero, unPerfil))
                 {
-                    AgregarGenero(unPerfil, genero);
+                    AgregarGeneroPuntuado(unPerfil, genero);
                 }
             }
         }
 
-        private void QuitarGenerosEliminados(Perfil unPerfil, ILogicaGenero logicaGenero)
+        private void QuitarGenerosEliminados(Perfil unPerfil)
         {
-            List<GeneroPuntaje> paraEliminar = BuscarGenerosEliminados(unPerfil, logicaGenero);
+            List<GeneroPuntaje> paraEliminar = BuscarGenerosEliminados(unPerfil);
 
             foreach (GeneroPuntaje genero in paraEliminar)
             {
-                unPerfil.QuitarGeneroPuntaje(genero);
+                _repoGeneroPuntaje.EliminarGeneroPuntaje(genero);
             }
         }
 
-        private List<GeneroPuntaje> BuscarGenerosEliminados(Perfil unPerfil, ILogicaGenero logicaGenero)
+        private List<GeneroPuntaje> BuscarGenerosEliminados(Perfil unPerfil)
         {
             List<GeneroPuntaje> paraEliminar = new List<GeneroPuntaje>();
 
-            foreach (GeneroPuntaje genero in unPerfil.PuntajeGeneros)
+            foreach (GeneroPuntaje genero in _repoPerfil.GenerosPuntuados(unPerfil))
             {
-                if (GeneroEliminado(logicaGenero, genero))
+                if (!_repoGenero.EstaGenero(genero.Genero))
                 {
                     paraEliminar.Add(genero);
                 }
@@ -157,22 +176,16 @@ namespace Logica.Implementaciones
             return paraEliminar;
         }
 
-        public void AgregarGenero(Perfil unPerfil, Genero unGenero)
+        public void AgregarGeneroPuntuado(Perfil unPerfil, Genero unGenero)
         {
-            GeneroPuntaje nuevo = new GeneroPuntaje() { Genero = unGenero.Nombre };
-            unPerfil.AgregarGeneroPuntaje(nuevo);
-        }
-
-        public bool EstaGenero(Perfil unPerfil, Genero unGenero)
-        {
-            List<GeneroPuntaje> busco = unPerfil.PuntajeGeneros.Where(x => x.Genero == unGenero.Nombre).ToList();
-            return busco.Count > 0;
-        }
-
-        private bool GeneroEliminado(ILogicaGenero logicaGenero, GeneroPuntaje unGenero)
-        {
-            List<Genero> busco = logicaGenero.Generos().Where(x => x.Nombre != unGenero.Genero).ToList();
-            return busco.Count == logicaGenero.Generos().Count;
+            GeneroPuntaje nuevo = new GeneroPuntaje() 
+            { 
+                Genero = unGenero, 
+                Perfil = unPerfil, 
+                AliasPerfil = unPerfil.Alias,
+                NombreGenero = unGenero.Nombre
+            };
+            _repoGeneroPuntaje.AgregarGeneroPuntaje(nuevo);
         }
     }
 }

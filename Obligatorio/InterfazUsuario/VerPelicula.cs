@@ -38,7 +38,7 @@ namespace InterfazUsuario
 
         private void ActualizarGenerosPerfiles()
         {
-            _logicaPerfil.ActualizarListadoGeneros(_perfil, _logicaGenero);
+            _logicaPerfil.ActualizarListadoGeneros(_perfil);
         }
 
         private void MostrarPelicula()

@@ -2,6 +2,7 @@
 using Logica.Implementaciones;
 using Logica.Interfaces;
 using Repositorio;
+using Repositorio.EnDataBase;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,10 +26,10 @@ namespace InterfazUsuario
 
         public Threat_Level_Midnight_Entertainment()
         {
-            _logicaUsuario = new LogicaUsuario(new RepoUsuarios());
-            _logicaPerfil = new LogicaPerfil();
-            _logicaPelicula = new LogicaPelicula(new PeliculaRepo());
-            _logicaGenero = new LogicaGenero(new GeneroRepo());
+            _logicaUsuario = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
+            _logicaPerfil = new LogicaPerfil(new PerfilDBRepo(), new GeneroPuntajeDBRepo(), new PeliculaDBRepo(), new GeneroDBRepo());
+            _logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
+            _logicaGenero = new LogicaGenero(new GeneroDBRepo());
 
             InitializeComponent();
             flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
@@ -44,7 +45,10 @@ namespace InterfazUsuario
                 ConfirmarClave = "admin12345",
                 EsAdministrador = true
             };
-            _logicaUsuario.RegistrarUsuario(admin);
+            if (!_logicaUsuario.ExisteUsuario(admin))
+            {
+                _logicaUsuario.RegistrarUsuario(admin);
+            }
         }
 
         public void CambiarRegistroUsuario()

@@ -36,7 +36,7 @@ namespace InterfazUsuario
         {
             flpListaPerfiles.Controls.Clear();
             int index = 0;
-            foreach (Perfil perfil in _usuario.Perfiles)
+            foreach (Perfil perfil in _logicaUsuario.PerfilesAsociados(_usuario))
             {
                 FlowLayoutPanel flpPerfil = new System.Windows.Forms.FlowLayoutPanel();
                 flpPerfil.BackColor = SystemColors.Control;
@@ -63,7 +63,7 @@ namespace InterfazUsuario
         {
             FlowLayoutPanel perfilSeleccionado = sender as FlowLayoutPanel;
             int index = perfilSeleccionado.TabIndex;
-            Perfil perfil = _usuario.Perfiles[index];
+            Perfil perfil = _logicaUsuario.PerfilesAsociados(_usuario)[index];
             if (perfil.EsInfantil)
             {
                 _ventanaPrincipal.CambiarMenuPeliculas(_usuario, perfil);

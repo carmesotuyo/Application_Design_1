@@ -12,13 +12,14 @@ namespace Dominio
     {
         private string _nombre;
         private Genero _generoPrincipal;
-        private List<Genero> _generosSecundarios;
+        private IList<Genero> _generosSecundarios;
         private string _descripcion;
         private bool _aptaTodoPublico;
         private bool _patrocinada;
         private static int _contadorPeliculas = 0;
         private int _idPelicula;
         private string _poster;
+        private IList<Perfil> _perfilesQueLaVieron;
 
         public Pelicula()
         {
@@ -48,15 +49,22 @@ namespace Dominio
 
         private void ChequearNoIncluidoEnSecundarios(Genero unGenero)
         {
-            if (GenerosSecundarios.Contains(unGenero))
+            foreach(Genero genero in GenerosSecundarios)
             {
-                throw new GeneroInvalidoException();
+                if(genero.Nombre == unGenero.Nombre)
+                {
+                    throw new GeneroInvalidoException();
+                }
             }
         }
 
 
-        public List<Genero> GenerosSecundarios { get => _generosSecundarios; set
+        public IList<Genero> GenerosSecundarios { get => _generosSecundarios; set
             {
+                foreach(var genero in value)
+                {
+                    ChequearNoCoincideConPrincipal(genero);
+                }
                 _generosSecundarios = value;
             } 
         }
@@ -74,6 +82,7 @@ namespace Dominio
                 _poster = value;
             }
         }
+        public IList<Perfil> PerfilesQueLaVieron { get => _perfilesQueLaVieron; set => _perfilesQueLaVieron = value; }
 
         private void ChequearNull(String value)
         {
@@ -83,6 +92,7 @@ namespace Dominio
             }
         }
 
+        //este metodo se usa solo en los tests, rariii
         public void AgregarGeneroSecundario(Genero genero)
         {
             ChequearGeneroVacio(genero);
@@ -116,6 +126,17 @@ namespace Dominio
         public override string ToString()
         {
             return Nombre;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj != null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Pelicula pelicula = (Pelicula)obj;
+                ret = pelicula.Identificador == this.Identificador;
+            }
+            return ret;
         }
     }
 }

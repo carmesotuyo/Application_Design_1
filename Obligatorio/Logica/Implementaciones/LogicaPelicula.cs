@@ -16,6 +16,7 @@ namespace Logica.Implementaciones
     public class LogicaPelicula : ILogicaPelicula
     {
         private IPeliculaRepo _repo;
+        private IPerfilRepo _repoPerfil;
         private int _criterioElegido;
         public enum Criterios
         {
@@ -24,9 +25,10 @@ namespace Logica.Implementaciones
             OrdenarPorPuntaje = 2
         }
 
-        public LogicaPelicula(IPeliculaRepo peliculaRepo)
+        public LogicaPelicula(IPeliculaRepo peliculaRepo, IPerfilRepo perfilRepo)
         {
             _repo = peliculaRepo;
+            _repoPerfil = perfilRepo;
             CriterioElegido = (int)Criterios.OrdenarPorGenero;
         }
         public void AltaPelicula(Pelicula pelicula, Usuario admin)
@@ -99,10 +101,10 @@ namespace Logica.Implementaciones
 
         private List<Pelicula> OrdenarPorPuntaje(Perfil unPerfil, List<Pelicula> peliculas)
         {
-            List<string> generos = unPerfil.PuntajeGeneros.OrderByDescending(g => g.Puntaje)
-                                                          .Select(g => g.Genero).ToList();
+            List<Genero> generos = _repoPerfil.GenerosPuntuados(unPerfil).OrderByDescending(g => g.Puntaje)
+                                                .Select(g => g.Genero).ToList();
 
-            return peliculas.OrderBy(p => generos.IndexOf(p.GeneroPrincipal.Nombre))
+            return peliculas.OrderBy(p => generos.IndexOf(p.GeneroPrincipal))
                             .ThenBy(p => p.Nombre).ThenByDescending(p => p.Identificador).ToList();
         }
 

@@ -39,7 +39,7 @@ namespace InterfazUsuario
             flpListaPerfiles.Controls.Clear();
             int index = 0;
             bool esOwner = _perfil.EsOwner;
-            foreach(Perfil perfil in _usuario.Perfiles)
+            foreach(Perfil perfil in _logicaUsuario.PerfilesAsociados(_usuario))
             {
                 FlowLayoutPanel flpPerfil = new System.Windows.Forms.FlowLayoutPanel();
                 flpPerfil.BackColor = SystemColors.Control;
@@ -84,7 +84,7 @@ namespace InterfazUsuario
         {
             LinkLabel perfilSeleccionado = sender as LinkLabel;
             int index = perfilSeleccionado.TabIndex;
-            Perfil perfil = _usuario.Perfiles[index];
+            Perfil perfil = _logicaUsuario.PerfilesAsociados(_usuario)[index];
             _logicaUsuario.QuitarPerfil(_usuario, perfil);
             CargarPerfiles();
         }
@@ -93,7 +93,7 @@ namespace InterfazUsuario
         {
             CheckBox perfilSeleccionado = sender as CheckBox;
             int index = perfilSeleccionado.TabIndex;
-            Perfil perfil = _usuario.Perfiles[index];
+            Perfil perfil = _logicaUsuario.PerfilesAsociados(_usuario)[index];
             perfil.EsInfantil = perfilSeleccionado.Checked;
         }
 
@@ -101,7 +101,7 @@ namespace InterfazUsuario
         {
             FlowLayoutPanel perfilSeleccionado = sender as FlowLayoutPanel;
             int index = perfilSeleccionado.TabIndex;
-            Perfil perfil = _usuario.Perfiles[index];
+            Perfil perfil = _logicaUsuario.PerfilesAsociados(_usuario)[index];
             if (perfil.EsInfantil)
             {
                 _ventanaPrincipal.CambiarMenuPeliculas(_usuario, perfil);

@@ -22,6 +22,11 @@ namespace Repositorio
             _usuarios.Add(usuario);
         }
 
+        public bool EstaUsuario(Usuario usuario)
+        {
+            return _usuarios.Contains(usuario);
+        }
+
         public List<Usuario> Usuarios()
         {
             return _usuarios;

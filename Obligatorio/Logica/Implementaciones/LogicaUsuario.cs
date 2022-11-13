@@ -15,16 +15,28 @@ namespace Logica.Implementaciones
     public class LogicaUsuario : ILogicaUsuario
     {
         private IRepoUsuarios _repoUsuarios;
+        private IPerfilRepo _repoPerfiles;
         private static int cantMaximaDePerfiles = 4;
 
-        public LogicaUsuario(IRepoUsuarios repoUsuarios)
+        public LogicaUsuario(IRepoUsuarios repoUsuarios, IPerfilRepo repoPerfiles)
         {
             _repoUsuarios = repoUsuarios;
+            _repoPerfiles = repoPerfiles;
         }
         public void RegistrarUsuario(Usuario usuario)
         {
             ValidarDatos(usuario);
             _repoUsuarios.AgregarUsuario(usuario);
+        }
+
+        public bool ExisteUsuario(Usuario usuario)
+        {
+            bool existe = false;
+            if (_repoUsuarios.EstaUsuario(usuario))
+            {
+                existe = true;
+            }
+            return existe;
         }
 
         private void ValidarDatos(Usuario usuario)
@@ -80,12 +92,13 @@ namespace Logica.Implementaciones
             MaximoDePerfiles(usuario);
             EsElPrimero(usuario, perfil);
             ValidarAliasUnico(usuario, perfil);
-            usuario.Perfiles.Add(perfil);
+            perfil.AsociarUsuario(usuario);
+            _repoPerfiles.AgregarPerfil(perfil);
         }
 
         private void MaximoDePerfiles(Usuario usuario)
         {
-            if (usuario.Perfiles.Count == cantMaximaDePerfiles)
+            if (PerfilesAsociados(usuario).Count == cantMaximaDePerfiles)
             {
                 throw new LimiteDePerfilesException();
             }
@@ -93,7 +106,7 @@ namespace Logica.Implementaciones
 
         private void EsElPrimero(Usuario usuario, Perfil perfil)
         {
-            if (usuario.Perfiles.Count == 0)
+            if (PerfilesAsociados(usuario).Count == 0)
             {
                 perfil.EsOwner = true;
             }
@@ -101,7 +114,7 @@ namespace Logica.Implementaciones
 
         private void ValidarAliasUnico(Usuario usuario, Perfil perfil)
         {
-            foreach(Perfil perfilExistente in usuario.Perfiles)
+            foreach(Perfil perfilExistente in PerfilesAsociados(usuario))
             {
                 if(perfilExistente.Alias == perfil.Alias)
                 {
@@ -114,12 +127,12 @@ namespace Logica.Implementaciones
         {
             NoExistePerfil(usuario, perfil);
             EsPerfilOwner(perfil);
-            usuario.Perfiles.Remove(perfil);
+            _repoPerfiles.EliminarPerfil(perfil);
         }
 
         private void NoExistePerfil(Usuario usuario, Perfil perfil)
         {
-            if (!usuario.Perfiles.Contains(perfil))
+            if (!PerfilesAsociados(usuario).Contains(perfil))
             {
                 throw new NoExistePerfilException();
             }
@@ -131,6 +144,11 @@ namespace Logica.Implementaciones
             {
                 throw new EliminarOwnerException();
             }
+        }
+
+        public List<Perfil> PerfilesAsociados(Usuario usuario)
+        {
+            return _repoPerfiles.PerfilesDeUsuario(usuario);
         }
 
         public List<Usuario> Usuarios()
