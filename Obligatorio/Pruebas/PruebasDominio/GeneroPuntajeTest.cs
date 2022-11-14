@@ -9,11 +9,11 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class GeneroPuntajeTest
     {
-        //[TestInitialize]
-        //public void Setup()
-        //{
-        //    BDCleanUp.CleanUp();
-        //}
+        [TestInitialize]
+        public void Setup()
+        {
+            BDCleanUp.CleanUp();
+        }
 
         [TestMethod]
         public void PuntajeEnCeroTest()
