@@ -56,6 +56,7 @@
     <Compile Include="ConfiguracionesDominio\ConfigPelicula.cs" />
     <Compile Include="ConfiguracionesDominio\ConfigPerfil.cs" />
     <Compile Include="ConfiguracionesDominio\ConfigUsuario.cs" />
+    <Compile Include="EnDataBase\DBCleanUp.cs" />
     <Compile Include="EnDataBase\GeneroDBRepo.cs" />
     <Compile Include="EnDataBase\GeneroPuntajeDBRepo.cs" />
     <Compile Include="EnDataBase\PeliculaDBRepo.cs" />
