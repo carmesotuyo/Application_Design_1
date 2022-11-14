@@ -12,7 +12,7 @@ namespace Pruebas.PruebasDominio
         [TestInitialize]
         public void Setup()
         {
-            BDCleanUp.CleanUp();
+            DBCleanUp.CleanUp();
         }
 
         [TestMethod]

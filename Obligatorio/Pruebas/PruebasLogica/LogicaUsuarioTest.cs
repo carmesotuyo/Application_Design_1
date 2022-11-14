@@ -18,6 +18,12 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaUsuarioTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            DBCleanUp.CleanUp();
+        }
+
         Usuario usuario1 = new Usuario() { Nombre = "nombreDeUsuario1", Email = "juan@da1.com", Clave = "1234567890", ConfirmarClave = "1234567890" };
         Usuario usuario2 = new Usuario() { Nombre = "nombreDeUsuario2", Email = "juancho@da1.com", Clave = "1234567890", ConfirmarClave = "1234567890" };
         ILogicaUsuario logica = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());

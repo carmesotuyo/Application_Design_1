@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repositorio.EnDataBase
 {
-    public static class BDCleanUp
+    public static class DBCleanUp
     {
         public static void CleanUp()
         {

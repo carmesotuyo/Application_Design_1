@@ -2,6 +2,7 @@
 using Dominio.Exceptions;
 using Logica.Implementaciones;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Repositorio.EnDataBase;
 using System;
 
 namespace Pruebas.PruebasDominio
@@ -9,6 +10,12 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class PerfilTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            DBCleanUp.CleanUp();
+        }
+        
         [TestMethod]
         public void AliasValidoTest()
         {

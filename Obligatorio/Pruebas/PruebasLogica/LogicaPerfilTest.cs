@@ -19,6 +19,12 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaPerfilTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            DBCleanUp.CleanUp();
+        }
+
         LogicaPerfil logicaPerfil = new LogicaPerfil(new PerfilDBRepo(), new GeneroPuntajeDBRepo(), new PeliculaDBRepo(), new GeneroDBRepo());
         LogicaUsuario logicaUsuario = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
         Perfil unPerfil = new Perfil();

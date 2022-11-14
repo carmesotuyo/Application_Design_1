@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dominio;
 using Dominio.Exceptions;
+using Repositorio.EnDataBase;
 
 namespace Pruebas.PruebasDominio
 {
@@ -13,6 +14,11 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class PeliculaTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            DBCleanUp.CleanUp();
+        }
         Pelicula unaPelicula = new Pelicula();
         Genero unGenero = new Genero();
         Genero generoVacio = null;

@@ -18,91 +18,89 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaGeneroTest
     {
-        LogicaGenero logica = new LogicaGenero(new GeneroDBRepo());
+        ILogicaGenero logica = new LogicaGenero(new GeneroDBRepo());
+        ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
         Usuario admin = new Usuario() { EsAdministrador = true };
+        Usuario comun = new Usuario() { EsAdministrador = false };
+        static Genero suspenso = new Genero() { Nombre = "Suspenso", Descripcion = "Descripcion de suspenso" };
+        static Genero accion = new Genero() { Nombre = "Accion" };
+        static Genero comedia = new Genero() { Nombre = "Comedia" };
+        Pelicula unaPelicula = new Pelicula() { 
+            Identificador = 1, 
+            Nombre = "nombre", 
+            GeneroPrincipal = comedia, 
+            Descripcion = "algo",
+            Poster = "ruta"
+        };
+        
+        [TestInitialize]
+        public void Setup()
+        {
+            DBCleanUp.CleanUp();
+        }
 
         [TestMethod]
         public void AgregarGeneroTest()
-        {
-            Genero unGenero = new Genero() { Nombre = "Suspenso", Descripcion = "Descripcion de suspenso" };
+        { 
+            logica.AgregarGenero(admin, suspenso);
 
-            logica.AgregarGenero(admin, unGenero);
-
-            Assert.IsTrue(logica.Generos().Contains(unGenero));
+            Assert.IsTrue(logica.Generos().Contains(suspenso));
         }
 
         [TestMethod]
         [ExpectedException(typeof(UsuarioNoPermitidoException))]
         public void AgregarGeneroSinPermisoTest()
         {
-            Usuario comun = new Usuario() { EsAdministrador = false };
-            Genero unGenero = new Genero() { Nombre = "Suspenso", Descripcion = "Descripcion de suspenso" };
-
-            logica.AgregarGenero(comun, unGenero);
+            logica.AgregarGenero(comun, suspenso);
         }
 
         [TestMethod]
         public void NombreUnicoTest()
         {
-            Genero unGenero = new Genero() { Nombre = "Accion" };
-            Genero otroGenero = new Genero() { Nombre = "Comedia" };
+            logica.AgregarGenero(admin, accion);
+            logica.AgregarGenero(admin, comedia);
 
-            logica.AgregarGenero(admin, unGenero);
-            logica.AgregarGenero(admin, otroGenero);
-
-            Assert.IsTrue(logica.Generos().Contains(unGenero) && logica.Generos().Contains(otroGenero));
+            Assert.IsTrue(logica.Generos().Contains(accion) && logica.Generos().Contains(comedia));
         }
 
         [TestMethod]
         [ExpectedException(typeof(GeneroDuplicadoException))]
         public void NombreNoUnicoTest()
         {
-            Genero unGenero = new Genero() { Nombre = "Accion" };
             Genero otroGenero = new Genero() { Nombre = "acciON" };
 
-            logica.AgregarGenero(admin, unGenero);
+            logica.AgregarGenero(admin, accion);
             logica.AgregarGenero(admin, otroGenero);
         }
 
         [TestMethod]
         public void EliminarGeneroTest()
         {
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
-            Genero unGenero = new Genero() { Nombre = "Comedia" };
+            logica.AgregarGenero(admin, comedia);
+            logica.EliminarGenero(admin, comedia, logicaPeli);
 
-            logica.AgregarGenero(admin, unGenero);
-            logica.EliminarGenero(admin, unGenero, logicaPeli);
-
-            Assert.IsFalse(logica.Generos().Contains(unGenero));
+            Assert.IsFalse(logica.Generos().Contains(comedia));
         }
 
         [TestMethod]
         [ExpectedException(typeof(UsuarioNoPermitidoException))]
         public void EliminarGeneroSinPermisoTest()
         {
-            Usuario comun = new Usuario() { EsAdministrador = false };
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
-            Genero unGenero = new Genero() { Nombre = "Comedia" };
-
-            logica.AgregarGenero(admin, unGenero);
-            logica.EliminarGenero(comun, unGenero, logicaPeli);
+            logica.AgregarGenero(admin, comedia);
+            logica.EliminarGenero(comun, comedia, logicaPeli);
         }
 
         [TestMethod]
         [ExpectedException(typeof(GeneroInexistenteException))]
         public void EliminarGeneroInexistenteTest()
         {
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
-            Genero unGenero = new Genero() { Nombre = "Comedia" };
-
-            logica.EliminarGenero(admin, unGenero, logicaPeli);
+            logica.EliminarGenero(admin, comedia, logicaPeli);
         }
 
         [TestMethod]
         [ExpectedException(typeof(NullException))]
         public void EliminarGeneroNullTest()
         {
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
             Genero unGenero = null;
 
             logica.EliminarGenero(admin, unGenero, logicaPeli);
@@ -112,30 +110,22 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(GeneroConPeliculaAsociadaException))]
         public void EliminarGeneroConPeliculasAsociadasComoPrincipalTest()
         {
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
-            Genero unGenero = new Genero() { Nombre = "Comedia" };
-
-            Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = unGenero };
+            logica.AgregarGenero(admin, comedia);
             logicaPeli.AltaPelicula(unaPelicula, admin);
-
-            logica.AgregarGenero(admin, unGenero);
-            logica.EliminarGenero(admin, unGenero, logicaPeli);
+            logica.EliminarGenero(admin, comedia, logicaPeli);
         }
 
         [TestMethod]
         [ExpectedException(typeof(GeneroConPeliculaAsociadaException))]
         public void EliminarGeneroConPeliculasAsociadasComoSecundarioTest()
         {
-            ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
-            Genero unGenero = new Genero() { Nombre = "Comedia" };
-            Genero otroGenero = new Genero() { Nombre = "Terror" };
-
-            Pelicula unaPelicula = new Pelicula() { GeneroPrincipal = unGenero };
-            unaPelicula.AgregarGeneroSecundario(otroGenero);
+            logica.AgregarGenero(admin, comedia);
+            logica.AgregarGenero(admin, accion); 
+            
+            unaPelicula.AgregarGeneroSecundario(accion);
             logicaPeli.AltaPelicula(unaPelicula, admin);
 
-            logica.AgregarGenero(admin, otroGenero);
-            logica.EliminarGenero(admin, otroGenero, logicaPeli);
+            logica.EliminarGenero(admin, accion, logicaPeli);
         }
     }
 }

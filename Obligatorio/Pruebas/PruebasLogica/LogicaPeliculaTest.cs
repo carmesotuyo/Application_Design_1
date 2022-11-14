@@ -18,6 +18,12 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaPeliculaTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            DBCleanUp.CleanUp();
+        }
+
         Pelicula unaPelicula = new Pelicula();
         LogicaPelicula logica = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
         Usuario admin = new Usuario() { EsAdministrador = true };
