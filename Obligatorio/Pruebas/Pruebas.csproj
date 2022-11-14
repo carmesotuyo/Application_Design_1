@@ -68,7 +68,6 @@
     <Compile Include="PruebasLogica\LogicaPeliculaTest.cs" />
     <Compile Include="PruebasLogica\LogicaPerfilTest.cs" />
     <Compile Include="PruebasLogica\LogicaUsuarioTest.cs" />
-    <Compile Include="ThreatLevelMidnightEntertainmentDBContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
