@@ -187,5 +187,10 @@ namespace Logica.Implementaciones
             };
             _repoGeneroPuntaje.AgregarGeneroPuntaje(nuevo);
         }
+
+        public bool EstaGenero(Perfil perfil, Genero genero)
+        {
+            return _repoGeneroPuntaje.EstaGeneroPuntaje(genero, perfil);
+        }
     }
 }
