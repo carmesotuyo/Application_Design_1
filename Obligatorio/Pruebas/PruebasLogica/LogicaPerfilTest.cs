@@ -9,6 +9,7 @@ using Logica;
 using Logica.Implementaciones;
 using Logica.Exceptions;
 using Repositorio;
+using Repositorio.Interfaces;
 using Dominio.Exceptions;
 using Logica.Interfaces;
 using Repositorio.EnDataBase;
@@ -136,7 +137,7 @@ namespace Pruebas.PruebasLogica
             logicaUsuario.AgregarPerfil(usuario, unPerfil);
             logicaUsuario.AgregarPerfil(usuario, perfilInfantil);
 
-            logicaPerfil.MarcarComoInfantil(perfilInfantil, unPerfil, usuario);
+            logicaPerfil.MarcarComoInfantil(perfilInfantil, unPerfil);
 
             Assert.IsTrue(perfilInfantil.EsInfantil);
         }
@@ -154,7 +155,7 @@ namespace Pruebas.PruebasLogica
             logicaUsuario.AgregarPerfil(usuario, unPerfil);
             logicaUsuario.AgregarPerfil(usuario, perfilInfantil);
 
-            logicaPerfil.MarcarComoInfantil(perfilInfantil, unPerfil, usuario);
+            logicaPerfil.MarcarComoInfantil(perfilInfantil, unPerfil);
         }
 
         [TestMethod]
@@ -168,7 +169,7 @@ namespace Pruebas.PruebasLogica
             logicaUsuario.AgregarPerfil(unUsuario, unPerfil);
             logicaUsuario.AgregarPerfil(unUsuario, otroOwner);
 
-            logicaPerfil.MarcarComoInfantil(otroOwner, unPerfil, unUsuario);
+            logicaPerfil.MarcarComoInfantil(otroOwner, unPerfil);
         }
 
         [TestMethod]
@@ -211,40 +212,59 @@ namespace Pruebas.PruebasLogica
         }
 
         //[TestMethod]
-        //public void ActualizarListadoPuntajeAgregandoGeneroTest()
+        //public void AgregarGeneroPuntajeTest()
         //{
-        //    GeneroRepo repo = new GeneroRepo();
-        //    ILogicaGenero logicaGenero = new LogicaGenero(repo);
-        //    Genero terror = new Genero() { Nombre = "Terror" };
-        //    repo.AgregarGenero(terror);
-        //    logicaPerfil.AgregarGenero(unPerfil, terror);
-
-        //    Genero comedia = new Genero() { Nombre = "comedia" };
-        //    repo.AgregarGenero(comedia);
-
-        //    logica.ActualizarListadoGeneros(unPerfil, logicaGenero);
-
-        //    Assert.IsTrue(logica.EstaGenero(unPerfil, comedia));
+        //    Perfil unPerfil = new Perfil();
+        //    GeneroPuntaje generoPuntaje = new GeneroPuntaje();
+        //    logicaPerfil.AgregarGeneroPuntuado(generoPuntaje);
+        //    Assert.IsTrue(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
         //}
 
         //[TestMethod]
-        //public void ActualizarListadoPuntajeEliminandoGeneroTest()
+        //public void QuitarGeneroPuntajeTest()
         //{
-        //    GeneroRepo repo = new GeneroRepo();
-        //    ILogicaGenero logicaGenero = new LogicaGenero(repo);
-        //    Genero terror = new Genero() { Nombre = "Terror" };
-        //    repo.AgregarGenero(terror);
-
-        //    Genero comedia = new Genero() { Nombre = "comedia" };
-        //    repo.AgregarGenero(comedia);
-
-        //    logica.AgregarGenero(unPerfil, terror);
-        //    logica.AgregarGenero(unPerfil, comedia);
-
-        //    repo.EliminarGenero(comedia);
-        //    logica.ActualizarListadoGeneros(unPerfil, logicaGenero);
-
-        //    Assert.IsFalse(logica.EstaGenero(unPerfil, comedia));
+        //    Perfil unPerfil = new Perfil();
+        //    GeneroPuntaje generoPuntaje = new GeneroPuntaje();
+        //    unPerfil.AgregarGeneroPuntaje(generoPuntaje);
+        //    unPerfil.QuitarGeneroPuntaje(generoPuntaje);
+        //    Assert.IsFalse(unPerfil.PuntajeGeneros.Contains(generoPuntaje));
         //}
+
+        [TestMethod]
+        public void ActualizarListadoPuntajeAgregandoGeneroTest()
+        {
+            GeneroRepo repo = new GeneroRepo();
+            ILogicaGenero logicaGenero = new LogicaGenero(repo);
+            Genero terror = new Genero() { Nombre = "Terror" };
+            repo.AgregarGenero(terror);
+            logicaPerfil.AgregarGeneroPuntuado(unPerfil, terror);
+
+            Genero comedia = new Genero() { Nombre = "comedia" };
+            repo.AgregarGenero(comedia);
+
+            logicaPerfil.ActualizarListadoGeneros(unPerfil);
+
+            Assert.IsTrue(logicaPerfil.EstaGenero(unPerfil, comedia));
+        }
+
+        [TestMethod]
+        public void ActualizarListadoPuntajeEliminandoGeneroTest()
+        {
+            GeneroRepo repo = new GeneroRepo();
+            ILogicaGenero logicaGenero = new LogicaGenero(repo);
+            Genero terror = new Genero() { Nombre = "Terror" };
+            repo.AgregarGenero(terror);
+
+            Genero comedia = new Genero() { Nombre = "comedia" };
+            repo.AgregarGenero(comedia);
+
+            logicaPerfil.AgregarGeneroPuntuado(unPerfil, terror);
+            logicaPerfil.AgregarGeneroPuntuado(unPerfil, comedia);
+
+            repo.EliminarGenero(comedia);
+            logicaPerfil.ActualizarListadoGeneros(unPerfil);
+
+            Assert.IsFalse(logicaPerfil.EstaGenero(unPerfil, comedia));
+        }
     }
 }
