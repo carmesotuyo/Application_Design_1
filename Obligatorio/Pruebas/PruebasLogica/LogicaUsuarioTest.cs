@@ -10,6 +10,7 @@ using Logica.Implementaciones;
 using Dominio.Exceptions;
 using Logica.Exceptions;
 using Repositorio.Interfaces;
+using Repositorio.EnDataBase;
 using Logica.Interfaces;
 
 namespace Pruebas.PruebasLogica
@@ -19,7 +20,7 @@ namespace Pruebas.PruebasLogica
     {
         Usuario usuario1 = new Usuario() { Nombre = "nombreDeUsuario1", Email = "juan@da1.com", Clave = "1234567890", ConfirmarClave = "1234567890" };
         Usuario usuario2 = new Usuario() { Nombre = "nombreDeUsuario2", Email = "juancho@da1.com", Clave = "1234567890", ConfirmarClave = "1234567890" };
-        ILogicaUsuario logica = new LogicaUsuario(new RepoUsuarios());
+        ILogicaUsuario logica = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
 
         [TestMethod]
         public void RegistrarUsuarioTest()
@@ -112,7 +113,7 @@ namespace Pruebas.PruebasLogica
             Usuario unUsuario = new Usuario();
             Perfil unPerfil = new Perfil();
             logica.AgregarPerfil(unUsuario, unPerfil);
-            Assert.IsTrue(unUsuario.Perfiles.Contains(unPerfil));
+            Assert.IsTrue(logica.PerfilesAsociados(unUsuario).Contains(unPerfil));
         }
 
         [TestMethod]
@@ -179,7 +180,7 @@ namespace Pruebas.PruebasLogica
             logica.AgregarPerfil(usuario, otroPerfil);
             logica.QuitarPerfil(usuario, otroPerfil);
 
-            Assert.IsFalse(usuario.Perfiles.Contains(otroPerfil));
+            Assert.IsFalse(logica.PerfilesAsociados(usuario).Contains(otroPerfil));
         }
 
         [TestMethod]
