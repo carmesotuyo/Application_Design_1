@@ -14,6 +14,14 @@ namespace Dominio
         public string FotoPerfil { get; set; }
         private DateTime _fechaNacimiento;
         private DateTime hoy = DateTime.Today;
+        public IList<Pelicula> PeliculasQueDirige { get; set; }
+        public IList<Pelicula> PeliculasQueActua { get; set; }
+
+        public Persona()
+        {
+            PeliculasQueDirige = new List<Pelicula>();
+            PeliculasQueActua = new List<Pelicula>();
+        }
 
         public string Nombre
         {

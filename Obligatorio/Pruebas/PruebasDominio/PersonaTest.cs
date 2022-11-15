@@ -52,5 +52,49 @@ namespace Pruebas.PruebasDominio
             DateTime fechaNac = new DateTime(2023, 10, 30);
             Persona persona = new Persona() { Nombre = "Guillermo del Toro", FechaNacimiento = fechaNac };
         }
+
+        [TestMethod]
+        public void AgregarPeliculaQueActuaTest()
+        {
+            Pelicula pelicula = new Pelicula();
+            Persona persona = new Persona();
+            persona.PeliculasQueActua.Add(pelicula);
+
+            Assert.IsTrue(persona.PeliculasQueActua.Contains(pelicula));
+        }
+
+        [TestMethod]
+        public void QuitarPeliculaQueActuaTest()
+        {
+            Pelicula pelicula = new Pelicula();
+            Persona persona = new Persona();
+            persona.PeliculasQueActua.Add(pelicula);
+
+            persona.PeliculasQueActua.Remove(pelicula);
+
+            Assert.IsFalse(persona.PeliculasQueActua.Contains(pelicula));
+        }
+
+        [TestMethod]
+        public void AgregarPeliculaQueDirigeaTest()
+        {
+            Pelicula pelicula = new Pelicula();
+            Persona persona = new Persona();
+            persona.PeliculasQueDirige.Add(pelicula);
+
+            Assert.IsTrue(persona.PeliculasQueDirige.Contains(pelicula));
+        }
+
+        [TestMethod]
+        public void QuitarPeliculaQueDirigeTest()
+        {
+            Pelicula pelicula = new Pelicula();
+            Persona persona = new Persona();
+            persona.PeliculasQueDirige.Add(pelicula);
+
+            persona.PeliculasQueDirige.Remove(pelicula);
+
+            Assert.IsFalse(persona.PeliculasQueDirige.Contains(pelicula));
+        }
     }
 }

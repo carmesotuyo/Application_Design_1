@@ -45,6 +45,7 @@
     <Compile Include="Exceptions\PersonaException.cs" />
     <Compile Include="Exceptions\UsuarioException.cs" />
     <Compile Include="GeneroPuntaje.cs" />
+    <Compile Include="Papel.cs" />
     <Compile Include="Perfil.cs" />
     <Compile Include="Exceptions\DatoVacioException.cs" />
     <Compile Include="Exceptions\GeneroException.cs" />
