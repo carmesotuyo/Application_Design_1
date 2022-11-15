@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Logica.Exceptions;
 using Logica.Implementaciones;
 using Logica.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -29,6 +30,38 @@ namespace Pruebas.PruebasLogica
         public void AgregarPersonaTest()
         {
             logicaPersona.AltaPersona(persona, admin);
+            Assert.IsTrue(logicaPersona.Personas().Contains(persona));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(PersonaExistenteException))]
+        public void AgregarPersonaRepetidaTest()
+        {
+            logicaPersona.AltaPersona(persona, admin);
+            logicaPersona.AltaPersona(persona, admin);
+        }
+
+        [TestMethod]
+        public void BajaPersonaTest()
+        {
+            logicaPersona.AltaPersona(persona, admin);
+            logicaPersona.BajaPersona(persona, admin);
+            Assert.IsFalse(logicaPersona.Personas().Contains(persona));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(PersonaInexistenteException))]
+        public void BajaPersonaInexistenteTest()
+        {
+            logicaPersona.BajaPersona(persona, admin);
+        }
+
+        [TestMethod]
+        public void ModificarNombreTest()
+        {
+            logicaPersona.AltaPersona(persona, admin);
+            persona.Nombre = "nuevo nombre";
+            logicaPersona.ModificarPersona(persona, admin);
             Assert.IsTrue(logicaPersona.Personas().Contains(persona));
         }
     }

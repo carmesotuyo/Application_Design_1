@@ -14,6 +14,7 @@ namespace Repositorio.ConfiguracionesDominio
         {
             modelBuilder.Entity<Persona>().ToTable("personas");
             modelBuilder.Entity<Persona>().HasKey(p => p.Id);
+            modelBuilder.Entity<Persona>().Property(p => p.FechaNacimiento).HasColumnType("datetime2");
         }
     }
 }

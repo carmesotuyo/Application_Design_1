@@ -44,6 +44,7 @@
     <Compile Include="Exceptions\PeliculaExceptions.cs" />
     <Compile Include="Exceptions\GeneroExceptions.cs" />
     <Compile Include="Exceptions\PerfilExceptions.cs" />
+    <Compile Include="Exceptions\PersonaExceptions.cs" />
     <Compile Include="Exceptions\UsuarioExceptions.cs" />
     <Compile Include="Implementaciones\LogicaGenero.cs" />
     <Compile Include="Implementaciones\LogicaPelicula.cs" />

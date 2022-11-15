@@ -47,5 +47,18 @@ namespace Dominio
                 throw new FechaInvalidaException();
             }
         }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj != null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Persona persona = (Persona)obj;
+                ret = persona.Nombre == this.Nombre 
+                    && persona.FechaNacimiento == this.FechaNacimiento 
+                    && persona.FotoPerfil == this.FotoPerfil;
+            }
+            return ret;
+        }
     }
 }

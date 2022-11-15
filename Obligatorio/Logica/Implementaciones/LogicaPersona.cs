@@ -27,17 +27,38 @@ namespace Logica.Implementaciones
         public void AltaPersona(Persona persona, Usuario admin)
         {
             BloquearUsuarioNoAdmin(admin);
+            ChequearQueNoEsteYaAgregada(persona);
             _repoPersona.AgregarPersona(persona);
+        }
+
+        private void ChequearQueNoEsteYaAgregada(Persona persona)
+        {
+            if (_repoPersona.EstaPersona(persona))
+            {
+                throw new PersonaExistenteException();
+            }
         }
 
         public void BajaPersona(Persona persona, Usuario admin)
         {
-            throw new NotImplementedException();
+            BloquearUsuarioNoAdmin(admin);
+            ChequearQueExiste(persona);
+            _repoPersona.EliminarPersona(persona);
+        }
+
+        private void ChequearQueExiste(Persona persona)
+        {
+            if (!_repoPersona.EstaPersona(persona))
+            {
+                throw new PersonaInexistenteException();
+            }
         }
 
         public void ModificarPersona(Persona persona, Usuario admin)
         {
-            throw new NotImplementedException();
+            BloquearUsuarioNoAdmin(admin);
+            ChequearQueExiste(persona);
+            _repoPersona.ModificarPersona(persona);
         }
 
         private void BloquearUsuarioNoAdmin(Usuario admin)

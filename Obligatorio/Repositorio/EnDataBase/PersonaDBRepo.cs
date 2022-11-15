@@ -34,10 +34,24 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                Persona personaSeleccionada = tlmeContext.Personas.FirstOrDefault(p => p.Id == persona.Id);
-                personaSeleccionada = persona;
-                tlmeContext.Entry(personaSeleccionada).State = EntityState.Modified;
+                Persona personaAnterior = tlmeContext.Personas.FirstOrDefault(p => p.Id == persona.Id);
+                personaAnterior = persona;
+                tlmeContext.Entry(personaAnterior).State = EntityState.Modified;
                 tlmeContext.SaveChanges();
+            }
+        }
+
+        public bool EstaPersona(Persona persona)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                bool esta = false;
+                Persona personaSeleccionada = tlmeContext.Personas.FirstOrDefault(p => p.Id == persona.Id);
+                if(personaSeleccionada != null)
+                {
+                    esta = true;
+                }
+                return esta;
             }
         }
 

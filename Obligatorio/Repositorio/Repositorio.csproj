@@ -81,9 +81,9 @@
     <Compile Include="Migrations\202211052346580_TablasGeneroPuntaje-Perfil-Usuario.designer.cs">
       <DependentUpon>202211052346580_TablasGeneroPuntaje-Perfil-Usuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202211151448300_TablaPersona.cs" />
-    <Compile Include="Migrations\202211151448300_TablaPersona.designer.cs">
-      <DependentUpon>202211151448300_TablaPersona.cs</DependentUpon>
+    <Compile Include="Migrations\202211151859323_TablaPersona.cs" />
+    <Compile Include="Migrations\202211151859323_TablaPersona.designer.cs">
+      <DependentUpon>202211151859323_TablaPersona.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,8 +114,8 @@
       <DependentUpon>202211052346580_TablasGeneroPuntaje-Perfil-Usuario.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202211151448300_TablaPersona.resx">
-      <DependentUpon>202211151448300_TablaPersona.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202211151859323_TablaPersona.resx">
+      <DependentUpon>202211151859323_TablaPersona.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
