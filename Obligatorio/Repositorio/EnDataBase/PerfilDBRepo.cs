@@ -92,7 +92,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Perfiles.Where(x => x.Usuario.Nombre == usuario.Nombre).ToList();
+                return tlmeContext.Perfiles.Include(x=> x.Usuario).Where(x => x.Usuario.Nombre == usuario.Nombre).ToList();
             }
         }
 

@@ -18,15 +18,28 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaUsuarioTest
     {
+        Usuario usuario1 = new Usuario() 
+        { 
+            Nombre = "nombreDeUsuario1", 
+            Email = "juan@da1.com", 
+            Clave = "1234567890", 
+            ConfirmarClave = "1234567890" 
+        };
+        Usuario usuario2 = new Usuario() 
+        { 
+            Nombre = "nombreDeUsuario2", 
+            Email = "juancho@da1.com", 
+            Clave = "1234567890", 
+            ConfirmarClave = "1234567890" 
+        };
+        ILogicaUsuario logica = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
+        Perfil unPerfil = new Perfil() { Alias = "carme", Pin = 12345, ConfirmarPin = 12345 };
+
         [TestInitialize]
         public void Setup()
         {
             DBCleanUp.CleanUp();
         }
-
-        Usuario usuario1 = new Usuario() { Nombre = "nombreDeUsuario1", Email = "juan@da1.com", Clave = "1234567890", ConfirmarClave = "1234567890" };
-        Usuario usuario2 = new Usuario() { Nombre = "nombreDeUsuario2", Email = "juancho@da1.com", Clave = "1234567890", ConfirmarClave = "1234567890" };
-        ILogicaUsuario logica = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
 
         [TestMethod]
         public void RegistrarUsuarioTest()
@@ -116,36 +129,35 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void AgregarPerfilTest()
         {
-            Usuario unUsuario = new Usuario();
-            Perfil unPerfil = new Perfil();
-            logica.AgregarPerfil(unUsuario, unPerfil);
-            Assert.IsTrue(logica.PerfilesAsociados(unUsuario).Contains(unPerfil));
+            logica.RegistrarUsuario(usuario1);
+            logica.AgregarPerfil(usuario1, unPerfil);
+            Assert.IsTrue(logica.PerfilesAsociados(usuario1).Contains(unPerfil));
         }
 
         [TestMethod]
         [ExpectedException(typeof(LimiteDePerfilesException))]
         public void AgregarMasDe4PerfilesTest()
         {
-            Usuario unUsuario = new Usuario();
-            Perfil unPerfil = new Perfil() { Alias = "carme" };
-            Perfil unPerfil2 = new Perfil() { Alias = "fer" };
-            Perfil unPerfil3 = new Perfil() { Alias = "carmela" };
-            Perfil unPerfil4 = new Perfil() { Alias = "fernando" };
-            Perfil unPerfil5 = new Perfil() { Alias = "ultimo" };
-            logica.AgregarPerfil(unUsuario, unPerfil);
-            logica.AgregarPerfil(unUsuario, unPerfil2);
-            logica.AgregarPerfil(unUsuario, unPerfil3);
-            logica.AgregarPerfil(unUsuario, unPerfil4);
-            logica.AgregarPerfil(unUsuario, unPerfil5);
+            logica.RegistrarUsuario(usuario1);
+
+            Perfil unPerfil = new Perfil() { Alias = "carme", Pin = 12345, ConfirmarPin = 12345 };
+            Perfil unPerfil2 = new Perfil() { Alias = "fer", Pin = 12345, ConfirmarPin = 12345 };
+            Perfil unPerfil3 = new Perfil() { Alias = "carmela", Pin = 12345, ConfirmarPin = 12345 };
+            Perfil unPerfil4 = new Perfil() { Alias = "fernando", Pin = 12345, ConfirmarPin = 12345 };
+            Perfil unPerfil5 = new Perfil() { Alias = "ultimo", Pin = 12345, ConfirmarPin = 12345 };
+
+            logica.AgregarPerfil(usuario1, unPerfil);
+            logica.AgregarPerfil(usuario1, unPerfil2);
+            logica.AgregarPerfil(usuario1, unPerfil3);
+            logica.AgregarPerfil(usuario1, unPerfil4);
+            logica.AgregarPerfil(usuario1, unPerfil5);
         }
 
         [TestMethod]
         public void AgregarPrimerPerfilTest()
         {
-            Usuario unUsuario = new Usuario();
-            Perfil unPerfil = new Perfil();
-
-            logica.AgregarPerfil(unUsuario, unPerfil);
+            logica.RegistrarUsuario(usuario1);
+            logica.AgregarPerfil(usuario1, unPerfil);
 
             Assert.IsTrue(unPerfil.EsOwner);
         }
@@ -153,12 +165,12 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void AgregarPerfilIntermedioTest()
         {
-            Usuario unUsuario = new Usuario();
-            Perfil unPerfil = new Perfil() { Alias = "carme" };
-            Perfil otroPerfil = new Perfil() { Alias = "fer" };
+            logica.RegistrarUsuario(usuario1);
+            Perfil unPerfil = new Perfil() { Alias = "carme", Pin = 12345, ConfirmarPin = 12345 };
+            Perfil otroPerfil = new Perfil() { Alias = "fer", Pin = 12345, ConfirmarPin = 12345 };
 
-            logica.AgregarPerfil(unUsuario, unPerfil);
-            logica.AgregarPerfil(unUsuario, otroPerfil);
+            logica.AgregarPerfil(usuario1, unPerfil);
+            logica.AgregarPerfil(usuario1, otroPerfil);
 
             Assert.IsFalse(otroPerfil.EsOwner);
         }
@@ -167,48 +179,51 @@ namespace Pruebas.PruebasLogica
         [ExpectedException(typeof(AliasRepetidoException))]
         public void AgregarPerfilAliasRepetidoTest()
         {
-            Usuario unUsuario = new Usuario();
-            Perfil unPerfil = new Perfil() { Alias = "carme" };
-            Perfil otroPerfil = new Perfil() { Alias = "carme" };
+            logica.RegistrarUsuario(usuario1);
+            Perfil unPerfil = new Perfil() { Alias = "carme", Pin = 12345, ConfirmarPin = 12345 };
+            Perfil otroPerfil = new Perfil() { Alias = "carme", Pin = 12345, ConfirmarPin = 12345 };
 
-            logica.AgregarPerfil(unUsuario, unPerfil);
-            logica.AgregarPerfil(unUsuario, otroPerfil);
+            logica.AgregarPerfil(usuario1, unPerfil);
+            logica.AgregarPerfil(usuario1, otroPerfil);
         }
 
         [TestMethod]
         public void QuitarPerfilTest()
         {
-            Usuario usuario = new Usuario();
-            Perfil unPerfil = new Perfil() { Alias = "carme" };
-            Perfil otroPerfil = new Perfil() { Alias = "fer" };
+            logica.RegistrarUsuario(usuario1);
+            Perfil unPerfil = new Perfil() { Alias = "carme", Pin = 12345, ConfirmarPin = 12345 };
+            Perfil otroPerfil = new Perfil() { Alias = "fer", Pin = 12345, ConfirmarPin = 12345 };
 
-            logica.AgregarPerfil(usuario, unPerfil);
-            logica.AgregarPerfil(usuario, otroPerfil);
-            logica.QuitarPerfil(usuario, otroPerfil);
+            logica.AgregarPerfil(usuario1, unPerfil);
+            logica.AgregarPerfil(usuario1, otroPerfil);
+            logica.QuitarPerfil(usuario1, otroPerfil);
 
-            Assert.IsFalse(logica.PerfilesAsociados(usuario).Contains(otroPerfil));
+            Assert.IsFalse(logica.PerfilesAsociados(usuario1).Contains(otroPerfil));
         }
 
         [TestMethod]
         [ExpectedException(typeof(NoExistePerfilException))]
         public void QuitarPerfilInexistenteTest()
         {
-            Usuario unUsuario = new Usuario();
+            logica.RegistrarUsuario(usuario1);
             Perfil perfil = new Perfil();
-            logica.QuitarPerfil(unUsuario, perfil);
+            logica.QuitarPerfil(usuario1, perfil);
         }
 
         [TestMethod]
         [ExpectedException(typeof(EliminarOwnerException))]
         public void QuitarPerfilOwnerTest()
         {
-            Usuario unUsuario = new Usuario();
+            logica.RegistrarUsuario(usuario1);
             Perfil perfil = new Perfil()
             {
+                Alias = "carme",
+                Pin = 12345,
+                ConfirmarPin = 12345, 
                 EsOwner = true
             };
-            logica.AgregarPerfil(unUsuario, perfil);
-            logica.QuitarPerfil(unUsuario, perfil);
+            logica.AgregarPerfil(usuario1, perfil);
+            logica.QuitarPerfil(usuario1, perfil);
         }
     }
 }
