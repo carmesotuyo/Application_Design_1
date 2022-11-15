@@ -9,13 +9,7 @@ namespace Pruebas.PruebasDominio
 {
     [TestClass]
     public class PerfilTest
-    {
-        [TestInitialize]
-        public void Setup()
-        {
-            DBCleanUp.CleanUp();
-        }
-        
+    {   
         [TestMethod]
         public void AliasValidoTest()
         {

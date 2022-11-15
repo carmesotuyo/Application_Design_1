@@ -9,12 +9,6 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class UsuarioTest
     {
-        [TestInitialize]
-        public void Setup()
-        {
-            DBCleanUp.CleanUp();
-        }
-
         [TestMethod]
         public void NombreUsuarioValidoTest()
         {

@@ -13,11 +13,6 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class GeneroTest
     {
-        [TestInitialize]
-        public void Setup()
-        {
-            DBCleanUp.CleanUp();
-        }
         Genero unGenero = new Genero();
 
         [TestMethod]
