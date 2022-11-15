@@ -60,5 +60,12 @@ namespace Dominio
             }
             return ret;
         }
+
+        public void Modificar(Persona persona)
+        {
+            Nombre = persona.Nombre;
+            FotoPerfil = persona.FotoPerfil;
+            FechaNacimiento = persona.FechaNacimiento;
+        }
     }
 }

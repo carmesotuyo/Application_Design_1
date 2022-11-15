@@ -35,7 +35,7 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 Persona personaAnterior = tlmeContext.Personas.FirstOrDefault(p => p.Id == persona.Id);
-                personaAnterior = persona;
+                personaAnterior.Modificar(persona);
                 tlmeContext.Entry(personaAnterior).State = EntityState.Modified;
                 tlmeContext.SaveChanges();
             }
