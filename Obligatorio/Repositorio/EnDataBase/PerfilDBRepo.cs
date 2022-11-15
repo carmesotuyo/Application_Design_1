@@ -41,8 +41,8 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 Perfil perfilABorrar = tlmeContext.Perfiles.Include(x=> x.PuntajeGeneros).FirstOrDefault(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario);
-                //aca pasan cosas raras y se cae, ojo
                 EliminarGenerosPuntuados(perfilABorrar, tlmeContext);
+               
                 tlmeContext.Perfiles.Remove(perfilABorrar);
                 tlmeContext.Entry(perfilABorrar).State = EntityState.Deleted;
                 tlmeContext.SaveChanges();
@@ -51,18 +51,9 @@ namespace Repositorio.EnDataBase
 
         private void EliminarGenerosPuntuados(Perfil perfil, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
         {
-            foreach(var generoPuntuado in GenerosPuntuados(perfil))
+            for(int i=perfil.PuntajeGeneros.Count() -1; i>=0; i--)
             {
-                GeneroPuntaje generoABorrar = tlmeContext.GenerosPuntajes.Include(x=> x.Genero).Include(x=> x.Perfil).FirstOrDefault(g => g.AliasPerfil == generoPuntuado.AliasPerfil
-                            && g.Perfil.NombreUsuario == generoPuntuado.Perfil.NombreUsuario && g.NombreGenero == generoPuntuado.NombreGenero);
-                if (generoABorrar != null)
-                {
-                    tlmeContext.Entry(generoABorrar.Genero).State = EntityState.Unchanged;
-                    tlmeContext.Entry(generoABorrar.Perfil).State = EntityState.Unchanged;
-                    tlmeContext.GenerosPuntajes.Remove(generoABorrar);
-                    tlmeContext.Entry(generoABorrar).State = EntityState.Deleted;
-                    tlmeContext.SaveChanges();
-                }
+                tlmeContext.GenerosPuntajes.Remove(perfil.PuntajeGeneros[i]);
             }
         }
 

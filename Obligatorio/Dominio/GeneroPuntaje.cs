@@ -20,35 +20,14 @@ namespace Dominio
             _puntaje = 0;
         }
 
-        public Genero Genero
-        {
-            get => _genero; 
-            set 
-            { 
-                if (value.Nombre.Length == 0)
-                {
-                    throw new DatoVacioException();
-                }
-                _genero = value; 
-            }
-        }
+        public Genero Genero { get => _genero;  set { _genero = value; } }
 
         public int Puntaje
         {
             get => _puntaje; set { _puntaje = value; }
         }
 
-        public Perfil Perfil
-        {
-            get => _perfil; set 
-            {
-                if (value.Alias.Length == 0)
-                {
-                    throw new DatoVacioException();
-                }
-                _perfil = value;  
-            }
-        }
+        public Perfil Perfil { get => _perfil; set { _perfil = value; } }
 
         public string NombreGenero { get => _nombreGenero; set => _nombreGenero = value; }
         public string AliasPerfil { get => _aliasPerfil; set => _aliasPerfil = value; }
