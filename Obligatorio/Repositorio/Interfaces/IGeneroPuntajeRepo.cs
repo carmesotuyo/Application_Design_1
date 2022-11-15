@@ -13,6 +13,7 @@ namespace Repositorio.Interfaces
         void AgregarGeneroPuntaje(GeneroPuntaje generoPuntaje);
         void EliminarGeneroPuntaje(GeneroPuntaje generoPuntaje);
         void ModificarPuntaje(Genero genero, Perfil perfil, int puntaje);
+        GeneroPuntaje EncontrarGeneroPuntaje(Genero genero, Perfil perfil);
         List<GeneroPuntaje> GenerosPuntajes();
     }
 }

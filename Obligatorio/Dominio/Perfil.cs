@@ -123,7 +123,7 @@ namespace Dominio
             if (ret)
             {
                 Perfil perfil = (Perfil)obj;
-                ret = perfil.Alias == this.Alias && perfil.Usuario == this.Usuario;
+                ret = perfil.Alias == this.Alias && perfil.Usuario.Equals(this.Usuario);
             }
             return ret;
         }

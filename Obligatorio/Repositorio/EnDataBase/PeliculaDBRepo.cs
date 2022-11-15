@@ -74,5 +74,16 @@ namespace Repositorio.EnDataBase
                 return tlmeContext.Peliculas.Where(p => p.Identificador == pelicula.Identificador).SelectMany(p => p.GenerosSecundarios).ToList();
             }
         }
+
+        public void AgregarGeneroSecundario(Pelicula pelicula, Genero genero)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                Pelicula peliculaBuscada = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
+                peliculaBuscada.GenerosSecundarios.Add(genero);
+                tlmeContext.Entry(genero).State = EntityState.Unchanged;
+                tlmeContext.SaveChanges();
+            }
+        }
     }
 }

@@ -41,5 +41,10 @@ namespace Repositorio
         {
             throw new NotImplementedException();
         }
+
+        public void AgregarGeneroSecundario(Pelicula pelicula, Genero genero)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

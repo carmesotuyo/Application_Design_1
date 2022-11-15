@@ -192,5 +192,15 @@ namespace Logica.Implementaciones
         {
             return _repoGeneroPuntaje.EstaGeneroPuntaje(genero, perfil);
         }
+
+        public int PuntajeGenero(Perfil perfil, Genero genero)
+        {
+            return _repoGeneroPuntaje.EncontrarGeneroPuntaje(genero, perfil).Puntaje;
+        }
+
+        public bool EsInfantil(Perfil perfil)
+        {
+            return _repoPerfil.Perfiles().FirstOrDefault(x => x.Equals(perfil)).EsInfantil;
+        }
     }
 }
