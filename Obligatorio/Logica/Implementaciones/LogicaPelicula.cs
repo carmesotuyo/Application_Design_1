@@ -142,5 +142,10 @@ namespace Logica.Implementaciones
             }
             return peliculas;
         }
+
+        public void AgregarGeneroSecundario(Pelicula pelicula, Genero genero)
+        {
+            _repo.AgregarGeneroSecundario(pelicula, genero);
+        }
     }
 }

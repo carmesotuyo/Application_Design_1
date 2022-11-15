@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dominio;
 using Dominio.Exceptions;
+using Repositorio.EnDataBase;
 
 namespace Pruebas.PruebasDominio
 {
@@ -14,8 +15,14 @@ namespace Pruebas.PruebasDominio
     public class PeliculaTest
     {
         Pelicula unaPelicula = new Pelicula();
-        Genero unGenero = new Genero();
+        Genero unGenero = new Genero() { Nombre = "comedia" };
         Genero generoVacio = null;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            DBCleanUp.CleanUp();
+        }
 
         [TestMethod]
         public void NombrePeliculaValidoTest()
@@ -50,7 +57,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void GeneroPrincipalNoIncluidoEnSecundariosTest()
         {
-            Genero generoSecundario = new Genero();
+            Genero generoSecundario = new Genero() { Nombre = "suspenso" };
             unaPelicula.AgregarGeneroSecundario(generoSecundario);
 
             unaPelicula.GeneroPrincipal = unGenero;
@@ -86,7 +93,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void GeneroSecundarioNoIncluyeGeneroPrincipalTest()
         {
-            Genero generoPrincipal = new Genero();
+            Genero generoPrincipal = new Genero() { Nombre = "accion" };
             unaPelicula.GeneroPrincipal = generoPrincipal;
 
             unaPelicula.AgregarGeneroSecundario(unGenero);
@@ -105,7 +112,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void AgregarVariosGenerosTest()
         {
-            Genero otroGenero = new Genero();
+            Genero otroGenero = new Genero() { Nombre = "terror" };
             List<Genero> generos = new List<Genero>();
 
             generos.Add(unGenero);

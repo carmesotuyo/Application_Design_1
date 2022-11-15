@@ -13,6 +13,7 @@ namespace Repositorio.Interfaces
         void AgregarPelicula(Pelicula pelicula);
         void QuitarPelicula(Pelicula pelicula);
         List<Genero> DevolverGenerosAsociados(Pelicula pelicula);
+        void AgregarGeneroSecundario(Pelicula pelicula, Genero genero);
         List<Pelicula> Peliculas();
     }
 }

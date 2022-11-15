@@ -6,12 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Dominio;
 using Dominio.Exceptions;
+using Repositorio.EnDataBase;
 
 namespace Pruebas.PruebasDominio
 {
     [TestClass]
     public class GeneroTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            DBCleanUp.CleanUp();
+        }
         Genero unGenero = new Genero();
 
         [TestMethod]

@@ -77,7 +77,7 @@ namespace Repositorio.EnDataBase
             }
         }
 
-        private GeneroPuntaje EncontrarGeneroPuntaje(Genero genero, Perfil perfil)
+        public GeneroPuntaje EncontrarGeneroPuntaje(Genero genero, Perfil perfil)
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {

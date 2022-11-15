@@ -2,12 +2,19 @@
 using System;
 using Dominio;
 using Dominio.Exceptions;
+using Repositorio.EnDataBase;
 
 namespace Pruebas.PruebasDominio
 {
     [TestClass]
     public class GeneroPuntajeTest
     {
+        [TestInitialize]
+        public void Setup()
+        {
+            DBCleanUp.CleanUp();
+        }
+
         [TestMethod]
         public void PuntajeEnCeroTest()
         {
