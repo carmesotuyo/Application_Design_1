@@ -61,6 +61,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PruebasDominio\PerfilTest.cs" />
     <Compile Include="PruebasDominio\GeneroPuntajeTest.cs" />
+    <Compile Include="PruebasDominio\PersonaTest.cs" />
     <Compile Include="PruebasDominio\UsuarioTest.cs" />
     <Compile Include="PruebasDominio\GeneroTest.cs" />
     <Compile Include="PruebasDominio\PeliculaTest.cs" />

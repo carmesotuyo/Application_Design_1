@@ -16,6 +16,7 @@ namespace Repositorio.EnDataBase
         public DbSet<GeneroPuntaje> GenerosPuntajes { get; set; }
         public DbSet<Perfil> Perfiles { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Persona> Personas { get; set; }
 
         public ThreatLevelMidnightEntertainmentDBContext() : base("ThreatLevelMidnightEntertainmentDB")
         {
@@ -28,6 +29,7 @@ namespace Repositorio.EnDataBase
             ConfigGeneroPuntaje.ConfigurarEntidad(modelBuilder);
             ConfigPerfil.ConfigurarEntidad(modelBuilder);
             ConfigUsuario.ConfigurarEntidad(modelBuilder);
+            ConfigPersona.ConfigurarEntidad(modelBuilder);
         }
     }
 }
