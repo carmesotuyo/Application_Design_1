@@ -9,17 +9,12 @@ namespace Dominio
 {
     public class Persona
     {
-        private string _nombre;
-
-        private static void ChequearNombreValido(string value)
-        {
-            if (value == "")
-            {
-                throw new NombrePersonaVacioException();
-            }
-        }
-
         public int Id { get; set; }
+        private string _nombre;
+        public string FotoPerfil { get; set; }
+        private DateTime _fechaNacimiento;
+        private DateTime hoy = DateTime.Today;
+
         public string Nombre
         {
             get => _nombre;
@@ -29,9 +24,28 @@ namespace Dominio
                 _nombre = value;
             }
         }
-        public string FotoPerfil { get; set; }
-        public string FechaNacimiento { get; set; }
 
-        
+        private static void ChequearNombreValido(string value)
+        {
+            if (value == "")
+            {
+                throw new NombrePersonaVacioException();
+            }
+        }
+
+        public DateTime FechaNacimiento { get => _fechaNacimiento; set
+            {
+                ChequearFechaPasada(value);
+                _fechaNacimiento = value;
+            } 
+        } 
+
+        private void ChequearFechaPasada(DateTime fechaNacimiento)
+        {
+            if(fechaNacimiento > hoy)
+            {
+                throw new FechaInvalidaException();
+            }
+        }
     }
 }

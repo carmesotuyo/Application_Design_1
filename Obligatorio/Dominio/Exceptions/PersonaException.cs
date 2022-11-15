@@ -9,4 +9,7 @@ namespace Dominio.Exceptions
     public class NombrePersonaVacioException : Exception
     {
     }
+    public class FechaInvalidaException : Exception
+    {
+    }
 }

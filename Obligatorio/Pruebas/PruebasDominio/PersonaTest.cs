@@ -9,11 +9,6 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class PersonaTest
     {
-        [TestInitialize]
-        public void Setup()
-        {
-            DBCleanUp.CleanUp();
-        }
 
         [TestMethod]
         public void NombrePersonaTest()
@@ -35,5 +30,27 @@ namespace Pruebas.PruebasDominio
             };
         }
 
+        [TestMethod]
+        public void FotoPersonaTest()
+        {
+            Persona persona = new Persona() { Nombre = "Guillermo del Toro", FotoPerfil = "ruta" };
+            Assert.AreEqual(persona.FotoPerfil, "ruta");
+        }
+
+        [TestMethod]
+        public void FechaNacimientoTest()
+        {
+            DateTime fechaNac = new DateTime(1980, 10, 30);
+            Persona persona = new Persona() { Nombre = "Guillermo del Toro", FechaNacimiento = fechaNac };
+            Assert.AreEqual(persona.FechaNacimiento, fechaNac);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FechaInvalidaException))]
+        public void FechaInvalidaTest()
+        {
+            DateTime fechaNac = new DateTime(2023, 10, 30);
+            Persona persona = new Persona() { Nombre = "Guillermo del Toro", FechaNacimiento = fechaNac };
+        }
     }
 }
