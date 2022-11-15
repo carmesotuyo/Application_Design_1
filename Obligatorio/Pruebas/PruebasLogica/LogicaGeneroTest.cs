@@ -58,9 +58,9 @@ namespace Pruebas.PruebasLogica
         public void NombreUnicoTest()
         {
             logica.AgregarGenero(admin, accion);
-            logica.AgregarGenero(admin, comedia);
+            logica.AgregarGenero(admin, suspenso);
 
-            Assert.IsTrue(logica.Generos().Contains(accion) && logica.Generos().Contains(comedia));
+            Assert.IsTrue(logica.Generos().Contains(accion) && logica.Generos().Contains(suspenso));
         }
 
         [TestMethod]
