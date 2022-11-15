@@ -9,17 +9,12 @@ namespace Dominio
 {
     public class Persona
     {
-        private string _nombre;
-
-        private static void ChequearNombreValido(string value)
-        {
-            if (value == "")
-            {
-                throw new NombrePersonaVacioException();
-            }
-        }
-
         public int Id { get; set; }
+        private string _nombre;
+        public string FotoPerfil { get; set; }
+        private DateTime _fechaNacimiento;
+        private DateTime hoy = DateTime.Today;
+
         public string Nombre
         {
             get => _nombre;
@@ -29,9 +24,48 @@ namespace Dominio
                 _nombre = value;
             }
         }
-        public string FotoPerfil { get; set; }
-        public string FechaNacimiento { get; set; }
 
-        
+        private static void ChequearNombreValido(string value)
+        {
+            if (value == "")
+            {
+                throw new NombrePersonaVacioException();
+            }
+        }
+
+        public DateTime FechaNacimiento { get => _fechaNacimiento; set
+            {
+                ChequearFechaPasada(value);
+                _fechaNacimiento = value;
+            } 
+        } 
+
+        private void ChequearFechaPasada(DateTime fechaNacimiento)
+        {
+            if(fechaNacimiento > hoy)
+            {
+                throw new FechaInvalidaException();
+            }
+        }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj != null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Persona persona = (Persona)obj;
+                ret = persona.Nombre == this.Nombre 
+                    && persona.FechaNacimiento == this.FechaNacimiento 
+                    && persona.FotoPerfil == this.FotoPerfil;
+            }
+            return ret;
+        }
+
+        public void Modificar(Persona persona)
+        {
+            Nombre = persona.Nombre;
+            FotoPerfil = persona.FotoPerfil;
+            FechaNacimiento = persona.FechaNacimiento;
+        }
     }
 }

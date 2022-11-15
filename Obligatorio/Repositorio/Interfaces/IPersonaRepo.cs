@@ -12,6 +12,7 @@ namespace Repositorio.Interfaces
         void AgregarPersona(Persona persona);
         void EliminarPersona(Persona persona);
         void ModificarPersona(Persona persona);
+        bool EstaPersona(Persona persona);
         List<Persona> Personas();
     }
 }

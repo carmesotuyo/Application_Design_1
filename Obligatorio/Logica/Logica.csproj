@@ -44,12 +44,15 @@
     <Compile Include="Exceptions\PeliculaExceptions.cs" />
     <Compile Include="Exceptions\GeneroExceptions.cs" />
     <Compile Include="Exceptions\PerfilExceptions.cs" />
+    <Compile Include="Exceptions\PersonaExceptions.cs" />
     <Compile Include="Exceptions\UsuarioExceptions.cs" />
     <Compile Include="Implementaciones\LogicaGenero.cs" />
     <Compile Include="Implementaciones\LogicaPelicula.cs" />
+    <Compile Include="Implementaciones\LogicaPersona.cs" />
     <Compile Include="Implementaciones\LogicaUsuario.cs" />
     <Compile Include="Interfaces\ILogicaGenero.cs" />
     <Compile Include="Interfaces\ILogicaPelicula.cs" />
+    <Compile Include="Interfaces\ILogicaPersona.cs" />
     <Compile Include="Interfaces\ILogicaUsuario.cs" />
     <Compile Include="Implementaciones\LogicaPerfil.cs" />
     <Compile Include="Interfaces\ILogicaPerfil.cs" />
