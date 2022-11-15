@@ -320,5 +320,26 @@ namespace Pruebas.PruebasLogica
 
             Assert.IsTrue(pelisVistas[0].Equals(unaPelicula) && pelisVistas[1].Equals(otra));
         }
+
+        [TestMethod]
+        public void PeliculaNoVistaTest()
+        {
+            logicaPerfil.MarcarComoVista(unaPelicula, unPerfil);
+
+            Pelicula otra = new Pelicula()
+            {
+                Identificador = 2,
+                Nombre = "otra",
+                GeneroPrincipal = comedia,
+                Descripcion = "algo",
+                Poster = "ruta"
+            };
+
+            logicaPelicula.AltaPelicula(otra, admin);
+
+            List<Pelicula> pelisVistas = logicaPerfil.MostrarPeliculasVistas(unPerfil);
+
+            Assert.IsTrue(!pelisVistas.Contains(otra));
+        }
     }
 }

@@ -9,12 +9,6 @@ namespace Pruebas.PruebasDominio
     [TestClass]
     public class GeneroPuntajeTest
     {
-        [TestInitialize]
-        public void Setup()
-        {
-            DBCleanUp.CleanUp();
-        }
-
         [TestMethod]
         public void PuntajeEnCeroTest()
         {

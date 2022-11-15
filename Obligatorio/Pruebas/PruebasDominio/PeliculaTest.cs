@@ -18,12 +18,6 @@ namespace Pruebas.PruebasDominio
         Genero unGenero = new Genero() { Nombre = "comedia" };
         Genero generoVacio = null;
 
-        [TestInitialize]
-        public void Setup()
-        {
-            DBCleanUp.CleanUp();
-        }
-
         [TestMethod]
         public void NombrePeliculaValidoTest()
         {
