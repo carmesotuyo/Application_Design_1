@@ -54,6 +54,7 @@ namespace Logica.Implementaciones
         public void MarcarComoVista(Pelicula unaPelicula, Perfil unPerfil)
         {
             AgregarPeliculaVista(unaPelicula, unPerfil);
+            ActualizarListadoGeneros(unPerfil);
             PuntuarPositivo(unaPelicula, unPerfil);
         }
 
@@ -201,6 +202,11 @@ namespace Logica.Implementaciones
         public bool EsInfantil(Perfil perfil)
         {
             return _repoPerfil.Perfiles().FirstOrDefault(x => x.Equals(perfil)).EsInfantil;
+        }
+
+        public List<Pelicula> MostrarPeliculasVistas(Perfil perfil)
+        {
+            return _repoPerfil.PeliculasVistas(perfil);
         }
     }
 }

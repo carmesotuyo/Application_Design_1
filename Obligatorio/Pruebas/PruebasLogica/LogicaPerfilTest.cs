@@ -298,5 +298,27 @@ namespace Pruebas.PruebasLogica
 
             Assert.IsFalse(logicaPerfil.EstaGenero(unPerfil, terror));
         }
+
+        [TestMethod]
+        public void PeliculasVistasOrdenadasTest()
+        {
+            logicaPerfil.MarcarComoVista(unaPelicula, unPerfil);
+
+            Pelicula otra = new Pelicula()
+            {
+                Identificador = 2,
+                Nombre = "otra",
+                GeneroPrincipal = comedia,
+                Descripcion = "algo",
+                Poster = "ruta"
+            };
+
+            logicaPelicula.AltaPelicula(otra, admin);
+            logicaPerfil.MarcarComoVista(otra, unPerfil);
+
+            List<Pelicula> pelisVistas = logicaPerfil.MostrarPeliculasVistas(unPerfil);
+
+            Assert.IsTrue(pelisVistas[0].Equals(unaPelicula) && pelisVistas[1].Equals(otra));
+        }
     }
 }
