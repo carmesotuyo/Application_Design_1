@@ -76,7 +76,7 @@ namespace InterfazUsuario
         public void CambiarMenuPeliculas(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new MenuPeliculas(this, usuario, perfil, _logicaGenero, _logicaPerfil, _logicaPelicula));
+            flpPanelPrincipal.Controls.Add(new MenuPeliculas(this, usuario, perfil, _logicaGenero,_logicaPersona, _logicaPerfil, _logicaPelicula));
         }
         public void CambiarMenuAdmin(Usuario usuario, Perfil perfil)
         {

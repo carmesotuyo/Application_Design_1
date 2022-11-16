@@ -32,9 +32,13 @@
             this.btnAdmin = new System.Windows.Forms.Button();
             this.lblPerfil = new System.Windows.Forms.LinkLabel();
             this.flpListaPelis = new System.Windows.Forms.FlowLayoutPanel();
+            this.LBPersonas = new System.Windows.Forms.ListBox();
             this.btnTodas = new System.Windows.Forms.Button();
             this.btnVistas = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnBuscarDirector = new System.Windows.Forms.Button();
+            this.btnBuscarActor = new System.Windows.Forms.Button();
+            this.flpListaPelis.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCerrarSesion
@@ -72,10 +76,23 @@
             // flpListaPelis
             // 
             this.flpListaPelis.AutoScroll = true;
+            this.flpListaPelis.Controls.Add(this.LBPersonas);
+            this.flpListaPelis.Controls.Add(this.btnBuscarDirector);
+            this.flpListaPelis.Controls.Add(this.btnBuscarActor);
             this.flpListaPelis.Location = new System.Drawing.Point(69, 85);
             this.flpListaPelis.Name = "flpListaPelis";
             this.flpListaPelis.Size = new System.Drawing.Size(856, 650);
             this.flpListaPelis.TabIndex = 4;
+            // 
+            // LBPersonas
+            // 
+            this.LBPersonas.FormattingEnabled = true;
+            this.LBPersonas.ItemHeight = 16;
+            this.LBPersonas.Location = new System.Drawing.Point(3, 3);
+            this.LBPersonas.Name = "LBPersonas";
+            this.LBPersonas.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.LBPersonas.Size = new System.Drawing.Size(423, 100);
+            this.LBPersonas.TabIndex = 0;
             // 
             // btnTodas
             // 
@@ -105,6 +122,27 @@
             this.btnBuscar.TabIndex = 7;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // btnBuscarDirector
+            // 
+            this.btnBuscarDirector.Location = new System.Drawing.Point(432, 3);
+            this.btnBuscarDirector.Name = "btnBuscarDirector";
+            this.btnBuscarDirector.Size = new System.Drawing.Size(195, 100);
+            this.btnBuscarDirector.TabIndex = 3;
+            this.btnBuscarDirector.Text = "Buscar por Director";
+            this.btnBuscarDirector.UseVisualStyleBackColor = true;
+            this.btnBuscarDirector.Click += new System.EventHandler(this.btnBuscarDirector_Click);
+            // 
+            // btnBuscarActor
+            // 
+            this.btnBuscarActor.Location = new System.Drawing.Point(633, 3);
+            this.btnBuscarActor.Name = "btnBuscarActor";
+            this.btnBuscarActor.Size = new System.Drawing.Size(187, 100);
+            this.btnBuscarActor.TabIndex = 4;
+            this.btnBuscarActor.Text = "Buscar por Actor";
+            this.btnBuscarActor.UseVisualStyleBackColor = true;
+            this.btnBuscarActor.Click += new System.EventHandler(this.btnBuscarActor_Click);
             // 
             // MenuPeliculas
             // 
@@ -120,6 +158,7 @@
             this.Controls.Add(this.lblPerfil);
             this.Name = "MenuPeliculas";
             this.Size = new System.Drawing.Size(1000, 750);
+            this.flpListaPelis.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,5 +173,8 @@
         private System.Windows.Forms.Button btnTodas;
         private System.Windows.Forms.Button btnVistas;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.ListBox LBPersonas;
+        private System.Windows.Forms.Button btnBuscarDirector;
+        private System.Windows.Forms.Button btnBuscarActor;
     }
 }

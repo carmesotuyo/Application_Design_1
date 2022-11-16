@@ -21,7 +21,8 @@ namespace InterfazUsuario
         private ILogicaPelicula _logicaPelicula;
         private ILogicaPerfil _logicaPerfil;
         private ILogicaGenero _logicaGenero;
-        public MenuPeliculas(Threat_Level_Midnight_Entertainment ventanaPrincipal, Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPerfil logicaPerfil, ILogicaPelicula logicaPelicula)
+        private ILogicaPersona _logicaPersona;
+        public MenuPeliculas(Threat_Level_Midnight_Entertainment ventanaPrincipal, Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPersona logicaPersona, ILogicaPerfil logicaPerfil, ILogicaPelicula logicaPelicula)
         {
             _ventanaPrincipal = ventanaPrincipal;
             _usuario = usuario;
@@ -29,6 +30,7 @@ namespace InterfazUsuario
             _logicaPelicula = logicaPelicula;
             _logicaPerfil = logicaPerfil;
             _logicaGenero = logicaGenero;
+            _logicaPersona = logicaPersona;
             
             InitializeComponent();
             botonAdmin(_usuario, _perfil);
@@ -85,7 +87,6 @@ namespace InterfazUsuario
         {
             int index = 0;
             int anchoPelicula = (int)(flpListaPelis.Width * 0.3);
-            //int alturaPelicula = 250;//flpListaPelis.Height;
             foreach (Pelicula pelicula in _logicaPerfil.MostrarPeliculasVistas(_perfil))
             {
                 FlowLayoutPanel flpPelicula = new System.Windows.Forms.FlowLayoutPanel();
@@ -167,6 +168,32 @@ namespace InterfazUsuario
             flpListaPelis.Controls.Clear();
             MostrarVistas();
 
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            flpListaPelis.Controls.Clear();
+            flpListaPelis.Controls.Add(LBPersonas);
+            flpListaPelis.Controls.Add(btnBuscarDirector);
+            flpListaPelis.Controls.Add(btnBuscarActor);
+            ActualizarBoxPersonas();
+
+        }
+
+        private void ActualizarBoxPersonas()
+        {
+            LBPersonas.Items.Clear();
+            LBPersonas.Items.AddRange(_logicaPersona.Personas().ToArray());
+        }
+
+        private void btnBuscarDirector_Click(object sender, EventArgs e)
+        {
+            MostrarVistas();
+        }
+
+        private void btnBuscarActor_Click(object sender, EventArgs e)
+        {
+            MostrarTodas();
         }
     }
 }
