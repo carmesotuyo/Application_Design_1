@@ -64,7 +64,7 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void QuitarPeliculaQueActuaTest()
+        public void QuitarPapelQueActuaTest()
         {
             Papel papel = new Papel();
             Persona persona = new Persona();

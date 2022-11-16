@@ -9,8 +9,9 @@ namespace Repositorio.Interfaces
 {
     public interface IPapelRepo
     {
-        void AgregarPapel(Papel papel, Usuario admin);
-        void EliminarPapel(Papel papel, Usuario admin);
+        void AgregarPapel(Papel papel);
+        void EliminarPapel(Papel papel);
+        bool ExistePapel(Papel papel);
         List<Papel> Papeles();
     }
 }

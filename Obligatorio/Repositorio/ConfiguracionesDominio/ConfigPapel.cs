@@ -13,7 +13,6 @@ namespace Repositorio.ConfiguracionesDominio
         public static void ConfigurarEntidad(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Papel>().ToTable("papeles");
-            //modelBuilder.Entity<Papel>().HasKey(p => new { p.Nombre, p.Actor.Id, p.Pelicula.Identificador });
             modelBuilder.Entity<Papel>().HasKey(p => p.Nombre)
                 .HasRequired(p => p.Pelicula)
                 .WithMany(p => p.Papeles);

@@ -67,6 +67,7 @@
     <Compile Include="PruebasDominio\GeneroTest.cs" />
     <Compile Include="PruebasDominio\PeliculaTest.cs" />
     <Compile Include="PruebasLogica\LogicaGeneroTest.cs" />
+    <Compile Include="PruebasLogica\LogicaPapelTest.cs" />
     <Compile Include="PruebasLogica\LogicaPeliculaTest.cs" />
     <Compile Include="PruebasLogica\LogicaPerfilTest.cs" />
     <Compile Include="PruebasLogica\LogicaPersonaTest.cs" />
