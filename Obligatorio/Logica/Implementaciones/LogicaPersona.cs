@@ -68,18 +68,5 @@ namespace Logica.Implementaciones
                 throw new UsuarioNoPermitidoException();
             }
         }
-
-        public void AsociarDirector(Persona director, Pelicula pelicula, Usuario admin)
-        {
-            BloquearUsuarioNoAdmin(admin);
-            ChequearQueExiste(director);
-            _repoPersona.AsociarDirector(director, pelicula);
-        }
-
-        public void DesasociarDirector(Persona director, Pelicula pelicula, Usuario admin)
-        {
-            BloquearUsuarioNoAdmin(admin);
-            _repoPersona.DesasociarDirector(director, pelicula);
-        }
     }
 }

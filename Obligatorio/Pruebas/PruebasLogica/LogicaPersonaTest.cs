@@ -17,7 +17,7 @@ namespace Pruebas.PruebasLogica
     public class LogicaPersonaTest
     {
         ILogicaPersona logicaPersona = new LogicaPersona(new PersonaDBRepo());
-        ILogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
+        ILogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
         ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
         Usuario admin = new Usuario() { EsAdministrador = true };
         Persona persona = new Persona() { Id = 1, Nombre = "Juan" };
@@ -37,8 +37,6 @@ namespace Pruebas.PruebasLogica
             DBCleanUp.CleanUp();
             logicaGenero.AgregarGenero(admin, comedia);
             logicaPelicula.AltaPelicula(pelicula, admin);
-
-
         }
 
         [TestMethod]
@@ -104,21 +102,5 @@ namespace Pruebas.PruebasLogica
             Assert.IsTrue(logicaPersona.Personas().Contains(persona));
         }
 
-        [TestMethod]
-        public void AsociarDirectorTest()
-        {
-            logicaPersona.AsociarDirector(persona, pelicula, admin);
-
-            Assert.IsTrue(logicaPelicula.EsDirector(pelicula, persona));
-        }
-
-        [TestMethod]
-        public void DesasociarDirectorTest()
-        {
-            logicaPersona.AsociarDirector(persona, pelicula, admin);
-            logicaPersona.DesasociarDirector(persona, pelicula, admin);
-
-            Assert.IsFalse(logicaPelicula.EsDirector(pelicula, persona));
-        }
     }
 }

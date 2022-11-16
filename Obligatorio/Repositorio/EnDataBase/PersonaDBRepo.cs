@@ -62,33 +62,5 @@ namespace Repositorio.EnDataBase
                 return tlmeContext.Personas.ToList();
             }
         }
-
-        public void AsociarDirector(Persona director, Pelicula pelicula)
-        {
-            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
-            {
-                Persona directorEncontrado = tlmeContext.Personas.FirstOrDefault(p => p.Id == director.Id);
-                Pelicula peliculaEncontrada = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
-                peliculaEncontrada.Directores.Add(directorEncontrado);
-
-                //tlmeContext.Entry(directorEncontrado).State = EntityState.Unchanged;
-                tlmeContext.Entry(peliculaEncontrada).State = EntityState.Modified;
-                tlmeContext.SaveChanges();
-            }
-        }
-
-        public void DesasociarDirector(Persona director, Pelicula pelicula)
-        {
-            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
-            {
-                Persona directorEncontrado = tlmeContext.Personas.FirstOrDefault(p => p.Id == director.Id);
-                Pelicula peliculaEncontrada = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
-                peliculaEncontrada.Directores.Remove(directorEncontrado);
-
-                //tlmeContext.Entry(directorEncontrado).State = EntityState.Unchanged;
-                tlmeContext.Entry(peliculaEncontrada).State = EntityState.Modified;
-                tlmeContext.SaveChanges();
-            };
-        }
     }
 }

@@ -22,7 +22,7 @@
                 .Index(t => t.Pelicula_Identificador);
             
             CreateTable(
-                "dbo.directores",
+                "dbo.PeliculaPersonas",
                 c => new
                     {
                         Pelicula_Identificador = c.Int(nullable: false),
@@ -38,15 +38,15 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.directores", "Persona_Id", "dbo.personas");
-            DropForeignKey("dbo.directores", "Pelicula_Identificador", "dbo.peliculas");
+            DropForeignKey("dbo.PeliculaPersonas", "Persona_Id", "dbo.personas");
+            DropForeignKey("dbo.PeliculaPersonas", "Pelicula_Identificador", "dbo.peliculas");
             DropForeignKey("dbo.papeles", "Pelicula_Identificador", "dbo.peliculas");
             DropForeignKey("dbo.papeles", "Actor_Id", "dbo.personas");
-            DropIndex("dbo.directores", new[] { "Persona_Id" });
-            DropIndex("dbo.directores", new[] { "Pelicula_Identificador" });
+            DropIndex("dbo.PeliculaPersonas", new[] { "Persona_Id" });
+            DropIndex("dbo.PeliculaPersonas", new[] { "Pelicula_Identificador" });
             DropIndex("dbo.papeles", new[] { "Pelicula_Identificador" });
             DropIndex("dbo.papeles", new[] { "Actor_Id" });
-            DropTable("dbo.directores");
+            DropTable("dbo.PeliculaPersonas");
             DropTable("dbo.papeles");
         }
     }

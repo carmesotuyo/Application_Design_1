@@ -14,6 +14,7 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 tlmeContext.Database.ExecuteSqlCommand("DELETE FROM papeles");
+                tlmeContext.Database.ExecuteSqlCommand("DELETE FROM PeliculaPersonas");
                 tlmeContext.Database.ExecuteSqlCommand("DELETE FROM personas");
                 tlmeContext.Database.ExecuteSqlCommand("DELETE FROM generos_puntajes");
                 tlmeContext.Database.ExecuteSqlCommand("DELETE FROM PeliculaGeneroes");

@@ -28,7 +28,7 @@ namespace InterfazUsuario
         {
             _logicaUsuario = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
             _logicaPerfil = new LogicaPerfil(new PerfilDBRepo(), new GeneroPuntajeDBRepo(), new PeliculaDBRepo(), new GeneroDBRepo());
-            _logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
+            _logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
             _logicaGenero = new LogicaGenero(new GeneroDBRepo());
 
             InitializeComponent();

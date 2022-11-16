@@ -150,5 +150,36 @@ namespace Repositorio.EnDataBase
                 return directores;
             }
         }
+
+        public void AsociarDirector(Persona director, Pelicula pelicula)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                Persona directorEncontrado = tlmeContext.Personas.FirstOrDefault(p => p.Id == director.Id);
+                tlmeContext.Personas.Attach(directorEncontrado);
+                Pelicula peliculaEncontrada = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
+                tlmeContext.Peliculas.Attach(peliculaEncontrada);
+                peliculaEncontrada.Directores.Add(directorEncontrado);
+
+                //tlmeContext.Entry(directorEncontrado).State = EntityState.Unchanged;
+                //tlmeContext.Entry(peliculaEncontrada).State = EntityState.Modified;
+                //tlmeContext.Entry(peliculaEncontrada.Directores).State = EntityState.Modified;
+                tlmeContext.SaveChanges();
+            }
+        }
+
+        public void DesasociarDirector(Persona director, Pelicula pelicula)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                Persona directorEncontrado = tlmeContext.Personas.FirstOrDefault(p => p.Id == director.Id);
+                Pelicula peliculaEncontrada = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
+                peliculaEncontrada.Directores.Remove(directorEncontrado);
+
+                //tlmeContext.Entry(directorEncontrado).State = EntityState.Unchanged;
+                tlmeContext.Entry(peliculaEncontrada).State = EntityState.Modified;
+                tlmeContext.SaveChanges();
+            };
+        }
     }
 }

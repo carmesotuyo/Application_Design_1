@@ -13,8 +13,6 @@ namespace Repositorio.Interfaces
         void EliminarPersona(Persona persona);
         void ModificarPersona(Persona persona);
         bool EstaPersona(Persona persona);
-        void AsociarDirector(Persona director, Pelicula pelicula);
-        void DesasociarDirector(Persona director, Pelicula pelicula);
         List<Persona> Personas();
     }
 }

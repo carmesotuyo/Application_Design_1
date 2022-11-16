@@ -19,5 +19,7 @@ namespace Repositorio.Interfaces
         bool EsDirector(Pelicula pelicula, Persona persona);
         string MostrarActores(Pelicula pelicula, int cantAMostrar);
         string MostrarDirectores(Pelicula pelicula, int cantAMostrar);
+        void AsociarDirector(Persona director, Pelicula pelicula);
+        void DesasociarDirector(Persona director, Pelicula pelicula);
     }
 }

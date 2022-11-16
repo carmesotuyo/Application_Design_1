@@ -66,5 +66,15 @@ namespace Repositorio
         {
             throw new NotImplementedException();
         }
+
+        public void AsociarDirector(Persona director, Pelicula pelicula)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DesasociarDirector(Persona director, Pelicula pelicula)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

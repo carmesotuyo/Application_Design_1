@@ -20,5 +20,7 @@ namespace Logica.Interfaces
         bool EsDirector(Pelicula pelicula, Persona persona);
         string Actores(Pelicula pelicula, int cantAMostrar);
         string Directores(Pelicula pelicula, int cantAMostrar);
+        void AsociarDirector(Persona director, Pelicula pelicula, Usuario admin);
+        void DesasociarDirector(Persona director, Pelicula pelicula, Usuario admin);
     }
 }

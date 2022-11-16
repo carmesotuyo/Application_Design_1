@@ -29,7 +29,7 @@ namespace Pruebas.PruebasLogica
             Descripcion = "algo",
             Poster = "ruta"
         };
-        ILogicaPelicula logica = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
+        ILogicaPelicula logica = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
         ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
         LogicaPerfil logicaPerfil = new LogicaPerfil(new PerfilDBRepo(), new GeneroPuntajeDBRepo(), new PeliculaDBRepo(), new GeneroDBRepo());
         ILogicaUsuario logicaUsuario = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
@@ -647,9 +647,9 @@ namespace Pruebas.PruebasLogica
             logicaPersona.AltaPersona(tom, admin);
             logicaPersona.AltaPersona(kate, admin);
 
-            logicaPersona.AsociarDirector(robert, unaPelicula, admin);
-            logicaPersona.AsociarDirector(tom, unaPelicula, admin);
-            logicaPersona.AsociarDirector(kate, unaPelicula, admin);
+            logica.AsociarDirector(robert, unaPelicula, admin);
+            logica.AsociarDirector(tom, unaPelicula, admin);
+            logica.AsociarDirector(kate, unaPelicula, admin);
 
             string mostrarDirectores = logica.Directores(unaPelicula, 3);
 
@@ -664,8 +664,8 @@ namespace Pruebas.PruebasLogica
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
 
-            logicaPersona.AsociarDirector(robert, unaPelicula, admin);
-            logicaPersona.AsociarDirector(tom, unaPelicula, admin);
+            logica.AsociarDirector(robert, unaPelicula, admin);
+            logica.AsociarDirector(tom, unaPelicula, admin);
 
             string mostrarDirectores = logica.Directores(unaPelicula, 3);
 
@@ -681,10 +681,10 @@ namespace Pruebas.PruebasLogica
             logicaPersona.AltaPersona(kate, admin);
             logicaPersona.AltaPersona(johnny, admin);
 
-            logicaPersona.AsociarDirector(robert, unaPelicula, admin);
-            logicaPersona.AsociarDirector(tom, unaPelicula, admin);
-            logicaPersona.AsociarDirector(kate, unaPelicula, admin);
-            logicaPersona.AsociarDirector(johnny, unaPelicula, admin);
+            logica.AsociarDirector(robert, unaPelicula, admin);
+            logica.AsociarDirector(tom, unaPelicula, admin);
+            logica.AsociarDirector(kate, unaPelicula, admin);
+            logica.AsociarDirector(johnny, unaPelicula, admin);
 
             string mostrarDirectores = logica.Directores(unaPelicula, 3);
 
@@ -694,5 +694,26 @@ namespace Pruebas.PruebasLogica
             Assert.AreEqual(mostrarDirectores, "Dirección: Robert. Tom. Kate. ");
         }
 
+
+        [TestMethod]
+        public void AsociarDirectorTest()
+        {
+            logica.AltaPelicula(unaPelicula, admin);
+            logicaPersona.AltaPersona(robert, admin);
+            logica.AsociarDirector(robert, unaPelicula, admin);
+
+            Assert.IsTrue(logica.EsDirector(unaPelicula, robert));
+        }
+
+        [TestMethod]
+        public void DesasociarDirectorTest()
+        {
+            logica.AltaPelicula(unaPelicula, admin);
+            logicaPersona.AltaPersona(robert, admin);
+            logica.AsociarDirector(robert, unaPelicula, admin);
+            logica.DesasociarDirector(robert, unaPelicula, admin);
+
+            Assert.IsFalse(logica.EsDirector(unaPelicula, robert));
+        }
     }
 }

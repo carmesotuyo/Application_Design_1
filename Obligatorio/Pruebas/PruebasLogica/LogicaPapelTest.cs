@@ -26,7 +26,7 @@ namespace Pruebas.PruebasLogica
         };
         Usuario admin = new Usuario() { EsAdministrador = true };
         ILogicaPapel logicaPapel = new LogicaPapel(new PapelDBRepo());
-        ILogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
+        ILogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
         ILogicaPersona logicaPersona = new LogicaPersona(new PersonaDBRepo());
         ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
 

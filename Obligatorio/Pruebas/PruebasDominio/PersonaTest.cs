@@ -56,8 +56,8 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void AgregarPapelQueActuaTest()
         {
-            Papel papel = new Papel();
             Persona persona = new Persona();
+            Papel papel = new Papel() { Nombre = "nombre", Actor = persona, Pelicula = new Pelicula() };
             persona.PapelesQueActua.Add(papel);
 
             Assert.IsTrue(persona.PapelesQueActua.Contains(papel));
@@ -66,8 +66,8 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void QuitarPapelQueActuaTest()
         {
-            Papel papel = new Papel();
             Persona persona = new Persona();
+            Papel papel = new Papel() { Nombre = "nombre", Actor = persona, Pelicula = new Pelicula() };
             persona.PapelesQueActua.Add(papel);
 
             persona.PapelesQueActua.Remove(papel);

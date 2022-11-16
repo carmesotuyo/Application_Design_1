@@ -212,7 +212,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void AgregarPapelTest()
         {
-            Papel papel = new Papel();
+            Papel papel = new Papel() { Nombre = "nombre", Actor = new Persona(), Pelicula = new Pelicula() };
             unaPelicula.Papeles.Add(papel);
             Assert.IsTrue(unaPelicula.Papeles.Contains(papel));
         }
@@ -220,7 +220,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void QuitarPapelTest()
         {
-            Papel papel = new Papel();
+            Papel papel = new Papel() { Nombre = "nombre", Actor = new Persona(), Pelicula = new Pelicula() };
             unaPelicula.Papeles.Add(papel);
 
             unaPelicula.Papeles.Remove(papel);
