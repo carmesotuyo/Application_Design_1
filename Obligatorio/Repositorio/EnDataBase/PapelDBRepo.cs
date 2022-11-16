@@ -15,20 +15,8 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                //tlmeContext.Papeles.Attach(papel);
-
-                //Pelicula pelicula = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == papel.Pelicula.Identificador);
                 tlmeContext.Peliculas.Attach(papel.Pelicula);
-                //Persona actor = tlmeContext.Personas.FirstOrDefault(p => p.Id == papel.Actor.Id);
                 tlmeContext.Personas.Attach(papel.Actor);
-
-                //tlmeContext.Entry(papel.Actor).State = EntityState.Unchanged;
-                //tlmeContext.Entry(papel.Pelicula).State = EntityState.Unchanged;
-                //tlmeContext.Entry(papel.Pelicula.GeneroPrincipal).State = EntityState.Unchanged;
-                //foreach (var generosEnMemoria in papel.Pelicula.GenerosSecundarios)
-                //{
-                //    tlmeContext.Entry(generosEnMemoria).State = EntityState.Unchanged;
-                //}
                 tlmeContext.Papeles.Add(papel);
                 tlmeContext.SaveChanges();
             }

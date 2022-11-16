@@ -85,5 +85,42 @@ namespace Repositorio.EnDataBase
                 tlmeContext.SaveChanges();
             }
         }
+
+        public bool EsActor(Pelicula pelicula, Persona persona)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                bool ret = false;
+                Pelicula peliculaBuscada = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
+                List<Papel> papelesDePelicula = tlmeContext.Papeles.Where(p => p.Pelicula.Equals(peliculaBuscada)).ToList();
+                foreach (Papel papel in papelesDePelicula)
+                {
+                    if (papel.Actor.Equals(persona))
+                    {
+                        ret = true;
+                    }
+                }
+
+                return ret;
+            }
+        }
+
+        public bool EsDirector(Pelicula pelicula, Persona persona)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                bool ret = false;
+                Pelicula peliculaBuscada = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
+                foreach (Persona director in peliculaBuscada.Directores)
+                {
+                    if (director.Equals(persona))
+                    {
+                        ret = true;
+                    }
+                }
+
+                return ret;
+            }
+        }
     }
 }

@@ -46,5 +46,15 @@ namespace Repositorio
         {
             throw new NotImplementedException();
         }
+
+        public bool EsActor(Pelicula pelicula, Persona persona)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool EsDirector(Pelicula pelicula, Persona persona)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

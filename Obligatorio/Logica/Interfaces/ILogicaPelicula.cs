@@ -16,5 +16,7 @@ namespace Logica.Interfaces
         string CriterioSeleccionado();
         List<Pelicula> MostrarPeliculas(Perfil unPerfil);
         List<Pelicula> Peliculas();
+        bool EsActor(Pelicula pelicula, Persona persona);
+        bool EsDirector(Pelicula pelicula, Persona persona);
     }
 }

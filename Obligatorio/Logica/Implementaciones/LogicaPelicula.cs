@@ -147,5 +147,14 @@ namespace Logica.Implementaciones
         {
             _repo.AgregarGeneroSecundario(pelicula, genero);
         }
+
+        public bool EsActor(Pelicula pelicula, Persona persona)
+        {
+            return _repo.EsActor(pelicula, persona);
+        }
+        public bool EsDirector(Pelicula pelicula, Persona persona)
+        {
+            return _repo.EsDirector(pelicula, persona);
+        }
     }
 }

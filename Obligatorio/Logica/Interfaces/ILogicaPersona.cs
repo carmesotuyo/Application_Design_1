@@ -12,6 +12,8 @@ namespace Logica.Interfaces
         void AltaPersona(Persona persona, Usuario admin);
         void BajaPersona(Persona persona, Usuario admin);
         void ModificarPersona(Persona persona, Usuario admin);
+        void AsociarDirector(Persona director, Pelicula pelicula,  Usuario admin);
+        void DesasociarDirector(Persona director, Pelicula pelicula, Usuario admin);
         List<Persona> Personas();
     }
 }
