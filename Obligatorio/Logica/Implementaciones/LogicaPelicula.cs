@@ -156,5 +156,15 @@ namespace Logica.Implementaciones
         {
             return _repo.EsDirector(pelicula, persona);
         }
+
+        public string Actores(Pelicula pelicula, int cantAMostrar)
+        {
+            return "Elenco: " + _repo.MostrarActores(pelicula, cantAMostrar);
+        }
+
+        public string Directores(Pelicula pelicula, int cantAMostrar)
+        {
+            return "Dirección: " + _repo.MostrarDirectores(pelicula, cantAMostrar);
+        }
     }
 }

@@ -18,5 +18,7 @@ namespace Logica.Interfaces
         List<Pelicula> Peliculas();
         bool EsActor(Pelicula pelicula, Persona persona);
         bool EsDirector(Pelicula pelicula, Persona persona);
+        string Actores(Pelicula pelicula, int cantAMostrar);
+        string Directores(Pelicula pelicula, int cantAMostrar);
     }
 }

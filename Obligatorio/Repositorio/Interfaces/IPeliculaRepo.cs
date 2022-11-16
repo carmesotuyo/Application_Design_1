@@ -17,5 +17,7 @@ namespace Repositorio.Interfaces
         List<Pelicula> Peliculas();
         bool EsActor(Pelicula pelicula, Persona persona);
         bool EsDirector(Pelicula pelicula, Persona persona);
+        string MostrarActores(Pelicula pelicula, int cantAMostrar);
+        string MostrarDirectores(Pelicula pelicula, int cantAMostrar);
     }
 }

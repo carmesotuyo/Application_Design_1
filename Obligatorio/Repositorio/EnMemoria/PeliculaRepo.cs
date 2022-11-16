@@ -56,5 +56,15 @@ namespace Repositorio
         {
             throw new NotImplementedException();
         }
+
+        public string MostrarActores(Pelicula pelicula, int cantAMostrar)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string MostrarDirectores(Pelicula pelicula, int cantAMostrar)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

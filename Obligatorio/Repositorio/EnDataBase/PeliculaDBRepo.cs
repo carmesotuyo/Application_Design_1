@@ -122,5 +122,33 @@ namespace Repositorio.EnDataBase
                 return ret;
             }
         }
+
+        public string MostrarActores(Pelicula pelicula, int cantAMostrar)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                string actores = "";
+                Pelicula peliculaBuscada = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
+                for(int i=0; i < cantAMostrar || i < peliculaBuscada.Papeles.Count; i++)
+                {
+                    actores += peliculaBuscada.Papeles[i].Actor.Nombre;
+                }
+                return actores;
+            }
+        }
+
+        public string MostrarDirectores(Pelicula pelicula, int cantAMostrar)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                string directores = "";
+                Pelicula peliculaBuscada = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
+                for (int i = 0; i < cantAMostrar || i < peliculaBuscada.Directores.Count; i++)
+                {
+                    directores += peliculaBuscada.Directores[i].Nombre + ". ";
+                }
+                return directores;
+            }
+        }
     }
 }
