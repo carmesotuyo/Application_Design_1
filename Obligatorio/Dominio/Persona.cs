@@ -11,7 +11,8 @@ namespace Dominio
     {
         public int Id { get; set; }
         private string _nombre;
-        public string FotoPerfil { get; set; }
+        private string _fotoPerfil;
+        
         private DateTime _fechaNacimiento;
         private DateTime hoy = DateTime.Today;
 
@@ -22,6 +23,23 @@ namespace Dominio
             {
                 ChequearNombreValido(value);
                 _nombre = value;
+            }
+        }
+        public string FotoPerfil
+        {
+            get => _fotoPerfil;
+            set
+            {
+                ChequearStringVacio(value);
+                _fotoPerfil = value;
+            }
+        }
+
+        private void ChequearStringVacio(string value)
+        {
+            if (value.Length == 0)
+            {
+                throw new DatoVacioException();
             }
         }
 
@@ -66,6 +84,10 @@ namespace Dominio
             Nombre = persona.Nombre;
             FotoPerfil = persona.FotoPerfil;
             FechaNacimiento = persona.FechaNacimiento;
+        }
+        public override string ToString()
+        {
+            return Nombre;
         }
     }
 }

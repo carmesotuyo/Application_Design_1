@@ -23,6 +23,7 @@ namespace InterfazUsuario
         private ILogicaPelicula _logicaPelicula;
         private ILogicaGenero _logicaGenero;
         private ILogicaPerfil _logicaPerfil;
+        private ILogicaPersona _logicaPersona;
 
         public Threat_Level_Midnight_Entertainment()
         {
@@ -30,6 +31,7 @@ namespace InterfazUsuario
             _logicaPerfil = new LogicaPerfil(new PerfilDBRepo(), new GeneroPuntajeDBRepo(), new PeliculaDBRepo(), new GeneroDBRepo());
             _logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
             _logicaGenero = new LogicaGenero(new GeneroDBRepo());
+            _logicaPersona = new LogicaPersona(new PersonaDBRepo());
 
             InitializeComponent();
             flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
@@ -79,7 +81,7 @@ namespace InterfazUsuario
         public void CambiarMenuAdmin(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, _logicaGenero, _logicaPelicula, this));
+            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, _logicaGenero, _logicaPelicula, _logicaPersona, this));
         }
         public void CambiarVerPelicula(Pelicula pelicula,Perfil perfil, ILogicaPerfil logicaPerfil, ILogicaGenero logicaGenero, Usuario usuario)
         {
