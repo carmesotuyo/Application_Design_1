@@ -22,5 +22,7 @@ namespace Logica.Interfaces
         string Directores(Pelicula pelicula, int cantAMostrar);
         void AsociarDirector(Persona director, Pelicula pelicula, Usuario admin);
         void DesasociarDirector(Persona director, Pelicula pelicula, Usuario admin);
+        List<Pelicula> BuscarPorActor(Persona actor);
+        List<Pelicula> BuscarPorDirector(Persona director);
     }
 }

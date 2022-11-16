@@ -21,5 +21,7 @@ namespace Repositorio.Interfaces
         string MostrarDirectores(Pelicula pelicula, int cantAMostrar);
         void AsociarDirector(Persona director, Pelicula pelicula);
         void DesasociarDirector(Persona director, Pelicula pelicula);
+        List<Pelicula> BuscarPorActor(Persona actor);
+        List<Pelicula> BuscarPorDirector(Persona director);
     }
 }

@@ -505,9 +505,6 @@ namespace Pruebas.PruebasLogica
             logica.AltaPelicula(peliculaB, admin);
             logica.AltaPelicula(peliculaC, admin);
 
-            LogicaGenero logicaGenero = new LogicaGenero(new GeneroRepo());
-            logicaGenero.AgregarGenero(admin, terror);
-            logicaGenero.AgregarGenero(admin, comedia);
             logicaPerfil.ActualizarListadoGeneros(unPerfil);
 
             logicaPerfil.PuntuarNegativo(peliculaA, unPerfil);
@@ -577,6 +574,8 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void DevolverActoresTest()
         {
+            logica.AltaPelicula(unaPelicula, admin);
+
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
             logicaPersona.AltaPersona(kate, admin);
@@ -599,6 +598,8 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void DevolverConMenosDe5ActoresTest()
         {
+            logica.AltaPelicula(unaPelicula, admin);
+
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
             logicaPersona.AltaPersona(kate, admin);
@@ -617,6 +618,8 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void DevolverConMasDe5ActoresTest()
         {
+            logica.AltaPelicula(unaPelicula, admin);
+
             Persona jennifer = new Persona() { Id = 5, Nombre = "Jennifer" };
             Papel papelJennifer = new Papel() { Nombre = "papel Jennifer", Actor = jennifer, Pelicula = unaPelicula };
 
@@ -636,13 +639,15 @@ namespace Pruebas.PruebasLogica
 
             string mostrarActores = logica.Actores(unaPelicula, 5);
 
-            Assert.IsFalse(mostrarActores.Contains("Jennifer")); 
-            //Assert.AreEqual(mostrarActores, "Elenco: Robert. Tom. Kate. Johnny. Helen. ");
+            //Assert.IsFalse(mostrarActores.Contains("Jennifer")); 
+            Assert.AreEqual(mostrarActores, "Elenco: Robert. Tom. Kate. Johnny. Helen. ");
         }
 
         [TestMethod]
         public void DevolverDirectoresTest()
         {
+            logica.AltaPelicula(unaPelicula, admin);
+
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
             logicaPersona.AltaPersona(kate, admin);
@@ -661,6 +666,8 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void DevolverConMenosDe3DirectoresTest()
         {
+            logica.AltaPelicula(unaPelicula, admin);
+
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
 
@@ -676,6 +683,8 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void DevolverConMasDe3DirectoresTest()
         {
+            logica.AltaPelicula(unaPelicula, admin);
+
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
             logicaPersona.AltaPersona(kate, admin);
@@ -714,6 +723,73 @@ namespace Pruebas.PruebasLogica
             logica.DesasociarDirector(robert, unaPelicula, admin);
 
             Assert.IsFalse(logica.EsDirector(unaPelicula, robert));
+        }
+
+
+
+        [TestMethod]
+        public void BuscarPeliculasDeActorTest()
+        {
+            logica.AltaPelicula(unaPelicula, admin);
+            logicaPersona.AltaPersona(robert, admin);
+            logicaPapel.AsociarActorPelicula(papelRobert, admin);
+
+            List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActor(robert);
+            Assert.IsTrue(peliculasConRobertActuando.Contains(unaPelicula));
+        }
+
+        [TestMethod]
+        public void BuscarMuchasPeliculasDeActorTest()
+        {
+            Pelicula otra = new Pelicula()
+            {
+                Identificador = 2,
+                Nombre = "nueva",
+                GeneroPrincipal = comedia,
+                Descripcion = "algo",
+                Poster = "ruta"
+            };
+            logica.AltaPelicula(unaPelicula, admin);
+            logica.AltaPelicula(otra, admin);
+            logicaPersona.AltaPersona(robert, admin);
+            logicaPapel.AsociarActorPelicula(papelRobert, admin);
+            Papel otroPapel = new Papel() { Nombre = "papel otro", Actor = robert, Pelicula = otra };
+            logicaPapel.AsociarActorPelicula(papelRobert, admin);
+
+            List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActor(robert);
+            Assert.IsTrue(peliculasConRobertActuando.Contains(unaPelicula) && peliculasConRobertActuando.Contains(otra));
+        }
+
+        [TestMethod]
+        public void BuscarPeliculasDeDirectorTest()
+        {
+            logica.AltaPelicula(unaPelicula, admin);
+            logicaPersona.AltaPersona(robert, admin);
+            logica.AsociarDirector(robert, unaPelicula, admin);
+
+            List<Pelicula> peliculasConRobertDirigiendo = logica.BuscarPorDirector(robert);
+            Assert.IsTrue(peliculasConRobertDirigiendo.Contains(unaPelicula));
+        }
+
+        [TestMethod]
+        public void BuscarMuchasPeliculasDeDirectorTest()
+        {
+            Pelicula otra = new Pelicula()
+            {
+                Identificador = 2,
+                Nombre = "nueva",
+                GeneroPrincipal = comedia,
+                Descripcion = "algo",
+                Poster = "ruta"
+            };
+            logica.AltaPelicula(unaPelicula, admin);
+            logica.AltaPelicula(otra, admin);
+            logicaPersona.AltaPersona(robert, admin);
+            logica.AsociarDirector(robert, unaPelicula, admin);
+            logica.AsociarDirector(robert, otra, admin);
+
+            List<Pelicula> peliculasConRobertDirigiendo = logica.BuscarPorDirector(robert);
+            Assert.IsTrue(peliculasConRobertDirigiendo.Contains(unaPelicula) && peliculasConRobertDirigiendo.Contains(otra));
         }
     }
 }

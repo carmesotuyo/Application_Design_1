@@ -24,7 +24,7 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 Genero generoABorrar = tlmeContext.Generos.FirstOrDefault(g => g.Nombre == genero.Nombre);
-                EliminarPuntajesAsociados(generoABorrar, tlmeContext);
+                //EliminarPuntajesAsociados(generoABorrar, tlmeContext);
                 
                 tlmeContext.Generos.Remove(generoABorrar);
                 tlmeContext.SaveChanges(); 

@@ -17,6 +17,8 @@ namespace Repositorio.EnDataBase
             {
                 tlmeContext.Peliculas.Attach(papel.Pelicula);
                 tlmeContext.Personas.Attach(papel.Actor);
+                //tlmeContext.Entry(papel.Pelicula).State = EntityState.Unchanged;
+                //tlmeContext.Entry(papel.Actor).State = EntityState.Unchanged;
                 tlmeContext.Papeles.Add(papel);
                 tlmeContext.SaveChanges();
             }
@@ -27,8 +29,9 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 Papel papelABorrar = tlmeContext.Papeles
-                    .FirstOrDefault(p => p.Nombre == papel.Nombre && p.Actor.Id == papel.Actor.Id 
+                    .FirstOrDefault(p => p.Nombre == papel.Nombre && p.Actor.Id == papel.Actor.Id
                     && p.Pelicula.Identificador == papel.Pelicula.Identificador);
+                //tlmeContext.Papeles.Attach(papel);
                 tlmeContext.Papeles.Remove(papelABorrar);
                 tlmeContext.SaveChanges();
             }

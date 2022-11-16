@@ -189,5 +189,15 @@ namespace Logica.Implementaciones
                 throw new PersonaInexistenteException();
             }
         }
+
+        public List<Pelicula> BuscarPorActor(Persona actor)
+        {
+            return _repo.BuscarPorActor(actor);
+        }
+
+        public List<Pelicula> BuscarPorDirector(Persona director)
+        {
+            return _repo.BuscarPorDirector(director);
+        }
     }
 }

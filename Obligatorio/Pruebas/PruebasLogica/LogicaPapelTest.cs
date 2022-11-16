@@ -30,20 +30,19 @@ namespace Pruebas.PruebasLogica
         ILogicaPersona logicaPersona = new LogicaPersona(new PersonaDBRepo());
         ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
 
-        Papel papel = new Papel() { Nombre = "Harry", Actor = actor, Pelicula = pelicula };
-
         [TestInitialize]
         public void Setup()
         {
             DBCleanUp.CleanUp();
             logicaGenero.AgregarGenero(admin, accion);
-            logicaPelicula.AltaPelicula(pelicula, admin);
             logicaPersona.AltaPersona(actor, admin);
+            logicaPelicula.AltaPelicula(pelicula, admin);
         }
 
         [TestMethod]
         public void AsociarActorPeliculaTest()
         {
+            Papel papel = new Papel() { Nombre = "Harry", Actor = actor, Pelicula = pelicula }; 
             logicaPapel.AsociarActorPelicula(papel, admin);
 
             Assert.IsTrue(logicaPapel.Papeles().Contains(papel));
@@ -52,6 +51,7 @@ namespace Pruebas.PruebasLogica
         [TestMethod]
         public void DesasociarActorPeliculaTest()
         {
+            Papel papel = new Papel() { Nombre = "Harry", Actor = actor, Pelicula = pelicula };
             logicaPapel.AsociarActorPelicula(papel, admin);
             logicaPapel.DesasociarActorPelicula(papel, admin);
 
