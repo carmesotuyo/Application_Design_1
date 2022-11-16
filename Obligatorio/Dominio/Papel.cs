@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,46 @@ namespace Dominio
 {
     public class Papel
     {
-        public string Nombre { get; set; }
-        public Persona Actor { get; set; }
-        public Pelicula Pelicula { get; set; }
+        private string _nombre;
+        private Persona _actor;
+        private Pelicula _pelicula;
+
+        public string Nombre
+        {
+            get => _nombre; set
+            {
+                ChequearStringVacio(value);
+                _nombre = value;
+            }
+        }
+
+        public Persona Actor { get => _actor; set 
+            {
+                ChequearNull(value);
+                _actor = value;
+            } 
+        }
+        public Pelicula Pelicula { get => _pelicula; set
+            {
+                ChequearNull(value);
+                _pelicula = value;
+            } 
+        }
+
+        private void ChequearStringVacio(string value)
+        {
+            if (value.Length == 0)
+            {
+                throw new DatoVacioException();
+            }
+        }
+
+        private void ChequearNull(Object value)
+        {
+            if (value == null)
+            {
+                throw new NullException();
+            }
+        }
     }
 }
