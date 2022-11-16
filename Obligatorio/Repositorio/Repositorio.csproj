@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ConfiguracionesDominio\ConfigGenero.cs" />
     <Compile Include="ConfiguracionesDominio\ConfigGeneroPuntaje.cs" />
+    <Compile Include="ConfiguracionesDominio\ConfigPapel.cs" />
     <Compile Include="ConfiguracionesDominio\ConfigPelicula.cs" />
     <Compile Include="ConfiguracionesDominio\ConfigPerfil.cs" />
     <Compile Include="ConfiguracionesDominio\ConfigPersona.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="EnDataBase\DBCleanUp.cs" />
     <Compile Include="EnDataBase\GeneroDBRepo.cs" />
     <Compile Include="EnDataBase\GeneroPuntajeDBRepo.cs" />
+    <Compile Include="EnDataBase\PapelDBRepo.cs" />
     <Compile Include="EnDataBase\PeliculaDBRepo.cs" />
     <Compile Include="EnDataBase\PerfilDBRepo.cs" />
     <Compile Include="EnDataBase\PersonaDBRepo.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="EnMemoria\PeliculaRepo.cs" />
     <Compile Include="Interfaces\IGeneroPuntajeRepo.cs" />
     <Compile Include="Interfaces\IGeneroRepo.cs" />
+    <Compile Include="Interfaces\IPapelRepo.cs" />
     <Compile Include="Interfaces\IPeliculaRepo.cs" />
     <Compile Include="Interfaces\IPerfilRepo.cs" />
     <Compile Include="Interfaces\IPersonaRepo.cs" />
@@ -84,6 +87,10 @@
     <Compile Include="Migrations\202211151859323_TablaPersona.cs" />
     <Compile Include="Migrations\202211151859323_TablaPersona.designer.cs">
       <DependentUpon>202211151859323_TablaPersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211160042267_TablaPapel.cs" />
+    <Compile Include="Migrations\202211160042267_TablaPapel.designer.cs">
+      <DependentUpon>202211160042267_TablaPapel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211151859323_TablaPersona.resx">
       <DependentUpon>202211151859323_TablaPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211160042267_TablaPapel.resx">
+      <DependentUpon>202211160042267_TablaPapel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

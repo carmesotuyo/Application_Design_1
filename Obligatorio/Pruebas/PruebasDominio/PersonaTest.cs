@@ -54,25 +54,25 @@ namespace Pruebas.PruebasDominio
         }
 
         [TestMethod]
-        public void AgregarPeliculaQueActuaTest()
+        public void AgregarPapelQueActuaTest()
         {
-            Pelicula pelicula = new Pelicula();
+            Papel papel = new Papel();
             Persona persona = new Persona();
-            persona.PeliculasQueActua.Add(pelicula);
+            persona.PapelesQueActua.Add(papel);
 
-            Assert.IsTrue(persona.PeliculasQueActua.Contains(pelicula));
+            Assert.IsTrue(persona.PapelesQueActua.Contains(papel));
         }
 
         [TestMethod]
         public void QuitarPeliculaQueActuaTest()
         {
-            Pelicula pelicula = new Pelicula();
+            Papel papel = new Papel();
             Persona persona = new Persona();
-            persona.PeliculasQueActua.Add(pelicula);
+            persona.PapelesQueActua.Add(papel);
 
-            persona.PeliculasQueActua.Remove(pelicula);
+            persona.PapelesQueActua.Remove(papel);
 
-            Assert.IsFalse(persona.PeliculasQueActua.Contains(pelicula));
+            Assert.IsFalse(persona.PapelesQueActua.Contains(papel));
         }
 
         [TestMethod]

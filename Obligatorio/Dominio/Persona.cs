@@ -15,12 +15,12 @@ namespace Dominio
         private DateTime _fechaNacimiento;
         private DateTime hoy = DateTime.Today;
         public IList<Pelicula> PeliculasQueDirige { get; set; }
-        public IList<Pelicula> PeliculasQueActua { get; set; }
+        public IList<Papel> PapelesQueActua { get; set; }
 
         public Persona()
         {
             PeliculasQueDirige = new List<Pelicula>();
-            PeliculasQueActua = new List<Pelicula>();
+            PapelesQueActua = new List<Papel>();
         }
 
         public string Nombre
