@@ -50,5 +50,16 @@ namespace Dominio
                 throw new NullException();
             }
         }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj != null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Papel papel = (Papel)obj;
+                ret = papel.Nombre == this.Nombre && papel.Actor.Equals(this.Actor) && papel.Pelicula.Equals(this.Pelicula);
+            }
+            return ret;
+        }
     }
 }

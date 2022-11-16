@@ -15,20 +15,21 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                tlmeContext.Papeles.Add(papel);
-                tlmeContext.Papeles.Attach(papel);
+                //tlmeContext.Papeles.Attach(papel);
 
-                Pelicula pelicula = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == papel.Pelicula.Identificador);
-                tlmeContext.Peliculas.Attach(pelicula);
-                Persona actor = tlmeContext.Personas.FirstOrDefault(p => p.Id == papel.Actor.Id);
-                tlmeContext.Personas.Attach(actor);
+                //Pelicula pelicula = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == papel.Pelicula.Identificador);
+                tlmeContext.Peliculas.Attach(papel.Pelicula);
+                //Persona actor = tlmeContext.Personas.FirstOrDefault(p => p.Id == papel.Actor.Id);
+                tlmeContext.Personas.Attach(papel.Actor);
+
                 //tlmeContext.Entry(papel.Actor).State = EntityState.Unchanged;
-                //tlmeContext.Entry(papel.Pelicula).State = EntityState.Unchanged; 
+                //tlmeContext.Entry(papel.Pelicula).State = EntityState.Unchanged;
                 //tlmeContext.Entry(papel.Pelicula.GeneroPrincipal).State = EntityState.Unchanged;
                 //foreach (var generosEnMemoria in papel.Pelicula.GenerosSecundarios)
                 //{
                 //    tlmeContext.Entry(generosEnMemoria).State = EntityState.Unchanged;
                 //}
+                tlmeContext.Papeles.Add(papel);
                 tlmeContext.SaveChanges();
             }
         }
@@ -59,7 +60,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Papeles.ToList();
+                return tlmeContext.Papeles.Include(p=>p.Pelicula).Include(p=>p.Actor).ToList();
             }
         }
     }
