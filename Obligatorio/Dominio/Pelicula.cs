@@ -27,6 +27,9 @@ namespace Dominio
         {
             _generosSecundarios = new List<Genero>();
             this.asignarIdentificador();
+            PerfilesQueLaVieron = new List<Perfil>();
+            Papeles = new List<Papel>();
+            Directores = new List<Persona>();
         }
         private void asignarIdentificador()
         {
