@@ -20,5 +20,6 @@ namespace Logica.Interfaces
         void PuntuarMuyPositivo(Pelicula unaPelicula, Perfil unPerfil);
         void MarcarComoInfantil(Perfil perfilInfantil, Perfil perfilOwner);
         bool EstaGenero(Perfil perfil, Genero genero);
+        List<Pelicula> MostrarPeliculasVistas(Perfil perfil);
     }
 }

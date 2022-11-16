@@ -33,7 +33,7 @@ namespace InterfazUsuario
             InitializeComponent();
             botonAdmin(_usuario, _perfil);
             ActualizarGenerosPerfiles();
-            MostrarPeliculas();
+            MostrarTodas();
         }
 
         private void ActualizarGenerosPerfiles()
@@ -51,7 +51,6 @@ namespace InterfazUsuario
 
         private void MostrarPeliculas()
         {
-            flpListaPelis.Controls.Clear();
             int index = 0;
             int anchoPelicula = (int)(flpListaPelis.Width*0.3);
             int alturaPelicula = flpListaPelis.Height;
@@ -82,6 +81,57 @@ namespace InterfazUsuario
             }
         }
 
+        private void MostrarVistas()
+        {
+            int index = 0;
+            int anchoPelicula = (int)(flpListaPelis.Width * 0.3);
+            //int alturaPelicula = 250;//flpListaPelis.Height;
+            foreach (Pelicula pelicula in _logicaPerfil.MostrarPeliculasVistas(_perfil))
+            {
+                FlowLayoutPanel flpPelicula = new System.Windows.Forms.FlowLayoutPanel();
+                flpPelicula.BackColor = SystemColors.Control;
+                flpPelicula.FlowDirection = FlowDirection.TopDown;
+                flpPelicula.Size = new Size(anchoPelicula, 250);
+                flpListaPelis.Controls.Add(flpPelicula);
+
+                PictureBox poster = new PictureBox();
+                poster.Size = new Size(anchoPelicula, 130);
+                poster.BorderStyle = BorderStyle.FixedSingle;
+                poster.BackColor = SystemColors.Control;
+                poster.TabIndex = index;
+                poster.Image = new Bitmap(pelicula.Poster);
+                poster.SizeMode = PictureBoxSizeMode.StretchImage;
+                poster.Click += new EventHandler(AccederPelicula);
+                flpPelicula.Controls.Add(poster);
+
+                Label nombre = new Label();
+                nombre.Text = pelicula.Nombre;
+                nombre.TabIndex = index;
+                flpPelicula.Controls.Add(nombre);
+
+                Label directores = new Label();
+                directores.AutoSize = true;
+                directores.Text = "Director(es): Robert de Nilo, Brad Pit, fernando spillere, carmela sotuyo";//pelicula.Nombre;
+                directores.TabIndex = index;
+                flpPelicula.Controls.Add(directores);
+
+                Label actores = new Label();
+                actores.AutoSize = true;
+                actores.Text = "Actor(es): Robert de Nilo, Brad Pit";//pelicula.Nombre;
+                actores.TabIndex = index;
+                flpPelicula.Controls.Add(actores);
+
+                index++;
+            }
+        }
+
+        private void MostrarTodas()
+        {
+            flpListaPelis.Controls.Clear();
+            MostrarPeliculas();
+
+        }
+
         private void AccederPelicula(object sender, EventArgs e)
         {
             PictureBox peliculaSeleccionada = sender as PictureBox;
@@ -89,6 +139,8 @@ namespace InterfazUsuario
             Pelicula pelicula = _logicaPelicula.MostrarPeliculas(_perfil)[index] ;
             _ventanaPrincipal.CambiarVerPelicula(pelicula, _perfil, _logicaPerfil, _logicaGenero, _usuario);
         }
+
+
 
         private void lblPerfil_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -103,6 +155,18 @@ namespace InterfazUsuario
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             _ventanaPrincipal.CambiarMenuAdmin(_usuario, _perfil);
+        }
+
+        private void btnTodas_Click(object sender, EventArgs e)
+        {
+            MostrarTodas();
+        }
+
+        private void btnVistas_Click(object sender, EventArgs e)
+        {
+            flpListaPelis.Controls.Clear();
+            MostrarVistas();
+
         }
     }
 }

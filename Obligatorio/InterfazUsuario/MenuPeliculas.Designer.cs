@@ -32,6 +32,9 @@
             this.btnAdmin = new System.Windows.Forms.Button();
             this.lblPerfil = new System.Windows.Forms.LinkLabel();
             this.flpListaPelis = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnTodas = new System.Windows.Forms.Button();
+            this.btnVistas = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCerrarSesion
@@ -60,7 +63,7 @@
             this.lblPerfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblPerfil.Location = new System.Drawing.Point(19, 17);
             this.lblPerfil.Name = "lblPerfil";
-            this.lblPerfil.Size = new System.Drawing.Size(95, 31);
+            this.lblPerfil.Size = new System.Drawing.Size(76, 25);
             this.lblPerfil.TabIndex = 1;
             this.lblPerfil.TabStop = true;
             this.lblPerfil.Text = "Perfiles";
@@ -74,11 +77,43 @@
             this.flpListaPelis.Size = new System.Drawing.Size(856, 650);
             this.flpListaPelis.TabIndex = 4;
             // 
+            // btnTodas
+            // 
+            this.btnTodas.Location = new System.Drawing.Point(69, 47);
+            this.btnTodas.Name = "btnTodas";
+            this.btnTodas.Size = new System.Drawing.Size(111, 32);
+            this.btnTodas.TabIndex = 5;
+            this.btnTodas.Text = "Todas";
+            this.btnTodas.UseVisualStyleBackColor = true;
+            this.btnTodas.Click += new System.EventHandler(this.btnTodas_Click);
+            // 
+            // btnVistas
+            // 
+            this.btnVistas.Location = new System.Drawing.Point(186, 47);
+            this.btnVistas.Name = "btnVistas";
+            this.btnVistas.Size = new System.Drawing.Size(111, 32);
+            this.btnVistas.TabIndex = 6;
+            this.btnVistas.Text = "Vistas";
+            this.btnVistas.UseVisualStyleBackColor = true;
+            this.btnVistas.Click += new System.EventHandler(this.btnVistas_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(303, 47);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(111, 32);
+            this.btnBuscar.TabIndex = 7;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            // 
             // MenuPeliculas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.btnVistas);
+            this.Controls.Add(this.btnTodas);
             this.Controls.Add(this.flpListaPelis);
             this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnAdmin);
@@ -96,5 +131,8 @@
         private System.Windows.Forms.Button btnAdmin;
         private System.Windows.Forms.LinkLabel lblPerfil;
         private System.Windows.Forms.FlowLayoutPanel flpListaPelis;
+        private System.Windows.Forms.Button btnTodas;
+        private System.Windows.Forms.Button btnVistas;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }
