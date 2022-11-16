@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Dominio.Exceptions;
 using Logica.Exceptions;
 using Logica.Interfaces;
 using Repositorio.Interfaces;
@@ -41,6 +42,7 @@ namespace Logica.Implementaciones
 
         public void BajaPersona(Persona persona, Usuario admin)
         {
+            ChequearNull(persona);
             BloquearUsuarioNoAdmin(admin);
             ChequearQueExiste(persona);
             _repoPersona.EliminarPersona(persona);
@@ -56,6 +58,7 @@ namespace Logica.Implementaciones
 
         public void ModificarPersona(Persona persona, Usuario admin)
         {
+            ChequearNull(persona);
             BloquearUsuarioNoAdmin(admin);
             ChequearQueExiste(persona);
             _repoPersona.ModificarPersona(persona);
@@ -66,6 +69,13 @@ namespace Logica.Implementaciones
             if (!admin.EsAdministrador)
             {
                 throw new UsuarioNoPermitidoException();
+            }
+        }
+        private void ChequearNull(Persona persona)
+        {
+            if (persona == null)
+            {
+                throw new NullException();
             }
         }
     }

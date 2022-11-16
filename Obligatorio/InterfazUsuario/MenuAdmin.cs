@@ -18,8 +18,9 @@ namespace InterfazUsuario
         private Perfil _perfil;
         private ILogicaGenero _logicaGenero;
         private ILogicaPelicula _logicaPelicula;
+        private ILogicaPersona _logicaPersona;
         public Threat_Level_Midnight_Entertainment _ventanaPrincipal;
-        public MenuAdmin(Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPelicula logicaPelicula, Threat_Level_Midnight_Entertainment ventanaPrincipal)
+        public MenuAdmin(Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPelicula logicaPelicula, ILogicaPersona logicaPersona, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             InitializeComponent();
             flpAdministrador.Controls.Clear();
@@ -28,6 +29,7 @@ namespace InterfazUsuario
             _logicaPelicula = logicaPelicula;
             _usuario = usuario;
             _perfil = perfil;
+            _logicaPersona = logicaPersona;
             flpAdministrador.Controls.Add(new AgregarPelicula(_usuario, _logicaPelicula, _logicaGenero, this));
         }
 
@@ -56,6 +58,16 @@ namespace InterfazUsuario
             flpAdministrador.Controls.Clear();
             flpAdministrador.Controls.Add(new QuitarGenero(_usuario, _logicaGenero, _logicaPelicula, this));
         }
+        public void CambiarAgregarPersona()
+        {
+            flpAdministrador.Controls.Clear();
+            flpAdministrador.Controls.Add(new AgregarPersona(_usuario, _logicaPersona, this));
+        }
+        public void CambiarEditarPersona()
+        {
+            flpAdministrador.Controls.Clear();
+            flpAdministrador.Controls.Add(new EditarPersona(_usuario, _logicaPersona, this));
+        }
 
         private void btnAltaPeli_Click(object sender, EventArgs e)
         {
@@ -81,6 +93,10 @@ namespace InterfazUsuario
         {
             CambiarQuitarPeli();
         }
+        private void btnAgregarPersona_Click(object sender, EventArgs e)
+        {
+            CambiarAgregarPersona();
+        }
 
         private void lblAtras_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -90,6 +106,11 @@ namespace InterfazUsuario
         private void lblPerfil_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             _ventanaPrincipal.CambiarListaPerfiles(_usuario, _perfil);
+        }
+
+        private void btnQuitarPersona_Click(object sender, EventArgs e)
+        {
+            CambiarEditarPersona();
         }
     }
 }

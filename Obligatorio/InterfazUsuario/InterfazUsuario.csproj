@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarPersona.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AgregarPersona.Designer.cs">
+      <DependentUpon>AgregarPersona.cs</DependentUpon>
+    </Compile>
     <Compile Include="AgregarGenero.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -124,6 +130,12 @@
     <Compile Include="QuitarPelicula.Designer.cs">
       <DependentUpon>QuitarPelicula.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditarPersona.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditarPersona.Designer.cs">
+      <DependentUpon>EditarPersona.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registro.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -148,6 +160,9 @@
     <Compile Include="VerPelicula.Designer.cs">
       <DependentUpon>VerPelicula.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AgregarPersona.resx">
+      <DependentUpon>AgregarPersona.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AgregarGenero.resx">
       <DependentUpon>AgregarGenero.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -198,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuitarPelicula.resx">
       <DependentUpon>QuitarPelicula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarPersona.resx">
+      <DependentUpon>EditarPersona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
