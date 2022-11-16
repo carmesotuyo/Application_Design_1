@@ -68,6 +68,11 @@ namespace InterfazUsuario
             flpAdministrador.Controls.Clear();
             flpAdministrador.Controls.Add(new EditarPersona(_usuario, _logicaPersona, this));
         }
+        public void CambiarAsociarDesasociar()
+        {
+            flpAdministrador.Controls.Clear();
+            flpAdministrador.Controls.Add(new AsociarPersona(_usuario,_logicaPelicula, _logicaPersona, this));
+        }
 
         private void btnAltaPeli_Click(object sender, EventArgs e)
         {
@@ -111,6 +116,11 @@ namespace InterfazUsuario
         private void btnQuitarPersona_Click(object sender, EventArgs e)
         {
             CambiarEditarPersona();
+        }
+
+        private void btn_AsociarPersonas_Click(object sender, EventArgs e)
+        {
+            CambiarAsociarDesasociar();
         }
     }
 }

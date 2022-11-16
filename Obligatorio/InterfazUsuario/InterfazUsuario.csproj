@@ -74,6 +74,12 @@
     <Compile Include="AgregarPelicula.Designer.cs">
       <DependentUpon>AgregarPelicula.cs</DependentUpon>
     </Compile>
+    <Compile Include="AsociarPersona.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AsociarPersona.Designer.cs">
+      <DependentUpon>AsociarPersona.cs</DependentUpon>
+    </Compile>
     <Compile Include="CrearPerfil.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     <EmbeddedResource Include="AgregarPelicula.resx">
       <DependentUpon>AgregarPelicula.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AsociarPersona.resx">
+      <DependentUpon>AsociarPersona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrearPerfil.resx">
       <DependentUpon>CrearPerfil.cs</DependentUpon>
