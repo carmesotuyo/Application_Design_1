@@ -15,7 +15,9 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                MantenerEntidadesSinCambios(generoPuntaje, tlmeContext);
+                //MantenerEntidadesSinCambios(generoPuntaje, tlmeContext);
+                tlmeContext.Generos.Attach(generoPuntaje.Genero);
+                tlmeContext.Perfiles.Attach(generoPuntaje.Perfil);
                 tlmeContext.GenerosPuntajes.Add(generoPuntaje);
                 tlmeContext.SaveChanges();
             }

@@ -13,7 +13,7 @@ namespace Repositorio.ConfiguracionesDominio
         public static void ConfigurarEntidad(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Genero>().ToTable("generos");
-            modelBuilder.Entity<Genero>().HasKey(g => g.Nombre);       
+            modelBuilder.Entity<Genero>().HasKey(g => g.Nombre);
         }
     }
 }

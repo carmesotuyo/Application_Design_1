@@ -15,5 +15,13 @@ namespace Repositorio.Interfaces
         List<Genero> DevolverGenerosAsociados(Pelicula pelicula);
         void AgregarGeneroSecundario(Pelicula pelicula, Genero genero);
         List<Pelicula> Peliculas();
+        bool EsActor(Pelicula pelicula, Persona persona);
+        bool EsDirector(Pelicula pelicula, Persona persona);
+        string MostrarActores(Pelicula pelicula, int cantAMostrar);
+        string MostrarDirectores(Pelicula pelicula, int cantAMostrar);
+        void AsociarDirector(Persona director, Pelicula pelicula);
+        void DesasociarDirector(Persona director, Pelicula pelicula);
+        List<Pelicula> BuscarPorActor(Persona actor);
+        List<Pelicula> BuscarPorDirector(Persona director);
     }
 }

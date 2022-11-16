@@ -17,13 +17,26 @@ namespace Pruebas.PruebasLogica
     public class LogicaPersonaTest
     {
         ILogicaPersona logicaPersona = new LogicaPersona(new PersonaDBRepo());
-        Persona persona = new Persona() { Id = 1, Nombre = "Juan" };
+        ILogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
+        ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
         Usuario admin = new Usuario() { EsAdministrador = true };
+        Persona persona = new Persona() { Id = 1, Nombre = "Juan" };
+        static Genero comedia = new Genero() { Nombre = "comedia" };
+        Pelicula pelicula = new Pelicula()
+        {
+            Identificador = 1,
+            Nombre = "nombre",
+            GeneroPrincipal = comedia,
+            Descripcion = "algo",
+            Poster = "ruta"
+        };
 
         [TestInitialize]
         public void Setup()
         {
             DBCleanUp.CleanUp();
+            logicaGenero.AgregarGenero(admin, comedia);
+            logicaPelicula.AltaPelicula(pelicula, admin);
         }
 
         [TestMethod]
@@ -88,5 +101,6 @@ namespace Pruebas.PruebasLogica
             //redefinido el equals, compara los datos en lugar del id
             Assert.IsTrue(logicaPersona.Personas().Contains(persona));
         }
+
     }
 }

@@ -19,12 +19,17 @@ namespace Dominio
         private static int _contadorPeliculas = 0;
         private int _idPelicula;
         private string _poster;
-        private IList<Perfil> _perfilesQueLaVieron;
+        public IList<Perfil> PerfilesQueLaVieron { get; set; }
+        public IList<Papel> Papeles { get; set; }
+        public IList<Persona> Directores { get; set; }
 
         public Pelicula()
         {
             _generosSecundarios = new List<Genero>();
             this.asignarIdentificador();
+            PerfilesQueLaVieron = new List<Perfil>();
+            Papeles = new List<Papel>();
+            Directores = new List<Persona>();
         }
         private void asignarIdentificador()
         {
@@ -82,7 +87,6 @@ namespace Dominio
                 _poster = value;
             }
         }
-        public IList<Perfil> PerfilesQueLaVieron { get => _perfilesQueLaVieron; set => _perfilesQueLaVieron = value; }
 
         private void ChequearNull(String value)
         {

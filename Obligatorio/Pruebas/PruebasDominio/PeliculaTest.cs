@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dominio;
 using Dominio.Exceptions;
 using Repositorio.EnDataBase;
+using System.Diagnostics.Contracts;
 
 namespace Pruebas.PruebasDominio
 {
@@ -206,6 +207,42 @@ namespace Pruebas.PruebasDominio
             unaPelicula.Nombre = "Harry Potter";
 
             Assert.AreEqual(unaPelicula.ToString(), "Harry Potter");
+        }
+
+        [TestMethod]
+        public void AgregarPapelTest()
+        {
+            Papel papel = new Papel() { Nombre = "nombre", Actor = new Persona(), Pelicula = new Pelicula() };
+            unaPelicula.Papeles.Add(papel);
+            Assert.IsTrue(unaPelicula.Papeles.Contains(papel));
+        }
+
+        [TestMethod]
+        public void QuitarPapelTest()
+        {
+            Papel papel = new Papel() { Nombre = "nombre", Actor = new Persona(), Pelicula = new Pelicula() };
+            unaPelicula.Papeles.Add(papel);
+
+            unaPelicula.Papeles.Remove(papel);
+            Assert.IsFalse(unaPelicula.Papeles.Contains(papel));
+        }
+
+        [TestMethod]
+        public void AgregarDirectorTest()
+        {
+            Persona director = new Persona();
+            unaPelicula.Directores.Add(director);
+            Assert.IsTrue(unaPelicula.Directores.Contains(director));
+        }
+
+        [TestMethod]
+        public void QuitarDirectorTest()
+        {
+            Persona director = new Persona();
+            unaPelicula.Directores.Add(director);
+
+            unaPelicula.Directores.Remove(director);
+            Assert.IsFalse(unaPelicula.Directores.Contains(director));
         }
     }
 }

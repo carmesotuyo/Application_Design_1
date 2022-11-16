@@ -19,7 +19,7 @@ namespace Pruebas.PruebasLogica
     public class LogicaGeneroTest
     {
         ILogicaGenero logica = new LogicaGenero(new GeneroDBRepo());
-        ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
+        ILogicaPelicula logicaPeli = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
         Usuario admin = new Usuario() { EsAdministrador = true };
         Usuario comun = new Usuario() { EsAdministrador = false };
         static Genero suspenso = new Genero() { Nombre = "Suspenso", Descripcion = "Descripcion de suspenso" };

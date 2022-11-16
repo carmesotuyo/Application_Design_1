@@ -24,8 +24,19 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 Genero generoABorrar = tlmeContext.Generos.FirstOrDefault(g => g.Nombre == genero.Nombre);
+                //EliminarPuntajesAsociados(generoABorrar, tlmeContext);
+                
                 tlmeContext.Generos.Remove(generoABorrar);
                 tlmeContext.SaveChanges(); 
+            }
+        }
+
+        private void EliminarPuntajesAsociados(Genero genero, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
+        {
+            List<GeneroPuntaje> puntajes = tlmeContext.GenerosPuntajes.Where(g => g.Genero.Nombre == genero.Nombre).ToList();
+            for (int i = puntajes.Count() - 1; i >= 0; i--)
+            {
+                tlmeContext.GenerosPuntajes.Remove(puntajes[i]);
             }
         }
 

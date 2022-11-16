@@ -35,8 +35,8 @@
                         Perfil_NombreUsuario = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.AliasPerfil, t.NombreGenero })
-                .ForeignKey("dbo.generos", t => t.Genero_Nombre)
-                .ForeignKey("dbo.perfiles", t => new { t.Perfil_Alias, t.Perfil_NombreUsuario })
+                .ForeignKey("dbo.generos", t => t.Genero_Nombre, cascadeDelete: true)
+                .ForeignKey("dbo.perfiles", t => new { t.Perfil_Alias, t.Perfil_NombreUsuario }, cascadeDelete: true)
                 .Index(t => t.Genero_Nombre)
                 .Index(t => new { t.Perfil_Alias, t.Perfil_NombreUsuario });
             

@@ -17,6 +17,7 @@ namespace Repositorio.EnDataBase
         public DbSet<Perfil> Perfiles { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Persona> Personas { get; set; }
+        public DbSet<Papel> Papeles { get; set; }
 
         public ThreatLevelMidnightEntertainmentDBContext() : base("ThreatLevelMidnightEntertainmentDB")
         {
@@ -30,6 +31,7 @@ namespace Repositorio.EnDataBase
             ConfigPerfil.ConfigurarEntidad(modelBuilder);
             ConfigUsuario.ConfigurarEntidad(modelBuilder);
             ConfigPersona.ConfigurarEntidad(modelBuilder);
+            ConfigPapel.ConfigurarEntidad(modelBuilder);
         }
     }
 }

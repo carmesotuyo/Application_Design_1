@@ -17,6 +17,7 @@ namespace Logica.Implementaciones
     {
         private IPeliculaRepo _repo;
         private IPerfilRepo _repoPerfil;
+        private IPersonaRepo _repoPersona;
         private int _criterioElegido;
         public enum Criterios
         {
@@ -25,11 +26,12 @@ namespace Logica.Implementaciones
             OrdenarPorPuntaje = 2
         }
 
-        public LogicaPelicula(IPeliculaRepo peliculaRepo, IPerfilRepo perfilRepo)
+        public LogicaPelicula(IPeliculaRepo peliculaRepo, IPerfilRepo perfilRepo, IPersonaRepo repoPersona)
         {
             _repo = peliculaRepo;
             _repoPerfil = perfilRepo;
             CriterioElegido = (int)Criterios.OrdenarPorGenero;
+            _repoPersona = repoPersona;
         }
         public void AltaPelicula(Pelicula pelicula, Usuario admin)
         {
@@ -146,6 +148,56 @@ namespace Logica.Implementaciones
         public void AgregarGeneroSecundario(Pelicula pelicula, Genero genero)
         {
             _repo.AgregarGeneroSecundario(pelicula, genero);
+        }
+
+        public bool EsActor(Pelicula pelicula, Persona persona)
+        {
+            return _repo.EsActor(pelicula, persona);
+        }
+        public bool EsDirector(Pelicula pelicula, Persona persona)
+        {
+            return _repo.EsDirector(pelicula, persona);
+        }
+
+        public string Actores(Pelicula pelicula, int cantAMostrar)
+        {
+            return "Elenco: " + _repo.MostrarActores(pelicula, cantAMostrar);
+        }
+
+        public string Directores(Pelicula pelicula, int cantAMostrar)
+        {
+            return "Dirección: " + _repo.MostrarDirectores(pelicula, cantAMostrar);
+        }
+
+        public void AsociarDirector(Persona director, Pelicula pelicula, Usuario admin)
+        {
+            BloquearUsuarioNoAdmin(admin);
+            ChequearQueExiste(director);
+            _repo.AsociarDirector(director, pelicula);
+        }
+
+        public void DesasociarDirector(Persona director, Pelicula pelicula, Usuario admin)
+        {
+            BloquearUsuarioNoAdmin(admin);
+            _repo.DesasociarDirector(director, pelicula);
+        }
+
+        private void ChequearQueExiste(Persona persona)
+        {
+            if (!_repoPersona.EstaPersona(persona))
+            {
+                throw new PersonaInexistenteException();
+            }
+        }
+
+        public List<Pelicula> BuscarPorActor(Persona actor)
+        {
+            return _repo.BuscarPorActor(actor);
+        }
+
+        public List<Pelicula> BuscarPorDirector(Persona director)
+        {
+            return _repo.BuscarPorDirector(director);
         }
     }
 }

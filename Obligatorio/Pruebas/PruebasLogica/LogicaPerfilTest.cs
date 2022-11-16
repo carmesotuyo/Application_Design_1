@@ -23,7 +23,7 @@ namespace Pruebas.PruebasLogica
         LogicaPerfil logicaPerfil = new LogicaPerfil(new PerfilDBRepo(), new GeneroPuntajeDBRepo(), new PeliculaDBRepo(), new GeneroDBRepo());
         ILogicaUsuario logicaUsuario = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
         ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
-        LogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo());
+        LogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
         Usuario admin = new Usuario() { EsAdministrador = true };
         static Usuario usuario = new Usuario()
         {
