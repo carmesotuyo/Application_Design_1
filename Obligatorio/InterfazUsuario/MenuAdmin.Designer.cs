@@ -141,8 +141,9 @@
             this.btn_AsociarPersonas.Name = "btn_AsociarPersonas";
             this.btn_AsociarPersonas.Size = new System.Drawing.Size(180, 39);
             this.btn_AsociarPersonas.TabIndex = 11;
-            this.btn_AsociarPersonas.Text = "Asociar Actor/Director";
+            this.btn_AsociarPersonas.Text = "Asociar/Desasociar";
             this.btn_AsociarPersonas.UseVisualStyleBackColor = true;
+            this.btn_AsociarPersonas.Click += new System.EventHandler(this.btn_AsociarPersonas_Click);
             // 
             // btnEditarPersona
             // 
