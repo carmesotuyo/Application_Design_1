@@ -192,5 +192,24 @@ namespace Repositorio.EnDataBase
                 return tlmeContext.Peliculas.Where(p => p.Directores.Any(x=> x.Id == director.Id)).ToList();
             };
         }
+
+        public List<Papel> Actores(Pelicula pelicula)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                return tlmeContext.Papeles.Where(p => p.Pelicula.Identificador == pelicula.Identificador).ToList();
+            };
+        }
+
+        public List<Persona> Directores(Pelicula pelicula)
+        {
+            using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
+            {
+                tlmeContext.Peliculas.Attach(pelicula);
+                //return tlmeContext.Personas.Where(x => pelicula.Directores.ToList().Any(d=> d.Id == x.Id)).ToList();
+                //return tlmeContext.Personas.Where(x=> x.PeliculasQueDirige.Contains(pelicula)).ToList();
+                return tlmeContext.Personas.Where(x => x.PeliculasQueDirige.Any(p=> p.Identificador == pelicula.Identificador)).ToList();
+            };
+        }
     }
 }
