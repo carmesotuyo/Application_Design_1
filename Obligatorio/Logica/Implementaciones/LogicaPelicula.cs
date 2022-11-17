@@ -199,5 +199,15 @@ namespace Logica.Implementaciones
         {
             return _repo.BuscarPorDirector(director);
         }
+
+        public List<Papel> DevolverActores(Pelicula pelicula)
+        {
+            return _repo.Actores(pelicula);
+        }
+
+        public List<Persona> DevolverDirectores(Pelicula pelicula)
+        {
+            return _repo.Directores(pelicula);
+        }
     }
 }

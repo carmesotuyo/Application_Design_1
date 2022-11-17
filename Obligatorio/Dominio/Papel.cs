@@ -61,5 +61,10 @@ namespace Dominio
             }
             return ret;
         }
+
+        public override string ToString()
+        {
+            return this.Nombre;
+        }
     }
 }

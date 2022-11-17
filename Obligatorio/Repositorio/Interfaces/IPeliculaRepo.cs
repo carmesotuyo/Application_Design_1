@@ -23,5 +23,7 @@ namespace Repositorio.Interfaces
         void DesasociarDirector(Persona director, Pelicula pelicula);
         List<Pelicula> BuscarPorActor(Persona actor);
         List<Pelicula> BuscarPorDirector(Persona director);
+        List<Papel> Actores(Pelicula pelicula);
+        List<Persona> Directores(Pelicula pelicula);
     }
 }
