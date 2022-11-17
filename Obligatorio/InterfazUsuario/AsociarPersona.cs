@@ -108,6 +108,7 @@ namespace InterfazUsuario
                 {
                     _logicaPelicula.AsociarDirector(persona, pelicula, _usuario);
                     MessageBox.Show($"Se ha asociado a {persona.Nombre} como nuevo director correctamente");
+                    _menuAdmin.CambiarAsociarDesasociar();
                 }
             }
             catch (DatoVacioException)
