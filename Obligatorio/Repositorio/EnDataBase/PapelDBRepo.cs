@@ -22,6 +22,7 @@ namespace Repositorio.EnDataBase
 
                 //tlmeContext.Entry(peliEncontrada).State = EntityState.Unchanged;
                 //tlmeContext.Entry(personaEncontrada).State = EntityState.Unchanged;
+
                 tlmeContext.Papeles.Add(papel);
                 tlmeContext.SaveChanges();
             }

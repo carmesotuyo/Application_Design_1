@@ -19,25 +19,28 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 //MantenerGenerosSinCambios(pelicula, tlmeContext);
+
                 tlmeContext.Generos.Attach(pelicula.GeneroPrincipal);
+                //tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
                 foreach (var generosEnMemoria in pelicula.GenerosSecundarios)
                 {
                     tlmeContext.Generos.Attach(generosEnMemoria);
+                    //tlmeContext.Entry(generosEnMemoria).State = EntityState.Unchanged;
                 }
                 tlmeContext.Peliculas.Add(pelicula);
                 tlmeContext.SaveChanges();
             }
         }
 
-        private static void MantenerGenerosSinCambios(Pelicula pelicula, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
-        {
-            tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
+        //private static void MantenerGenerosSinCambios(Pelicula pelicula, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
+        //{
+        //    tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
 
-            foreach (var generosEnMemoria in pelicula.GenerosSecundarios)
-            {
-                tlmeContext.Entry(generosEnMemoria).State = EntityState.Unchanged;
-            }
-        }
+        //    foreach (var generosEnMemoria in pelicula.GenerosSecundarios)
+        //    {
+        //        tlmeContext.Entry(generosEnMemoria).State = EntityState.Unchanged;
+        //    }
+        //}
 
         public bool EstaPelicula(Pelicula pelicula)
         {
@@ -149,7 +152,7 @@ namespace Repositorio.EnDataBase
             {
                 string directores = "";
                 //tlmeContext.Peliculas.Attach(pelicula);
-                Pelicula encontrada = tlmeContext.Peliculas.Include(x=> x.Directores).Include(x => x.Papeles).FirstOrDefault(x => x.Identificador == pelicula.Identificador);
+                Pelicula encontrada = tlmeContext.Peliculas.Include(x=> x.Directores).FirstOrDefault(x => x.Identificador == pelicula.Identificador);
                 for (int i = 0; i < cantAMostrar && i < encontrada.Directores.Count(); i++)
                 {
                     directores += encontrada.Directores[i].Nombre + ". ";
