@@ -28,10 +28,10 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                Papel papelABorrar = tlmeContext.Papeles
+                //tlmeContext.Papeles.Attach(papel);
+                Papel papelABorrar = tlmeContext.Papeles.Include(x => x.Actor).Include(p => p.Pelicula)
                     .FirstOrDefault(p => p.Nombre == papel.Nombre && p.Actor.Id == papel.Actor.Id
                     && p.Pelicula.Identificador == papel.Pelicula.Identificador);
-                //tlmeContext.Papeles.Attach(papel);
                 tlmeContext.Papeles.Remove(papelABorrar);
                 tlmeContext.SaveChanges();
             }
@@ -41,7 +41,8 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Papeles.FirstOrDefault(p => p.Nombre == papel.Nombre 
+                //tlmeContext.Papeles.Attach(papel);
+                return tlmeContext.Papeles.Include(x => x.Actor).Include(p => p.Pelicula).FirstOrDefault(p => p.Nombre == papel.Nombre 
                     && p.Actor.Id == papel.Actor.Id
                     && p.Pelicula.Identificador == papel.Pelicula.Identificador) != null;
             }
@@ -51,7 +52,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Papeles.Include(p=>p.Pelicula).Include(p=>p.Actor).ToList();
+                return tlmeContext.Papeles.Include(p => p.Actor).Include(p=>p.Pelicula).ToList();
             }
         }
     }

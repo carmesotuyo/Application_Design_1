@@ -20,14 +20,15 @@ namespace InterfazUsuario
         private Perfil _perfil;
         private ILogicaPelicula _logicaPelicula;
         private ILogicaPersona _logicaPersona;
-        public AsociarPersona(Usuario usuario, ILogicaPelicula ilogicaPelicula, ILogicaPersona logicaPersona, MenuAdmin menuAdmin)
+        private ILogicaPapel _logicaPapel;
+        public AsociarPersona(Usuario usuario, ILogicaPelicula ilogicaPelicula, ILogicaPapel logicaPapel, ILogicaPersona logicaPersona, MenuAdmin menuAdmin)
         {
             InitializeComponent();
             _usuario = usuario;
             _logicaPelicula = ilogicaPelicula;
             _logicaPersona = logicaPersona;
             _menuAdmin = menuAdmin;
-
+            _logicaPapel = logicaPapel;
         }
 
         private void RBDirector_CheckedChanged(object sender, EventArgs e)
@@ -49,18 +50,18 @@ namespace InterfazUsuario
             CBPeliculas.Items.AddRange(_logicaPelicula.Peliculas().ToArray());
         }
 
-        private void ActualizarComboDirectores()
+        private void ActualizarComboDirectores(Pelicula pelicula)
         {
             CBDirectores.Text = "";
             CBDirectores.Items.Clear();
-            //CBDirectores.Items.AddRange(_logicaPelicula.Peliculas().ToArray());
+            CBDirectores.Items.AddRange(_logicaPelicula.DevolverDirectores(pelicula).ToArray());
         }
 
-        private void ActualizarComboPapeles()
+        private void ActualizarComboPapeles(Pelicula pelicula)
         {
             CBPapeles.Text = "";
             CBPapeles.Items.Clear();
-            //CBPapeles.Items.AddRange(_logicaPelicula.Peliculas().ToArray());
+            CBPapeles.Items.AddRange(_logicaPelicula.DevolverActores(pelicula).ToArray());
         }
 
         private void ActualizarComboPersonas()
@@ -72,8 +73,9 @@ namespace InterfazUsuario
 
         private void CBPeliculas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //ActualizarComboDirectores();
-            //ActualizarComboPapeles();
+            Pelicula pelicula = CBPeliculas.SelectedItem as Pelicula;
+            ActualizarComboDirectores(pelicula);
+            ActualizarComboPapeles(pelicula);
         }
 
         private void AsociarPersona_Load(object sender, EventArgs e)
@@ -94,10 +96,27 @@ namespace InterfazUsuario
                     Actor = persona,
                     Pelicula = pelicula
                 };
+                _logicaPapel.AsociarActorPelicula(papel, _usuario);
             } else
             {
-                //Asociar director
+                _logicaPelicula.AsociarDirector(persona, pelicula, _usuario);
             }
+        }
+
+        private void btnDesasociarDirector_Click(object sender, EventArgs e)
+        {
+            Pelicula pelicula = CBPeliculas.SelectedItem as Pelicula;
+            Persona persona = CBDirectores.SelectedItem as Persona;
+            _logicaPelicula.DesasociarDirector(persona, pelicula, _usuario);
+            MessageBox.Show("Se ha desasociado el director");
+        }
+
+        private void btnDesasociarPapel_Click(object sender, EventArgs e)
+        {
+            Pelicula pelicula = CBPeliculas.SelectedItem as Pelicula;
+            Papel papel = CBPapeles.SelectedItem as Papel;
+            _logicaPapel.DesasociarActorPelicula(papel, _usuario);
+            MessageBox.Show("Se ha desasociado el papel");
         }
     }
 }

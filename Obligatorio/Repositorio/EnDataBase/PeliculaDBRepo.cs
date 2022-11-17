@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -98,7 +99,7 @@ namespace Repositorio.EnDataBase
             {
                 bool ret = false;
                 Pelicula peliculaBuscada = tlmeContext.Peliculas.FirstOrDefault(p => p.Identificador == pelicula.Identificador);
-                List<Papel> papelesDePelicula = tlmeContext.Papeles.Where(p => p.Pelicula.Equals(peliculaBuscada)).ToList();
+                List<Papel> papelesDePelicula = tlmeContext.Papeles.Include(x=>x.Actor).Include(x=>x.Pelicula).Where(p => p.Pelicula.Equals(peliculaBuscada)).ToList();
                 foreach (Papel papel in papelesDePelicula)
                 {
                     if (papel.Actor.Equals(persona))
@@ -181,7 +182,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Peliculas.Where(p => p.Papeles.Any(x=> x.Actor.Id == actor.Id)).ToList();
+                return tlmeContext.Peliculas.Include(x => x.Papeles).Where(p => p.Papeles.Any(x=> x.Actor.Id == actor.Id)).ToList();
             };
         }
 
@@ -189,7 +190,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Peliculas.Where(p => p.Directores.Any(x=> x.Id == director.Id)).ToList();
+                return tlmeContext.Peliculas.Include(x=>x.Directores).Where(p => p.Directores.Any(x=> x.Id == director.Id)).ToList();
             };
         }
 
@@ -197,7 +198,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Papeles.Where(p => p.Pelicula.Identificador == pelicula.Identificador).ToList();
+                return tlmeContext.Papeles.Include(x=>x.Pelicula).Include(x=>x.Actor).Where(p => p.Pelicula.Identificador == pelicula.Identificador).ToList();
             };
         }
 
@@ -208,7 +209,7 @@ namespace Repositorio.EnDataBase
                 tlmeContext.Peliculas.Attach(pelicula);
                 //return tlmeContext.Personas.Where(x => pelicula.Directores.ToList().Any(d=> d.Id == x.Id)).ToList();
                 //return tlmeContext.Personas.Where(x=> x.PeliculasQueDirige.Contains(pelicula)).ToList();
-                return tlmeContext.Personas.Where(x => x.PeliculasQueDirige.Any(p=> p.Identificador == pelicula.Identificador)).ToList();
+                return tlmeContext.Personas.Include(x=>x.PeliculasQueDirige).Where(x => x.PeliculasQueDirige.Any(p=> p.Identificador == pelicula.Identificador)).ToList();
             };
         }
     }

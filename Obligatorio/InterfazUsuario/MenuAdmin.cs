@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Logica.Implementaciones;
 using Logica.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,9 @@ namespace InterfazUsuario
         private ILogicaGenero _logicaGenero;
         private ILogicaPelicula _logicaPelicula;
         private ILogicaPersona _logicaPersona;
+        private ILogicaPapel _logicaPapel;
         public Threat_Level_Midnight_Entertainment _ventanaPrincipal;
-        public MenuAdmin(Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPelicula logicaPelicula, ILogicaPersona logicaPersona, Threat_Level_Midnight_Entertainment ventanaPrincipal)
+        public MenuAdmin(Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPelicula logicaPelicula, ILogicaPapel logicaPapel, ILogicaPersona logicaPersona, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             InitializeComponent();
             flpAdministrador.Controls.Clear();
@@ -30,6 +32,7 @@ namespace InterfazUsuario
             _usuario = usuario;
             _perfil = perfil;
             _logicaPersona = logicaPersona;
+            _logicaPapel = logicaPapel;
             flpAdministrador.Controls.Add(new AgregarPelicula(_usuario, _logicaPelicula, _logicaGenero, this));
         }
 
@@ -71,7 +74,7 @@ namespace InterfazUsuario
         public void CambiarAsociarDesasociar()
         {
             flpAdministrador.Controls.Clear();
-            flpAdministrador.Controls.Add(new AsociarPersona(_usuario,_logicaPelicula, _logicaPersona, this));
+            flpAdministrador.Controls.Add(new AsociarPersona(_usuario,_logicaPelicula, _logicaPapel, _logicaPersona, this));
         }
 
         private void btnAltaPeli_Click(object sender, EventArgs e)

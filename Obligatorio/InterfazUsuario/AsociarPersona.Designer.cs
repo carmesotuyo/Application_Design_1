@@ -117,6 +117,7 @@
             this.btnDesasociarDirector.TabIndex = 15;
             this.btnDesasociarDirector.Text = "Desasociar";
             this.btnDesasociarDirector.UseVisualStyleBackColor = true;
+            this.btnDesasociarDirector.Click += new System.EventHandler(this.btnDesasociarDirector_Click);
             // 
             // btnDesasociarPapel
             // 
@@ -126,6 +127,7 @@
             this.btnDesasociarPapel.TabIndex = 16;
             this.btnDesasociarPapel.Text = "Desasociar";
             this.btnDesasociarPapel.UseVisualStyleBackColor = true;
+            this.btnDesasociarPapel.Click += new System.EventHandler(this.btnDesasociarPapel_Click);
             // 
             // RBDirector
             // 
