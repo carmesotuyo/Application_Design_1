@@ -75,8 +75,6 @@ namespace Pruebas.PruebasLogica
             logicaPersona.AltaPersona(persona, admin);
             persona.Nombre = "nuevo nombre";
             logicaPersona.ModificarPersona(persona, admin);
-
-            //redefinido el equals, compara los datos en lugar del id
             Assert.IsTrue(logicaPersona.Personas().Contains(persona));
         }
 
@@ -86,8 +84,6 @@ namespace Pruebas.PruebasLogica
             logicaPersona.AltaPersona(persona, admin);
             persona.FotoPerfil = "nueva/foto";
             logicaPersona.ModificarPersona(persona, admin);
-
-            //redefinido el equals, compara los datos en lugar del id
             Assert.IsTrue(logicaPersona.Personas().Contains(persona));
         }
 
@@ -97,8 +93,6 @@ namespace Pruebas.PruebasLogica
             logicaPersona.AltaPersona(persona, admin);
             persona.FechaNacimiento = new DateTime(2010, 4, 22);
             logicaPersona.ModificarPersona(persona, admin);
-
-            //redefinido el equals, compara los datos en lugar del id
             Assert.IsTrue(logicaPersona.Personas().Contains(persona));
         }
 

@@ -182,7 +182,7 @@ namespace Logica.Implementaciones
 
         private void validarDirectorrepetido(Persona director, Pelicula pelicula)
         {
-            if (pelicula.Directores.Contains(director))//(director.PeliculasQueDirige.Contains(pelicula))
+            if (pelicula.Directores.Contains(director))
             {
                 throw new DirectorRepetidoException();
             }

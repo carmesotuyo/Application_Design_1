@@ -100,9 +100,6 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                //ver si funciona
-                //return tlmeContext.Perfiles.Include(p => p.PeliculasVistas).Where(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario)
-                //    .SelectMany(p => p.PeliculasVistas).ToList();
                 return tlmeContext.Perfiles.Include(p => p.PeliculasVistas).FirstOrDefault(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario).PeliculasVistas;
             }
         }
@@ -111,10 +108,8 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                //tlmeContext.Entry(perfil).State = EntityState.Unchanged;
                 tlmeContext.Entry(pelicula).State = EntityState.Unchanged;
                 tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
-                //MantenerEntidadesPerfilSinCambios(perfil, tlmeContext);
                 tlmeContext.Perfiles.FirstOrDefault(p => p.Alias == perfil.Alias && p.NombreUsuario == perfil.NombreUsuario).PeliculasVistas.Add(pelicula);
                 tlmeContext.SaveChanges();
             }

@@ -19,7 +19,6 @@ namespace InterfazUsuario
     {
         private MenuAdmin _menuAdmin;
         private Usuario _usuario;
-        private Perfil _perfil;
         private ILogicaPelicula _logicaPelicula;
         private ILogicaPersona _logicaPersona;
         private ILogicaPapel _logicaPapel;
@@ -131,7 +130,11 @@ namespace InterfazUsuario
             {
                 MessageBox.Show($"{persona.Nombre} ya dirige la pelicula");
             }
-            
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un problema, la acción no se puede realizar");
+            }
+
 
         }
 
@@ -158,7 +161,6 @@ namespace InterfazUsuario
 
         private void btnDesasociarPapel_Click(object sender, EventArgs e)
         {
-            //Pelicula pelicula = CBPeliculas.SelectedItem as Pelicula;
             Papel papel = CBPapeles.SelectedItem as Papel;
             try
             {

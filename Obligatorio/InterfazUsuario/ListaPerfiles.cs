@@ -28,8 +28,6 @@ namespace InterfazUsuario
             _logicaPerfil = logicaPerfil;
             _ventanaPrincipal = ventanaPrincipal;
             CargarPerfiles();
-
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

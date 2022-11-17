@@ -126,7 +126,6 @@ namespace Logica.Implementaciones
             _repoGeneroPuntaje.ModificarPuntaje(unGenero, unPerfil, puntaje);
         }
 
-        //agregar metodo que agarre esta excepcion
         private void ValidarQueExisteGeneroPuntuado(Genero unGenero, Perfil unPerfil)
         {
             if(!_repoGeneroPuntaje.EstaGeneroPuntaje(unGenero, unPerfil))

@@ -103,8 +103,6 @@ namespace Dominio
             }
         }
 
-       // public List<Perfil> Perfiles { get => _listaPerfiles; }
-
         public bool EsAdministrador { get => _esAdmin; set => _esAdmin = value; }
 
         public override string ToString()
