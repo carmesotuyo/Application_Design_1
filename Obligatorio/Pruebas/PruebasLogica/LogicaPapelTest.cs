@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Logica.Exceptions;
 using Logica.Implementaciones;
 using Logica.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,7 +15,7 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaPapelTest
     {
-        static Persona actor = new Persona() { Id = 1 };
+        static Persona actor = new Persona() { Id = 1, Nombre = "daniel", FotoPerfil = "foto" };
         static Genero accion = new Genero() { Nombre = "accion" };
         static Pelicula pelicula = new Pelicula()
         {
@@ -25,6 +26,7 @@ namespace Pruebas.PruebasLogica
             Poster = "ruta"
         };
         Usuario admin = new Usuario() { EsAdministrador = true };
+        Usuario comun = new Usuario() { EsAdministrador = false };
         ILogicaPapel logicaPapel = new LogicaPapel(new PapelDBRepo());
         ILogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
         ILogicaPersona logicaPersona = new LogicaPersona(new PersonaDBRepo());
@@ -35,17 +37,25 @@ namespace Pruebas.PruebasLogica
         {
             DBCleanUp.CleanUp();
             logicaGenero.AgregarGenero(admin, accion);
-            logicaPersona.AltaPersona(actor, admin);
             logicaPelicula.AltaPelicula(pelicula, admin);
+            logicaPersona.AltaPersona(actor, admin);
         }
 
         [TestMethod]
         public void AsociarActorPeliculaTest()
         {
-            Papel papel = new Papel() { Nombre = "Harry", Actor = actor, Pelicula = pelicula }; 
+            Papel papel = new Papel() { Nombre = "Harry", Actor = actor, Pelicula = pelicula };
             logicaPapel.AsociarActorPelicula(papel, admin);
 
             Assert.IsTrue(logicaPapel.Papeles().Contains(papel));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(UsuarioNoPermitidoException))]
+        public void AsociarSinPermisoTest()
+        {
+            Papel papel = new Papel() { Nombre = "Harry", Actor = actor, Pelicula = pelicula };
+            logicaPapel.AsociarActorPelicula(papel, comun);
         }
 
         [TestMethod]
@@ -56,6 +66,15 @@ namespace Pruebas.PruebasLogica
             logicaPapel.DesasociarActorPelicula(papel, admin);
 
             Assert.IsFalse(logicaPapel.Papeles().Contains(papel));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(UsuarioNoPermitidoException))]
+        public void DesasociarSinPermisoTest()
+        {
+            Papel papel = new Papel() { Nombre = "Harry", Actor = actor, Pelicula = pelicula };
+            logicaPapel.AsociarActorPelicula(papel, admin);
+            logicaPapel.DesasociarActorPelicula(papel, comun);
         }
     }
 }

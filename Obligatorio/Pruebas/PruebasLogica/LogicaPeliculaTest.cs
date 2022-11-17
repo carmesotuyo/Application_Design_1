@@ -563,18 +563,18 @@ namespace Pruebas.PruebasLogica
 
 
 
-        static Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
-        static Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
-        static Persona kate = new Persona() { Id = 3, Nombre = "Kate", FotoPerfil = "foto" };
-        static Persona johnny = new Persona() { Id = 4, Nombre = "Johnny", FotoPerfil = "foto" };
-        static Persona helen = new Persona() { Id = 5, Nombre = "Helen", FotoPerfil = "foto" };
+        //static Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
+        //static Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
+        //static Persona kate = new Persona() { Id = 3, Nombre = "Kate", FotoPerfil = "foto" };
+        //static Persona johnny = new Persona() { Id = 4, Nombre = "Johnny", FotoPerfil = "foto" };
+        //static Persona helen = new Persona() { Id = 5, Nombre = "Helen", FotoPerfil = "foto" };
 
 
-        Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
-        Papel papelTom = new Papel() { Nombre = "papel tom", Actor = tom, Pelicula = unaPelicula };
-        Papel papelKate = new Papel() { Nombre = "papel kate", Actor = kate, Pelicula = unaPelicula };
-        Papel papelJohnny = new Papel() { Nombre = "papel johnny", Actor = johnny, Pelicula = unaPelicula };
-        Papel papelHelen = new Papel() { Nombre = "papel helen", Actor = helen, Pelicula = unaPelicula };
+        //Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
+        //Papel papelTom = new Papel() { Nombre = "papel tom", Actor = tom, Pelicula = unaPelicula };
+        //Papel papelKate = new Papel() { Nombre = "papel kate", Actor = kate, Pelicula = unaPelicula };
+        //Papel papelJohnny = new Papel() { Nombre = "papel johnny", Actor = johnny, Pelicula = unaPelicula };
+        //Papel papelHelen = new Papel() { Nombre = "papel helen", Actor = helen, Pelicula = unaPelicula };
 
 
         [TestMethod]
@@ -582,11 +582,23 @@ namespace Pruebas.PruebasLogica
         {
             logica.AltaPelicula(unaPelicula, admin);
 
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
+            Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
+            Persona kate = new Persona() { Id = 3, Nombre = "Kate", FotoPerfil = "foto" };
+            Persona johnny = new Persona() { Id = 4, Nombre = "Johnny", FotoPerfil = "foto" };
+            Persona helen = new Persona() { Id = 5, Nombre = "Helen", FotoPerfil = "foto" };
+
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
             logicaPersona.AltaPersona(kate, admin);
             logicaPersona.AltaPersona(johnny, admin);
             logicaPersona.AltaPersona(helen, admin);
+
+            Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
+            Papel papelTom = new Papel() { Nombre = "papel tom", Actor = tom, Pelicula = unaPelicula };
+            Papel papelKate = new Papel() { Nombre = "papel kate", Actor = kate, Pelicula = unaPelicula };
+            Papel papelJohnny = new Papel() { Nombre = "papel johnny", Actor = johnny, Pelicula = unaPelicula };
+            Papel papelHelen = new Papel() { Nombre = "papel helen", Actor = helen, Pelicula = unaPelicula };
 
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
             logicaPapel.AsociarActorPelicula(papelTom, admin);
@@ -606,9 +618,17 @@ namespace Pruebas.PruebasLogica
         {
             logica.AltaPelicula(unaPelicula, admin);
 
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
+            Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
+            Persona kate = new Persona() { Id = 3, Nombre = "Kate", FotoPerfil = "foto" };
+
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
             logicaPersona.AltaPersona(kate, admin);
+
+            Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
+            Papel papelTom = new Papel() { Nombre = "papel tom", Actor = tom, Pelicula = unaPelicula };
+            Papel papelKate = new Papel() { Nombre = "papel kate", Actor = kate, Pelicula = unaPelicula };
 
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
             logicaPapel.AsociarActorPelicula(papelTom, admin);
@@ -626,15 +646,28 @@ namespace Pruebas.PruebasLogica
         {
             logica.AltaPelicula(unaPelicula, admin);
 
-            Persona jennifer = new Persona() { Id = 6, Nombre = "Jennifer", FotoPerfil = "foto" };
-            Papel papelJennifer = new Papel() { Nombre = "papel Jennifer", Actor = jennifer, Pelicula = unaPelicula };
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
+            Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
+            Persona kate = new Persona() { Id = 3, Nombre = "Kate", FotoPerfil = "foto" };
+            Persona johnny = new Persona() { Id = 4, Nombre = "Johnny", FotoPerfil = "foto" };
+            Persona helen = new Persona() { Id = 5, Nombre = "Helen", FotoPerfil = "foto" };
 
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
             logicaPersona.AltaPersona(kate, admin);
             logicaPersona.AltaPersona(johnny, admin);
             logicaPersona.AltaPersona(helen, admin);
+
+            Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
+            Papel papelTom = new Papel() { Nombre = "papel tom", Actor = tom, Pelicula = unaPelicula };
+            Papel papelKate = new Papel() { Nombre = "papel kate", Actor = kate, Pelicula = unaPelicula };
+            Papel papelJohnny = new Papel() { Nombre = "papel johnny", Actor = johnny, Pelicula = unaPelicula };
+            Papel papelHelen = new Papel() { Nombre = "papel helen", Actor = helen, Pelicula = unaPelicula };
+
+            Persona jennifer = new Persona() { Id = 6, Nombre = "Jennifer", FotoPerfil = "foto" };
             logicaPersona.AltaPersona(jennifer, admin);
+
+            Papel papelJennifer = new Papel() { Nombre = "papel Jennifer", Actor = jennifer, Pelicula = unaPelicula };
 
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
             logicaPapel.AsociarActorPelicula(papelTom, admin);
@@ -653,6 +686,10 @@ namespace Pruebas.PruebasLogica
         public void DevolverDirectoresTest()
         {
             logica.AltaPelicula(unaPelicula, admin);
+
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
+            Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
+            Persona kate = new Persona() { Id = 3, Nombre = "Kate", FotoPerfil = "foto" };
 
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
@@ -674,6 +711,9 @@ namespace Pruebas.PruebasLogica
         {
             logica.AltaPelicula(unaPelicula, admin);
 
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
+            Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
+
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
 
@@ -691,6 +731,11 @@ namespace Pruebas.PruebasLogica
         {
             logica.AltaPelicula(unaPelicula, admin);
 
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
+            Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
+            Persona kate = new Persona() { Id = 3, Nombre = "Kate", FotoPerfil = "foto" };
+            Persona johnny = new Persona() { Id = 4, Nombre = "Johnny", FotoPerfil = "foto" };
+
             logicaPersona.AltaPersona(robert, admin);
             logicaPersona.AltaPersona(tom, admin);
             logicaPersona.AltaPersona(kate, admin);
@@ -705,7 +750,7 @@ namespace Pruebas.PruebasLogica
 
             //Assert.IsTrue(mostrarDirectores.Contains("Robert") && mostrarDirectores.Contains("Tom")
             //    && mostrarDirectores.Contains("Kate"));
-            Assert.IsFalse(mostrarDirectores.Contains("Johhny"));
+            //Assert.IsFalse(mostrarDirectores.Contains("Johhny"));
             Assert.AreEqual(mostrarDirectores, "Dirección: Robert. Tom. Kate. ");
         }
 
@@ -714,6 +759,8 @@ namespace Pruebas.PruebasLogica
         public void AsociarDirectorTest()
         {
             logica.AltaPelicula(unaPelicula, admin);
+
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
             logicaPersona.AltaPersona(robert, admin);
             logica.AsociarDirector(robert, unaPelicula, admin);
 
@@ -724,6 +771,8 @@ namespace Pruebas.PruebasLogica
         public void DesasociarDirectorTest()
         {
             logica.AltaPelicula(unaPelicula, admin);
+
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
             logicaPersona.AltaPersona(robert, admin);
             logica.AsociarDirector(robert, unaPelicula, admin);
             logica.DesasociarDirector(robert, unaPelicula, admin);
@@ -737,7 +786,12 @@ namespace Pruebas.PruebasLogica
         public void BuscarPeliculasDeActorTest()
         {
             logica.AltaPelicula(unaPelicula, admin);
+
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
+
             logicaPersona.AltaPersona(robert, admin);
+
+            Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
 
             List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActor(robert);
@@ -757,10 +811,15 @@ namespace Pruebas.PruebasLogica
             };
             logica.AltaPelicula(unaPelicula, admin);
             logica.AltaPelicula(otra, admin);
+
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
             logicaPersona.AltaPersona(robert, admin);
+
+            Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
+
             Papel otroPapel = new Papel() { Nombre = "papel otro", Actor = robert, Pelicula = otra };
-            logicaPapel.AsociarActorPelicula(papelRobert, admin);
+            logicaPapel.AsociarActorPelicula(otroPapel, admin);
 
             List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActor(robert);
             Assert.IsTrue(peliculasConRobertActuando.Contains(unaPelicula) && peliculasConRobertActuando.Contains(otra));
@@ -770,6 +829,8 @@ namespace Pruebas.PruebasLogica
         public void BuscarPeliculasDeDirectorTest()
         {
             logica.AltaPelicula(unaPelicula, admin);
+
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
             logicaPersona.AltaPersona(robert, admin);
             logica.AsociarDirector(robert, unaPelicula, admin);
 
@@ -790,6 +851,8 @@ namespace Pruebas.PruebasLogica
             };
             logica.AltaPelicula(unaPelicula, admin);
             logica.AltaPelicula(otra, admin);
+
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
             logicaPersona.AltaPersona(robert, admin);
             logica.AsociarDirector(robert, unaPelicula, admin);
             logica.AsociarDirector(robert, otra, admin);
@@ -802,9 +865,16 @@ namespace Pruebas.PruebasLogica
         public void DevolverListadoActoresTest()
         {
             logica.AltaPelicula(unaPelicula, admin);
+
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
             logicaPersona.AltaPersona(robert, admin);
+
+            Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
             logicaPersona.AltaPersona(tom, admin);
+
+            Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
+            Papel papelTom = new Papel() { Nombre = "papel tom", Actor = tom, Pelicula = unaPelicula };
             logicaPapel.AsociarActorPelicula(papelTom, admin);
 
             List<Papel> actores = logica.DevolverActores(unaPelicula);
@@ -816,7 +886,10 @@ namespace Pruebas.PruebasLogica
         public void DevolverListadoDirectoresTest()
         {
             logica.AltaPelicula(unaPelicula, admin);
+
+            Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
             logicaPersona.AltaPersona(robert, admin);
+            Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
             logicaPersona.AltaPersona(tom, admin);
             logica.AsociarDirector(robert, unaPelicula, admin);
             logica.AsociarDirector(tom, unaPelicula, admin);
