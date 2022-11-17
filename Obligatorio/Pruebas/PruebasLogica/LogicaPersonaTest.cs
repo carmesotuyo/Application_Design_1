@@ -20,7 +20,7 @@ namespace Pruebas.PruebasLogica
         ILogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
         ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
         Usuario admin = new Usuario() { EsAdministrador = true };
-        Persona persona = new Persona() { Id = 1, Nombre = "Juan" };
+        Persona persona = new Persona() { Id = 1, Nombre = "Juan", FotoPerfil = "foto" };
         static Genero comedia = new Genero() { Nombre = "comedia" };
         Pelicula pelicula = new Pelicula()
         {
