@@ -110,17 +110,17 @@ namespace InterfazUsuario
                 nombre.TabIndex = index;
                 flpPelicula.Controls.Add(nombre);
 
-                //string directoresStr = _logicaPelicula.Directores(pelicula, 3);
+                string directoresStr = _logicaPelicula.Directores(pelicula, 3);
                 Label directores = new Label();
                 directores.AutoSize = true;
-                directores.Text = "Director(es): Robert de Nilo, Brad Pit, fernando spillere, carmela sotuyo";//pelicula.Nombre;
+                directores.Text = directoresStr;//"Director(es): Robert de Nilo, Brad Pit, fernando spillere, carmela sotuyo";//pelicula.Nombre;
                 directores.TabIndex = index;
                 flpPelicula.Controls.Add(directores);
 
-                //string actoresStr = _logicaPelicula.Actores(pelicula, 5);
+                string actoresStr = _logicaPelicula.Actores(pelicula, 5);
                 Label actores = new Label();
                 actores.AutoSize = true;
-                actores.Text = "Actor(es): Robert de Nilo, Brad Pit";//pelicula.Nombre;
+                actores.Text = actoresStr;//"Actor(es): Robert de Nilo, Brad Pit";//pelicula.Nombre;
                 actores.TabIndex = index;
                 flpPelicula.Controls.Add(actores);
 

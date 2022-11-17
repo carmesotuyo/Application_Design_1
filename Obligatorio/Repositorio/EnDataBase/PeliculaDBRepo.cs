@@ -134,7 +134,7 @@ namespace Repositorio.EnDataBase
             {
                 string actores = "";
                 //tlmeContext.Peliculas.Attach(pelicula);
-                Pelicula encontrada = tlmeContext.Peliculas.Include(x=> x.Papeles).FirstOrDefault(x => x.Identificador == pelicula.Identificador);
+                Pelicula encontrada = tlmeContext.Peliculas.Include(x=> x.Papeles.Select(p=>p.Actor)).FirstOrDefault(x => x.Identificador == pelicula.Identificador);
                 for(int i=0; i < cantAMostrar && i < encontrada.Papeles.Count(); i++)
                 {
                     actores += encontrada.Papeles[i].Actor.Nombre +". ";
@@ -149,7 +149,7 @@ namespace Repositorio.EnDataBase
             {
                 string directores = "";
                 //tlmeContext.Peliculas.Attach(pelicula);
-                Pelicula encontrada = tlmeContext.Peliculas.Include(x => x.Papeles).FirstOrDefault(x => x.Identificador == pelicula.Identificador);
+                Pelicula encontrada = tlmeContext.Peliculas.Include(x=> x.Directores).Include(x => x.Papeles).FirstOrDefault(x => x.Identificador == pelicula.Identificador);
                 for (int i = 0; i < cantAMostrar && i < encontrada.Directores.Count(); i++)
                 {
                     directores += encontrada.Directores[i].Nombre + ". ";
@@ -164,6 +164,11 @@ namespace Repositorio.EnDataBase
             {
                 tlmeContext.Personas.Attach(director);
                 tlmeContext.Peliculas.Attach(pelicula);
+                //Persona dirEncontrado = tlmeContext.Personas.FirstOrDefault(x => x.Id == director.Id);
+                //Pelicula peliEncontrada = tlmeContext.Peliculas.FirstOrDefault(x => x.Identificador == pelicula.Identificador);
+                //tlmeContext.Entry(dirEncontrado).State = EntityState.Unchanged;
+                //tlmeContext.Entry(peliEncontrada).State = EntityState.Unchanged;
+
                 pelicula.Directores.Add(director);
                 tlmeContext.SaveChanges();
             }

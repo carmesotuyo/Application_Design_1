@@ -15,13 +15,13 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                //tlmeContext.Peliculas.Attach(papel.Pelicula);
-                //tlmeContext.Personas.Attach(papel.Actor);
-                Pelicula peliEncontrada = tlmeContext.Peliculas.Include(x=>x.Papeles).Include(x=>x.PerfilesQueLaVieron).Include(x=>x.Directores).FirstOrDefault(x => x.Identificador == papel.Pelicula.Identificador);
-                Persona personaEncontrada = tlmeContext.Personas.Include(x=>x.PapelesQueActua).Include(x=>x.PeliculasQueDirige).FirstOrDefault(x => x.Id == papel.Actor.Id);
+                tlmeContext.Peliculas.Attach(papel.Pelicula);
+                tlmeContext.Personas.Attach(papel.Actor);
+                //Pelicula peliEncontrada = tlmeContext.Peliculas.FirstOrDefault(x => x.Identificador == papel.Pelicula.Identificador);
+                //Persona personaEncontrada = tlmeContext.Personas.FirstOrDefault(x => x.Id == papel.Actor.Id);
 
-                tlmeContext.Entry(peliEncontrada).State = EntityState.Unchanged;
-                tlmeContext.Entry(personaEncontrada).State = EntityState.Unchanged;
+                //tlmeContext.Entry(peliEncontrada).State = EntityState.Unchanged;
+                //tlmeContext.Entry(personaEncontrada).State = EntityState.Unchanged;
                 tlmeContext.Papeles.Add(papel);
                 tlmeContext.SaveChanges();
             }
@@ -31,10 +31,13 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
+
                 //tlmeContext.Papeles.Attach(papel);
-                Papel papelABorrar = tlmeContext.Papeles.Include(x => x.Actor).Include(p => p.Pelicula)
-                    .FirstOrDefault(p => p.Nombre == papel.Nombre && p.Actor.Id == papel.Actor.Id
+                //tlmeContext.Papeles.Include(x => x.Actor).Include(p => p.Pelicula)
+
+                Papel papelABorrar = tlmeContext.Papeles.FirstOrDefault(p => p.Nombre == papel.Nombre && p.Actor.Id == papel.Actor.Id
                     && p.Pelicula.Identificador == papel.Pelicula.Identificador);
+                //tlmeContext.Papeles.Remove(papelABorrar);
                 tlmeContext.Papeles.Remove(papelABorrar);
                 tlmeContext.SaveChanges();
             }
@@ -44,7 +47,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                //tlmeContext.Papeles.Attach(papel);
+                tlmeContext.Papeles.Attach(papel);
                 return tlmeContext.Papeles.Include(x => x.Actor).Include(p => p.Pelicula).FirstOrDefault(p => p.Nombre == papel.Nombre 
                     && p.Actor.Id == papel.Actor.Id
                     && p.Pelicula.Identificador == papel.Pelicula.Identificador) != null;

@@ -18,43 +18,58 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaPeliculaTest
     {
-        static Genero terror = new Genero() { Nombre = "Terror" };
-        static Genero comedia = new Genero() { Nombre = "comedia" };
-        static Genero accion = new Genero() { Nombre = "accion" };
-        static Pelicula unaPelicula = new Pelicula()
-        {
-            Identificador = 1,
-            Nombre = "nombre",
-            GeneroPrincipal = comedia,
-            Descripcion = "algo",
-            Poster = "ruta"
-        };
         ILogicaPelicula logica = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
         ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
         LogicaPerfil logicaPerfil = new LogicaPerfil(new PerfilDBRepo(), new GeneroPuntajeDBRepo(), new PeliculaDBRepo(), new GeneroDBRepo());
         ILogicaUsuario logicaUsuario = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
         ILogicaPersona logicaPersona = new LogicaPersona(new PersonaDBRepo());
         ILogicaPapel logicaPapel = new LogicaPapel(new PapelDBRepo());
-        Usuario admin = new Usuario() { EsAdministrador = true };
-        static Usuario usuario = new Usuario()
-        {
-            Nombre = "NombreDeUsuario",
-            Email = "usuario@gmail.com",
-            Clave = "usuario123"
-        };
-        Perfil unPerfil = new Perfil()
-        {
-            Alias = "perfil",
-            Usuario = usuario,
-            Pin = 12345,
-            ConfirmarPin = 12345,
 
-        };
+        Genero terror;
+        Genero comedia;
+        Genero accion;
+        Pelicula unaPelicula;
+        
+        Usuario admin;
+        Usuario usuario;
+        Perfil unPerfil;
 
         [TestInitialize]
         public void Setup()
         {
             DBCleanUp.CleanUp();
+
+            admin = new Usuario() { EsAdministrador = true };
+
+            terror = new Genero() { Nombre = "Terror" };
+            comedia = new Genero() { Nombre = "comedia" };
+            accion = new Genero() { Nombre = "accion" };
+
+            unaPelicula = new Pelicula()
+            {
+                Identificador = 1,
+                Nombre = "nombre",
+                GeneroPrincipal = comedia,
+                Descripcion = "algo",
+                Poster = "ruta"
+            };
+
+            usuario = new Usuario()
+            {
+                Nombre = "NombreDeUsuario",
+                Email = "usuario@gmail.com",
+                Clave = "usuario123"
+            };
+
+            unPerfil = new Perfil()
+            {
+                Alias = "perfil",
+                Usuario = usuario,
+                Pin = 12345,
+                ConfirmarPin = 12345,
+
+            };
+
             logicaGenero.AgregarGenero(admin, comedia);
             logicaGenero.AgregarGenero(admin, accion);
             logicaGenero.AgregarGenero(admin, terror);
@@ -560,22 +575,6 @@ namespace Pruebas.PruebasLogica
 
             Assert.AreEqual(logica.CriterioSeleccionado(), criterio);
         }
-
-
-
-        //static Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
-        //static Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
-        //static Persona kate = new Persona() { Id = 3, Nombre = "Kate", FotoPerfil = "foto" };
-        //static Persona johnny = new Persona() { Id = 4, Nombre = "Johnny", FotoPerfil = "foto" };
-        //static Persona helen = new Persona() { Id = 5, Nombre = "Helen", FotoPerfil = "foto" };
-
-
-        //Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
-        //Papel papelTom = new Papel() { Nombre = "papel tom", Actor = tom, Pelicula = unaPelicula };
-        //Papel papelKate = new Papel() { Nombre = "papel kate", Actor = kate, Pelicula = unaPelicula };
-        //Papel papelJohnny = new Papel() { Nombre = "papel johnny", Actor = johnny, Pelicula = unaPelicula };
-        //Papel papelHelen = new Papel() { Nombre = "papel helen", Actor = helen, Pelicula = unaPelicula };
-
 
         [TestMethod]
         public void DevolverActoresTest()

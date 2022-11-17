@@ -24,45 +24,55 @@ namespace Pruebas.PruebasLogica
         ILogicaUsuario logicaUsuario = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
         ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
         LogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
-        Usuario admin = new Usuario() { EsAdministrador = true };
-        static Usuario usuario = new Usuario()
-        {
-            Nombre = "NombreDeUsuario",
-            Email = "usuario@gmail.com",
-            Clave = "usuario123",
-            ConfirmarClave = "usuario123"
-        };
-        Perfil unPerfil = new Perfil()
-        {
-            Alias = "perfil",
-            Usuario = usuario,
-            Pin = 12345,
-            ConfirmarPin = 12345,
-            EsOwner = true
-        };
-        Perfil perfilInfantil = new Perfil()
-        {
-            Alias = "infantil",
-            EsInfantil = false,
-            Usuario = usuario,
-            Pin = 12345,
-            ConfirmarPin = 12345
-        };
-        static Genero comedia = new Genero() { Nombre = "comedia" };
-        static Genero romance = new Genero() { Nombre = "romance" };
-        Pelicula unaPelicula = new Pelicula()
-        {
-            Identificador = 1,
-            Nombre = "nombre",
-            GeneroPrincipal = comedia,
-            Descripcion = "algo",
-            Poster = "ruta"
-        };
+
+        Usuario admin;
+        Usuario usuario;
+        Perfil unPerfil;
+        Perfil perfilInfantil;
+        Genero comedia;
+        Genero romance;
+        Pelicula unaPelicula;
 
         [TestInitialize]
         public void Setup()
         {
             DBCleanUp.CleanUp();
+
+            admin = new Usuario() { EsAdministrador = true };
+            usuario = new Usuario()
+            {
+                Nombre = "NombreDeUsuario",
+                Email = "usuario@gmail.com",
+                Clave = "usuario123",
+                ConfirmarClave = "usuario123"
+            };
+            unPerfil = new Perfil()
+            {
+                Alias = "perfil",
+                Usuario = usuario,
+                Pin = 12345,
+                ConfirmarPin = 12345,
+                EsOwner = true
+            };
+            perfilInfantil = new Perfil()
+            {
+                Alias = "infantil",
+                EsInfantil = false,
+                Usuario = usuario,
+                Pin = 12345,
+                ConfirmarPin = 12345
+            };
+            comedia = new Genero() { Nombre = "comedia" };
+            romance = new Genero() { Nombre = "romance" };
+            unaPelicula = new Pelicula()
+            {
+                Identificador = 1,
+                Nombre = "nombre",
+                GeneroPrincipal = comedia,
+                Descripcion = "algo",
+                Poster = "ruta"
+            };
+
             logicaUsuario.RegistrarUsuario(usuario);
             logicaUsuario.AgregarPerfil(usuario, unPerfil);
             logicaUsuario.AgregarPerfil(usuario, perfilInfantil);
