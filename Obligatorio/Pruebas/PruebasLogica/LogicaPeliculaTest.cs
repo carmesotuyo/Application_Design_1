@@ -599,17 +599,15 @@ namespace Pruebas.PruebasLogica
             Papel papelJohnny = new Papel() { Nombre = "papel johnny", Actor = johnny, Pelicula = unaPelicula };
             Papel papelHelen = new Papel() { Nombre = "papel helen", Actor = helen, Pelicula = unaPelicula };
 
+            logicaPapel.AsociarActorPelicula(papelHelen, admin);
+            logicaPapel.AsociarActorPelicula(papelJohnny, admin);
+            logicaPapel.AsociarActorPelicula(papelKate, admin);
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
             logicaPapel.AsociarActorPelicula(papelTom, admin);
-            logicaPapel.AsociarActorPelicula(papelKate, admin);
-            logicaPapel.AsociarActorPelicula(papelJohnny, admin);
-            logicaPapel.AsociarActorPelicula(papelHelen, admin);
 
             string mostrarActores = logica.Actores(unaPelicula, 5);
 
-            //Assert.IsTrue(mostrarActores.Contains("Robert") && mostrarActores.Contains("Tom")
-            //    && mostrarActores.Contains("Kate") && mostrarActores.Contains("Johnny") && mostrarActores.Contains("Helen"));
-            Assert.AreEqual(mostrarActores, "Elenco: Robert. Tom. Kate. Johnny. Helen. ");
+            Assert.AreEqual(mostrarActores, "Elenco: Helen. Johnny. Kate. Robert. Tom. ");
         }
 
         [TestMethod]
@@ -629,15 +627,13 @@ namespace Pruebas.PruebasLogica
             Papel papelTom = new Papel() { Nombre = "papel tom", Actor = tom, Pelicula = unaPelicula };
             Papel papelKate = new Papel() { Nombre = "papel kate", Actor = kate, Pelicula = unaPelicula };
 
+            logicaPapel.AsociarActorPelicula(papelKate, admin);
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
             logicaPapel.AsociarActorPelicula(papelTom, admin);
-            logicaPapel.AsociarActorPelicula(papelKate, admin);
 
             string mostrarActores = logica.Actores(unaPelicula, 5);
 
-            //Assert.IsTrue(mostrarActores.Contains("Robert") && mostrarActores.Contains("Tom")
-            //    && mostrarActores.Contains("Kate"));
-            Assert.AreEqual(mostrarActores, "Elenco: Robert. Tom. Kate. ");
+            Assert.AreEqual(mostrarActores, "Elenco: Kate. Robert. Tom. ");
         }
 
         [TestMethod]
@@ -668,17 +664,16 @@ namespace Pruebas.PruebasLogica
 
             Papel papelJennifer = new Papel() { Nombre = "papel Jennifer", Actor = jennifer, Pelicula = unaPelicula };
 
-            logicaPapel.AsociarActorPelicula(papelRobert, admin);
-            logicaPapel.AsociarActorPelicula(papelTom, admin);
-            logicaPapel.AsociarActorPelicula(papelKate, admin);
-            logicaPapel.AsociarActorPelicula(papelJohnny, admin);
             logicaPapel.AsociarActorPelicula(papelHelen, admin);
             logicaPapel.AsociarActorPelicula(papelJennifer, admin);
+            logicaPapel.AsociarActorPelicula(papelJohnny, admin);
+            logicaPapel.AsociarActorPelicula(papelKate, admin);
+            logicaPapel.AsociarActorPelicula(papelRobert, admin);
+            logicaPapel.AsociarActorPelicula(papelTom, admin);
 
             string mostrarActores = logica.Actores(unaPelicula, 5);
 
-            //Assert.IsFalse(mostrarActores.Contains("Jennifer")); 
-            Assert.AreEqual(mostrarActores, "Elenco: Robert. Tom. Kate. Johnny. Helen. ");
+            Assert.AreEqual(mostrarActores, "Elenco: Helen. Jennifer. Johnny. Kate. Robert. ");
         }
 
         [TestMethod]
@@ -700,8 +695,6 @@ namespace Pruebas.PruebasLogica
 
             string mostrarDirectores = logica.Directores(unaPelicula, 3);
 
-            //Assert.IsTrue(mostrarDirectores.Contains("Robert") && mostrarDirectores.Contains("Tom")
-            //    && mostrarDirectores.Contains("Kate"));
             Assert.AreEqual(mostrarDirectores, "Dirección: Robert. Tom. Kate. ");
         }
 
@@ -721,7 +714,6 @@ namespace Pruebas.PruebasLogica
 
             string mostrarDirectores = logica.Directores(unaPelicula, 3);
 
-            //Assert.IsTrue(mostrarDirectores.Contains("Robert") && mostrarDirectores.Contains("Tom"));
             Assert.AreEqual(mostrarDirectores, "Dirección: Robert. Tom. ");
         }
 
@@ -747,9 +739,6 @@ namespace Pruebas.PruebasLogica
 
             string mostrarDirectores = logica.Directores(unaPelicula, 3);
 
-            //Assert.IsTrue(mostrarDirectores.Contains("Robert") && mostrarDirectores.Contains("Tom")
-            //    && mostrarDirectores.Contains("Kate"));
-            //Assert.IsFalse(mostrarDirectores.Contains("Johhny"));
             Assert.AreEqual(mostrarDirectores, "Dirección: Robert. Tom. Kate. ");
         }
 
