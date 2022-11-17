@@ -59,7 +59,7 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                return tlmeContext.Personas.ToList();
+                return tlmeContext.Personas.Include(x => x.PapelesQueActua).Include(x => x.PeliculasQueDirige).ToList();
             }
         }
     }

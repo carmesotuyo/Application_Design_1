@@ -15,10 +15,13 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                tlmeContext.Peliculas.Attach(papel.Pelicula);
-                tlmeContext.Personas.Attach(papel.Actor);
-                //tlmeContext.Entry(papel.Pelicula).State = EntityState.Unchanged;
-                //tlmeContext.Entry(papel.Actor).State = EntityState.Unchanged;
+                //tlmeContext.Peliculas.Attach(papel.Pelicula);
+                //tlmeContext.Personas.Attach(papel.Actor);
+                Pelicula peliEncontrada = tlmeContext.Peliculas.Include(x=>x.Papeles).Include(x=>x.PerfilesQueLaVieron).Include(x=>x.Directores).FirstOrDefault(x => x.Identificador == papel.Pelicula.Identificador);
+                Persona personaEncontrada = tlmeContext.Personas.Include(x=>x.PapelesQueActua).Include(x=>x.PeliculasQueDirige).FirstOrDefault(x => x.Id == papel.Actor.Id);
+
+                tlmeContext.Entry(peliEncontrada).State = EntityState.Unchanged;
+                tlmeContext.Entry(personaEncontrada).State = EntityState.Unchanged;
                 tlmeContext.Papeles.Add(papel);
                 tlmeContext.SaveChanges();
             }

@@ -21,14 +21,24 @@ namespace Logica.Implementaciones
         public void AsociarActorPelicula(Papel papel, Usuario admin)
         {
             BloquearUsuarioNoAdmin(admin);
+            papelNull(papel);
             _repo.AgregarPapel(papel);
         }
 
         public void DesasociarActorPelicula(Papel papel, Usuario admin)
         {
             BloquearUsuarioNoAdmin(admin);
+            papelNull(papel);
             VerificarQueExiste(papel);
             _repo.EliminarPapel(papel);
+        }
+
+        public void papelNull(Papel papel)
+        {
+            if (papel == null)
+            {
+                throw new PapelNullException();
+            }
         }
 
         private void BloquearUsuarioNoAdmin(Usuario admin)

@@ -9,4 +9,7 @@ namespace Logica.Exceptions
     public class PapelInexistenteException : Exception
     {
     }
+    public class PapelNullException : Exception
+    {
+    }
 }

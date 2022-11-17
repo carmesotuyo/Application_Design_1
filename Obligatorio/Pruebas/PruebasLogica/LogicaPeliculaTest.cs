@@ -794,7 +794,10 @@ namespace Pruebas.PruebasLogica
             Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
 
-            List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActor(robert);
+            List<Persona> actores = new List<Persona>();
+            actores.Add(robert);
+
+            List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActores(actores);
             Assert.IsTrue(peliculasConRobertActuando.Contains(unaPelicula));
         }
 
@@ -821,7 +824,10 @@ namespace Pruebas.PruebasLogica
             Papel otroPapel = new Papel() { Nombre = "papel otro", Actor = robert, Pelicula = otra };
             logicaPapel.AsociarActorPelicula(otroPapel, admin);
 
-            List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActor(robert);
+            List<Persona> actores = new List<Persona>();
+            actores.Add(robert);
+
+            List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActores(actores);
             Assert.IsTrue(peliculasConRobertActuando.Contains(unaPelicula) && peliculasConRobertActuando.Contains(otra));
         }
 
@@ -834,7 +840,10 @@ namespace Pruebas.PruebasLogica
             logicaPersona.AltaPersona(robert, admin);
             logica.AsociarDirector(robert, unaPelicula, admin);
 
-            List<Pelicula> peliculasConRobertDirigiendo = logica.BuscarPorDirector(robert);
+            List<Persona> actores = new List<Persona>();
+            actores.Add(robert);
+
+            List<Pelicula> peliculasConRobertDirigiendo = logica.BuscarPorDirectores(actores);
             Assert.IsTrue(peliculasConRobertDirigiendo.Contains(unaPelicula));
         }
 
@@ -857,7 +866,10 @@ namespace Pruebas.PruebasLogica
             logica.AsociarDirector(robert, unaPelicula, admin);
             logica.AsociarDirector(robert, otra, admin);
 
-            List<Pelicula> peliculasConRobertDirigiendo = logica.BuscarPorDirector(robert);
+            List<Persona> actores = new List<Persona>();
+            actores.Add(robert);
+
+            List<Pelicula> peliculasConRobertDirigiendo = logica.BuscarPorDirectores(actores);
             Assert.IsTrue(peliculasConRobertDirigiendo.Contains(unaPelicula) && peliculasConRobertDirigiendo.Contains(otra));
         }
 
