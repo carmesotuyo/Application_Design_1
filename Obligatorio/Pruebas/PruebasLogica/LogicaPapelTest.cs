@@ -15,27 +15,35 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaPapelTest
     {
-        static Persona actor = new Persona() { Id = 1, Nombre = "daniel", FotoPerfil = "foto" };
-        static Genero accion = new Genero() { Nombre = "accion" };
-        static Pelicula pelicula = new Pelicula()
-        {
-            Identificador = 1,
-            Nombre = "nombre",
-            GeneroPrincipal = accion,
-            Descripcion = "algo",
-            Poster = "ruta"
-        };
-        Usuario admin = new Usuario() { EsAdministrador = true };
-        Usuario comun = new Usuario() { EsAdministrador = false };
         ILogicaPapel logicaPapel = new LogicaPapel(new PapelDBRepo());
         ILogicaPelicula logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
         ILogicaPersona logicaPersona = new LogicaPersona(new PersonaDBRepo());
         ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
 
+        static Persona actor;
+        static Genero accion;
+        static Pelicula pelicula;
+        Usuario admin;
+        Usuario comun;
+
         [TestInitialize]
         public void Setup()
         {
             DBCleanUp.CleanUp();
+
+            actor = new Persona() { Id = 1, Nombre = "daniel", FotoPerfil = "foto" };
+            accion = new Genero() { Nombre = "accion" };
+            pelicula = new Pelicula()
+            {
+                Identificador = 1,
+                Nombre = "nombre",
+                GeneroPrincipal = accion,
+                Descripcion = "algo",
+                Poster = "ruta"
+            };
+            admin = new Usuario() { EsAdministrador = true };
+            comun = new Usuario() { EsAdministrador = false };
+
             logicaGenero.AgregarGenero(admin, accion);
             logicaPelicula.AltaPelicula(pelicula, admin);
             logicaPersona.AltaPersona(actor, admin);

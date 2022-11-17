@@ -18,43 +18,58 @@ namespace Pruebas.PruebasLogica
     [TestClass]
     public class LogicaPeliculaTest
     {
-        static Genero terror = new Genero() { Nombre = "Terror" };
-        static Genero comedia = new Genero() { Nombre = "comedia" };
-        static Genero accion = new Genero() { Nombre = "accion" };
-        static Pelicula unaPelicula = new Pelicula()
-        {
-            Identificador = 1,
-            Nombre = "nombre",
-            GeneroPrincipal = comedia,
-            Descripcion = "algo",
-            Poster = "ruta"
-        };
         ILogicaPelicula logica = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
         ILogicaGenero logicaGenero = new LogicaGenero(new GeneroDBRepo());
         LogicaPerfil logicaPerfil = new LogicaPerfil(new PerfilDBRepo(), new GeneroPuntajeDBRepo(), new PeliculaDBRepo(), new GeneroDBRepo());
         ILogicaUsuario logicaUsuario = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
         ILogicaPersona logicaPersona = new LogicaPersona(new PersonaDBRepo());
         ILogicaPapel logicaPapel = new LogicaPapel(new PapelDBRepo());
-        Usuario admin = new Usuario() { EsAdministrador = true };
-        static Usuario usuario = new Usuario()
-        {
-            Nombre = "NombreDeUsuario",
-            Email = "usuario@gmail.com",
-            Clave = "usuario123"
-        };
-        Perfil unPerfil = new Perfil()
-        {
-            Alias = "perfil",
-            Usuario = usuario,
-            Pin = 12345,
-            ConfirmarPin = 12345,
 
-        };
+        Genero terror;
+        Genero comedia;
+        Genero accion;
+        Pelicula unaPelicula;
+        
+        Usuario admin;
+        Usuario usuario;
+        Perfil unPerfil;
 
         [TestInitialize]
         public void Setup()
         {
             DBCleanUp.CleanUp();
+
+            admin = new Usuario() { EsAdministrador = true };
+
+            terror = new Genero() { Nombre = "Terror" };
+            comedia = new Genero() { Nombre = "comedia" };
+            accion = new Genero() { Nombre = "accion" };
+
+            unaPelicula = new Pelicula()
+            {
+                Identificador = 1,
+                Nombre = "nombre",
+                GeneroPrincipal = comedia,
+                Descripcion = "algo",
+                Poster = "ruta"
+            };
+
+            usuario = new Usuario()
+            {
+                Nombre = "NombreDeUsuario",
+                Email = "usuario@gmail.com",
+                Clave = "usuario123"
+            };
+
+            unPerfil = new Perfil()
+            {
+                Alias = "perfil",
+                Usuario = usuario,
+                Pin = 12345,
+                ConfirmarPin = 12345,
+
+            };
+
             logicaGenero.AgregarGenero(admin, comedia);
             logicaGenero.AgregarGenero(admin, accion);
             logicaGenero.AgregarGenero(admin, terror);
@@ -561,22 +576,6 @@ namespace Pruebas.PruebasLogica
             Assert.AreEqual(logica.CriterioSeleccionado(), criterio);
         }
 
-
-
-        //static Persona robert = new Persona() { Id = 1, Nombre = "Robert", FotoPerfil = "foto" };
-        //static Persona tom = new Persona() { Id = 2, Nombre = "Tom", FotoPerfil = "foto" };
-        //static Persona kate = new Persona() { Id = 3, Nombre = "Kate", FotoPerfil = "foto" };
-        //static Persona johnny = new Persona() { Id = 4, Nombre = "Johnny", FotoPerfil = "foto" };
-        //static Persona helen = new Persona() { Id = 5, Nombre = "Helen", FotoPerfil = "foto" };
-
-
-        //Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
-        //Papel papelTom = new Papel() { Nombre = "papel tom", Actor = tom, Pelicula = unaPelicula };
-        //Papel papelKate = new Papel() { Nombre = "papel kate", Actor = kate, Pelicula = unaPelicula };
-        //Papel papelJohnny = new Papel() { Nombre = "papel johnny", Actor = johnny, Pelicula = unaPelicula };
-        //Papel papelHelen = new Papel() { Nombre = "papel helen", Actor = helen, Pelicula = unaPelicula };
-
-
         [TestMethod]
         public void DevolverActoresTest()
         {
@@ -600,17 +599,15 @@ namespace Pruebas.PruebasLogica
             Papel papelJohnny = new Papel() { Nombre = "papel johnny", Actor = johnny, Pelicula = unaPelicula };
             Papel papelHelen = new Papel() { Nombre = "papel helen", Actor = helen, Pelicula = unaPelicula };
 
+            logicaPapel.AsociarActorPelicula(papelHelen, admin);
+            logicaPapel.AsociarActorPelicula(papelJohnny, admin);
+            logicaPapel.AsociarActorPelicula(papelKate, admin);
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
             logicaPapel.AsociarActorPelicula(papelTom, admin);
-            logicaPapel.AsociarActorPelicula(papelKate, admin);
-            logicaPapel.AsociarActorPelicula(papelJohnny, admin);
-            logicaPapel.AsociarActorPelicula(papelHelen, admin);
 
             string mostrarActores = logica.Actores(unaPelicula, 5);
 
-            //Assert.IsTrue(mostrarActores.Contains("Robert") && mostrarActores.Contains("Tom")
-            //    && mostrarActores.Contains("Kate") && mostrarActores.Contains("Johnny") && mostrarActores.Contains("Helen"));
-            Assert.AreEqual(mostrarActores, "Elenco: Robert. Tom. Kate. Johnny. Helen. ");
+            Assert.AreEqual(mostrarActores, "Elenco: Helen. Johnny. Kate. Robert. Tom. ");
         }
 
         [TestMethod]
@@ -630,15 +627,13 @@ namespace Pruebas.PruebasLogica
             Papel papelTom = new Papel() { Nombre = "papel tom", Actor = tom, Pelicula = unaPelicula };
             Papel papelKate = new Papel() { Nombre = "papel kate", Actor = kate, Pelicula = unaPelicula };
 
+            logicaPapel.AsociarActorPelicula(papelKate, admin);
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
             logicaPapel.AsociarActorPelicula(papelTom, admin);
-            logicaPapel.AsociarActorPelicula(papelKate, admin);
 
             string mostrarActores = logica.Actores(unaPelicula, 5);
 
-            //Assert.IsTrue(mostrarActores.Contains("Robert") && mostrarActores.Contains("Tom")
-            //    && mostrarActores.Contains("Kate"));
-            Assert.AreEqual(mostrarActores, "Elenco: Robert. Tom. Kate. ");
+            Assert.AreEqual(mostrarActores, "Elenco: Kate. Robert. Tom. ");
         }
 
         [TestMethod]
@@ -669,17 +664,16 @@ namespace Pruebas.PruebasLogica
 
             Papel papelJennifer = new Papel() { Nombre = "papel Jennifer", Actor = jennifer, Pelicula = unaPelicula };
 
-            logicaPapel.AsociarActorPelicula(papelRobert, admin);
-            logicaPapel.AsociarActorPelicula(papelTom, admin);
-            logicaPapel.AsociarActorPelicula(papelKate, admin);
-            logicaPapel.AsociarActorPelicula(papelJohnny, admin);
             logicaPapel.AsociarActorPelicula(papelHelen, admin);
             logicaPapel.AsociarActorPelicula(papelJennifer, admin);
+            logicaPapel.AsociarActorPelicula(papelJohnny, admin);
+            logicaPapel.AsociarActorPelicula(papelKate, admin);
+            logicaPapel.AsociarActorPelicula(papelRobert, admin);
+            logicaPapel.AsociarActorPelicula(papelTom, admin);
 
             string mostrarActores = logica.Actores(unaPelicula, 5);
 
-            //Assert.IsFalse(mostrarActores.Contains("Jennifer")); 
-            Assert.AreEqual(mostrarActores, "Elenco: Robert. Tom. Kate. Johnny. Helen. ");
+            Assert.AreEqual(mostrarActores, "Elenco: Helen. Jennifer. Johnny. Kate. Robert. ");
         }
 
         [TestMethod]
@@ -701,8 +695,6 @@ namespace Pruebas.PruebasLogica
 
             string mostrarDirectores = logica.Directores(unaPelicula, 3);
 
-            //Assert.IsTrue(mostrarDirectores.Contains("Robert") && mostrarDirectores.Contains("Tom")
-            //    && mostrarDirectores.Contains("Kate"));
             Assert.AreEqual(mostrarDirectores, "Dirección: Robert. Tom. Kate. ");
         }
 
@@ -722,7 +714,6 @@ namespace Pruebas.PruebasLogica
 
             string mostrarDirectores = logica.Directores(unaPelicula, 3);
 
-            //Assert.IsTrue(mostrarDirectores.Contains("Robert") && mostrarDirectores.Contains("Tom"));
             Assert.AreEqual(mostrarDirectores, "Dirección: Robert. Tom. ");
         }
 
@@ -748,9 +739,6 @@ namespace Pruebas.PruebasLogica
 
             string mostrarDirectores = logica.Directores(unaPelicula, 3);
 
-            //Assert.IsTrue(mostrarDirectores.Contains("Robert") && mostrarDirectores.Contains("Tom")
-            //    && mostrarDirectores.Contains("Kate"));
-            //Assert.IsFalse(mostrarDirectores.Contains("Johhny"));
             Assert.AreEqual(mostrarDirectores, "Dirección: Robert. Tom. Kate. ");
         }
 
@@ -794,7 +782,10 @@ namespace Pruebas.PruebasLogica
             Papel papelRobert = new Papel() { Nombre = "papel robert", Actor = robert, Pelicula = unaPelicula };
             logicaPapel.AsociarActorPelicula(papelRobert, admin);
 
-            List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActor(robert);
+            List<Persona> actores = new List<Persona>();
+            actores.Add(robert);
+
+            List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActores(actores);
             Assert.IsTrue(peliculasConRobertActuando.Contains(unaPelicula));
         }
 
@@ -821,7 +812,10 @@ namespace Pruebas.PruebasLogica
             Papel otroPapel = new Papel() { Nombre = "papel otro", Actor = robert, Pelicula = otra };
             logicaPapel.AsociarActorPelicula(otroPapel, admin);
 
-            List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActor(robert);
+            List<Persona> actores = new List<Persona>();
+            actores.Add(robert);
+
+            List<Pelicula> peliculasConRobertActuando = logica.BuscarPorActores(actores);
             Assert.IsTrue(peliculasConRobertActuando.Contains(unaPelicula) && peliculasConRobertActuando.Contains(otra));
         }
 
@@ -834,7 +828,10 @@ namespace Pruebas.PruebasLogica
             logicaPersona.AltaPersona(robert, admin);
             logica.AsociarDirector(robert, unaPelicula, admin);
 
-            List<Pelicula> peliculasConRobertDirigiendo = logica.BuscarPorDirector(robert);
+            List<Persona> actores = new List<Persona>();
+            actores.Add(robert);
+
+            List<Pelicula> peliculasConRobertDirigiendo = logica.BuscarPorDirectores(actores);
             Assert.IsTrue(peliculasConRobertDirigiendo.Contains(unaPelicula));
         }
 
@@ -857,7 +854,10 @@ namespace Pruebas.PruebasLogica
             logica.AsociarDirector(robert, unaPelicula, admin);
             logica.AsociarDirector(robert, otra, admin);
 
-            List<Pelicula> peliculasConRobertDirigiendo = logica.BuscarPorDirector(robert);
+            List<Persona> actores = new List<Persona>();
+            actores.Add(robert);
+
+            List<Pelicula> peliculasConRobertDirigiendo = logica.BuscarPorDirectores(actores);
             Assert.IsTrue(peliculasConRobertDirigiendo.Contains(unaPelicula) && peliculasConRobertDirigiendo.Contains(otra));
         }
 

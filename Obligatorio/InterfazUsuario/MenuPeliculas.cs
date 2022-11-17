@@ -51,12 +51,12 @@ namespace InterfazUsuario
             }
         }
 
-        private void MostrarPeliculas()
+        private void MostrarPeliculas(List<Pelicula> listaPeliculas)
         {
             int index = 0;
             int anchoPelicula = (int)(flpListaPelis.Width*0.3);
             int alturaPelicula = flpListaPelis.Height;
-            foreach (Pelicula pelicula in _logicaPelicula.MostrarPeliculas(_perfil))
+            foreach (Pelicula pelicula in listaPeliculas)
             {
                 FlowLayoutPanel flpPelicula = new System.Windows.Forms.FlowLayoutPanel();
                 flpPelicula.BackColor = SystemColors.Control;
@@ -110,15 +110,17 @@ namespace InterfazUsuario
                 nombre.TabIndex = index;
                 flpPelicula.Controls.Add(nombre);
 
+                string directoresStr = _logicaPelicula.Directores(pelicula, 3);
                 Label directores = new Label();
                 directores.AutoSize = true;
-                directores.Text = "Director(es): Robert de Nilo, Brad Pit, fernando spillere, carmela sotuyo";//pelicula.Nombre;
+                directores.Text = directoresStr;
                 directores.TabIndex = index;
                 flpPelicula.Controls.Add(directores);
 
+                string actoresStr = _logicaPelicula.Actores(pelicula, 5);
                 Label actores = new Label();
                 actores.AutoSize = true;
-                actores.Text = "Actor(es): Robert de Nilo, Brad Pit";//pelicula.Nombre;
+                actores.Text = actoresStr;
                 actores.TabIndex = index;
                 flpPelicula.Controls.Add(actores);
 
@@ -129,7 +131,7 @@ namespace InterfazUsuario
         private void MostrarTodas()
         {
             flpListaPelis.Controls.Clear();
-            MostrarPeliculas();
+            MostrarPeliculas(_logicaPelicula.MostrarPeliculas(_perfil));
 
         }
 
@@ -172,12 +174,16 @@ namespace InterfazUsuario
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            panelBuscar();
+        }
+
+        private void panelBuscar()
+        {
             flpListaPelis.Controls.Clear();
             flpListaPelis.Controls.Add(LBPersonas);
             flpListaPelis.Controls.Add(btnBuscarDirector);
             flpListaPelis.Controls.Add(btnBuscarActor);
             ActualizarBoxPersonas();
-
         }
 
         private void ActualizarBoxPersonas()
@@ -188,12 +194,24 @@ namespace InterfazUsuario
 
         private void btnBuscarDirector_Click(object sender, EventArgs e)
         {
-            MostrarVistas();
+            List<Persona> listaDirectores = new List<Persona>();
+            foreach (Persona director in LBPersonas.SelectedItems)
+            {
+                listaDirectores.Add(director);
+            }
+            panelBuscar();
+            MostrarPeliculas(_logicaPelicula.BuscarPorDirectores(listaDirectores));
         }
 
         private void btnBuscarActor_Click(object sender, EventArgs e)
         {
-            MostrarTodas();
+            List<Persona> listaActores = new List<Persona>();
+            foreach (Persona actor in LBPersonas.SelectedItems)
+            {
+                listaActores.Add(actor);
+            }
+            panelBuscar();
+            MostrarPeliculas(_logicaPelicula.BuscarPorActores(listaActores));
         }
     }
 }

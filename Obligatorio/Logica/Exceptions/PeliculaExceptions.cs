@@ -9,4 +9,16 @@ namespace Logica.Exceptions
     public class CriterioInexistenteException : Exception
     {
     }
+    public class PersonaNullException : Exception
+    {
+    }
+    public class PeliculaNullException : Exception
+    {
+    }
+    public class DirectorRepetidoException : Exception
+    {
+    }
+    
+
+
 }

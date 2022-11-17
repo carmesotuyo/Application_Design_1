@@ -7,6 +7,7 @@ using Repositorio.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -172,14 +173,43 @@ namespace Logica.Implementaciones
         public void AsociarDirector(Persona director, Pelicula pelicula, Usuario admin)
         {
             BloquearUsuarioNoAdmin(admin);
+            personaNull(director);
+            validarDirectorrepetido(director, pelicula);
+            peliculaNull(pelicula);
             ChequearQueExiste(director);
             _repo.AsociarDirector(director, pelicula);
+        }
+
+        private void validarDirectorrepetido(Persona director, Pelicula pelicula)
+        {
+            if (pelicula.Directores.Contains(director))//(director.PeliculasQueDirige.Contains(pelicula))
+            {
+                throw new DirectorRepetidoException();
+            }
         }
 
         public void DesasociarDirector(Persona director, Pelicula pelicula, Usuario admin)
         {
             BloquearUsuarioNoAdmin(admin);
+            peliculaNull(pelicula);
+            personaNull(director);
             _repo.DesasociarDirector(director, pelicula);
+        }
+
+        public void personaNull(Persona persona)
+        {
+            if (persona == null)
+            {
+                throw new PersonaNullException();
+            }
+        }
+
+        public void peliculaNull(Pelicula pelicula)
+        {
+            if (pelicula == null)
+            {
+                throw new PeliculaNullException();
+            }
         }
 
         private void ChequearQueExiste(Persona persona)
@@ -190,14 +220,40 @@ namespace Logica.Implementaciones
             }
         }
 
-        public List<Pelicula> BuscarPorActor(Persona actor)
+        public List<Pelicula> BuscarPorActores(List<Persona> actores)
         {
-            return _repo.BuscarPorActor(actor);
+            List<Pelicula> peliculasPorActores = new List<Pelicula>();
+            foreach (Persona actor in actores)
+            {
+                foreach (Pelicula pelicula in _repo.BuscarPorActor(actor))
+                {
+                    if (!peliculasPorActores.Contains(pelicula))
+                    {
+                        peliculasPorActores.Add(pelicula);
+                    }
+
+                }
+
+            }
+            return peliculasPorActores;
         }
 
-        public List<Pelicula> BuscarPorDirector(Persona director)
+        public List<Pelicula> BuscarPorDirectores(List<Persona> directores)
         {
-            return _repo.BuscarPorDirector(director);
+            List < Pelicula > peliculasPorDirectores = new List < Pelicula >();
+            foreach (Persona director in directores)
+            {
+                foreach (Pelicula pelicula in _repo.BuscarPorDirector(director))
+                {
+                    if(!peliculasPorDirectores.Contains(pelicula))
+                    {
+                        peliculasPorDirectores.Add(pelicula);
+                    }
+                    
+                }
+
+            }
+            return peliculasPorDirectores;
         }
 
         public List<Papel> DevolverActores(Pelicula pelicula)
