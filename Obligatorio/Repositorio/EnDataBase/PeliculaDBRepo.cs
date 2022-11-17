@@ -153,7 +153,7 @@ namespace Repositorio.EnDataBase
                 }
                 return directores;
             }
-        }
+        }   
 
         public void AsociarDirector(Persona director, Pelicula pelicula)
         {

@@ -29,14 +29,12 @@
         private void InitializeComponent()
         {
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.LBPersonas = new System.Windows.Forms.ListBox();
             this.CBPeliculas = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.CBPersonas = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.LBPapeles = new System.Windows.Forms.ListBox();
             this.btnDesasociarDirector = new System.Windows.Forms.Button();
             this.btnDesasociarPapel = new System.Windows.Forms.Button();
             this.RBDirector = new System.Windows.Forms.RadioButton();
@@ -44,6 +42,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtPapel = new System.Windows.Forms.TextBox();
             this.btnAsociar = new System.Windows.Forms.Button();
+            this.CBDirectores = new System.Windows.Forms.ComboBox();
+            this.CBPapeles = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -52,19 +52,9 @@
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblTitulo.Location = new System.Drawing.Point(283, 19);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(240, 31);
+            this.lblTitulo.Size = new System.Drawing.Size(192, 25);
             this.lblTitulo.TabIndex = 5;
             this.lblTitulo.Text = "Asociar / Desasociar";
-            // 
-            // LBPersonas
-            // 
-            this.LBPersonas.FormattingEnabled = true;
-            this.LBPersonas.ItemHeight = 16;
-            this.LBPersonas.Location = new System.Drawing.Point(104, 156);
-            this.LBPersonas.Name = "LBPersonas";
-            this.LBPersonas.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.LBPersonas.Size = new System.Drawing.Size(233, 100);
-            this.LBPersonas.TabIndex = 7;
             // 
             // CBPeliculas
             // 
@@ -73,6 +63,7 @@
             this.CBPeliculas.Name = "CBPeliculas";
             this.CBPeliculas.Size = new System.Drawing.Size(233, 24);
             this.CBPeliculas.TabIndex = 8;
+            this.CBPeliculas.SelectedIndexChanged += new System.EventHandler(this.CBPeliculas_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -112,25 +103,15 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(106, 310);
+            this.label4.Location = new System.Drawing.Point(101, 240);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 16);
             this.label4.TabIndex = 14;
             this.label4.Text = "Papeles:";
             // 
-            // LBPapeles
-            // 
-            this.LBPapeles.FormattingEnabled = true;
-            this.LBPapeles.ItemHeight = 16;
-            this.LBPapeles.Location = new System.Drawing.Point(106, 329);
-            this.LBPapeles.Name = "LBPapeles";
-            this.LBPapeles.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.LBPapeles.Size = new System.Drawing.Size(233, 100);
-            this.LBPapeles.TabIndex = 13;
-            // 
             // btnDesasociarDirector
             // 
-            this.btnDesasociarDirector.Location = new System.Drawing.Point(104, 262);
+            this.btnDesasociarDirector.Location = new System.Drawing.Point(104, 191);
             this.btnDesasociarDirector.Name = "btnDesasociarDirector";
             this.btnDesasociarDirector.Size = new System.Drawing.Size(107, 26);
             this.btnDesasociarDirector.TabIndex = 15;
@@ -139,7 +120,7 @@
             // 
             // btnDesasociarPapel
             // 
-            this.btnDesasociarPapel.Location = new System.Drawing.Point(106, 435);
+            this.btnDesasociarPapel.Location = new System.Drawing.Point(104, 289);
             this.btnDesasociarPapel.Name = "btnDesasociarPapel";
             this.btnDesasociarPapel.Size = new System.Drawing.Size(105, 30);
             this.btnDesasociarPapel.TabIndex = 16;
@@ -194,11 +175,30 @@
             this.btnAsociar.TabIndex = 21;
             this.btnAsociar.Text = "Asociar";
             this.btnAsociar.UseVisualStyleBackColor = true;
+            this.btnAsociar.Click += new System.EventHandler(this.btnAsociar_Click);
+            // 
+            // CBDirectores
+            // 
+            this.CBDirectores.FormattingEnabled = true;
+            this.CBDirectores.Location = new System.Drawing.Point(104, 161);
+            this.CBDirectores.Name = "CBDirectores";
+            this.CBDirectores.Size = new System.Drawing.Size(233, 24);
+            this.CBDirectores.TabIndex = 22;
+            // 
+            // CBPapeles
+            // 
+            this.CBPapeles.FormattingEnabled = true;
+            this.CBPapeles.Location = new System.Drawing.Point(104, 259);
+            this.CBPapeles.Name = "CBPapeles";
+            this.CBPapeles.Size = new System.Drawing.Size(233, 24);
+            this.CBPapeles.TabIndex = 23;
             // 
             // AsociarPersona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CBPapeles);
+            this.Controls.Add(this.CBDirectores);
             this.Controls.Add(this.btnAsociar);
             this.Controls.Add(this.txtPapel);
             this.Controls.Add(this.label5);
@@ -207,16 +207,15 @@
             this.Controls.Add(this.btnDesasociarPapel);
             this.Controls.Add(this.btnDesasociarDirector);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.LBPapeles);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.CBPersonas);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CBPeliculas);
-            this.Controls.Add(this.LBPersonas);
             this.Controls.Add(this.lblTitulo);
             this.Name = "AsociarPersona";
             this.Size = new System.Drawing.Size(794, 533);
+            this.Load += new System.EventHandler(this.AsociarPersona_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,14 +223,12 @@
 
         #endregion
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.ListBox LBPersonas;
         private System.Windows.Forms.ComboBox CBPeliculas;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox CBPersonas;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox LBPapeles;
         private System.Windows.Forms.Button btnDesasociarDirector;
         private System.Windows.Forms.Button btnDesasociarPapel;
         private System.Windows.Forms.RadioButton RBDirector;
@@ -239,5 +236,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPapel;
         private System.Windows.Forms.Button btnAsociar;
+        private System.Windows.Forms.ComboBox CBDirectores;
+        private System.Windows.Forms.ComboBox CBPapeles;
     }
 }
