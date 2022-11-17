@@ -18,8 +18,6 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                //MantenerGenerosSinCambios(pelicula, tlmeContext);
-
                 tlmeContext.Generos.Attach(pelicula.GeneroPrincipal);
                 //tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
                 foreach (var generosEnMemoria in pelicula.GenerosSecundarios)
@@ -31,16 +29,6 @@ namespace Repositorio.EnDataBase
                 tlmeContext.SaveChanges();
             }
         }
-
-        //private static void MantenerGenerosSinCambios(Pelicula pelicula, ThreatLevelMidnightEntertainmentDBContext tlmeContext)
-        //{
-        //    tlmeContext.Entry(pelicula.GeneroPrincipal).State = EntityState.Unchanged;
-
-        //    foreach (var generosEnMemoria in pelicula.GenerosSecundarios)
-        //    {
-        //        tlmeContext.Entry(generosEnMemoria).State = EntityState.Unchanged;
-        //    }
-        //}
 
         public bool EstaPelicula(Pelicula pelicula)
         {
@@ -120,9 +108,9 @@ namespace Repositorio.EnDataBase
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
                 bool ret = false;
-                tlmeContext.Peliculas.Attach(pelicula);
-                tlmeContext.Personas.Attach(persona);
-                if (pelicula.Directores.Contains(persona))
+                Pelicula peliEncontrada = tlmeContext.Peliculas.Include(x=>x.Directores).FirstOrDefault(x => x.Identificador == pelicula.Identificador);
+                Persona personaEncontrada = tlmeContext.Personas.Include(x=>x.PeliculasQueDirige).FirstOrDefault(x => x.Id == persona.Id);
+                if (peliEncontrada.Directores.Contains(personaEncontrada))
                 {
                     ret = true;
                 }
@@ -165,17 +153,21 @@ namespace Repositorio.EnDataBase
         {
             using (ThreatLevelMidnightEntertainmentDBContext tlmeContext = new ThreatLevelMidnightEntertainmentDBContext())
             {
-                //tlmeContext.Personas.Attach(director);
-                //tlmeContext.Peliculas.Attach(pelicula);
-                //pelicula.Directores.Add(director);
-                //tlmeContext.SaveChanges();
-                Persona dirEncontrado = tlmeContext.Personas.FirstOrDefault(x => x.Id == director.Id);
-                Pelicula peliEncontrada = tlmeContext.Peliculas.FirstOrDefault(x => x.Identificador == pelicula.Identificador);
-                tlmeContext.Entry(dirEncontrado).State = EntityState.Unchanged;
-                tlmeContext.Entry(peliEncontrada).State = EntityState.Unchanged;
-
-                peliEncontrada.Directores.Add(dirEncontrado);
+                tlmeContext.Personas.Attach(director);
+                tlmeContext.Peliculas.Attach(pelicula);
+                pelicula.Directores.Add(director);
                 tlmeContext.SaveChanges();
+
+
+                //Persona dirEncontrado = tlmeContext.Personas.FirstOrDefault(x => x.Id == director.Id);
+                //Pelicula peliEncontrada = tlmeContext.Peliculas.FirstOrDefault(x => x.Identificador == pelicula.Identificador);
+                //tlmeContext.Entry(dirEncontrado).State = EntityState.Unchanged;
+                //tlmeContext.Entry(peliEncontrada).State = EntityState.Unchanged;
+
+                //peliEncontrada.Directores.Add(director);
+                //tlmeContext.SaveChanges();
+
+
             }
         }
 
