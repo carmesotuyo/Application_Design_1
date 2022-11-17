@@ -24,5 +24,7 @@ namespace Logica.Interfaces
         void DesasociarDirector(Persona director, Pelicula pelicula, Usuario admin);
         List<Pelicula> BuscarPorActor(Persona actor);
         List<Pelicula> BuscarPorDirector(Persona director);
+        List<Papel> DevolverActores(Pelicula pelicula);
+        List<Persona> DevolverDirectores(Pelicula pelicula);
     }
 }
