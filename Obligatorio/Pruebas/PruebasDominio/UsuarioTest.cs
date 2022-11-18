@@ -2,13 +2,13 @@
 using System;
 using Dominio;
 using Dominio.Exceptions;
+using Repositorio.EnDataBase;
 
 namespace Pruebas.PruebasDominio
 {
     [TestClass]
     public class UsuarioTest
     {
-
         [TestMethod]
         public void NombreUsuarioValidoTest()
         {

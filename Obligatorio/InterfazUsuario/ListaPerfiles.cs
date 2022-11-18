@@ -18,16 +18,16 @@ namespace InterfazUsuario
         private Usuario _usuario;
         private Perfil _perfil;
         private ILogicaUsuario _logicaUsuario;
-        public ListaPerfiles(Perfil perfil, Usuario usuario, ILogicaUsuario logicaUsuario, Threat_Level_Midnight_Entertainment ventanaPrincipal)
+        private ILogicaPerfil _logicaPerfil;
+        public ListaPerfiles(Perfil perfil, Usuario usuario, ILogicaUsuario logicaUsuario, ILogicaPerfil logicaPerfil, Threat_Level_Midnight_Entertainment ventanaPrincipal)
         {
             InitializeComponent();
             _perfil = perfil;
             _usuario = usuario;
             _logicaUsuario = logicaUsuario;
+            _logicaPerfil = logicaPerfil;
             _ventanaPrincipal = ventanaPrincipal;
             CargarPerfiles();
-
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace InterfazUsuario
             flpListaPerfiles.Controls.Clear();
             int index = 0;
             bool esOwner = _perfil.EsOwner;
-            foreach(Perfil perfil in _usuario.Perfiles)
+            foreach(Perfil perfil in _logicaUsuario.PerfilesAsociados(_usuario))
             {
                 FlowLayoutPanel flpPerfil = new System.Windows.Forms.FlowLayoutPanel();
                 flpPerfil.BackColor = SystemColors.Control;
@@ -84,7 +84,7 @@ namespace InterfazUsuario
         {
             LinkLabel perfilSeleccionado = sender as LinkLabel;
             int index = perfilSeleccionado.TabIndex;
-            Perfil perfil = _usuario.Perfiles[index];
+            Perfil perfil = _logicaUsuario.PerfilesAsociados(_usuario)[index];
             _logicaUsuario.QuitarPerfil(_usuario, perfil);
             CargarPerfiles();
         }
@@ -93,15 +93,15 @@ namespace InterfazUsuario
         {
             CheckBox perfilSeleccionado = sender as CheckBox;
             int index = perfilSeleccionado.TabIndex;
-            Perfil perfil = _usuario.Perfiles[index];
-            perfil.EsInfantil = perfilSeleccionado.Checked;
+            Perfil perfil = _logicaUsuario.PerfilesAsociados(_usuario)[index];
+            if (perfilSeleccionado.Checked) { _logicaPerfil.MarcarComoInfantil(perfil, _perfil); };
         }
 
         private void AccederPerfil(object sender, EventArgs e)
         {
             FlowLayoutPanel perfilSeleccionado = sender as FlowLayoutPanel;
             int index = perfilSeleccionado.TabIndex;
-            Perfil perfil = _usuario.Perfiles[index];
+            Perfil perfil = _logicaUsuario.PerfilesAsociados(_usuario)[index];
             if (perfil.EsInfantil)
             {
                 _ventanaPrincipal.CambiarMenuPeliculas(_usuario, perfil);

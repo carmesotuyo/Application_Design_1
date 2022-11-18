@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,7 +36,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarPersona.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AgregarPersona.Designer.cs">
+      <DependentUpon>AgregarPersona.cs</DependentUpon>
+    </Compile>
     <Compile Include="AgregarGenero.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -57,6 +73,12 @@
     </Compile>
     <Compile Include="AgregarPelicula.Designer.cs">
       <DependentUpon>AgregarPelicula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AsociarPersona.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AsociarPersona.Designer.cs">
+      <DependentUpon>AsociarPersona.cs</DependentUpon>
     </Compile>
     <Compile Include="CrearPerfil.cs">
       <SubType>UserControl</SubType>
@@ -114,6 +136,12 @@
     <Compile Include="QuitarPelicula.Designer.cs">
       <DependentUpon>QuitarPelicula.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditarPersona.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditarPersona.Designer.cs">
+      <DependentUpon>EditarPersona.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registro.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,29 +166,43 @@
     <Compile Include="VerPelicula.Designer.cs">
       <DependentUpon>VerPelicula.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AgregarPersona.resx">
+      <DependentUpon>AgregarPersona.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AgregarGenero.resx">
       <DependentUpon>AgregarGenero.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AgregarPelicula.resx">
       <DependentUpon>AgregarPelicula.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AsociarPersona.resx">
+      <DependentUpon>AsociarPersona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CrearPerfil.resx">
       <DependentUpon>CrearPerfil.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaPerfiles.resx">
       <DependentUpon>ListaPerfiles.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuAdmin.resx">
       <DependentUpon>MenuAdmin.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuPeliculas.resx">
       <DependentUpon>MenuPeliculas.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="OrdenarPeliculas.resx">
       <DependentUpon>OrdenarPeliculas.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PedirPinDeSeguridad.resx">
       <DependentUpon>PedirPinDeSeguridad.cs</DependentUpon>
@@ -181,6 +223,9 @@
     <EmbeddedResource Include="QuitarPelicula.resx">
       <DependentUpon>QuitarPelicula.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditarPersona.resx">
+      <DependentUpon>EditarPersona.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Registro.resx">
       <DependentUpon>Registro.cs</DependentUpon>
     </EmbeddedResource>
@@ -193,6 +238,7 @@
     <EmbeddedResource Include="VerPelicula.resx">
       <DependentUpon>VerPelicula.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -224,4 +270,12 @@
     <None Include="Resources\usuario.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

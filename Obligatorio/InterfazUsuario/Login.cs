@@ -37,7 +37,7 @@ namespace InterfazUsuario
             {
                 Usuario usuario = _logica.IniciarSesion(txtCuenta.Text, txtClave.Text);
                 MessageBox.Show($"Has iniciado sesión con {usuario}");
-                if(usuario.Perfiles.Count == 0)
+                if(_logica.PerfilesAsociados(usuario).Count == 0)
                 {
                     _ventanaPrincipal.CambiarRegistroPerfil(usuario);
                 } else

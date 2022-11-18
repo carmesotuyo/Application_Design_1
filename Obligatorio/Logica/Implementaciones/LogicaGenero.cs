@@ -28,6 +28,14 @@ namespace Logica.Implementaciones
             _repo.AgregarGenero(genero);
         }
 
+        private void BloquearUsuarioNoAdmin(Usuario admin)
+        {
+            if (!admin.EsAdministrador)
+            {
+                throw new UsuarioNoPermitidoException();
+            }
+        }
+
 
         private void EvaluarSiEsDuplicado(Genero genero)
         {
@@ -64,19 +72,11 @@ namespace Logica.Implementaciones
 
         private void BuscarSiTienePeliculasAsociadas(Genero genero, ILogicaPelicula logicaPelicula)
         {
-            List<Pelicula> EsGeneroPrincipal = logicaPelicula.Peliculas().Where(p => p.GeneroPrincipal.Equals(genero)).ToList();
-            List<Pelicula> EsGeneroSecundario = logicaPelicula.Peliculas().Where(p => p.GenerosSecundarios.Contains(genero)).ToList();
-            if (EsGeneroPrincipal.Count() > 0 || EsGeneroSecundario.Count() > 0)
+            Pelicula EsGeneroPrincipal = logicaPelicula.Peliculas().FirstOrDefault(p => p.GeneroPrincipal.Equals(genero));
+            Pelicula EsGeneroSecundario = logicaPelicula.Peliculas().FirstOrDefault(p => p.GenerosSecundarios.Contains(genero));
+            if(EsGeneroPrincipal != null || EsGeneroSecundario != null)
             {
                 throw new GeneroConPeliculaAsociadaException();
-            }
-        }
-
-        private void BloquearUsuarioNoAdmin(Usuario admin)
-        {
-            if (!admin.EsAdministrador)
-            {
-                throw new UsuarioNoPermitidoException();
             }
         }
 

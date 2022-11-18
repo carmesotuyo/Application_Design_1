@@ -103,13 +103,22 @@ namespace Dominio
             }
         }
 
-        public List<Perfil> Perfiles { get => _listaPerfiles; }
-
         public bool EsAdministrador { get => _esAdmin; set => _esAdmin = value; }
 
         public override string ToString()
         {
             return Nombre;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj != null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Usuario usuario = (Usuario) obj;
+                ret = usuario.Nombre == this.Nombre && usuario.Email == this.Email;
+            }
+            return ret;
         }
     }
 }

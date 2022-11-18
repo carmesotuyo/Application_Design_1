@@ -2,6 +2,7 @@
 using Logica.Implementaciones;
 using Logica.Interfaces;
 using Repositorio;
+using Repositorio.EnDataBase;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,13 +23,17 @@ namespace InterfazUsuario
         private ILogicaPelicula _logicaPelicula;
         private ILogicaGenero _logicaGenero;
         private ILogicaPerfil _logicaPerfil;
+        private ILogicaPersona _logicaPersona;
+        private ILogicaPapel _logicaPapel;
 
         public Threat_Level_Midnight_Entertainment()
         {
-            _logicaUsuario = new LogicaUsuario(new RepoUsuarios());
-            _logicaPerfil = new LogicaPerfil();
-            _logicaPelicula = new LogicaPelicula(new PeliculaRepo());
-            _logicaGenero = new LogicaGenero(new GeneroRepo());
+            _logicaUsuario = new LogicaUsuario(new UsuarioDBRepo(), new PerfilDBRepo());
+            _logicaPerfil = new LogicaPerfil(new PerfilDBRepo(), new GeneroPuntajeDBRepo(), new PeliculaDBRepo(), new GeneroDBRepo());
+            _logicaPelicula = new LogicaPelicula(new PeliculaDBRepo(), new PerfilDBRepo(), new PersonaDBRepo());
+            _logicaGenero = new LogicaGenero(new GeneroDBRepo());
+            _logicaPersona = new LogicaPersona(new PersonaDBRepo());
+            _logicaPapel = new LogicaPapel(new PapelDBRepo());
 
             InitializeComponent();
             flpPanelPrincipal.Controls.Add(new Login(_logicaUsuario, this));
@@ -44,7 +49,10 @@ namespace InterfazUsuario
                 ConfirmarClave = "admin12345",
                 EsAdministrador = true
             };
-            _logicaUsuario.RegistrarUsuario(admin);
+            if (!_logicaUsuario.ExisteUsuario(admin))
+            {
+                _logicaUsuario.RegistrarUsuario(admin);
+            }
         }
 
         public void CambiarRegistroUsuario()
@@ -65,17 +73,17 @@ namespace InterfazUsuario
         public void CambiarListaPerfiles(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new ListaPerfiles(perfil, usuario, _logicaUsuario, this));
+            flpPanelPrincipal.Controls.Add(new ListaPerfiles(perfil, usuario, _logicaUsuario, _logicaPerfil, this));
         }
         public void CambiarMenuPeliculas(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new MenuPeliculas(this, usuario, perfil, _logicaGenero, _logicaPerfil, _logicaPelicula));
+            flpPanelPrincipal.Controls.Add(new MenuPeliculas(this, usuario, perfil, _logicaGenero,_logicaPersona, _logicaPerfil, _logicaPelicula));
         }
         public void CambiarMenuAdmin(Usuario usuario, Perfil perfil)
         {
             flpPanelPrincipal.Controls.Clear();
-            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, _logicaGenero, _logicaPelicula, this));
+            flpPanelPrincipal.Controls.Add(new MenuAdmin(usuario, perfil, _logicaGenero, _logicaPelicula, _logicaPapel, _logicaPersona, this));
         }
         public void CambiarVerPelicula(Pelicula pelicula,Perfil perfil, ILogicaPerfil logicaPerfil, ILogicaGenero logicaGenero, Usuario usuario)
         {

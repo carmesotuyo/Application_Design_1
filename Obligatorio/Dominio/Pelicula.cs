@@ -12,18 +12,24 @@ namespace Dominio
     {
         private string _nombre;
         private Genero _generoPrincipal;
-        private List<Genero> _generosSecundarios;
+        private IList<Genero> _generosSecundarios;
         private string _descripcion;
         private bool _aptaTodoPublico;
         private bool _patrocinada;
         private static int _contadorPeliculas = 0;
         private int _idPelicula;
         private string _poster;
+        public IList<Perfil> PerfilesQueLaVieron { get; set; }
+        public IList<Papel> Papeles { get; set; }
+        public IList<Persona> Directores { get; set; }
 
         public Pelicula()
         {
             _generosSecundarios = new List<Genero>();
             this.asignarIdentificador();
+            PerfilesQueLaVieron = new List<Perfil>();
+            Papeles = new List<Papel>();
+            Directores = new List<Persona>();
         }
         private void asignarIdentificador()
         {
@@ -48,15 +54,22 @@ namespace Dominio
 
         private void ChequearNoIncluidoEnSecundarios(Genero unGenero)
         {
-            if (GenerosSecundarios.Contains(unGenero))
+            foreach(Genero genero in GenerosSecundarios)
             {
-                throw new GeneroInvalidoException();
+                if(genero.Nombre == unGenero.Nombre)
+                {
+                    throw new GeneroInvalidoException();
+                }
             }
         }
 
 
-        public List<Genero> GenerosSecundarios { get => _generosSecundarios; set
+        public IList<Genero> GenerosSecundarios { get => _generosSecundarios; set
             {
+                foreach(var genero in value)
+                {
+                    ChequearNoCoincideConPrincipal(genero);
+                }
                 _generosSecundarios = value;
             } 
         }
@@ -116,6 +129,17 @@ namespace Dominio
         public override string ToString()
         {
             return Nombre;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj != null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Pelicula pelicula = (Pelicula)obj;
+                ret = pelicula.Identificador == this.Identificador;
+            }
+            return ret;
         }
     }
 }

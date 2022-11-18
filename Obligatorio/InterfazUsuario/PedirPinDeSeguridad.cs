@@ -54,6 +54,10 @@ namespace InterfazUsuario
             {
                 MessageBox.Show("Pin incorrecto");
             }
+            catch(System.FormatException)
+            {
+                MessageBox.Show("Solo de admiten números");
+            }
         }
 
         private void lblAtras_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

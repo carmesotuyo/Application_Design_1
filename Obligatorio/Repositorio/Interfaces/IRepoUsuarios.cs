@@ -11,5 +11,6 @@ namespace Repositorio.Interfaces
     {
         List<Usuario> Usuarios();
         void AgregarUsuario(Usuario usuario);
+        bool EstaUsuario(Usuario usuario);
     }
 }

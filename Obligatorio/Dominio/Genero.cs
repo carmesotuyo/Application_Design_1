@@ -11,6 +11,7 @@ namespace Dominio
     {
         private string _nombre;
         private string _descripcion;
+        private IList<Pelicula> _peliculasAsociadas;
 
         public string Nombre { get => CorregirFormato(_nombre); set
             {
@@ -20,7 +21,9 @@ namespace Dominio
         }
 
         public string Descripcion { get => _descripcion; set => _descripcion = value; }
-        
+
+        public IList<Pelicula> PeliculasAsociadas { get => _peliculasAsociadas; set { _peliculasAsociadas = value; } }
+
         private void ChequearStringVacio(string value)
         {
             if (value.Length == 0)
@@ -38,6 +41,17 @@ namespace Dominio
         public override string ToString()
         {
             return Nombre;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            bool ret = obj !=null && obj.GetType() == this.GetType();
+            if (ret)
+            {
+                Genero genero = (Genero)obj;
+                ret = genero.Nombre == this.Nombre;
+            }
+            return ret;
         }
     }
 }

@@ -21,7 +21,8 @@ namespace InterfazUsuario
         private ILogicaPelicula _logicaPelicula;
         private ILogicaPerfil _logicaPerfil;
         private ILogicaGenero _logicaGenero;
-        public MenuPeliculas(Threat_Level_Midnight_Entertainment ventanaPrincipal, Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPerfil logicaPerfil, ILogicaPelicula logicaPelicula)
+        private ILogicaPersona _logicaPersona;
+        public MenuPeliculas(Threat_Level_Midnight_Entertainment ventanaPrincipal, Usuario usuario, Perfil perfil, ILogicaGenero logicaGenero, ILogicaPersona logicaPersona, ILogicaPerfil logicaPerfil, ILogicaPelicula logicaPelicula)
         {
             _ventanaPrincipal = ventanaPrincipal;
             _usuario = usuario;
@@ -29,16 +30,17 @@ namespace InterfazUsuario
             _logicaPelicula = logicaPelicula;
             _logicaPerfil = logicaPerfil;
             _logicaGenero = logicaGenero;
+            _logicaPersona = logicaPersona;
             
             InitializeComponent();
             botonAdmin(_usuario, _perfil);
             ActualizarGenerosPerfiles();
-            MostrarPeliculas();
+            MostrarTodas();
         }
 
         private void ActualizarGenerosPerfiles()
         {
-            _logicaPerfil.ActualizarListadoGeneros(_perfil, _logicaGenero);
+            _logicaPerfil.ActualizarListadoGeneros(_perfil);
         }
 
         void botonAdmin(Usuario usuario, Perfil perfil)
@@ -49,13 +51,12 @@ namespace InterfazUsuario
             }
         }
 
-        private void MostrarPeliculas()
+        private void MostrarPeliculas(List<Pelicula> listaPeliculas)
         {
-            flpListaPelis.Controls.Clear();
             int index = 0;
             int anchoPelicula = (int)(flpListaPelis.Width*0.3);
             int alturaPelicula = flpListaPelis.Height;
-            foreach (Pelicula pelicula in _logicaPelicula.MostrarPeliculas(_perfil))
+            foreach (Pelicula pelicula in listaPeliculas)
             {
                 FlowLayoutPanel flpPelicula = new System.Windows.Forms.FlowLayoutPanel();
                 flpPelicula.BackColor = SystemColors.Control;
@@ -82,6 +83,58 @@ namespace InterfazUsuario
             }
         }
 
+        private void MostrarVistas()
+        {
+            int index = 0;
+            int anchoPelicula = (int)(flpListaPelis.Width * 0.3);
+            foreach (Pelicula pelicula in _logicaPerfil.MostrarPeliculasVistas(_perfil))
+            {
+                FlowLayoutPanel flpPelicula = new System.Windows.Forms.FlowLayoutPanel();
+                flpPelicula.BackColor = SystemColors.Control;
+                flpPelicula.FlowDirection = FlowDirection.TopDown;
+                flpPelicula.Size = new Size(anchoPelicula, 250);
+                flpListaPelis.Controls.Add(flpPelicula);
+
+                PictureBox poster = new PictureBox();
+                poster.Size = new Size(anchoPelicula, 130);
+                poster.BorderStyle = BorderStyle.FixedSingle;
+                poster.BackColor = SystemColors.Control;
+                poster.TabIndex = index;
+                poster.Image = new Bitmap(pelicula.Poster);
+                poster.SizeMode = PictureBoxSizeMode.StretchImage;
+                poster.Click += new EventHandler(AccederPelicula);
+                flpPelicula.Controls.Add(poster);
+
+                Label nombre = new Label();
+                nombre.Text = pelicula.Nombre;
+                nombre.TabIndex = index;
+                flpPelicula.Controls.Add(nombre);
+
+                string directoresStr = _logicaPelicula.Directores(pelicula, 3);
+                Label directores = new Label();
+                directores.AutoSize = true;
+                directores.Text = directoresStr;
+                directores.TabIndex = index;
+                flpPelicula.Controls.Add(directores);
+
+                string actoresStr = _logicaPelicula.Actores(pelicula, 5);
+                Label actores = new Label();
+                actores.AutoSize = true;
+                actores.Text = actoresStr;
+                actores.TabIndex = index;
+                flpPelicula.Controls.Add(actores);
+
+                index++;
+            }
+        }
+
+        private void MostrarTodas()
+        {
+            flpListaPelis.Controls.Clear();
+            MostrarPeliculas(_logicaPelicula.MostrarPeliculas(_perfil));
+
+        }
+
         private void AccederPelicula(object sender, EventArgs e)
         {
             PictureBox peliculaSeleccionada = sender as PictureBox;
@@ -89,6 +142,8 @@ namespace InterfazUsuario
             Pelicula pelicula = _logicaPelicula.MostrarPeliculas(_perfil)[index] ;
             _ventanaPrincipal.CambiarVerPelicula(pelicula, _perfil, _logicaPerfil, _logicaGenero, _usuario);
         }
+
+
 
         private void lblPerfil_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -103,6 +158,60 @@ namespace InterfazUsuario
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             _ventanaPrincipal.CambiarMenuAdmin(_usuario, _perfil);
+        }
+
+        private void btnTodas_Click(object sender, EventArgs e)
+        {
+            MostrarTodas();
+        }
+
+        private void btnVistas_Click(object sender, EventArgs e)
+        {
+            flpListaPelis.Controls.Clear();
+            MostrarVistas();
+
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            panelBuscar();
+        }
+
+        private void panelBuscar()
+        {
+            flpListaPelis.Controls.Clear();
+            flpListaPelis.Controls.Add(LBPersonas);
+            flpListaPelis.Controls.Add(btnBuscarDirector);
+            flpListaPelis.Controls.Add(btnBuscarActor);
+            ActualizarBoxPersonas();
+        }
+
+        private void ActualizarBoxPersonas()
+        {
+            LBPersonas.Items.Clear();
+            LBPersonas.Items.AddRange(_logicaPersona.Personas().ToArray());
+        }
+
+        private void btnBuscarDirector_Click(object sender, EventArgs e)
+        {
+            List<Persona> listaDirectores = new List<Persona>();
+            foreach (Persona director in LBPersonas.SelectedItems)
+            {
+                listaDirectores.Add(director);
+            }
+            panelBuscar();
+            MostrarPeliculas(_logicaPelicula.BuscarPorDirectores(listaDirectores));
+        }
+
+        private void btnBuscarActor_Click(object sender, EventArgs e)
+        {
+            List<Persona> listaActores = new List<Persona>();
+            foreach (Persona actor in LBPersonas.SelectedItems)
+            {
+                listaActores.Add(actor);
+            }
+            panelBuscar();
+            MostrarPeliculas(_logicaPelicula.BuscarPorActores(listaActores));
         }
     }
 }

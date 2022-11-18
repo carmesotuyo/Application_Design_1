@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dominio;
 using Dominio.Exceptions;
+using Repositorio.EnDataBase;
+using System.Diagnostics.Contracts;
 
 namespace Pruebas.PruebasDominio
 {
@@ -14,7 +16,7 @@ namespace Pruebas.PruebasDominio
     public class PeliculaTest
     {
         Pelicula unaPelicula = new Pelicula();
-        Genero unGenero = new Genero();
+        Genero unGenero = new Genero() { Nombre = "comedia" };
         Genero generoVacio = null;
 
         [TestMethod]
@@ -50,7 +52,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void GeneroPrincipalNoIncluidoEnSecundariosTest()
         {
-            Genero generoSecundario = new Genero();
+            Genero generoSecundario = new Genero() { Nombre = "suspenso" };
             unaPelicula.AgregarGeneroSecundario(generoSecundario);
 
             unaPelicula.GeneroPrincipal = unGenero;
@@ -86,7 +88,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void GeneroSecundarioNoIncluyeGeneroPrincipalTest()
         {
-            Genero generoPrincipal = new Genero();
+            Genero generoPrincipal = new Genero() { Nombre = "accion" };
             unaPelicula.GeneroPrincipal = generoPrincipal;
 
             unaPelicula.AgregarGeneroSecundario(unGenero);
@@ -105,7 +107,7 @@ namespace Pruebas.PruebasDominio
         [TestMethod]
         public void AgregarVariosGenerosTest()
         {
-            Genero otroGenero = new Genero();
+            Genero otroGenero = new Genero() { Nombre = "terror" };
             List<Genero> generos = new List<Genero>();
 
             generos.Add(unGenero);
@@ -205,6 +207,42 @@ namespace Pruebas.PruebasDominio
             unaPelicula.Nombre = "Harry Potter";
 
             Assert.AreEqual(unaPelicula.ToString(), "Harry Potter");
+        }
+
+        [TestMethod]
+        public void AgregarPapelTest()
+        {
+            Papel papel = new Papel() { Nombre = "nombre", Actor = new Persona(), Pelicula = new Pelicula() };
+            unaPelicula.Papeles.Add(papel);
+            Assert.IsTrue(unaPelicula.Papeles.Contains(papel));
+        }
+
+        [TestMethod]
+        public void QuitarPapelTest()
+        {
+            Papel papel = new Papel() { Nombre = "nombre", Actor = new Persona(), Pelicula = new Pelicula() };
+            unaPelicula.Papeles.Add(papel);
+
+            unaPelicula.Papeles.Remove(papel);
+            Assert.IsFalse(unaPelicula.Papeles.Contains(papel));
+        }
+
+        [TestMethod]
+        public void AgregarDirectorTest()
+        {
+            Persona director = new Persona();
+            unaPelicula.Directores.Add(director);
+            Assert.IsTrue(unaPelicula.Directores.Contains(director));
+        }
+
+        [TestMethod]
+        public void QuitarDirectorTest()
+        {
+            Persona director = new Persona();
+            unaPelicula.Directores.Add(director);
+
+            unaPelicula.Directores.Remove(director);
+            Assert.IsFalse(unaPelicula.Directores.Contains(director));
         }
     }
 }
